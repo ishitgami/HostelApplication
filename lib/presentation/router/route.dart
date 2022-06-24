@@ -2,11 +2,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:hostelapplication/core/constant/string.dart';
 import 'package:hostelapplication/logic/cubit/splashscreen_cubit.dart';
+import 'package:hostelapplication/presentation/screen/admin/adminDashbord.dart';
 import 'package:hostelapplication/presentation/screen/auth/logInScreen.dart';
 import 'package:hostelapplication/presentation/screen/auth/registrationScreen.dart';
 import 'package:hostelapplication/presentation/screen/onBordingScreen.dart';
 import 'package:hostelapplication/presentation/screen/splashScreen.dart';
-
 
 class Routes {
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -15,21 +15,22 @@ class Routes {
         return MaterialPageRoute(
           builder: (context) => BlocProvider(
             create: (context) => SplashscreenCubit(),
-            child:  SplashScreen(),
+            child: const SplashScreen(),
           ),
         );
 
-        
-        case onboardingScreen:
+      case onboardingScreen:
         return MaterialPageRoute(builder: (context) => OnboardingScreen());
 
-        case logInScreenRoute:
+      case logInScreenRoute:
         return MaterialPageRoute(builder: (context) => const LogInScreen());
 
-        case registrationScreenRoute:
-        return MaterialPageRoute(builder: (context) => const RegistrationScreen());
+      case registrationScreenRoute:
+        return MaterialPageRoute(
+            builder: (context) => const RegistrationScreen());
 
-        
+      case adminDashbordScreenRoute:
+        return MaterialPageRoute(builder: (context) => AdminDashbordScreen());
 
       default:
         return MaterialPageRoute(
