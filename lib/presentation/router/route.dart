@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:hostelapplication/core/constant/string.dart';
 import 'package:hostelapplication/logic/cubit/splashscreen_cubit.dart';
 import 'package:hostelapplication/presentation/screen/auth/logInScreen.dart';
+import 'package:hostelapplication/presentation/screen/auth/registrationScreen.dart';
+import 'package:hostelapplication/presentation/screen/onBordingScreen.dart';
 import 'package:hostelapplication/presentation/screen/splashScreen.dart';
 
 
@@ -17,8 +19,17 @@ class Routes {
           ),
         );
 
+        
+        case onboardingScreen:
+        return MaterialPageRoute(builder: (context) => OnboardingScreen());
+
         case logInScreenRoute:
         return MaterialPageRoute(builder: (context) => const LogInScreen());
+
+        case registrationScreenRoute:
+        return MaterialPageRoute(builder: (context) => const RegistrationScreen());
+
+        
 
       default:
         return MaterialPageRoute(
