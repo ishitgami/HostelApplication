@@ -16,23 +16,25 @@ class _AdminHomeState extends State<AdminHome> {
         title: const Text('DashBord'),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: (){},
+        onPressed: () {},
         child: const Icon(Icons.add),
-        ),
-        drawer: const AdminDrawer(),
+      ),
+      drawer: const AdminDrawer(),
       body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            children: [
-              Container(
-                color: Colors.grey,
+          child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          children: [
+            Card(
+              elevation: 5,
+              child: Container(
+                 color: const Color.fromARGB(183, 203, 208, 211),
                 height: 150,
-              )
-            ],
-          ),
-        ) 
+              ),
+            )
+          ],
         ),
+      )),
     );
   }
 }
