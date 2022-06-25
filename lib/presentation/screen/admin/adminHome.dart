@@ -14,7 +14,7 @@ class _AdminHomeState extends State<AdminHome> {
     return Scaffold(
       backgroundColor: const Color.fromARGB(183, 203, 208, 211),
       appBar: AppBar(
-        title: const Text('DashBord'),
+        title: const Text('DashBoard'),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {},

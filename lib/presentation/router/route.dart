@@ -7,6 +7,9 @@ import 'package:hostelapplication/presentation/screen/auth/logInScreen.dart';
 import 'package:hostelapplication/presentation/screen/auth/registrationScreen.dart';
 import 'package:hostelapplication/presentation/screen/onBordingScreen.dart';
 import 'package:hostelapplication/presentation/screen/splashScreen.dart';
+import 'package:hostelapplication/presentation/screen/student/complains/electricitycomplaint.dart';
+import 'package:hostelapplication/presentation/screen/student/detailspage/studentdetails.dart';
+import 'package:hostelapplication/presentation/screen/student/studnetDashbord.dart';
 
 class Routes {
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -30,7 +33,20 @@ class Routes {
             builder: (context) => const RegistrationScreen());
 
       case adminDashbordScreenRoute:
-        return MaterialPageRoute(builder: (context) => const AdminDashbordScreen());
+        return MaterialPageRoute(
+            builder: (context) => const AdminDashbordScreen());
+
+      case studentDashboardScreenRoute:
+        return MaterialPageRoute(
+            builder: (context) => const StudentDashboardScreen());
+
+      case studentDetailScreenRoute:
+        return MaterialPageRoute(
+            builder: (context) => const StudentDetailScreen());
+
+      case electricitycomplaintscreenRoute:
+        return MaterialPageRoute(
+            builder: (context) => const ElectricityComplaint());
 
       default:
         return MaterialPageRoute(
