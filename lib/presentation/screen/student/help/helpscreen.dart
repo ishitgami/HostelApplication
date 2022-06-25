@@ -6,7 +6,8 @@ class HelpScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const String bullet = "\u2022 ";
+    const helpstyle = TextStyle(
+        color: Colors.blue, fontWeight: FontWeight.bold, fontSize: 20);
     return Scaffold(
       appBar: AppBar(
         title: const Text("Help"),
@@ -23,20 +24,12 @@ class HelpScreen extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const SizedBox(
-                        height: 10,
-                      ),
                       GestureDetector(
                         onTap: () {},
                         child: const Text.rich(
                           TextSpan(
                             children: [
-                              TextSpan(
-                                  text: 'Home ',
-                                  style: TextStyle(
-                                      color: Colors.blue,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 22)),
+                              TextSpan(text: 'Home ', style: helpstyle),
                               WidgetSpan(
                                   child: Icon(
                                 Icons.home_outlined,
@@ -46,21 +39,20 @@ class HelpScreen extends StatelessWidget {
                           ),
                         ),
                       ),
-                      BulletList([
+                      BulletList(const [
                         "Here you can see the all updates about your hostel. The information posted here is officially approved by management."
                       ]),
                       const Divider(thickness: 1),
+                      const SizedBox(
+                        height: 5,
+                      ),
                       GestureDetector(
                         onTap: () {},
                         child: const Text.rich(
                           TextSpan(
                             children: [
                               TextSpan(
-                                  text: 'Complaint Screen ',
-                                  style: TextStyle(
-                                      color: Colors.blue,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 22)),
+                                  text: 'Complaint Screen ', style: helpstyle),
                               WidgetSpan(
                                   child: Icon(
                                 Icons.content_paste_go_sharp,
@@ -70,22 +62,21 @@ class HelpScreen extends StatelessWidget {
                           ),
                         ),
                       ),
-                      BulletList([
+                      BulletList(const [
                         "Here you are able to post your complaints you are facing in your hostel",
                         "if the complaints were accepted and the problems were solved, you'll get a notification"
                       ]),
                       const Divider(thickness: 1),
+                      const SizedBox(
+                        height: 5,
+                      ),
                       GestureDetector(
                         onTap: () {},
                         child: const Text.rich(
                           TextSpan(
                             children: [
                               TextSpan(
-                                  text: 'Service Screen ',
-                                  style: TextStyle(
-                                      color: Colors.blue,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 22)),
+                                  text: 'Service Screen ', style: helpstyle),
                               WidgetSpan(
                                   child: Icon(
                                 CupertinoIcons.wrench,
@@ -95,22 +86,20 @@ class HelpScreen extends StatelessWidget {
                           ),
                         ),
                       ),
-                      BulletList([
+                      BulletList(const [
                         "Here you are able to post about your repaired devices like fan, light, taps and doors.",
                         "if the complaints were accepted and the problems were solved, you'll get a notification"
                       ]),
                       const Divider(thickness: 1),
+                      const SizedBox(
+                        height: 5,
+                      ),
                       GestureDetector(
                         onTap: () {},
                         child: const Text.rich(
                           TextSpan(
                             children: [
-                              TextSpan(
-                                  text: 'Leave ',
-                                  style: TextStyle(
-                                      color: Colors.blue,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 22)),
+                              TextSpan(text: 'Leave ', style: helpstyle),
                               WidgetSpan(
                                   child: Icon(
                                 Icons.leave_bags_at_home,
@@ -120,7 +109,7 @@ class HelpScreen extends StatelessWidget {
                           ),
                         ),
                       ),
-                      BulletList(["Add text here"])
+                      BulletList(const ["Add text here"])
                     ],
                   ),
                 ),
@@ -175,27 +164,25 @@ class BulletList extends StatelessWidget {
           return Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
+              const Text(
                 '\u2022',
                 style: TextStyle(
                   fontSize: 16,
                   height: 1.55,
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 width: 5,
               ),
               Expanded(
-                child: Container(
-                  child: Text(
-                    str,
-                    textAlign: TextAlign.left,
-                    softWrap: true,
-                    style: TextStyle(
-                      fontSize: 16,
-                      color: Colors.black.withOpacity(0.6),
-                      height: 1.55,
-                    ),
+                child: Text(
+                  str,
+                  textAlign: TextAlign.left,
+                  softWrap: true,
+                  style: TextStyle(
+                    fontSize: 14,
+                    color: Colors.black.withOpacity(0.6),
+                    height: 1.55,
                   ),
                 ),
               ),

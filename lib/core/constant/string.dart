@@ -16,8 +16,10 @@ const String studentDashboardScreenRoute = "/student";
 
 const String studentDetailScreenRoute = "/StudentDetails";
 const String electricitycomplaintscreenRoute = "/electricitycomplaint";
+// const String fanlightcomplaintscreenRoute = "/fanlightcomplaint";
+const String fanlightcomplaintscreenRoute = "/";
 
 //help
-const String helpscreenRoute = "/";
+const String helpscreenRoute = "/help";
 
 //****************End-Routes***********************

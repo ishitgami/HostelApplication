@@ -8,6 +8,7 @@ import 'package:hostelapplication/presentation/screen/auth/registrationScreen.da
 import 'package:hostelapplication/presentation/screen/onBordingScreen.dart';
 import 'package:hostelapplication/presentation/screen/splashScreen.dart';
 import 'package:hostelapplication/presentation/screen/student/complains/electricitycomplaint.dart';
+import 'package:hostelapplication/presentation/screen/student/complains/fanlightcomplaint.dart';
 import 'package:hostelapplication/presentation/screen/student/detailspage/studentdetails.dart';
 import 'package:hostelapplication/presentation/screen/student/help/helpscreen.dart';
 import 'package:hostelapplication/presentation/screen/student/studnetDashbord.dart';
@@ -51,6 +52,10 @@ class Routes {
 
       case helpscreenRoute:
         return MaterialPageRoute(builder: (context) => const HelpScreen());
+
+      case fanlightcomplaintscreenRoute:
+        return MaterialPageRoute(
+            builder: (context) => const FanLightComplaints());
 
       default:
         return MaterialPageRoute(
