@@ -30,7 +30,7 @@ class Routes {
             builder: (context) => const RegistrationScreen());
 
       case adminDashbordScreenRoute:
-        return MaterialPageRoute(builder: (context) => AdminDashbordScreen());
+        return MaterialPageRoute(builder: (context) => const AdminDashbordScreen());
 
       default:
         return MaterialPageRoute(
