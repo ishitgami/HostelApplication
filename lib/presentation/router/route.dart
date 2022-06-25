@@ -9,6 +9,7 @@ import 'package:hostelapplication/presentation/screen/onBordingScreen.dart';
 import 'package:hostelapplication/presentation/screen/splashScreen.dart';
 import 'package:hostelapplication/presentation/screen/student/complains/electricitycomplaint.dart';
 import 'package:hostelapplication/presentation/screen/student/detailspage/studentdetails.dart';
+import 'package:hostelapplication/presentation/screen/student/help/helpscreen.dart';
 import 'package:hostelapplication/presentation/screen/student/studnetDashbord.dart';
 
 class Routes {
@@ -47,6 +48,9 @@ class Routes {
       case electricitycomplaintscreenRoute:
         return MaterialPageRoute(
             builder: (context) => const ElectricityComplaint());
+
+      case helpscreenRoute:
+        return MaterialPageRoute(builder: (context) => const HelpScreen());
 
       default:
         return MaterialPageRoute(

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hostelapplication/presentation/screen/student/studentDrawer.dart';
 
 class StudentHome extends StatefulWidget {
- const StudentHome({Key? key}) : super(key: key);
+  const StudentHome({Key? key}) : super(key: key);
 
   @override
   State<StudentHome> createState() => _StudentHomeState();
