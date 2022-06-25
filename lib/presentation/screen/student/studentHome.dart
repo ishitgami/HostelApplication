@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:hostelapplication/presentation/screen/admin/AdminDrawer.dart';
+import 'package:hostelapplication/presentation/screen/student/studentDrawer.dart';
 
-class AdminHome extends StatefulWidget {
-  const AdminHome({Key? key}) : super(key: key);
+class StudentHome extends StatefulWidget {
+ const StudentHome({Key? key}) : super(key: key);
 
   @override
-  State<AdminHome> createState() => _AdminHomeState();
+  State<StudentHome> createState() => _StudentHomeState();
 }
 
-class _AdminHomeState extends State<AdminHome> {
+class _StudentHomeState extends State<StudentHome> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,7 +19,7 @@ class _AdminHomeState extends State<AdminHome> {
         onPressed: () {},
         child: const Icon(Icons.add),
       ),
-      drawer: const AdminDrawer(),
+      drawer: const StudentDrawer(),
       body: SingleChildScrollView(
           child: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -28,7 +28,7 @@ class _AdminHomeState extends State<AdminHome> {
             Card(
               elevation: 5,
               child: Container(
-                 color: const Color.fromARGB(183, 203, 208, 211),
+                color: const Color.fromARGB(183, 203, 208, 211),
                 height: 150,
               ),
             )
