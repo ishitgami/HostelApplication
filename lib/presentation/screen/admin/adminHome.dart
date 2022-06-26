@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hostelapplication/core/constant/string.dart';
 import 'package:hostelapplication/presentation/screen/admin/AdminDrawer.dart';
 
 class AdminHome extends StatefulWidget {
@@ -17,7 +18,9 @@ class _AdminHomeState extends State<AdminHome> {
         title: const Text('DashBoard'),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.pushNamed(context, addNoticeScreenRoute);
+        },
         child: const Icon(Icons.add),
       ),
       drawer: const AdminDrawer(),

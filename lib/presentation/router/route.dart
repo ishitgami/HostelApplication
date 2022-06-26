@@ -2,7 +2,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:hostelapplication/core/constant/string.dart';
 import 'package:hostelapplication/logic/cubit/splashscreen_cubit.dart';
+import 'package:hostelapplication/presentation/screen/admin/addNoticeScreen.dart';
 import 'package:hostelapplication/presentation/screen/admin/adminDashbord.dart';
+import 'package:hostelapplication/presentation/screen/admin/approveDenyCompScreen.dart';
+import 'package:hostelapplication/presentation/screen/admin/complainListScreen.dart';
 import 'package:hostelapplication/presentation/screen/auth/logInScreen.dart';
 import 'package:hostelapplication/presentation/screen/auth/registrationScreen.dart';
 import 'package:hostelapplication/presentation/screen/onBordingScreen.dart';
@@ -47,6 +50,19 @@ class Routes {
       case electricitycomplaintscreenRoute:
         return MaterialPageRoute(
             builder: (context) => const ElectricityComplaint());
+      
+      case addNoticeScreenRoute:
+        return MaterialPageRoute(
+            builder: (context) => AddNoticeScreen());
+
+       case complainListScreenRoute:
+        return MaterialPageRoute(
+            builder: (context) => ComplainListScreen());
+      
+      case approveDenyComplainListRoute:
+        return MaterialPageRoute(
+            builder: (context) => ApproveDenyComplainList());
+            
 
       default:
         return MaterialPageRoute(

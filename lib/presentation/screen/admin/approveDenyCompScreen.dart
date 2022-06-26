@@ -1,23 +1,35 @@
 import 'package:flutter/material.dart';
 
-class ElectricityComplaint extends StatelessWidget {
-  const ElectricityComplaint({Key? key}) : super(key: key);
+class ApproveDenyComplainList extends StatelessWidget {
+  const ApproveDenyComplainList({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     const tablepadding = EdgeInsets.all(15);
     return Scaffold(
-      appBar: AppBar(title: const Text("Electricity")),
-      body: Form(
-        child: SingleChildScrollView(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              const SizedBox(
-                height: 10,
-              ),
-              Padding(
+      appBar: AppBar(
+        title: const Text('Approve/Denny'),
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+           
+            Stack(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(
+                      top: 18.0, left: 18, right: 18, bottom: 50),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      border: Border.all(width: 1),
+                    ),
+                    child: Column(
+                      children: [
+                        const SizedBox(
+                          height: 15,
+                        ),
+                         Padding(
                 padding: const EdgeInsets.all(20),
                 child: Card(
                   elevation: 1,
@@ -109,20 +121,6 @@ class ElectricityComplaint extends StatelessWidget {
                   ),
                 ),
               ),
-              Stack(children: [
-                Padding(
-                  padding: const EdgeInsets.only(
-                      top: 18.0, left: 18, right: 18, bottom: 50),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      border: Border.all(width: 1),
-                    ),
-                    child: Column(
-                      children: [
-                        const SizedBox(
-                          height: 15,
-                        ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: const [
@@ -172,18 +170,16 @@ class ElectricityComplaint extends StatelessWidget {
                   left: 0,
                   bottom: 20,
                   child: FloatingActionButton(
-                      onPressed: () {
-                        
-                      },
+                      onPressed: () {},
                       child: const Icon(
                         Icons.done,
                         size: 30,
                         color: Colors.white,
                       )),
                 ),
-              ]),
-            ],
-          ),
+              ],
+            ),
+          ],
         ),
       ),
     );

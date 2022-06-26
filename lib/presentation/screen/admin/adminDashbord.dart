@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:hostelapplication/presentation/screen/admin/AdminLeave.dart';
 import 'package:hostelapplication/presentation/screen/admin/AdminServices.dart';
 import 'package:hostelapplication/presentation/screen/admin/AdmincomplainScreen.dart';
 import 'package:hostelapplication/presentation/screen/admin/adminHome.dart';
@@ -19,9 +20,7 @@ class _AdminDashbordScreenState extends State<AdminDashbordScreen> {
     AdminHome(),
     AdminComplainScreen(),
     AdminServicesScreen(),
-    Text(
-      'Index 3: Settings',
-    ),
+    AdminLeaveScreen(),
   ];
    void _onItemTapped(int index) {
     setState(() {
