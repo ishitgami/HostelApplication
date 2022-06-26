@@ -13,6 +13,7 @@ class _FanLightComplaintsState extends State<FanLightComplaints> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         title: const Text("My Room"),
       ),

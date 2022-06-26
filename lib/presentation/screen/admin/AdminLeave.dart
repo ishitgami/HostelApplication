@@ -14,7 +14,7 @@ class _AdminLeaveScreenState extends State<AdminLeaveScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.lightBlue,
-        title: const Text('Services'),
+        title: const Text('Leave'),
       ),
       drawer: const AdminDrawer(),
       body: Container(child: Text('Leave')),

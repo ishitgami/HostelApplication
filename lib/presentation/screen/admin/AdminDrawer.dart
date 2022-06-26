@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:hostelapplication/core/constant/string.dart';
 
 class AdminDrawer extends StatelessWidget {
   const AdminDrawer({Key? key}) : super(key: key);
@@ -106,7 +107,8 @@ class AdminDrawer extends StatelessWidget {
                 ],
               ),
               onTap: () {
-                Navigator.pop(context);
+                 Navigator.pushNamed(context, helpscreenRoute);
+                // Navigator.pop(context);
               },
             ),
             ListTile(
@@ -123,6 +125,7 @@ class AdminDrawer extends StatelessWidget {
                 ],
               ),
               onTap: () {
+               
                 Navigator.pop(context);
               },
             ),

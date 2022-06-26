@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hostelapplication/core/constant/string.dart';
 
 class HelpScreen extends StatelessWidget {
   const HelpScreen({Key? key}) : super(key: key);
@@ -29,12 +30,14 @@ class HelpScreen extends StatelessWidget {
                         child: const Text.rich(
                           TextSpan(
                             children: [
-                              TextSpan(text: 'Home ', style: helpstyle),
-                              WidgetSpan(
-                                  child: Icon(
-                                Icons.home_outlined,
-                                color: Colors.blue,
-                              )),
+                               WidgetSpan(
+                                child: Icon(
+                                  Icons.home_outlined,
+                                  color: Colors.blue,
+                                ),
+                              ),
+                              TextSpan(text: '   Home ', style: helpstyle),
+                             
                             ],
                           ),
                         ),
@@ -51,13 +54,14 @@ class HelpScreen extends StatelessWidget {
                         child: const Text.rich(
                           TextSpan(
                             children: [
-                              TextSpan(
-                                  text: 'Complaint Screen ', style: helpstyle),
                               WidgetSpan(
                                   child: Icon(
                                 Icons.content_paste_go_sharp,
                                 color: Colors.blue,
-                              )),
+                              ),),
+                              TextSpan(
+                                  text: '   Complaint Screen ', style: helpstyle),
+                              
                             ],
                           ),
                         ),
@@ -75,13 +79,14 @@ class HelpScreen extends StatelessWidget {
                         child: const Text.rich(
                           TextSpan(
                             children: [
-                              TextSpan(
-                                  text: 'Service Screen ', style: helpstyle),
                               WidgetSpan(
                                   child: Icon(
                                 CupertinoIcons.wrench,
                                 color: Colors.blue,
-                              )),
+                              ),),
+                              TextSpan(
+                                  text: '   Service Screen ', style: helpstyle),
+                              
                             ],
                           ),
                         ),
@@ -98,13 +103,15 @@ class HelpScreen extends StatelessWidget {
                         onTap: () {},
                         child: const Text.rich(
                           TextSpan(
+
                             children: [
-                              TextSpan(text: 'Leave ', style: helpstyle),
                               WidgetSpan(
                                   child: Icon(
                                 Icons.leave_bags_at_home,
                                 color: Colors.blue,
-                              )),
+                              ),),
+                              TextSpan(text: '   Leave ', style: helpstyle),
+                              
                             ],
                           ),
                         ),
@@ -121,23 +128,28 @@ class HelpScreen extends StatelessWidget {
             const SizedBox(
               height: 10,
             ),
-            Center(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: const [
-                  Text("Onboarding Screens",
-                      style: TextStyle(
-                          color: Colors.blue,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16)),
-                  Icon(
-                    Icons.arrow_forward,
-                    color: Colors.blue,
-                    size: 20,
-                  ),
-                ],
-              ),
-            ),
+            // GestureDetector(
+            //   onTap: (){
+            //     Navigator.pushNamed(context, onboardingScreen);                
+            //   },
+            //   child: Center(
+            //     child: Row(
+            //       mainAxisAlignment: MainAxisAlignment.center,
+            //       children: const [
+            //         Text("Onboarding Screens",
+            //             style: TextStyle(
+            //                 color: Colors.blue,
+            //                 fontWeight: FontWeight.bold,
+            //                 fontSize: 16)),
+            //         Icon(
+            //           Icons.arrow_forward,
+            //           color: Colors.blue,
+            //           size: 20,
+            //         ),
+            //       ],
+            //     ),
+            //   ),
+            // ),
             const SizedBox(
               height: 20,
             )

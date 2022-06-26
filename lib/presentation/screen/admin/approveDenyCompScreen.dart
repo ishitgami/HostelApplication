@@ -13,171 +13,192 @@ class ApproveDenyComplainList extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-           
-            Stack(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(
-                      top: 18.0, left: 18, right: 18, bottom: 50),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      border: Border.all(width: 1),
-                    ),
-                    child: Column(
-                      children: [
-                        const SizedBox(
-                          height: 15,
-                        ),
-                         Padding(
-                padding: const EdgeInsets.all(20),
-                child: Card(
-                  elevation: 1,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10)),
-                  child: Container(
-                    decoration: const BoxDecoration(
-                      borderRadius: BorderRadius.all(Radius.circular(10)),
-                      color: Color.fromARGB(183, 235, 237, 237),
-                    ),
-                    child: Table(
-                      // defaultColumnWidth: FixedColumnWidth(120.0),
-                      columnWidths: const {
-                        0: FixedColumnWidth(120),
-                        1: FlexColumnWidth(),
-                      },
-                      border: TableBorder.all(
-                          color: Colors.black,
-                          style: BorderStyle.solid,
-                          width: 1),
-                      children: [
-                        TableRow(children: [
-                          Padding(
-                            padding: tablepadding,
-                            child: Column(children: const [
-                              Center(
-                                child: Text(
-                                  'Name',
-                                  style: TextStyle(fontSize: 18),
-                                ),
-                              )
-                            ]),
-                          ),
-                          Padding(
-                            padding: tablepadding,
-                            child: Column(children: const [
-                              Text(
-                                'G.Ishit',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w600, fontSize: 18),
-                              )
-                            ]),
-                          ),
-                        ]),
-                        TableRow(children: [
-                          Padding(
-                            padding: tablepadding,
-                            child: Column(children: const [
-                              Text(
-                                'Hostel',
-                                style: TextStyle(fontSize: 18),
-                              )
-                            ]),
-                          ),
-                          Padding(
-                            padding: tablepadding,
-                            child: Column(children: const [
-                              Text(
-                                'Abdul kalam illam',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w600, fontSize: 18),
-                              )
-                            ]),
-                          ),
-                        ]),
-                        TableRow(children: [
-                          Padding(
-                            padding: tablepadding,
-                            child: Column(children: const [
-                              Text(
-                                'Floor',
-                                style: TextStyle(fontSize: 18),
-                              )
-                            ]),
-                          ),
-                          Padding(
-                            padding: tablepadding,
-                            child: Column(children: const [
-                              Text(
-                                'Second Floor',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w600, fontSize: 18),
-                              )
-                            ]),
-                          ),
-                        ]),
-                      ],
-                    ),
-                  ),
+            Padding(
+              padding: const EdgeInsets.only(
+                  top: 18.0, left: 18, right: 18, bottom: 50),
+              child: Container(
+                // padding: EdgeInsets.all(1),
+                clipBehavior: Clip.hardEdge,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  border: Border.all(width: 2, color: Colors.grey),
                 ),
-              ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: const [
-                            Text(
-                              "Complaint ",
-                              style: TextStyle(
-                                  fontSize: 18, fontWeight: FontWeight.bold),
-                            ),
-                            Text(":"),
-                            Text(
-                              " Electricity",
-                              style: TextStyle(
-                                  fontSize: 18,
-                                  color: Colors.red,
-                                  fontWeight: FontWeight.bold),
-                            ),
+                child: Column(
+                  children: [
+                    const SizedBox(
+                      height: 15,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(20),
+                      child: Container(
+                        decoration: const BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(10)),
+                        ),
+                        child: Table(
+                          // defaultColumnWidth: FixedColumnWidth(120.0),
+                          columnWidths: const {
+                            0: FixedColumnWidth(120),
+                            1: FlexColumnWidth(),
+                          },
+                          border: TableBorder.all(
+                              color: Colors.grey,
+                              style: BorderStyle.solid,
+                              width: 1),
+                          children: [
+                            TableRow(children: [
+                              Padding(
+                                padding: tablepadding,
+                                child: Column(children: const [
+                                  Center(
+                                    child: Text(
+                                      'Name',
+                                      style: TextStyle(fontSize: 18),
+                                    ),
+                                  )
+                                ]),
+                              ),
+                              Padding(
+                                padding: tablepadding,
+                                child: Column(children: const [
+                                  Text(
+                                    'Ishit Gami',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.w600,
+                                        fontSize: 18),
+                                  )
+                                ]),
+                              ),
+                            ]),
+                            TableRow(children: [
+                              Padding(
+                                padding: tablepadding,
+                                child: Column(children: const [
+                                  Text(
+                                    'Room No.',
+                                    style: TextStyle(fontSize: 18),
+                                  )
+                                ]),
+                              ),
+                              Padding(
+                                padding: tablepadding,
+                                child: Column(children: const [
+                                  Text(
+                                    '510',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.w600,
+                                        fontSize: 18),
+                                  )
+                                ]),
+                              ),
+                            ]),
+                            TableRow(children: [
+                              Padding(
+                                padding: tablepadding,
+                                child: Column(children: const [
+                                  Text(
+                                    'Date',
+                                    style: TextStyle(fontSize: 18),
+                                  )
+                                ]),
+                              ),
+                              Padding(
+                                padding: tablepadding,
+                                child: Column(children: const [
+                                  Text(
+                                    '01 July 2022',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.w600,
+                                        fontSize: 18),
+                                  )
+                                ]),
+                              ),
+                            ]),
                           ],
                         ),
-                        Padding(
-                          padding: const EdgeInsets.all(18.0),
-                          child: TextFormField(
-                            decoration: InputDecoration(
-                                focusedBorder: const OutlineInputBorder(
-                                    borderSide:
-                                        BorderSide(color: Colors.black)),
-                                hintText: "Type your complaint here...... 🖍",
-                                border: OutlineInputBorder(
-                                    borderSide: const BorderSide(
-                                      color: Colors.grey,
-                                    ),
-                                    borderRadius: BorderRadius.circular(10))),
-                            maxLines: 8,
-                            keyboardType: TextInputType.multiline,
-                            maxLength: 1000,
-                            cursorColor: Colors.black,
+                      ),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: const [
+                        Text(
+                          "Complaint ",
+                          style: TextStyle(
+                              fontSize: 18, fontWeight: FontWeight.bold),
+                        ),
+                        Text(":"),
+                        Text(
+                          " Electricity",
+                          style: TextStyle(
+                              fontSize: 18,
+                              color: Colors.red,
+                              fontWeight: FontWeight.bold),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    Container(
+                      margin: const EdgeInsets.symmetric(horizontal: 20),
+                      padding: const EdgeInsets.all(16),
+                      decoration: BoxDecoration(
+                        color: Colors.grey[200],
+                        borderRadius: BorderRadius.circular(10),
+                        border: Border.all(width: 2, color: Color.fromARGB(157, 158, 158, 158)),
+                      ),
+                      child: const Text(
+                          'In my Room thair is low voltage power occurs most of time.Kindly solve our problem :).'),
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: GestureDetector(
+                            child: Container(
+                              margin: const EdgeInsets.only(
+                                right: 1,
+                              ),
+                              height: 50,
+                              color: Colors.red[400],
+                              child: const Center(
+                                child: Text(
+                                  'Denny',
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.w700),
+                                ),
+                              ),
+                            ),
                           ),
                         ),
-                        const SizedBox(
-                          height: 20,
+                        Expanded(
+                          child: GestureDetector(
+                            child: Container(
+                              margin: const EdgeInsets.only(left: 1),
+                              height: 50,
+                              color: Colors.green[400],
+                              child: const Center(
+                                child: Text(
+                                  'Approve',
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.w700),
+                                ),
+                              ),
+                            ),
+                          ),
                         )
                       ],
                     ),
-                  ),
+                  ],
                 ),
-                Positioned(
-                  right: 0,
-                  left: 0,
-                  bottom: 20,
-                  child: FloatingActionButton(
-                      onPressed: () {},
-                      child: const Icon(
-                        Icons.done,
-                        size: 30,
-                        color: Colors.white,
-                      )),
-                ),
-              ],
+              ),
             ),
           ],
         ),
