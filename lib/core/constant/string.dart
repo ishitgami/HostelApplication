@@ -16,8 +16,19 @@ const String approveDenyComplainListRoute = '/approveDenyComplainListScreen';
 
 //student
 const String studentDashboardScreenRoute = "/student";
+<<<<<<< HEAD
 // const String studentDashboardScreenRoute = "/";
 const String studentDetailScreenRoute = "/bb";
 const String electricitycomplaintscreenRoute = "/aa";
+=======
+
+const String studentDetailScreenRoute = "/StudentDetails";
+const String electricitycomplaintscreenRoute = "/electricitycomplaint";
+// const String fanlightcomplaintscreenRoute = "/fanlightcomplaint";
+const String fanlightcomplaintscreenRoute = "/";
+
+//help
+const String helpscreenRoute = "/help";
+>>>>>>> db4dac788f0633a5b125cd8cb9f3454beff5aff2
 
 //****************End-Routes***********************
