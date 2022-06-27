@@ -16,6 +16,14 @@ class _AdminHomeState extends State<AdminHome> {
       backgroundColor: const Color.fromARGB(183, 203, 208, 211),
       appBar: AppBar(
         title: const Text('DashBoard'),
+        actions: [
+          IconButton(
+            onPressed: () {
+              Navigator.pushNamed(context, adminnotificationRoute);
+            },
+            icon: const Icon(Icons.notifications),
+          )
+        ],
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
