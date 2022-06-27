@@ -40,10 +40,9 @@ class _StudentHomeState extends State<StudentHome> {
   }
 }
 
-
 class NoticeContainer extends StatelessWidget {
-   NoticeContainer(this.notice, {Key? key}) : super(key: key);
-   String notice;
+  NoticeContainer(this.notice, {Key? key}) : super(key: key);
+  String notice;
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -68,7 +67,7 @@ class NoticeContainer extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: const [
                     Text(
-                      'Admin',
+                      'Student',
                       style:
                           TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
                     ),
@@ -80,7 +79,7 @@ class NoticeContainer extends StatelessWidget {
             const SizedBox(
               height: 20,
             ),
-             Text(notice)
+            Text(notice)
           ],
         ),
       ),

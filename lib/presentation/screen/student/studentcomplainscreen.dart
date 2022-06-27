@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+<<<<<<< HEAD
 import 'package:hostelapplication/presentation/screen/student/complains/studentAddComplain.dart';
+=======
+import 'package:hostelapplication/core/constant/string.dart';
+>>>>>>> 504788b7e19677746739fe38cc76b95a3cf00dd9
 import 'package:hostelapplication/presentation/screen/student/studentDrawer.dart';
 
 class StudentComplainScreen extends StatefulWidget {
@@ -10,7 +14,7 @@ class StudentComplainScreen extends StatefulWidget {
 }
 
 class _StudentComplainScreenState extends State<StudentComplainScreen> {
-   List<String> images = [
+  List<String> images = [
     'assets/images/water-bottle.png',
     'assets/images/electrical-energy.png',
     'assets/images/chef.png',
@@ -27,7 +31,7 @@ class _StudentComplainScreenState extends State<StudentComplainScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-       backgroundColor: Colors.grey[200],
+      backgroundColor: Colors.grey[200],
       appBar: AppBar(
         title: const Text('Complain'),
       ),
@@ -44,7 +48,7 @@ class _StudentComplainScreenState extends State<StudentComplainScreen> {
           itemBuilder: (BuildContext context, int index) {
             return GestureDetector(
               onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder:(context)=> StudentAddComplaintScreen(imagesText[index].toString())));
+                // Navigator.pushNamed(context, complainListScreenRoute);
               },
               child: Card(
                 shape: RoundedRectangleBorder(

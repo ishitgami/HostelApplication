@@ -18,7 +18,10 @@ class LogInScreen extends StatelessWidget {
       backgroundColor: Colors.white,
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.all(16.0),
+          padding: const EdgeInsets.only(
+            left: 16.0,
+            right: 16,
+          ),
           child: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -26,8 +29,8 @@ class LogInScreen extends StatelessWidget {
                 Center(
                   child: Image.asset(
                     'assets/images/login.png',
-                    height: 300.0,
-                    width: 300.0,
+                    height: 250.0,
+                    width: 250.0,
                   ),
                 ),
                 Row(
@@ -100,6 +103,10 @@ class LogInScreen extends StatelessWidget {
                   child: Column(
                     children: [
                       GestureDetector(
+                        onTap: () {
+                          Navigator.pushNamed(
+                              context, studentDashboardScreenRoute);
+                        },
                         child: Container(
                           padding: const EdgeInsets.symmetric(
                               horizontal: 60, vertical: 15),
