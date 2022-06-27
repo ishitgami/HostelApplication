@@ -102,7 +102,7 @@ class _LogInScreenState extends State<LogInScreen> {
                       GestureDetector(
                         onTap: () {
                           Navigator.pushNamed(
-                              context, studentDashboardScreenRoute);
+                              context, adminDashbordScreenRoute);
                         },
                         child: Container(
                           padding: const EdgeInsets.symmetric(

@@ -144,7 +144,9 @@ class ApproveDenyComplainList extends StatelessWidget {
                       decoration: BoxDecoration(
                         color: Colors.grey[200],
                         borderRadius: BorderRadius.circular(10),
-                        border: Border.all(width: 2, color: Color.fromARGB(157, 158, 158, 158)),
+                        border: Border.all(
+                            width: 2,
+                            color: const Color.fromARGB(157, 158, 158, 158)),
                       ),
                       child: const Text(
                           'In my Room thair is low voltage power occurs most of time.Kindly solve our problem :).'),
@@ -157,11 +159,12 @@ class ApproveDenyComplainList extends StatelessWidget {
                         Expanded(
                           child: GestureDetector(
                             child: Container(
-                              margin: const EdgeInsets.only(
-                                right: 1,
-                              ),
+                              decoration: BoxDecoration(
+                                  color: Colors.red[400],
+                                  borderRadius: const BorderRadius.only(
+                                      bottomLeft: Radius.circular(20))),
+                              margin: const EdgeInsets.all(1),
                               height: 50,
-                              color: Colors.red[400],
                               child: const Center(
                                 child: Text(
                                   'Denny',
@@ -178,9 +181,12 @@ class ApproveDenyComplainList extends StatelessWidget {
                         Expanded(
                           child: GestureDetector(
                             child: Container(
-                              margin: const EdgeInsets.only(left: 1),
+                              decoration:  BoxDecoration(
+                                  color: Colors.green[400],
+                                  borderRadius: const BorderRadius.only(
+                                      bottomRight: Radius.circular(20))),
+                              margin: const EdgeInsets.all(1),
                               height: 50,
-                              color: Colors.green[400],
                               child: const Center(
                                 child: Text(
                                   'Approve',

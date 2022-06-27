@@ -1,20 +1,24 @@
 import 'package:flutter/material.dart';
 
 class ApproveDennyLeaveScreen extends StatefulWidget {
-  ApproveDennyLeaveScreen({Key? key}) : super(key: key);
+  const ApproveDennyLeaveScreen({Key? key}) : super(key: key);
 
   @override
-  State<ApproveDennyLeaveScreen> createState() => _ApproveDennyLeaveScreenState();
+  State<ApproveDennyLeaveScreen> createState() =>
+      _ApproveDennyLeaveScreenState();
 }
 
 class _ApproveDennyLeaveScreenState extends State<ApproveDennyLeaveScreen> {
   @override
   Widget build(BuildContext context) {
-     const tablepadding = EdgeInsets.all(15);
+    const tablepadding = EdgeInsets.all(15);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.blueGrey[100],
-        title: const Text('Approve/Denny',style: TextStyle(color: Colors.black),),
+        title: const Text(
+          'Approve/Denny',
+          style: TextStyle(color: Colors.black),
+        ),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -183,7 +187,9 @@ class _ApproveDennyLeaveScreenState extends State<ApproveDennyLeaveScreen> {
                       decoration: BoxDecoration(
                         color: Colors.grey[200],
                         borderRadius: BorderRadius.circular(10),
-                        border: Border.all(width: 2, color: const Color.fromARGB(157, 158, 158, 158)),
+                        border: Border.all(
+                            width: 2,
+                            color: const Color.fromARGB(157, 158, 158, 158)),
                       ),
                       child: const Text(
                           'I am Seetha Suresh, a final year student of BSc Chemistry with the ID number 18PEL54. I stay in Room no. F2. I am writing this letter to request you to permit me to go home for ten days (01/07/2022 – 10/07/2022). I will be back to the hostel on Monday morning (11/07/2022).'),
@@ -196,11 +202,12 @@ class _ApproveDennyLeaveScreenState extends State<ApproveDennyLeaveScreen> {
                         Expanded(
                           child: GestureDetector(
                             child: Container(
-                              margin: const EdgeInsets.only(
-                                right: 1,
-                              ),
+                              decoration: BoxDecoration(
+                                  color: Colors.red[400],
+                                  borderRadius: const BorderRadius.only(
+                                      bottomLeft: Radius.circular(20))),
+                              margin: const EdgeInsets.all(1),
                               height: 50,
-                              color: Colors.red[400],
                               child: const Center(
                                 child: Text(
                                   'Denny',
@@ -217,9 +224,12 @@ class _ApproveDennyLeaveScreenState extends State<ApproveDennyLeaveScreen> {
                         Expanded(
                           child: GestureDetector(
                             child: Container(
-                              margin: const EdgeInsets.only(left: 1),
+                              decoration: BoxDecoration(
+                                  color: Colors.green[400],
+                                  borderRadius: const BorderRadius.only(
+                                      bottomRight: Radius.circular(20))),
+                              margin: const EdgeInsets.all(1),
                               height: 50,
-                              color: Colors.green[400],
                               child: const Center(
                                 child: Text(
                                   'Approve',

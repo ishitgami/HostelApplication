@@ -44,14 +44,18 @@ class AdminNotification extends StatelessWidget {
                           children: const [
                             Text(
                               "Ishit G.",
-                              style: TextStyle(fontSize: 18),
+                              style: TextStyle(
+                                  fontSize: 18, fontWeight: FontWeight.w500),
                             ),
                             SizedBox(
                               height: 5,
                             ),
                             Text(
                               "12345678900",
-                              style: TextStyle(fontSize: 18),
+                              style: TextStyle(
+                                  fontSize: 18,
+                                  color: Colors.blue,
+                                  fontWeight: FontWeight.w500),
                             ),
                           ],
                         ),
@@ -63,7 +67,8 @@ class AdminNotification extends StatelessWidget {
                       children: const [
                         Text(
                           "03:30 PM",
-                          style: TextStyle(fontSize: 18),
+                          style: TextStyle(
+                              fontSize: 18, fontWeight: FontWeight.w500),
                         ),
                         SizedBox(
                           height: 5,

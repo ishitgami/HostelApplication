@@ -5,12 +5,12 @@ const String splashScreenRoute = '/Splash';
 const String onboardingScreen = '/aaa';
 
 //Authenication
-const String logInScreenRoute = '/login';
+const String logInScreenRoute = '/';
 const String registrationScreenRoute = '/registration';
 
 //admin
 // const String adminDashbordScreenRoute = '/admin';
-const String adminDashbordScreenRoute = '/';
+const String adminDashbordScreenRoute = '/admin';
 const String addNoticeScreenRoute = '/addNoticeScreen';
 const String complaintListScreenRoute = '/complainListScreen';
 const String approveDenyComplainListRoute = '/approveDenyComplainListScreen';
