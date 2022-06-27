@@ -98,6 +98,24 @@ class StudentDrawer extends StatelessWidget {
               title: Row(
                 children: const [
                   Icon(
+                    FontAwesomeIcons.book,
+                    color: Colors.blue,
+                  ),
+                  SizedBox(
+                    width: 30,
+                  ),
+                  Text('My Complaints'),
+                ],
+              ),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+            const SizedBox(width: 50, child: Divider()),
+            ListTile(
+              title: Row(
+                children: const [
+                  Icon(
                     FontAwesomeIcons.question,
                     color: Colors.blue,
                   ),

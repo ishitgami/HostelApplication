@@ -15,10 +15,6 @@ class _StudentHomeState extends State<StudentHome> {
       appBar: AppBar(
         title: const Text('DashBoard'),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        child: const Icon(Icons.add),
-      ),
       drawer: const StudentDrawer(),
       body: SingleChildScrollView(
           child: Padding(
