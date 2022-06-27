@@ -5,20 +5,34 @@ import 'package:hostelapplication/logic/cubit/splashscreen_cubit.dart';
 import 'package:hostelapplication/presentation/screen/admin/addNoticeScreen.dart';
 import 'package:hostelapplication/presentation/screen/admin/adminDashbord.dart';
 import 'package:hostelapplication/presentation/screen/admin/approveDenyCompScreen.dart';
-import 'package:hostelapplication/presentation/screen/admin/complainListScreen.dart';
+import 'package:hostelapplication/presentation/screen/admin/approveDenyLeave.dart';
+import 'package:hostelapplication/presentation/screen/admin/complaintListScreen.dart';
 import 'package:hostelapplication/presentation/screen/auth/logInScreen.dart';
 import 'package:hostelapplication/presentation/screen/auth/registrationScreen.dart';
 import 'package:hostelapplication/presentation/screen/onBordingScreen.dart';
 import 'package:hostelapplication/presentation/screen/splashScreen.dart';
-import 'package:hostelapplication/presentation/screen/student/complains/electricitycomplaint.dart';
+import 'package:hostelapplication/presentation/screen/student/complains/studentAddComplain.dart';
 import 'package:hostelapplication/presentation/screen/student/complains/fanlightcomplaint.dart';
 import 'package:hostelapplication/presentation/screen/student/detailspage/studentdetails.dart';
 import 'package:hostelapplication/presentation/screen/student/help/helpscreen.dart';
 import 'package:hostelapplication/presentation/screen/student/studnetDashbord.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+
+
 
 class Routes {
+  late int initScreen;
+Future<void> checkForOnBordScreen() async{
+SharedPreferences prefs = await SharedPreferences.getInstance();
+  initScreen = prefs.getInt("initScreen")!;
+  print('initScreen111111 $initScreen');
+}
+ 
   static Route<dynamic> generateRoute(RouteSettings settings) {
+    
     switch (settings.name) {
+      
       case splashScreenRoute:
         return MaterialPageRoute(
           builder: (context) => BlocProvider(
@@ -49,22 +63,25 @@ class Routes {
         return MaterialPageRoute(
             builder: (context) => const StudentDetailScreen());
 
-      case electricitycomplaintscreenRoute:
-        return MaterialPageRoute(
-            builder: (context) => const ElectricityComplaint());
+      // case studentAddComplaintRoute:
+      //   return MaterialPageRoute(
+      //       builder: (context) => const StudentAddComplaintScreen());
       
       case addNoticeScreenRoute:
         return MaterialPageRoute(
             builder: (context) => AddNoticeScreen());
 
-       case complainListScreenRoute:
+       case complaintListScreenRoute:
         return MaterialPageRoute(
             builder: (context) => ComplainListScreen());
       
       case approveDenyComplainListRoute:
         return MaterialPageRoute(
             builder: (context) => const ApproveDenyComplainList());
-            
+
+      case approveDennyLeaveScreenRoute:
+        return MaterialPageRoute(
+            builder: (context) => ApproveDennyLeaveScreen()); 
 
       case helpscreenRoute:
         return MaterialPageRoute(builder: (context) => const HelpScreen());
@@ -72,6 +89,9 @@ class Routes {
       case fanlightcomplaintscreenRoute:
         return MaterialPageRoute(
             builder: (context) => const FanLightComplaints());
+
+
+            
 
       default:
         return MaterialPageRoute(

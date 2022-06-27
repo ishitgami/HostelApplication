@@ -14,7 +14,7 @@ class _ComplainListScreenState extends State<ComplainListScreen> {
     return Scaffold(
       backgroundColor: Colors.grey[200],
       appBar: AppBar(
-        title: const Text('List of complains'),
+        title: const Text('List of complaints'),
       ),
       body: SingleChildScrollView(
         child: Column(

@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
 
-class ElectricityComplaint extends StatelessWidget {
-  const ElectricityComplaint({Key? key}) : super(key: key);
+class StudentAddComplaintScreen extends StatelessWidget {
+   const StudentAddComplaintScreen(this.complain, {Key? key}) : super(key: key);
+  final String complain;
+  
 
   @override
   Widget build(BuildContext context) {
+    DateTime now = DateTime.now();
+    
     const tablepadding = EdgeInsets.all(15);
     return Scaffold(
-      appBar: AppBar(title: const Text("Electricity")),
+      appBar: AppBar(title: const Text("Add Complaint")),
       body: Form(
         child: SingleChildScrollView(
           child: Column(
@@ -55,7 +59,7 @@ class ElectricityComplaint extends StatelessWidget {
                             padding: tablepadding,
                             child: Column(children: const [
                               Text(
-                                'G.Ishit',
+                                'Gami Ishit',
                                 style: TextStyle(
                                     fontWeight: FontWeight.w600, fontSize: 18),
                               )
@@ -67,7 +71,7 @@ class ElectricityComplaint extends StatelessWidget {
                             padding: tablepadding,
                             child: Column(children: const [
                               Text(
-                                'Hostel',
+                                'Room No.',
                                 style: TextStyle(fontSize: 18),
                               )
                             ]),
@@ -76,7 +80,7 @@ class ElectricityComplaint extends StatelessWidget {
                             padding: tablepadding,
                             child: Column(children: const [
                               Text(
-                                'Abdul kalam illam',
+                                '510',
                                 style: TextStyle(
                                     fontWeight: FontWeight.w600, fontSize: 18),
                               )
@@ -88,17 +92,17 @@ class ElectricityComplaint extends StatelessWidget {
                             padding: tablepadding,
                             child: Column(children: const [
                               Text(
-                                'Floor',
+                               'Date',
                                 style: TextStyle(fontSize: 18),
                               )
                             ]),
                           ),
                           Padding(
                             padding: tablepadding,
-                            child: Column(children: const [
+                            child: Column(children:  [
                               Text(
-                                'Second Floor',
-                                style: TextStyle(
+                                 DateTime(now.year, now.month, now.day).toString().replaceAll("00:00:00.000", ""),
+                                style:const TextStyle(
                                     fontWeight: FontWeight.w600, fontSize: 18),
                               )
                             ]),
@@ -125,16 +129,16 @@ class ElectricityComplaint extends StatelessWidget {
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
-                          children: const [
-                            Text(
+                          children:  [
+                           const Text(
                               "Complaint ",
                               style: TextStyle(
                                   fontSize: 18, fontWeight: FontWeight.bold),
                             ),
-                            Text(":"),
+                           const Text(": "),
                             Text(
-                              " Electricity",
-                              style: TextStyle(
+                              complain,
+                              style:const TextStyle(
                                   fontSize: 18,
                                   color: Colors.red,
                                   fontWeight: FontWeight.bold),
@@ -173,7 +177,7 @@ class ElectricityComplaint extends StatelessWidget {
                   bottom: 20,
                   child: FloatingActionButton(
                       onPressed: () {
-                        
+                        Navigator.pop(context);
                       },
                       child: const Icon(
                         Icons.done,

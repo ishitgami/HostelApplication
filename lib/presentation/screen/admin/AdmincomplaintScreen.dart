@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:hostelapplication/core/constant/string.dart';
 import 'package:hostelapplication/presentation/screen/admin/AdminDrawer.dart';
 
-class AdminComplainScreen extends StatefulWidget {
-  const AdminComplainScreen({Key? key}) : super(key: key);
+class AdminComplaintScreen extends StatefulWidget {
+  const AdminComplaintScreen({Key? key}) : super(key: key);
 
   @override
-  State<AdminComplainScreen> createState() => _AdminComplainScreenState();
+  State<AdminComplaintScreen> createState() => _AdminComplaintScreenState();
 }
 
-class _AdminComplainScreenState extends State<AdminComplainScreen> {
+class _AdminComplaintScreenState extends State<AdminComplaintScreen> {
    List<String> images = [
     'assets/images/water-bottle.png',
     'assets/images/electrical-energy.png',
@@ -29,7 +29,7 @@ class _AdminComplainScreenState extends State<AdminComplainScreen> {
     return Scaffold(
       backgroundColor: Colors.grey[200],
        appBar: AppBar(
-        title: const Text('Complain'),
+        title: const Text('complaint'),
       ),
       drawer: const AdminDrawer(),
       body:  Container(
@@ -44,7 +44,7 @@ class _AdminComplainScreenState extends State<AdminComplainScreen> {
           itemBuilder: (BuildContext context, int index) {
             return GestureDetector(
               onTap: () {
-                Navigator.pushNamed(context, complainListScreenRoute);
+                Navigator.pushNamed(context, complaintListScreenRoute);
               },
               child: Card(
                 shape: RoundedRectangleBorder(

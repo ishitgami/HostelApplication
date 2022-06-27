@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:hostelapplication/core/constant/string.dart';
 
 class StudentDrawer extends StatelessWidget {
   const StudentDrawer({Key? key}) : super(key: key);
@@ -14,6 +15,9 @@ class StudentDrawer extends StatelessWidget {
           children: <Widget>[
             // _createHeader(),
             ListTile(
+              onTap: () {
+                Navigator.pushNamed(context, studentDetailScreenRoute);
+              },
               title: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Column(
@@ -126,7 +130,7 @@ class StudentDrawer extends StatelessWidget {
                 ],
               ),
               onTap: () {
-                Navigator.pop(context);
+                Navigator.pushNamed(context, helpscreenRoute);
               },
             ),
             ListTile(
