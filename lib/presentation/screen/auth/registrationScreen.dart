@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hostelapplication/core/constant/string.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:hostelapplication/logic/service/auth_service.dart';
+import 'package:provider/provider.dart';
 
 class RegistrationScreen extends StatefulWidget {
   const RegistrationScreen({Key? key}) : super(key: key);
@@ -12,6 +13,9 @@ class RegistrationScreen extends StatefulWidget {
 class _RegistrationScreenState extends State<RegistrationScreen> {
   @override
   Widget build(BuildContext context) {
+     final TextEditingController emailController = TextEditingController();
+    final TextEditingController passwordController = TextEditingController();
+     final authService = Provider.of<AuthService>(context);
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -121,7 +125,8 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     const SizedBox(
                       height: 20,
                     ),
-                    const TextField(
+                     TextField(
+                      controller: emailController,
                       decoration: InputDecoration(
                         prefixIcon:  Icon(Icons.email_outlined,color:Color.fromARGB(255, 108, 99, 255), ), 
                         hintText: 'Email',
@@ -139,7 +144,8 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     const SizedBox(
                       height: 20,
                     ),
-                    const TextField(
+                     TextField(
+                      controller: passwordController,
                       decoration: InputDecoration(
                         prefixIcon:  Icon(Icons.remove_red_eye,color:Color.fromARGB(255, 108, 99, 255), ), 
                         hintText: 'Password',
@@ -176,6 +182,9 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                                 style: TextStyle(color: Colors.white, fontSize: 20),
                               ),
                             ),
+                            onTap: ()async {
+                                await authService.createUserWithEmailAndPassword(emailController.text.toString(),passwordController.text.toString());
+                            },
                           ),
                           const SizedBox(
                             height: 10,

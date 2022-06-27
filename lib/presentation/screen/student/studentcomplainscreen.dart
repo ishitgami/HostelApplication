@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+<<<<<<< HEAD
+import 'package:hostelapplication/presentation/screen/student/complains/studentAddComplain.dart';
+=======
 import 'package:hostelapplication/core/constant/string.dart';
+>>>>>>> 504788b7e19677746739fe38cc76b95a3cf00dd9
 import 'package:hostelapplication/presentation/screen/student/studentDrawer.dart';
 
 class StudentComplainScreen extends StatefulWidget {

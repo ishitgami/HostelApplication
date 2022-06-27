@@ -1,18 +1,19 @@
 // ignore_for_file: unnecessary_const
 
+
 import 'package:flutter/material.dart';
 import 'package:hostelapplication/core/constant/string.dart';
+import 'package:hostelapplication/logic/service/auth_service.dart';
+import 'package:provider/provider.dart';
 
-class LogInScreen extends StatefulWidget {
-  const LogInScreen({Key? key}) : super(key: key);
 
-  @override
-  State<LogInScreen> createState() => _LogInScreenState();
-}
-
-class _LogInScreenState extends State<LogInScreen> {
+class LogInScreen extends StatelessWidget {
+ 
   @override
   Widget build(BuildContext context) {
+    final TextEditingController emailController = TextEditingController();
+    final TextEditingController passwordController = TextEditingController();
+     final authService = Provider.of<AuthService>(context);
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
@@ -62,7 +63,8 @@ class _LogInScreenState extends State<LogInScreen> {
                 const SizedBox(
                   height: 20,
                 ),
-                const TextField(
+                 TextField(
+                  controller: emailController,
                   decoration: InputDecoration(
                     hintText: 'Email',
                     border: OutlineInputBorder(
@@ -79,7 +81,8 @@ class _LogInScreenState extends State<LogInScreen> {
                 const SizedBox(
                   height: 20,
                 ),
-                const TextField(
+                 TextField(
+                  controller: passwordController,
                   decoration: InputDecoration(
                     hintText: 'Password',
                     border: OutlineInputBorder(
@@ -119,6 +122,9 @@ class _LogInScreenState extends State<LogInScreen> {
                             style: TextStyle(color: Colors.white, fontSize: 20),
                           ),
                         ),
+                        onTap: () async{
+                          await authService.signInWithEmailAndPassword(emailController.text..toString(), passwordController.text..toString());
+                        },
                       ),
                       const SizedBox(
                         height: 10,
