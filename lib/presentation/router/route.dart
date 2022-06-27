@@ -1,7 +1,7 @@
-import 'package:flutter_bloc/flutter_bloc.dart';
+
 import 'package:flutter/material.dart';
 import 'package:hostelapplication/core/constant/string.dart';
-import 'package:hostelapplication/logic/cubit/splashscreen_cubit.dart';
+
 import 'package:hostelapplication/presentation/screen/admin/addNoticeScreen.dart';
 import 'package:hostelapplication/presentation/screen/admin/adminDashbord.dart';
 import 'package:hostelapplication/presentation/screen/admin/approveDenyCompScreen.dart';
@@ -11,7 +11,6 @@ import 'package:hostelapplication/presentation/screen/auth/logInScreen.dart';
 import 'package:hostelapplication/presentation/screen/auth/registrationScreen.dart';
 import 'package:hostelapplication/presentation/screen/onBordingScreen.dart';
 import 'package:hostelapplication/presentation/screen/splashScreen.dart';
-import 'package:hostelapplication/presentation/screen/student/complains/studentAddComplain.dart';
 import 'package:hostelapplication/presentation/screen/student/complains/fanlightcomplaint.dart';
 import 'package:hostelapplication/presentation/screen/student/detailspage/studentdetails.dart';
 import 'package:hostelapplication/presentation/screen/student/help/helpscreen.dart';
@@ -34,18 +33,13 @@ SharedPreferences prefs = await SharedPreferences.getInstance();
     switch (settings.name) {
       
       case splashScreenRoute:
-        return MaterialPageRoute(
-          builder: (context) => BlocProvider(
-            create: (context) => SplashscreenCubit(),
-            child: const SplashScreen(),
-          ),
-        );
+        return MaterialPageRoute(builder: (context) => SplashScreen());
 
       case onboardingScreen:
         return MaterialPageRoute(builder: (context) => OnboardingScreen());
 
       case logInScreenRoute:
-        return MaterialPageRoute(builder: (context) => const LogInScreen());
+        return MaterialPageRoute(builder: (context) =>  LogInScreen());
 
       case registrationScreenRoute:
         return MaterialPageRoute(

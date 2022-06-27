@@ -8,7 +8,7 @@ class ApproveDenyComplainList extends StatelessWidget {
     const tablepadding = EdgeInsets.all(15);
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Approve/Denny Complaint'),
+        title: const Text('Approve/Denny Services'),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -121,13 +121,13 @@ class ApproveDenyComplainList extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: const [
                         Text(
-                          "Complaint ",
+                          "Services ",
                           style: TextStyle(
                               fontSize: 18, fontWeight: FontWeight.bold),
                         ),
                         Text(":"),
                         Text(
-                          " Electricity",
+                          " Room",
                           style: TextStyle(
                               fontSize: 18,
                               color: Colors.red,
@@ -147,7 +147,7 @@ class ApproveDenyComplainList extends StatelessWidget {
                         border: Border.all(width: 2, color: Color.fromARGB(157, 158, 158, 158)),
                       ),
                       child: const Text(
-                          'In my Room thair is low voltage power occurs most of time.Kindly solve our problem :).'),
+                          'Kindy Request to repair my room table:).'),
                     ),
                     const SizedBox(
                       height: 20,

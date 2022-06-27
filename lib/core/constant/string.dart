@@ -16,7 +16,7 @@ const String approveDenyComplainListRoute = '/approveDenyComplainListScreen';
 const String approveDennyLeaveScreenRoute = '/approveDennyLeaveScreen';
 
 //student
-const String studentDashboardScreenRoute = "/stu";
+const String studentDashboardScreenRoute = "/stuDash";
 
 // const String studentDashboardScreenRoute = "/";
 const String studentDetailScreenRoute = "/StudentDetails";

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:hostelapplication/core/constant/string.dart';
 import 'package:hostelapplication/presentation/screen/student/complains/studentAddComplain.dart';
 import 'package:hostelapplication/presentation/screen/student/studentDrawer.dart';
 
