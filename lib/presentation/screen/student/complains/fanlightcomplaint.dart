@@ -15,7 +15,7 @@ class _FanLightComplaintsState extends State<FanLightComplaints> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: const Text("My Room"),
+        title: const Text("Electricity Service"),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -57,7 +57,7 @@ class _FanLightComplaintsState extends State<FanLightComplaints> {
                                 onChanged: (bool? value) {
                                   // This is where we update the state when the checkbox is tapped
                                   setState(() {
-                                    isChecked = value!;
+                                    // isChecked = value!;
                                   });
                                 })
                           ],
@@ -80,7 +80,7 @@ class _FanLightComplaintsState extends State<FanLightComplaints> {
                               ],
                             ),
                             Checkbox(
-                                value: isChecked,
+                                value: false,
                                 onChanged: (bool? value) {
                                   // This is where we update the state when the checkbox is tapped
                                   setState(() {

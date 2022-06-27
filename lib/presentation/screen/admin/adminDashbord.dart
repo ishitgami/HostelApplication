@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hostelapplication/presentation/screen/admin/AdminLeave.dart';
 import 'package:hostelapplication/presentation/screen/admin/AdminServices.dart';
-import 'package:hostelapplication/presentation/screen/admin/AdmincomplainScreen.dart';
+import 'package:hostelapplication/presentation/screen/admin/AdmincomplaintScreen.dart';
 import 'package:hostelapplication/presentation/screen/admin/adminHome.dart';
 
 
@@ -18,7 +18,7 @@ class _AdminDashbordScreenState extends State<AdminDashbordScreen> {
    int _selectedIndex = 0;
     static const List<Widget> _widgetOptions = <Widget>[
     AdminHome(),
-    AdminComplainScreen(),
+    AdminComplaintScreen(),
     AdminServicesScreen(),
     AdminLeaveScreen(),
   ];
@@ -45,7 +45,7 @@ class _AdminDashbordScreenState extends State<AdminDashbordScreen> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.description_outlined),
-            label: 'Complain',
+            label: 'Complaint',
             backgroundColor: Colors.green,
           ),
           BottomNavigationBarItem(

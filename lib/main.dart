@@ -1,8 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:hostelapplication/presentation/router/route.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 
-void main() {
+Future<void> main() async{
+  int? initScreen;
+   WidgetsFlutterBinding.ensureInitialized();
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+  initScreen = prefs.getInt("initScreen");
+  await prefs.setInt("initScreen", 1);
+  print('initScreen ${initScreen}');
   runApp(const MyApp());
 }
 

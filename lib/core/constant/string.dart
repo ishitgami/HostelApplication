@@ -5,23 +5,24 @@ const String splashScreenRoute = '/Splash';
 const String onboardingScreen = '/aaa';
 
 //Authenication
-const String logInScreenRoute = '/logIn';
+const String logInScreenRoute = '/';
 const String registrationScreenRoute = '/registration';
 
 //admin
-const String adminDashbordScreenRoute = '/';
+const String adminDashbordScreenRoute = '/ad';
 const String addNoticeScreenRoute = '/addNoticeScreen';
-const String complainListScreenRoute = '/complainListScreen';
+const String complaintListScreenRoute = '/complainListScreen';
 const String approveDenyComplainListRoute = '/approveDenyComplainListScreen';
+const String approveDennyLeaveScreenRoute = '/approveDennyLeaveScreen';
 
 //student
-const String studentDashboardScreenRoute = "/student";
+const String studentDashboardScreenRoute = "/stu";
 
 // const String studentDashboardScreenRoute = "/";
 const String studentDetailScreenRoute = "/StudentDetails";
-const String electricitycomplaintscreenRoute = "/electricitycomplaint";
+const String studentAddComplaintRoute = "/electricitycomplaint";
 // const String fanlightcomplaintscreenRoute = "/fanlightcomplaint";
-const String fanlightcomplaintscreenRoute = "/fanlightcomplaintscreen";
+const String fanlightcomplaintscreenRoute = "/fan";
 
 //help
 const String helpscreenRoute = "/help";

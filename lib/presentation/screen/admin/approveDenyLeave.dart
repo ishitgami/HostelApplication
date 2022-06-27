@@ -1,14 +1,20 @@
 import 'package:flutter/material.dart';
 
-class ApproveDenyComplainList extends StatelessWidget {
-  const ApproveDenyComplainList({Key? key}) : super(key: key);
+class ApproveDennyLeaveScreen extends StatefulWidget {
+  ApproveDennyLeaveScreen({Key? key}) : super(key: key);
 
   @override
+  State<ApproveDennyLeaveScreen> createState() => _ApproveDennyLeaveScreenState();
+}
+
+class _ApproveDennyLeaveScreenState extends State<ApproveDennyLeaveScreen> {
+  @override
   Widget build(BuildContext context) {
-    const tablepadding = EdgeInsets.all(15);
+     const tablepadding = EdgeInsets.all(15);
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Approve/Denny Complaint'),
+        backgroundColor: Colors.blueGrey[100],
+        title: const Text('Approve/Denny',style: TextStyle(color: Colors.black),),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -96,7 +102,7 @@ class ApproveDenyComplainList extends StatelessWidget {
                                 padding: tablepadding,
                                 child: Column(children: const [
                                   Text(
-                                    'Date',
+                                    'Date of leaving',
                                     style: TextStyle(fontSize: 18),
                                   )
                                 ]),
@@ -113,27 +119,60 @@ class ApproveDenyComplainList extends StatelessWidget {
                                 ]),
                               ),
                             ]),
+                            TableRow(children: [
+                              Padding(
+                                padding: tablepadding,
+                                child: Column(children: const [
+                                  Text(
+                                    'Date Of coming',
+                                    style: TextStyle(fontSize: 18),
+                                  )
+                                ]),
+                              ),
+                              Padding(
+                                padding: tablepadding,
+                                child: Column(children: const [
+                                  Text(
+                                    '10 July 2022',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.w600,
+                                        fontSize: 18),
+                                  )
+                                ]),
+                              ),
+                            ]),
+                            TableRow(children: [
+                              Padding(
+                                padding: tablepadding,
+                                child: Column(children: const [
+                                  Text(
+                                    'Total Day',
+                                    style: TextStyle(fontSize: 18),
+                                  )
+                                ]),
+                              ),
+                              Padding(
+                                padding: tablepadding,
+                                child: Column(children: const [
+                                  Text(
+                                    '10',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.w600,
+                                        fontSize: 18),
+                                  )
+                                ]),
+                              ),
+                            ]),
                           ],
                         ),
                       ),
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: const [
-                        Text(
-                          "Complaint ",
-                          style: TextStyle(
-                              fontSize: 18, fontWeight: FontWeight.bold),
-                        ),
-                        Text(":"),
-                        Text(
-                          " Electricity",
-                          style: TextStyle(
-                              fontSize: 18,
-                              color: Colors.red,
-                              fontWeight: FontWeight.bold),
-                        ),
-                      ],
+                    const Text(
+                      " Leave Reason",
+                      style: TextStyle(
+                          fontSize: 18,
+                          color: Colors.red,
+                          fontWeight: FontWeight.bold),
                     ),
                     const SizedBox(
                       height: 20,
@@ -144,10 +183,10 @@ class ApproveDenyComplainList extends StatelessWidget {
                       decoration: BoxDecoration(
                         color: Colors.grey[200],
                         borderRadius: BorderRadius.circular(10),
-                        border: Border.all(width: 2, color: Color.fromARGB(157, 158, 158, 158)),
+                        border: Border.all(width: 2, color: const Color.fromARGB(157, 158, 158, 158)),
                       ),
                       child: const Text(
-                          'In my Room thair is low voltage power occurs most of time.Kindly solve our problem :).'),
+                          'I am Seetha Suresh, a final year student of BSc Chemistry with the ID number 18PEL54. I stay in Room no. F2. I am writing this letter to request you to permit me to go home for ten days (01/07/2022 – 10/07/2022). I will be back to the hostel on Monday morning (11/07/2022).'),
                     ),
                     const SizedBox(
                       height: 20,

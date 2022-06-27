@@ -10,7 +10,7 @@ class StudentDetailScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Detials"),
+        title: const Text("Details"),
       ),
       body: SingleChildScrollView(
           child: Padding(
