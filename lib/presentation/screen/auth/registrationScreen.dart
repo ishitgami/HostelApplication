@@ -216,6 +216,8 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                                     .createUserWithEmailAndPassword(
                                         emailController.text.toString(),
                                         passwordController.text.toString());
+
+                                Navigator.pushNamed(context, logInScreenRoute);
                               },
                             ),
                             const SizedBox(
