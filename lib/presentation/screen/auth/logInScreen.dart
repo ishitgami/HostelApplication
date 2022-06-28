@@ -1,19 +1,25 @@
 // ignore_for_file: unnecessary_const
 
-
 import 'package:flutter/material.dart';
 import 'package:hostelapplication/core/constant/string.dart';
 import 'package:hostelapplication/logic/service/auth_service.dart';
 import 'package:provider/provider.dart';
 
+class LogInScreen extends StatefulWidget {
+  @override
+  State<LogInScreen> createState() => _LogInScreenState();
+}
 
-class LogInScreen extends StatelessWidget {
- 
+class _LogInScreenState extends State<LogInScreen> {
+  late AuthService authService;
+  bool showLoading = false;
+  bool showAlert = false;
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
-    final TextEditingController emailController = TextEditingController();
-    final TextEditingController passwordController = TextEditingController();
-     final authService = Provider.of<AuthService>(context);
+    authService = Provider.of<AuthService>(context);
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
@@ -63,7 +69,7 @@ class LogInScreen extends StatelessWidget {
                 const SizedBox(
                   height: 20,
                 ),
-                 TextField(
+                TextField(
                   controller: emailController,
                   decoration: InputDecoration(
                     hintText: 'Email',
@@ -81,7 +87,7 @@ class LogInScreen extends StatelessWidget {
                 const SizedBox(
                   height: 20,
                 ),
-                 TextField(
+                TextField(
                   controller: passwordController,
                   decoration: InputDecoration(
                     hintText: 'Password',
@@ -118,10 +124,18 @@ class LogInScreen extends StatelessWidget {
                             style: TextStyle(color: Colors.white, fontSize: 20),
                           ),
                         ),
-                        onTap: () async{
-                          await authService.signInWithEmailAndPassword(emailController.text..toString(), passwordController.text..toString());
-                           Navigator.pushNamed(
-                              context, adminDashbordScreenRoute);
+                        onTap: () async {
+                          setState(() {
+                            showLoading = true;
+                          });
+                          progressIndicater(context, showLoading = true);
+                           await loginByRole();
+                          await showAlert == true
+                              ? null
+                              : progressIndicater(context, showLoading = true);
+                          Navigator.pop(context);
+                          //  Navigator.pushNamed(
+                          //     context, adminDashbordScreenRoute);
                         },
                       ),
                       const SizedBox(
@@ -144,6 +158,65 @@ class LogInScreen extends StatelessWidget {
             ),
           ),
         ),
+      ),
+    );
+  }
+
+  Future<dynamic>? progressIndicater(BuildContext context, showLoading) {
+    if (showLoading == true) {
+      return showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          });
+    } else
+      return null;
+  }
+
+  loginByRole() async {
+    try {
+      await authService.signInWithEmailAndPassword(
+          emailController.text.toString(),
+          passwordController.text.toString());
+      if (emailController.text.toString() == 'admin@gmail.com' && passwordController.text.toString()== 'admin@123') {
+        Navigator.pop(context);
+        Navigator.pushReplacementNamed(context, adminDashbordScreenRoute);
+      }else {
+        Navigator.pop(context);
+        Navigator.pushReplacementNamed(context, studentDashboardScreenRoute);
+      }
+
+    } catch (e) {
+      print(e);
+      return alertBox(context, e);
+    }
+  }
+
+  Future<void> alertBox(BuildContext context, e) {
+    setState(() {
+      showLoading = false;
+      showAlert = true;
+    });
+    return showDialog(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        elevation: 5,
+        title: Text("Alert !!"),
+        content: Text(e.toString()),
+        actions: <Widget>[
+          TextButton(
+            onPressed: () {
+              Navigator.of(ctx).pop();
+            },
+            child: Text(
+              "Close",
+              style: TextStyle(
+                  color: Colors.red, fontSize: 18, fontWeight: FontWeight.w700),
+            ),
+          ),
+        ],
       ),
     );
   }
