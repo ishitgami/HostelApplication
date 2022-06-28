@@ -38,14 +38,28 @@ class _LogInScreenState extends State<LogInScreen> {
                     height: 250.0,
                     width: 250.0,
                   ),
-                ),
-                Row(
-                  children: [
-                    Container(
-                      color: const Color.fromARGB(255, 108, 99, 255),
-                      height: 100,
-                      width: 10,
+              ),
+               Text(
+                'WELCOME.',
+                style: TextStyle(
+                    fontSize: 35,
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              TextField(
+                controller: emailController,
+                decoration: InputDecoration(
+                  hintText: 'Email',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(10.0),
                     ),
+                  ),
+                ),
+              ),
                     const SizedBox(
                       width: 8,
                     ),
@@ -57,38 +71,30 @@ class _LogInScreenState extends State<LogInScreen> {
                           fontSize: 50,
                           fontFamily: 'Roboto'),
                     ),
-                  ],
-                ),
-                const Text(
-                  'WELCOME.',
-                  style: TextStyle(
-                      fontSize: 35,
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold),
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                TextField(
-                  controller: emailController,
-                  decoration: InputDecoration(
-                    hintText: 'Email',
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(10.0),
-                      ),
-                      borderSide: BorderSide(
-                        width: 1,
-                        style: BorderStyle.none,
-                      ),
+                
+                
+              const SizedBox(
+                height: 20,
+              ),
+              TextField(
+                controller: passwordController,
+                decoration: InputDecoration(
+                  hintText: 'Password',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(10.0),
                     ),
                   ),
                 ),
+              ),
                 const SizedBox(
                   height: 20,
                 ),
-                TextField(
+                TextFormField(
                   controller: passwordController,
+                  keyboardType: TextInputType.visiblePassword,
+                  obscureText: true,
+                  textInputAction: TextInputAction.done,
                   decoration: InputDecoration(
                     hintText: 'Password',
                     border: OutlineInputBorder(
@@ -115,40 +121,56 @@ class _LogInScreenState extends State<LogInScreen> {
                           decoration: BoxDecoration(
                               color: const Color.fromARGB(255, 108, 99, 255),
                               border: Border.all(
-                                color: const Color.fromARGB(255, 108, 99, 255),
+                                color:
+                                    const Color.fromARGB(255, 108, 99, 255),
                               ),
-                              borderRadius:
-                                  const BorderRadius.all(Radius.circular(20))),
+                              borderRadius: const BorderRadius.all(
+                                  Radius.circular(20))),
                           child: const Text(
                             'Login',
-                            style: TextStyle(color: Colors.white, fontSize: 20),
+                            style:
+                                TextStyle(color: Colors.white, fontSize: 20),
                           ),
                         ),
                         onTap: () async {
-                          setState(() {
-                            showLoading = true;
-                          });
-                          progressIndicater(context, showLoading = true);
-                           await loginByRole();
-                          await showAlert == true
-                              ? null
-                              : progressIndicater(context, showLoading = true);
-                          Navigator.pop(context);
-                          //  Navigator.pushNamed(
-                          //     context, adminDashbordScreenRoute);
-                        },
+                        setState(() {
+                          showLoading = true;
+                        });
+                        progressIndicater(context, showLoading = true);
+                         await loginByRole();
+                        await showAlert == true
+                            ? null
+                            : progressIndicater(context, showLoading = true);
+                        Navigator.pop(context);
+                        //  Navigator.pushNamed(
+                        //     context, adminDashbordScreenRoute);
+                      },
                       ),
-                      const SizedBox(
-                        height: 10,
+                     
+                    
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.pushNamed(context, registrationScreenRoute);
+                      },
+                      child: const Text(
+                        'Not Registred yet?',
+                        style: TextStyle(
+                            color: Colors.blue, fontWeight: FontWeight.w400),
                       ),
+                    ),
                       GestureDetector(
                         onTap: () {
-                          Navigator.pushNamed(context, registrationScreenRoute);
+                          Navigator.pushNamed(
+                              context, registrationScreenRoute);
                         },
                         child: const Text(
                           'Not Registred yet?',
                           style: TextStyle(
-                              color: Colors.blue, fontWeight: FontWeight.w400),
+                              color: Colors.blue,
+                              fontWeight: FontWeight.w400),
                         ),
                       )
                     ],
