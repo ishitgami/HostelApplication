@@ -13,207 +13,239 @@ class RegistrationScreen extends StatefulWidget {
 class _RegistrationScreenState extends State<RegistrationScreen> {
   @override
   Widget build(BuildContext context) {
-     final TextEditingController emailController = TextEditingController();
+    bool ispasswordvisible = true;
+    final TextEditingController emailController = TextEditingController();
     final TextEditingController passwordController = TextEditingController();
-     final authService = Provider.of<AuthService>(context);
+    final authService = Provider.of<AuthService>(context);
+    final _formkey = GlobalKey<FormState>();
+
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
-          child: Stack(
-            children: [
-            
-              WavyHeader(),
-              // Container(
-              //   height: 35.0,
-              //   decoration: BoxDecoration(
-              //     color: const Color.fromARGB(163, 107, 99, 255),
-              //     borderRadius: BorderRadius.vertical(
-              //         bottom: Radius.elliptical(
-              //             MediaQuery.of(context).size.width, 60.0)),
-              //   ),
-              // ),
-             
-              Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const SizedBox(
-                      height: 80,
-                    ),
-                     Row(
-                  children: [
-                    Container(
-                     color: Colors.black,
-                      height: 100,
-                      width: 10,
-                    ),
-                    const SizedBox(
-                      width: 8,
-                    ),
-                    const Text(
-                      'My\nHostel',
-                      style: TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 50,
-                          fontFamily: 'Roboto'),
-                    ),
-                  ],
-                ),
-                    const Text(
-                      'WELCOME.',
-                      style: TextStyle(
-                          fontSize: 35,
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold),
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    const TextField(
-                      decoration: InputDecoration(
-                        prefixIcon:  Icon(Icons.person_rounded,color:Color.fromARGB(255, 108, 99, 255), ), 
-                        hintText: 'First Name',
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(10.0),
-                          ),
-                          borderSide: BorderSide(
-                            width: 1,
-                            style: BorderStyle.none,
-                          ),
-                        ),
+          child: Form(
+            key: _formkey,
+            child: Stack(
+              children: [
+                WavyHeader(),
+                // Container(
+                //   height: 35.0,
+                //   decoration: BoxDecoration(
+                //     color: const Color.fromARGB(163, 107, 99, 255),
+                //     borderRadius: BorderRadius.vertical(
+                //         bottom: Radius.elliptical(
+                //             MediaQuery.of(context).size.width, 60.0)),
+                //   ),
+                // ),
+
+                Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const SizedBox(
+                        height: 80,
                       ),
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    const TextField(
-                      decoration: InputDecoration(
-                        prefixIcon:  Icon(Icons.person_rounded,color:Color.fromARGB(255, 108, 99, 255), ), 
-                        hintText: 'Last Name',
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(10.0),
-                          ),
-                          borderSide: BorderSide(
-                            width: 1,
-                            style: BorderStyle.none,
-                          ),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    const TextField(
-                      decoration: InputDecoration(
-                        prefixIcon:  Icon(Icons.home_outlined,color:Color.fromARGB(255, 108, 99, 255), ), 
-                        hintText: 'Room No',
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(10.0),
-                          ),
-                          borderSide: BorderSide(
-                            width: 1,
-                            style: BorderStyle.none,
-                          ),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                     TextField(
-                      controller: emailController,
-                      decoration: InputDecoration(
-                        prefixIcon:  Icon(Icons.email_outlined,color:Color.fromARGB(255, 108, 99, 255), ), 
-                        hintText: 'Email',
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(10.0),
-                          ),
-                          borderSide: BorderSide(
-                            width: 1,
-                            style: BorderStyle.none,
-                          ),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                     TextField(
-                      controller: passwordController,
-                      decoration: InputDecoration(
-                        prefixIcon:  Icon(Icons.remove_red_eye,color:Color.fromARGB(255, 108, 99, 255), ), 
-                        hintText: 'Password',
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(10.0),
-                          ),
-                          borderSide: BorderSide(
-                            width: 1,
-                            style: BorderStyle.none,
-                          ),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 30,
-                    ),
-                    Center(
-                      child: Column(
+                      Row(
                         children: [
-                          GestureDetector(
-                            child: Container(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 60, vertical: 15),
-                              decoration: BoxDecoration(
-                                  color: const Color.fromARGB(255, 108, 99, 255),
-                                  border: Border.all(
-                                    color: const Color.fromARGB(255, 108, 99, 255),
-                                  ),
-                                  borderRadius:
-                                      const BorderRadius.all(Radius.circular(20))),
-                              child: const Text(
-                                'Register',
-                                style: TextStyle(color: Colors.white, fontSize: 20),
-                              ),
-                            ),
-                            onTap: ()async {
-                                await authService.createUserWithEmailAndPassword(emailController.text.toString(),passwordController.text.toString());
-                            },
+                          Container(
+                            color: Colors.black,
+                            height: 100,
+                            width: 10,
                           ),
                           const SizedBox(
-                            height: 10,
+                            width: 8,
                           ),
-                          GestureDetector(
-                            onTap: () {
-                              Navigator.pushReplacementNamed(
-                                  context, logInScreenRoute);
-                            },
-                            child: const Text(
-                              'Already Registred?',
-                              style: TextStyle(
-                                  color: Colors.blue, fontWeight: FontWeight.w400),
-                            ),
+                          const Text(
+                            'My\nHostel',
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 50,
+                                fontFamily: 'Roboto'),
                           ),
-                          
                         ],
                       ),
-                    )
-                  ],
+                      const Text(
+                        'WELCOME.',
+                        style: TextStyle(
+                            fontSize: 35,
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold),
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      TextFormField(
+                        textInputAction: TextInputAction.next,
+                        decoration: InputDecoration(
+                          prefixIcon: Icon(
+                            Icons.person_rounded,
+                            color: Color.fromARGB(255, 108, 99, 255),
+                          ),
+                          hintText: 'First Name',
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(10.0),
+                            ),
+                            borderSide: BorderSide(
+                              width: 1,
+                              style: BorderStyle.none,
+                            ),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      TextFormField(
+                        textInputAction: TextInputAction.next,
+                        decoration: InputDecoration(
+                          prefixIcon: Icon(
+                            Icons.person_rounded,
+                            color: Color.fromARGB(255, 108, 99, 255),
+                          ),
+                          hintText: 'Last Name',
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(10.0),
+                            ),
+                            borderSide: BorderSide(
+                              width: 1,
+                              style: BorderStyle.none,
+                            ),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      TextFormField(
+                        textInputAction: TextInputAction.next,
+                        decoration: InputDecoration(
+                          prefixIcon: Icon(
+                            Icons.home_outlined,
+                            color: Color.fromARGB(255, 108, 99, 255),
+                          ),
+                          hintText: 'Room No',
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(10.0),
+                            ),
+                            borderSide: BorderSide(
+                              width: 1,
+                              style: BorderStyle.none,
+                            ),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      TextFormField(
+                        textInputAction: TextInputAction.next,
+                        keyboardType: TextInputType.emailAddress,
+                        controller: emailController,
+                        decoration: InputDecoration(
+                          prefixIcon: Icon(
+                            Icons.email_outlined,
+                            color: Color.fromARGB(255, 108, 99, 255),
+                          ),
+                          hintText: 'Email',
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(10.0),
+                            ),
+                            borderSide: BorderSide(
+                              width: 1,
+                              style: BorderStyle.none,
+                            ),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      TextFormField(
+                        controller: passwordController,
+                        textInputAction: TextInputAction.done,
+                        obscureText: ispasswordvisible,
+                        decoration: InputDecoration(
+                          prefixIcon: Icon(
+                            Icons.remove_red_eye,
+                            color: Color.fromARGB(255, 108, 99, 255),
+                          ),
+                          hintText: 'Password',
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(10.0),
+                            ),
+                            borderSide: BorderSide(
+                              width: 1,
+                              style: BorderStyle.none,
+                            ),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 30,
+                      ),
+                      Center(
+                        child: Column(
+                          children: [
+                            GestureDetector(
+                              child: Container(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 60, vertical: 15),
+                                decoration: BoxDecoration(
+                                    color:
+                                        const Color.fromARGB(255, 108, 99, 255),
+                                    border: Border.all(
+                                      color: const Color.fromARGB(
+                                          255, 108, 99, 255),
+                                    ),
+                                    borderRadius: const BorderRadius.all(
+                                        Radius.circular(20))),
+                                child: const Text(
+                                  'Register',
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 20),
+                                ),
+                              ),
+                              onTap: () async {
+                                await authService
+                                    .createUserWithEmailAndPassword(
+                                        emailController.text.toString(),
+                                        passwordController.text.toString());
+                              },
+                            ),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            GestureDetector(
+                              onTap: () {
+                                Navigator.pushReplacementNamed(
+                                    context, logInScreenRoute);
+                              },
+                              child: const Text(
+                                'Already Registred?',
+                                style: TextStyle(
+                                    color: Colors.blue,
+                                    fontWeight: FontWeight.w400),
+                              ),
+                            ),
+                          ],
+                        ),
+                      )
+                    ],
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
     );
   }
-  
 }
 
 class WavyHeader extends StatelessWidget {
@@ -223,13 +255,10 @@ class WavyHeader extends StatelessWidget {
       clipper: TopWaveClipper(),
       child: Container(
         decoration: const BoxDecoration(
-          gradient: LinearGradient(
-              colors: [
-  Color.fromARGB(105, 107, 99, 255),
-  Color.fromARGB(105, 212, 65, 141),
-],
-              begin: Alignment.topLeft,
-              end: Alignment.center),
+          gradient: LinearGradient(colors: [
+            Color.fromARGB(105, 107, 99, 255),
+            Color.fromARGB(105, 212, 65, 141),
+          ], begin: Alignment.topLeft, end: Alignment.center),
         ),
         height: MediaQuery.of(context).size.height / 2.5,
       ),
@@ -244,7 +273,7 @@ class TopWaveClipper extends CustomClipper<Path> {
     var path = Path();
     path.lineTo(0.0, size.height);
 
-    var firstControlPoint =  Offset(size.width / 7, size.height - 30);
+    var firstControlPoint = Offset(size.width / 7, size.height - 30);
     var firstEndPoint = Offset(size.width / 6, size.height / 1.5);
 
     path.quadraticBezierTo(firstControlPoint.dx, firstControlPoint.dy,

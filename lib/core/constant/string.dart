@@ -17,12 +17,8 @@ const String approveDenyComplainListRoute = '/approveDenyComplainListScreen';
 const String approveDennyLeaveScreenRoute = '/approveDennyLeaveScreen';
 
 //student
-<<<<<<< HEAD
 const String studentDashboardScreenRoute = "/stuDash";
 
-=======
-const String studentDashboardScreenRoute = "/student";
->>>>>>> 504788b7e19677746739fe38cc76b95a3cf00dd9
 // const String studentDashboardScreenRoute = "/";
 
 const String studentDetailScreenRoute = "/StudentDetails";

@@ -1,19 +1,16 @@
 // ignore_for_file: unnecessary_const
 
-
 import 'package:flutter/material.dart';
 import 'package:hostelapplication/core/constant/string.dart';
 import 'package:hostelapplication/logic/service/auth_service.dart';
 import 'package:provider/provider.dart';
 
-
 class LogInScreen extends StatelessWidget {
- 
   @override
   Widget build(BuildContext context) {
     final TextEditingController emailController = TextEditingController();
     final TextEditingController passwordController = TextEditingController();
-     final authService = Provider.of<AuthService>(context);
+    final authService = Provider.of<AuthService>(context);
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
@@ -63,7 +60,7 @@ class LogInScreen extends StatelessWidget {
                 const SizedBox(
                   height: 20,
                 ),
-                 TextField(
+                TextField(
                   controller: emailController,
                   decoration: InputDecoration(
                     hintText: 'Email',
@@ -81,7 +78,7 @@ class LogInScreen extends StatelessWidget {
                 const SizedBox(
                   height: 20,
                 ),
-                 TextField(
+                TextField(
                   controller: passwordController,
                   decoration: InputDecoration(
                     hintText: 'Password',
@@ -103,10 +100,6 @@ class LogInScreen extends StatelessWidget {
                   child: Column(
                     children: [
                       GestureDetector(
-                        onTap: () {
-                          Navigator.pushNamed(
-                              context, adminDashbordScreenRoute);
-                        },
                         child: Container(
                           padding: const EdgeInsets.symmetric(
                               horizontal: 60, vertical: 15),
@@ -122,8 +115,12 @@ class LogInScreen extends StatelessWidget {
                             style: TextStyle(color: Colors.white, fontSize: 20),
                           ),
                         ),
-                        onTap: () async{
-                          await authService.signInWithEmailAndPassword(emailController.text..toString(), passwordController.text..toString());
+                        onTap: () async {
+                          await authService.signInWithEmailAndPassword(
+                              emailController.text..toString(),
+                              passwordController.text..toString());
+                          Navigator.pushNamed(
+                              context, adminDashbordScreenRoute);
                         },
                       ),
                       const SizedBox(
