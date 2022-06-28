@@ -103,10 +103,6 @@ class LogInScreen extends StatelessWidget {
                   child: Column(
                     children: [
                       GestureDetector(
-                        onTap: () {
-                          Navigator.pushNamed(
-                              context, adminDashbordScreenRoute);
-                        },
                         child: Container(
                           padding: const EdgeInsets.symmetric(
                               horizontal: 60, vertical: 15),
@@ -124,6 +120,8 @@ class LogInScreen extends StatelessWidget {
                         ),
                         onTap: () async{
                           await authService.signInWithEmailAndPassword(emailController.text..toString(), passwordController.text..toString());
+                           Navigator.pushNamed(
+                              context, adminDashbordScreenRoute)
                         },
                       ),
                       const SizedBox(
