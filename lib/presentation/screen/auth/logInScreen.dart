@@ -115,11 +115,17 @@ class LogInScreen extends StatelessWidget {
                             style: TextStyle(color: Colors.white, fontSize: 20),
                           ),
                         ),
+<<<<<<< HEAD
                         onTap: () async {
                           await authService.signInWithEmailAndPassword(
                               emailController.text..toString(),
                               passwordController.text..toString());
                           Navigator.pushNamed(
+=======
+                        onTap: () async{
+                          await authService.signInWithEmailAndPassword(emailController.text..toString(), passwordController.text..toString());
+                           Navigator.pushNamed(
+>>>>>>> e2df0e8c71a38f974c74b52a24238acf17922061
                               context, adminDashbordScreenRoute);
                         },
                       ),
