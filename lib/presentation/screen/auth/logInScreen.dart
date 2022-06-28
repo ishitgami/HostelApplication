@@ -121,7 +121,7 @@ class LogInScreen extends StatelessWidget {
                         onTap: () async{
                           await authService.signInWithEmailAndPassword(emailController.text..toString(), passwordController.text..toString());
                            Navigator.pushNamed(
-                              context, adminDashbordScreenRoute)
+                              context, adminDashbordScreenRoute);
                         },
                       ),
                       const SizedBox(

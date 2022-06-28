@@ -9,11 +9,7 @@ class StudentServicesScreen extends StatefulWidget {
 }
 
 class _StudentServicesScreenState extends State<StudentServicesScreen> {
-<<<<<<< HEAD
    List<String> images = [
-=======
-  List<String> images = [
->>>>>>> 504788b7e19677746739fe38cc76b95a3cf00dd9
     'assets/images/room.png',
     'assets/images/dinner.png',
     'assets/images/bath.png',
@@ -31,19 +27,11 @@ class _StudentServicesScreenState extends State<StudentServicesScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-<<<<<<< HEAD
         title: const Text('Services'),
       ),
       drawer: const StudentDrawer(),
       body:Container(
          color: Colors.grey[200],
-=======
-        backgroundColor: Colors.lightBlue,
-        title: const Text('Services'),
-      ),
-      drawer: const StudentDrawer(),
-      body: Container(
->>>>>>> 504788b7e19677746739fe38cc76b95a3cf00dd9
         padding: const EdgeInsets.all(16.0),
         child: GridView.builder(
           itemCount: images.length,
@@ -57,11 +45,7 @@ class _StudentServicesScreenState extends State<StudentServicesScreen> {
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(15.0),
               ),
-<<<<<<< HEAD
              
-=======
-              color: Colors.grey[100],
->>>>>>> 504788b7e19677746739fe38cc76b95a3cf00dd9
               elevation: 1,
               child: Column(
                 children: [
