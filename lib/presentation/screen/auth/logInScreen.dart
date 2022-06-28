@@ -5,6 +5,7 @@ import 'package:hostelapplication/core/constant/string.dart';
 import 'package:hostelapplication/core/constant/textController.dart';
 import 'package:hostelapplication/logic/service/auth_service.dart';
 import 'package:provider/provider.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 
 class LogInScreen extends StatefulWidget {
   @override
@@ -124,6 +125,7 @@ class _LogInScreenState extends State<LogInScreen> {
                             setState(() {
                               showLoading = true;
                             });
+
                             progressIndicater(context, showLoading = true);
                             await loginByRole();
                             await showAlert == true
@@ -198,25 +200,32 @@ class _LogInScreenState extends State<LogInScreen> {
       showLoading = false;
       showAlert = true;
     });
-    return showDialog(
+    return Alert(
       context: context,
-      builder: (ctx) => AlertDialog(
-        elevation: 5,
-        title: Text("Alert !!"),
-        content: Text(e.toString()),
-        actions: <Widget>[
-          TextButton(
-            onPressed: () {
-              Navigator.of(ctx).pop();
-            },
-            child: Text(
-              "Close",
-              style: TextStyle(
-                  color: Colors.red, fontSize: 18, fontWeight: FontWeight.w700),
-            ),
-          ),
-        ],
-      ),
-    );
+      title: "ALERT",
+      desc: "Process failed. Please try again.",
+    ).show();
   }
 }
+
+    // showDialog(
+    //   context: context,
+    //   builder: (ctx) =>
+    //       AlertDialog(
+    //     elevation: 5,
+    //     title: Text("Alert !!"),
+    //     content: Text(e.toString()),
+    //     actions: <Widget>[
+    //       TextButton(
+    //         onPressed: () {
+    //           Navigator.of(ctx).pop();
+    //         },
+    //         child: Text(
+    //           "Close",
+    //           style: TextStyle(
+    //               color: Colors.red, fontSize: 18, fontWeight: FontWeight.w700),
+    //         ),
+    //       ),
+    //     ],
+    //   ),
+    // );
