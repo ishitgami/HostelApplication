@@ -38,75 +38,55 @@ class _LogInScreenState extends State<LogInScreen> {
                     height: 250.0,
                     width: 250.0,
                   ),
-              ),
-               Text(
-                'WELCOME.',
-                style: TextStyle(
-                    fontSize: 35,
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold),
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              TextField(
-                controller: emailController,
-                decoration: InputDecoration(
-                  hintText: 'Email',
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(10.0),
-                    ),
-                  ),
                 ),
-              ),
-                    const SizedBox(
-                      width: 8,
-                    ),
-                    const Text(
-                      'My\nHostel',
-                      style: TextStyle(
-                          color: const Color.fromARGB(255, 108, 99, 255),
-                          fontWeight: FontWeight.bold,
-                          fontSize: 50,
-                          fontFamily: 'Roboto'),
-                    ),
-                
-                
-              const SizedBox(
-                height: 20,
-              ),
-              TextField(
-                controller: passwordController,
-                decoration: InputDecoration(
-                  hintText: 'Password',
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(10.0),
-                    ),
-                  ),
-                ),
-              ),
                 const SizedBox(
                   height: 20,
                 ),
-                TextFormField(
+                const Text(
+                  'My\nHostel',
+                  style: TextStyle(
+                      color: const Color.fromARGB(255, 108, 99, 255),
+                      fontWeight: FontWeight.bold,
+                      fontSize: 50,
+                      fontFamily: 'Roboto'),
+                ),
+                Text(
+                  'WELCOME.',
+                  style: TextStyle(
+                      fontSize: 35,
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold),
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                TextField(
+                  controller: emailController,
+                  decoration: InputDecoration(
+                    hintText: 'Email',
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(10.0),
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                TextField(
                   controller: passwordController,
-                  keyboardType: TextInputType.visiblePassword,
-                  obscureText: true,
-                  textInputAction: TextInputAction.done,
                   decoration: InputDecoration(
                     hintText: 'Password',
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.all(
                         Radius.circular(10.0),
                       ),
-                      borderSide: BorderSide(
-                        width: 1,
-                        style: BorderStyle.none,
-                      ),
                     ),
                   ),
+                ),
+                const SizedBox(
+                  height: 20,
                 ),
                 const SizedBox(
                   height: 30,
@@ -121,58 +101,42 @@ class _LogInScreenState extends State<LogInScreen> {
                           decoration: BoxDecoration(
                               color: const Color.fromARGB(255, 108, 99, 255),
                               border: Border.all(
-                                color:
-                                    const Color.fromARGB(255, 108, 99, 255),
+                                color: const Color.fromARGB(255, 108, 99, 255),
                               ),
-                              borderRadius: const BorderRadius.all(
-                                  Radius.circular(20))),
+                              borderRadius:
+                                  const BorderRadius.all(Radius.circular(20))),
                           child: const Text(
                             'Login',
-                            style:
-                                TextStyle(color: Colors.white, fontSize: 20),
+                            style: TextStyle(color: Colors.white, fontSize: 20),
                           ),
                         ),
                         onTap: () async {
-                        setState(() {
-                          showLoading = true;
-                        });
-                        progressIndicater(context, showLoading = true);
-                         await loginByRole();
-                        await showAlert == true
-                            ? null
-                            : progressIndicater(context, showLoading = true);
-                        Navigator.pop(context);
-                        //  Navigator.pushNamed(
-                        //     context, adminDashbordScreenRoute);
-                      },
+                          setState(() {
+                            showLoading = true;
+                          });
+                          progressIndicater(context, showLoading = true);
+                          await loginByRole();
+                          await showAlert == true
+                              ? null
+                              : progressIndicater(context, showLoading = true);
+                          Navigator.pop(context);
+                          //  Navigator.pushNamed(
+                          //     context, adminDashbordScreenRoute);
+                        },
                       ),
-                     
-                    
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.pushNamed(context, registrationScreenRoute);
-                      },
-                      child: const Text(
-                        'Not Registred yet?',
-                        style: TextStyle(
-                            color: Colors.blue, fontWeight: FontWeight.w400),
+                      const SizedBox(
+                        height: 10,
                       ),
-                    ),
                       GestureDetector(
                         onTap: () {
-                          Navigator.pushNamed(
-                              context, registrationScreenRoute);
+                          Navigator.pushNamed(context, registrationScreenRoute);
                         },
                         child: const Text(
                           'Not Registred yet?',
                           style: TextStyle(
-                              color: Colors.blue,
-                              fontWeight: FontWeight.w400),
+                              color: Colors.blue, fontWeight: FontWeight.w400),
                         ),
-                      )
+                      ),
                     ],
                   ),
                 )
@@ -200,16 +164,15 @@ class _LogInScreenState extends State<LogInScreen> {
   loginByRole() async {
     try {
       await authService.signInWithEmailAndPassword(
-          emailController.text.toString(),
-          passwordController.text.toString());
-      if (emailController.text.toString() == 'admin@gmail.com' && passwordController.text.toString()== 'admin@123') {
+          emailController.text.toString(), passwordController.text.toString());
+      if (emailController.text.toString() == 'admin@gmail.com' &&
+          passwordController.text.toString() == 'admin@123') {
         Navigator.pop(context);
         Navigator.pushReplacementNamed(context, adminDashbordScreenRoute);
-      }else {
+      } else {
         Navigator.pop(context);
         Navigator.pushReplacementNamed(context, studentDashboardScreenRoute);
       }
-
     } catch (e) {
       print(e);
       return alertBox(context, e);
