@@ -16,6 +16,7 @@ class _LogInScreenState extends State<LogInScreen> {
   bool showLoading = false;
   bool showAlert = false;
 
+  final _formkey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -23,124 +24,137 @@ class _LogInScreenState extends State<LogInScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.only(
-            left: 16.0,
-            right: 16,
-          ),
-          child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Center(
-                  child: Image.asset(
-                    'assets/images/login.png',
-                    height: 250.0,
-                    width: 250.0,
+        child: Form(
+          key: _formkey,
+          child: Padding(
+            padding: const EdgeInsets.only(
+              left: 16.0,
+              right: 16,
+            ),
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Center(
+                    child: Image.asset(
+                      'assets/images/login.png',
+                      height: 250.0,
+                      width: 250.0,
+                    ),
                   ),
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                const Text(
-                  'My\nHostel',
-                  style: TextStyle(
-                      color: const Color.fromARGB(255, 108, 99, 255),
-                      fontWeight: FontWeight.bold,
-                      fontSize: 50,
-                      fontFamily: 'Roboto'),
-                ),
-                Text(
-                  'WELCOME.',
-                  style: TextStyle(
-                      fontSize: 35,
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold),
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                TextField(
-                  controller: emailController,
-                  decoration: InputDecoration(
-                    hintText: 'Email',
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(10.0),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  const Text(
+                    'My\nHostel',
+                    style: TextStyle(
+                        color: const Color.fromARGB(255, 108, 99, 255),
+                        fontWeight: FontWeight.bold,
+                        fontSize: 50,
+                        fontFamily: 'Roboto'),
+                  ),
+                  Text(
+                    'WELCOME.',
+                    style: TextStyle(
+                        fontSize: 35,
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  TextFormField(
+                    controller: emailController,
+                    keyboardType: TextInputType.emailAddress,
+                    textInputAction: TextInputAction.next,
+                    decoration: InputDecoration(
+                      hintText: 'Email',
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(10.0),
+                        ),
                       ),
                     ),
                   ),
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                TextField(
-                  controller: passwordController,
-                  decoration: InputDecoration(
-                    hintText: 'Password',
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(10.0),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  TextFormField(
+                    controller: passwordController,
+                    keyboardType: TextInputType.visiblePassword,
+                    obscureText: true,
+                    textInputAction: TextInputAction.done,
+                    decoration: InputDecoration(
+                      hintText: 'Password',
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(10.0),
+                        ),
                       ),
                     ),
                   ),
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                const SizedBox(
-                  height: 30,
-                ),
-                Center(
-                  child: Column(
-                    children: [
-                      GestureDetector(
-                        child: Container(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 60, vertical: 15),
-                          decoration: BoxDecoration(
-                              color: const Color.fromARGB(255, 108, 99, 255),
-                              border: Border.all(
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  const SizedBox(
+                    height: 30,
+                  ),
+                  Center(
+                    child: Column(
+                      children: [
+                        GestureDetector(
+                          child: Container(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 60, vertical: 15),
+                            decoration: BoxDecoration(
                                 color: const Color.fromARGB(255, 108, 99, 255),
-                              ),
-                              borderRadius:
-                                  const BorderRadius.all(Radius.circular(20))),
+                                border: Border.all(
+                                  color:
+                                      const Color.fromARGB(255, 108, 99, 255),
+                                ),
+                                borderRadius: const BorderRadius.all(
+                                    Radius.circular(20))),
+                            child: const Text(
+                              'Login',
+                              style:
+                                  TextStyle(color: Colors.white, fontSize: 20),
+                            ),
+                          ),
+                          onTap: () async {
+                            setState(() {
+                              showLoading = true;
+                            });
+                            progressIndicater(context, showLoading = true);
+                            await loginByRole();
+                            await showAlert == true
+                                ? null
+                                : progressIndicater(
+                                    context, showLoading = true);
+                            Navigator.pop(context);
+                            //  Navigator.pushNamed(
+                            //     context, adminDashbordScreenRoute);
+                          },
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.pushNamed(
+                                context, registrationScreenRoute);
+                          },
                           child: const Text(
-                            'Login',
-                            style: TextStyle(color: Colors.white, fontSize: 20),
+                            'Not Registred yet?',
+                            style: TextStyle(
+                                color: Colors.blue,
+                                fontWeight: FontWeight.w400),
                           ),
                         ),
-                        onTap: () async {
-                          setState(() {
-                            showLoading = true;
-                          });
-                          progressIndicater(context, showLoading = true);
-                          await loginByRole();
-                          await showAlert == true
-                              ? null
-                              : progressIndicater(context, showLoading = true);
-                          Navigator.pop(context);
-                          //  Navigator.pushNamed(
-                          //     context, adminDashbordScreenRoute);
-                        },
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          Navigator.pushNamed(context, registrationScreenRoute);
-                        },
-                        child: const Text(
-                          'Not Registred yet?',
-                          style: TextStyle(
-                              color: Colors.blue, fontWeight: FontWeight.w400),
-                        ),
-                      ),
-                    ],
-                  ),
-                )
-              ],
+                      ],
+                    ),
+                  )
+                ],
+              ),
             ),
           ),
         ),

@@ -75,6 +75,8 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   ),
                   TextFormField(
                     controller: firstNameController,
+                    keyboardType: TextInputType.name,
+                    textInputAction: TextInputAction.next,
                     validator: (text) {
                       if (text!.isEmpty) {
                         return "Enter First Name ";
@@ -102,6 +104,8 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     height: 20,
                   ),
                   TextFormField(
+                    keyboardType: TextInputType.name,
+                    textInputAction: TextInputAction.next,
                     validator: (text) {
                       if (text!.isEmpty) {
                         return "Enter Last Name ";
@@ -130,13 +134,15 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     height: 20,
                   ),
                   TextFormField(
+                    textInputAction: TextInputAction.next,
+                    keyboardType: TextInputType.text,
                     validator: (text) {
-                      if (text!.isEmpty ) {
+                      if (text!.isEmpty) {
                         return "Enter Valid Room No";
                       }
                       return null;
                     },
-                    controller: lastNameController,
+                    controller: roomNoController,
                     decoration: InputDecoration(
                       prefixIcon: Icon(
                         Icons.home_outlined,
@@ -159,6 +165,8 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   ),
                   TextField(
                     controller: emailController,
+                    keyboardType: TextInputType.emailAddress,
+                    textInputAction: TextInputAction.next,
                     decoration: InputDecoration(
                       prefixIcon: Icon(
                         Icons.email_outlined,
@@ -179,8 +187,11 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   const SizedBox(
                     height: 20,
                   ),
-                  TextField(
+                  TextFormField(
                     controller: passwordController,
+                    textInputAction: TextInputAction.done,
+                    keyboardType: TextInputType.visiblePassword,
+                    obscureText: true,
                     decoration: InputDecoration(
                       prefixIcon: Icon(
                         Icons.remove_red_eye,
