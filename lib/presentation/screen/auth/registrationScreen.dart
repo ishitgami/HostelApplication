@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hostelapplication/core/constant/string.dart';
+import 'package:hostelapplication/core/constant/textController.dart';
 import 'package:hostelapplication/logic/service/auth_service.dart';
 import 'package:provider/provider.dart';
 
@@ -14,213 +15,247 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   late AuthService authService;
   bool showLoading = false;
   bool showAlert = false;
-  final TextEditingController emailController = TextEditingController();
-  final TextEditingController passwordController = TextEditingController();
+
+  //for storing form state.
+  final _form = GlobalKey<FormState>();
+
+  //saving form after validation
+  void _saveForm() {
+    final isValid = _form.currentState?.validate();
+    if (!isValid!) {
+      return;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-     authService = Provider.of<AuthService>(context);
+    authService = Provider.of<AuthService>(context);
     return Scaffold(
       body: SafeArea(
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const SizedBox(
-                  height: 80,
-                ),
-                Row(
-                  children: [
-                    Container(
-                      color: Colors.black,
-                      height: 100,
-                      width: 10,
-                    ),
-                    const SizedBox(
-                      width: 8,
-                    ),
-                    const Text(
-                      'My\nHostel',
-                      style: TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 50,
-                          fontFamily: 'Roboto'),
-                    ),
-                  ],
-                ),
-                const Text(
-                  'WELCOME.',
-                  style: TextStyle(
-                      fontSize: 35,
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold),
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                const TextField(
-                  decoration: InputDecoration(
-                    prefixIcon: Icon(
-                      Icons.person_rounded,
-                      color: Color.fromARGB(255, 108, 99, 255),
-                    ),
-                    hintText: 'First Name',
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(10.0),
-                      ),
-                      borderSide: BorderSide(
-                        width: 1,
-                        style: BorderStyle.none,
-                      ),
-                    ),
+        child: Form(
+          key: _form,
+          child: SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const SizedBox(
+                    height: 80,
                   ),
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                const TextField(
-                  decoration: InputDecoration(
-                    prefixIcon: Icon(
-                      Icons.person_rounded,
-                      color: Color.fromARGB(255, 108, 99, 255),
-                    ),
-                    hintText: 'Last Name',
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(10.0),
-                      ),
-                      borderSide: BorderSide(
-                        width: 1,
-                        style: BorderStyle.none,
-                      ),
-                    ),
-                  ),
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                const TextField(
-                  decoration: InputDecoration(
-                    prefixIcon: Icon(
-                      Icons.home_outlined,
-                      color: Color.fromARGB(255, 108, 99, 255),
-                    ),
-                    hintText: 'Room No',
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(10.0),
-                      ),
-                      borderSide: BorderSide(
-                        width: 1,
-                        style: BorderStyle.none,
-                      ),
-                    ),
-                  ),
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                TextField(
-                  controller: emailController,
-                  decoration: InputDecoration(
-                    prefixIcon: Icon(
-                      Icons.email_outlined,
-                      color: Color.fromARGB(255, 108, 99, 255),
-                    ),
-                    hintText: 'Email',
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(10.0),
-                      ),
-                      borderSide: BorderSide(
-                        width: 1,
-                        style: BorderStyle.none,
-                      ),
-                    ),
-                  ),
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                TextField(
-                  controller: passwordController,
-                  decoration: InputDecoration(
-                    prefixIcon: Icon(
-                      Icons.remove_red_eye,
-                      color: Color.fromARGB(255, 108, 99, 255),
-                    ),
-                    hintText: 'Password',
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(10.0),
-                      ),
-                      borderSide: BorderSide(
-                        width: 1,
-                        style: BorderStyle.none,
-                      ),
-                    ),
-                  ),
-                ),
-                const SizedBox(
-                  height: 30,
-                ),
-                Center(
-                  child: Column(
+                  Row(
                     children: [
-                      GestureDetector(
-                        child: Container(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 60, vertical: 15),
-                          decoration: BoxDecoration(
-                              color:
-                                  const Color.fromARGB(255, 108, 99, 255),
-                              border: Border.all(
-                                color:
-                                    const Color.fromARGB(255, 108, 99, 255),
-                              ),
-                              borderRadius: const BorderRadius.all(
-                                  Radius.circular(20))),
-                          child: const Text(
-                            'Register',
-                            style: TextStyle(
-                                color: Colors.white, fontSize: 20),
-                          ),
-                        ),
-                        onTap: () async {
-                          setState(() {
-                            showLoading = true;
-                          });
-                          progressIndicater(context, showLoading = true);
-                          await createUser();
-                          await showAlert == true
-                              ? null
-                              : progressIndicater(
-                                  context, showLoading = true);
-                          Navigator.pop(context);
-                        },
+                      Container(
+                        color: Colors.black,
+                        height: 100,
+                        width: 10,
                       ),
                       const SizedBox(
-                        height: 10,
+                        width: 8,
                       ),
-                      GestureDetector(
-                        onTap: () {
-                          Navigator.pushReplacementNamed(
-                              context, logInScreenRoute);
-                        },
-                        child: const Text(
-                          'Already Registred?',
-                          style: TextStyle(
-                              color: Colors.blue,
-                              fontWeight: FontWeight.w400),
-                        ),
+                      const Text(
+                        'My\nHostel',
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 50,
+                            fontFamily: 'Roboto'),
                       ),
                     ],
                   ),
-                )
-              ],
+                  const Text(
+                    'WELCOME.',
+                    style: TextStyle(
+                        fontSize: 35,
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  TextFormField(
+                    controller: firstNameController,
+                    validator: (text) {
+                      if (text!.isEmpty) {
+                        return "Enter First Name ";
+                      }
+                      return null;
+                    },
+                    decoration: InputDecoration(
+                      prefixIcon: Icon(
+                        Icons.person_rounded,
+                        color: Color.fromARGB(255, 108, 99, 255),
+                      ),
+                      hintText: 'First Name',
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(10.0),
+                        ),
+                        borderSide: BorderSide(
+                          width: 1,
+                          style: BorderStyle.none,
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  TextFormField(
+                    validator: (text) {
+                      if (text!.isEmpty) {
+                        return "Enter Last Name ";
+                      }
+                      return null;
+                    },
+                    controller: lastNameController,
+                    decoration: InputDecoration(
+                      prefixIcon: Icon(
+                        Icons.person_rounded,
+                        color: Color.fromARGB(255, 108, 99, 255),
+                      ),
+                      hintText: 'Last Name',
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(10.0),
+                        ),
+                        borderSide: BorderSide(
+                          width: 1,
+                          style: BorderStyle.none,
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  TextFormField(
+                    validator: (text) {
+                      if (text!.isEmpty ) {
+                        return "Enter Valid Room No";
+                      }
+                      return null;
+                    },
+                    controller: lastNameController,
+                    decoration: InputDecoration(
+                      prefixIcon: Icon(
+                        Icons.home_outlined,
+                        color: Color.fromARGB(255, 108, 99, 255),
+                      ),
+                      hintText: 'Room No',
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(10.0),
+                        ),
+                        borderSide: BorderSide(
+                          width: 1,
+                          style: BorderStyle.none,
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  TextField(
+                    controller: emailController,
+                    decoration: InputDecoration(
+                      prefixIcon: Icon(
+                        Icons.email_outlined,
+                        color: Color.fromARGB(255, 108, 99, 255),
+                      ),
+                      hintText: 'Email',
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(10.0),
+                        ),
+                        borderSide: BorderSide(
+                          width: 1,
+                          style: BorderStyle.none,
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  TextField(
+                    controller: passwordController,
+                    decoration: InputDecoration(
+                      prefixIcon: Icon(
+                        Icons.remove_red_eye,
+                        color: Color.fromARGB(255, 108, 99, 255),
+                      ),
+                      hintText: 'Password',
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(10.0),
+                        ),
+                        borderSide: BorderSide(
+                          width: 1,
+                          style: BorderStyle.none,
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 30,
+                  ),
+                  Center(
+                    child: Column(
+                      children: [
+                        GestureDetector(
+                          child: Container(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 60, vertical: 15),
+                            decoration: BoxDecoration(
+                                color: const Color.fromARGB(255, 108, 99, 255),
+                                border: Border.all(
+                                  color:
+                                      const Color.fromARGB(255, 108, 99, 255),
+                                ),
+                                borderRadius: const BorderRadius.all(
+                                    Radius.circular(20))),
+                            child: const Text(
+                              'Register',
+                              style:
+                                  TextStyle(color: Colors.white, fontSize: 20),
+                            ),
+                          ),
+                          onTap: () async {
+                            _saveForm();
+                            setState(() {
+                              showLoading = true;
+                            });
+                            progressIndicater(context, showLoading = true);
+                            await createUser();
+                            await showAlert == true
+                                ? null
+                                : progressIndicater(
+                                    context, showLoading = true);
+                            Navigator.pop(context);
+                          },
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.pushReplacementNamed(
+                                context, logInScreenRoute);
+                          },
+                          child: const Text(
+                            'Already Registred?',
+                            style: TextStyle(
+                                color: Colors.blue,
+                                fontWeight: FontWeight.w400),
+                          ),
+                        ),
+                      ],
+                    ),
+                  )
+                ],
+              ),
             ),
           ),
         ),

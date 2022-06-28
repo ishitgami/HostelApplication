@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:hostelapplication/core/constant/string.dart';
+import 'package:hostelapplication/core/constant/textController.dart';
 import 'package:hostelapplication/logic/service/auth_service.dart';
 import 'package:provider/provider.dart';
 
@@ -14,8 +15,7 @@ class _LogInScreenState extends State<LogInScreen> {
   late AuthService authService;
   bool showLoading = false;
   bool showAlert = false;
-  final TextEditingController emailController = TextEditingController();
-  final TextEditingController passwordController = TextEditingController();
+
 
   @override
   Widget build(BuildContext context) {
