@@ -9,7 +9,7 @@ class NoticeFirestoreService {
   }
 
   Stream<List<Notice>> getNotice() {
-    return _db.collection('Notice').snapshots().map((snapshot) => snapshot
+    return _db.collection('Notice').orderBy("time", descending: true).snapshots().map((snapshot) => snapshot
         .docs
         .map((document) => Notice.fromFirestore(document.data()))
         .toList());
