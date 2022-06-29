@@ -90,13 +90,53 @@ class NoticeContainer extends StatelessWidget {
             const SizedBox(
               height: 20,
             ),
-            Text(
+            BulletLists(
               notice,
-              style: TextStyle(fontSize: 17),
             )
           ],
         ),
       ),
+    );
+  }
+}
+
+class BulletLists extends StatelessWidget {
+  BulletLists(this.str);
+  final String str;
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      alignment: Alignment.centerLeft,
+      padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
+      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Text(
+              '\u2022',
+              style: TextStyle(
+                fontSize: 20,
+                height: 1.55,
+              ),
+            ),
+            const SizedBox(
+              width: 5,
+            ),
+            Expanded(
+              child: Text(
+                "${str}",
+                textAlign: TextAlign.left,
+                softWrap: true,
+                style: TextStyle(
+                  fontSize: 17,
+                  color: Colors.black,
+                  height: 1.55,
+                ),
+              ),
+            ),
+          ],
+        ),
+      ]),
     );
   }
 }
