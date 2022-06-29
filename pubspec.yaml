@@ -22,6 +22,7 @@ dependencies:
   uuid: ^3.0.6
   provider: ^6.0.3
   rflutter_alert:
+  date_time_picker:
 
 dev_dependencies:
 

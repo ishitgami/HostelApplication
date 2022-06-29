@@ -53,6 +53,7 @@ class _ApproveDennyLeaveScreenState extends State<ApproveDennyLeaveScreen> {
                           border: TableBorder.all(
                               color: Colors.grey,
                               style: BorderStyle.solid,
+                              borderRadius: BorderRadius.circular(10),
                               width: 1),
                           children: [
                             TableRow(children: [

@@ -179,7 +179,7 @@ class _FanLightComplaintsState extends State<FanLightComplaints> {
                         child: TextFormField(
                           decoration: InputDecoration(
                               focusedBorder: const OutlineInputBorder(
-                                  borderSide: BorderSide(color: Colors.black)),
+                                  borderSide: BorderSide(color: Colors.grey)),
                               hintText: "Type your complaint here...... 🖍",
                               border: OutlineInputBorder(
                                   borderSide: const BorderSide(

@@ -300,46 +300,24 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
     }
   }
 
-   Future<void> alertBox(BuildContext context, e) {
+  Future<void> alertBox(BuildContext context, e) {
     setState(() {
       showLoading = false;
       showAlert = true;
     });
     return Alert(
       context: context,
+      padding: EdgeInsets.only(left: 10, right: 10),
       title: "ALERT",
+      style: AlertStyle(
+        descTextAlign: TextAlign.center,
+      ),
       desc: e.toString(),
     ).show();
   }
 }
 
-//   Future<void> alertBox(BuildContext context, e) {
-//     setState(() {
-//       showLoading = false;
-//       showAlert = true;
-//     });
-//     return showDialog(
-//       context: context,
-//       builder: (ctx) => AlertDialog(
-//         elevation: 5,
-//         title: Text("Alert !!"),
-//         content: Text(e.toString()),
-//         actions: <Widget>[
-//           TextButton(
-//             onPressed: () {
-//               Navigator.of(ctx).pop();
-//             },
-//             child: Text(
-//               "Close",
-//               style: TextStyle(
-//                   color: Colors.red, fontSize: 18, fontWeight: FontWeight.w700),
-//             ),
-//           ),
-//         ],
-//       ),
-//     );
-//   }
-// }
+
 
 class WavyHeader extends StatelessWidget {
   @override

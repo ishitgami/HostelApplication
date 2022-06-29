@@ -1,8 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hostelapplication/core/constant/string.dart';
 import 'package:hostelapplication/presentation/screen/student/studentHome.dart';
 import 'package:hostelapplication/presentation/screen/student/studentServices.dart';
 import 'package:hostelapplication/presentation/screen/student/studentcomplainscreen.dart';
+import 'package:hostelapplication/presentation/screen/student/studentLeave.dart';
 
 class StudentDashboardScreen extends StatefulWidget {
   const StudentDashboardScreen({Key? key}) : super(key: key);
@@ -17,9 +19,7 @@ class _StudentDashboardScreenState extends State<StudentDashboardScreen> {
     StudentHome(),
     StudentComplainScreen(),
     StudentServicesScreen(),
-    Text(
-      'Index 3: Settings',
-    ),
+    StudentLeave()
   ];
   void _onItemTapped(int index) {
     setState(() {
