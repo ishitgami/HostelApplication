@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:hostelapplication/logic/provider/notice_provider.dart';
+import 'package:provider/provider.dart';
 
 class AddNoticeScreen extends StatefulWidget {
   AddNoticeScreen({Key? key}) : super(key: key);
@@ -10,6 +12,7 @@ class AddNoticeScreen extends StatefulWidget {
 class _AddNoticeScreenState extends State<AddNoticeScreen> {
   @override
   Widget build(BuildContext context) {
+    final noticeProvider = Provider.of<NoticeProvider>(context);
     return Scaffold(
       appBar: AppBar(
         title: const Text('Add Notice'),
@@ -40,6 +43,8 @@ class _AddNoticeScreenState extends State<AddNoticeScreen> {
                       Padding(
                         padding: const EdgeInsets.all(18.0),
                         child: TextFormField(
+                          onChanged: ((value) => 
+                          noticeProvider.changeNotice(value)),
                           decoration: InputDecoration(
                               focusedBorder: const OutlineInputBorder(
                                   borderSide: BorderSide(color: Colors.black)),
@@ -68,6 +73,8 @@ class _AddNoticeScreenState extends State<AddNoticeScreen> {
                 bottom: 20,
                 child: FloatingActionButton(
                     onPressed: () {
+                      noticeProvider.changetime(DateTime.now());
+                      noticeProvider.saveNotice();
                       Navigator.pop(context);
                     },
                     child: const Icon(

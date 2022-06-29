@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:hostelapplication/core/constant/string.dart';
 import 'package:hostelapplication/core/constant/textController.dart';
-import 'package:hostelapplication/logic/service/auth_service.dart';
+import 'package:hostelapplication/logic/service/auth_services/auth_service.dart';
 import 'package:provider/provider.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
@@ -142,6 +142,8 @@ class _LogInScreenState extends State<LogInScreen> {
                         ),
                         GestureDetector(
                           onTap: () {
+                            emailController.clear();
+                            passwordController.clear();
                             Navigator.pushNamed(
                                 context, registrationScreenRoute);
                           },
@@ -203,7 +205,7 @@ class _LogInScreenState extends State<LogInScreen> {
     return Alert(
       context: context,
       title: "ALERT",
-      desc: "Process failed. Please try again.",
+      desc: e.toString(),
     ).show();
   }
 }

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:hostelapplication/core/constant/string.dart';
 import 'package:hostelapplication/core/constant/textController.dart';
-import 'package:hostelapplication/logic/service/auth_service.dart';
+import 'package:hostelapplication/logic/service/auth_services/auth_service.dart';
 import 'package:provider/provider.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 
 class RegistrationScreen extends StatefulWidget {
   const RegistrationScreen({Key? key}) : super(key: key);
@@ -299,33 +300,46 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
     }
   }
 
-  Future<void> alertBox(BuildContext context, e) {
+   Future<void> alertBox(BuildContext context, e) {
     setState(() {
       showLoading = false;
       showAlert = true;
     });
-    return showDialog(
+    return Alert(
       context: context,
-      builder: (ctx) => AlertDialog(
-        elevation: 5,
-        title: Text("Alert !!"),
-        content: Text(e.toString()),
-        actions: <Widget>[
-          TextButton(
-            onPressed: () {
-              Navigator.of(ctx).pop();
-            },
-            child: Text(
-              "Close",
-              style: TextStyle(
-                  color: Colors.red, fontSize: 18, fontWeight: FontWeight.w700),
-            ),
-          ),
-        ],
-      ),
-    );
+      title: "ALERT",
+      desc: e.toString(),
+    ).show();
   }
 }
+
+//   Future<void> alertBox(BuildContext context, e) {
+//     setState(() {
+//       showLoading = false;
+//       showAlert = true;
+//     });
+//     return showDialog(
+//       context: context,
+//       builder: (ctx) => AlertDialog(
+//         elevation: 5,
+//         title: Text("Alert !!"),
+//         content: Text(e.toString()),
+//         actions: <Widget>[
+//           TextButton(
+//             onPressed: () {
+//               Navigator.of(ctx).pop();
+//             },
+//             child: Text(
+//               "Close",
+//               style: TextStyle(
+//                   color: Colors.red, fontSize: 18, fontWeight: FontWeight.w700),
+//             ),
+//           ),
+//         ],
+//       ),
+//     );
+//   }
+// }
 
 class WavyHeader extends StatelessWidget {
   @override

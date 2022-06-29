@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:hostelapplication/logic/service/auth_service.dart';
+import 'package:hostelapplication/logic/provider/notice_provider.dart';
+import 'package:hostelapplication/logic/service/auth_services/auth_service.dart';
 import 'package:hostelapplication/presentation/router/route.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -18,6 +19,7 @@ Future<void> main() async {
         Provider<AuthService>(
           create: (_) => AuthService(),
         ),
+        ChangeNotifierProvider.value(value: NoticeProvider()),
       ],
       child: const MyApp(),
     ),
