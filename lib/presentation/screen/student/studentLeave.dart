@@ -1,7 +1,6 @@
 import 'package:date_time_picker/date_time_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:hostelapplication/presentation/screen/student/studentDrawer.dart';
-import 'package:intl/intl.dart';
 
 class StudentLeave extends StatefulWidget {
   const StudentLeave({Key? key}) : super(key: key);
@@ -13,16 +12,14 @@ class StudentLeave extends StatefulWidget {
 class _StudentLeaveState extends State<StudentLeave> {
   @override
   Widget build(BuildContext context) {
-    final Currentdate = DateTime.now();
+    final Currentdate =
+        DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day);
+
     final leavingdate = Currentdate;
+
     final commingdate = Currentdate.add(Duration(days: 1));
 
     const tablepadding = EdgeInsets.all(15);
-
-    @override
-    void initState() {
-      super.initState();
-    }
 
     return Scaffold(
       appBar: AppBar(
@@ -38,7 +35,7 @@ class _StudentLeaveState extends State<StudentLeave> {
               children: [
                 Padding(
                   padding: const EdgeInsets.only(
-                      top: 18.0, left: 18, right: 18, bottom: 50),
+                      top: 12.0, left: 12, right: 12, bottom: 50),
                   child: Container(
                     // padding: EdgeInsets.all(1),
                     clipBehavior: Clip.hardEdge,
@@ -136,14 +133,15 @@ class _StudentLeaveState extends State<StudentLeave> {
                                         lastDate: DateTime.now()
                                             .add(Duration(days: 30)),
                                         onChanged: (val) {
-                                          final leavingdate = val;
                                           print(leavingdate);
                                         },
                                         validator: (val) {
                                           print(val);
                                           return null;
                                         },
-                                        onSaved: (val) => print(val),
+                                        onSaved: (val) => setState(() {
+                                          final leavingdate = val;
+                                        }),
                                       )
                                     ]),
                                   ),
@@ -162,7 +160,7 @@ class _StudentLeaveState extends State<StudentLeave> {
                                     padding: tablepadding,
                                     child: Column(children: [
                                       DateTimePicker(
-                                        initialValue: Currentdate.toString(),
+                                        initialValue: leavingdate.toString(),
                                         firstDate:
                                             leavingdate.add(Duration(days: 1)),
                                         lastDate:
@@ -176,7 +174,7 @@ class _StudentLeaveState extends State<StudentLeave> {
                                           return null;
                                         },
                                         onSaved: (val) => print(val),
-                                      )
+                                      ),
                                     ]),
                                   ),
                                 ]),
@@ -222,7 +220,7 @@ class _StudentLeaveState extends State<StudentLeave> {
                                       color: Colors.grey,
                                     ),
                                     borderRadius: BorderRadius.circular(10))),
-                            maxLines: 6,
+                            maxLines: 7,
                             keyboardType: TextInputType.multiline,
                             maxLength: 1000,
                             cursorColor: Colors.grey,

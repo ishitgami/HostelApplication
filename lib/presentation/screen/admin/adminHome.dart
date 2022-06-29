@@ -37,19 +37,19 @@ class _AdminHomeState extends State<AdminHome> {
       drawer: const AdminDrawer(),
       body: noticeList != null
           ? Padding(
-            padding: EdgeInsets.all(12),
-            child: ListView.builder(
-                itemCount: noticeList.length,
-                itemBuilder: (context, index) {
-                  return NoticeContainer(
-                      noticeList[index].notice,
-                      noticeList[index].time.day.toString() +
-                          '/' +
-                          noticeList[index].time.month.toString() +
-                          '/' +
-                          noticeList[index].time.year.toString());
-                }),
-          )
+              padding: EdgeInsets.all(12),
+              child: ListView.builder(
+                  itemCount: noticeList.length,
+                  itemBuilder: (context, index) {
+                    return NoticeContainer(
+                        noticeList[index].notice,
+                        noticeList[index].time.day.toString() +
+                            '/' +
+                            noticeList[index].time.month.toString() +
+                            '/' +
+                            noticeList[index].time.year.toString());
+                  }),
+            )
           : Center(
               child: CircularProgressIndicator(),
             ),
@@ -81,6 +81,7 @@ class NoticeContainer extends StatelessWidget {
   NoticeContainer(this.notice, this.date, {Key? key}) : super(key: key);
   String notice;
   String date;
+  String adminname = "Admin";
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -92,11 +93,18 @@ class NoticeContainer extends StatelessWidget {
         padding: const EdgeInsets.all(16),
         color: Colors.white,
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Row(
               children: [
-                const CircleAvatar(
+                CircleAvatar(
                   radius: 25,
+                  child: Center(
+                    child: Text(
+                      "${adminname[0]}",
+                      style: TextStyle(fontSize: 20),
+                    ),
+                  ),
                 ),
                 const SizedBox(
                   width: 20,
@@ -117,9 +125,58 @@ class NoticeContainer extends StatelessWidget {
             const SizedBox(
               height: 20,
             ),
-            Text(notice)
+            Text(
+              notice,
+              style: TextStyle(fontSize: 17),
+            )
           ],
         ),
+      ),
+    );
+  }
+}
+
+class BulletList extends StatelessWidget {
+  final List<String> strings;
+
+  BulletList(this.strings);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      alignment: Alignment.centerLeft,
+      padding: EdgeInsets.fromLTRB(8, 10, 16, 16),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: strings.map((str) {
+          return Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text(
+                '\u2022',
+                style: TextStyle(
+                  fontSize: 16,
+                  height: 1.55,
+                ),
+              ),
+              const SizedBox(
+                width: 5,
+              ),
+              Expanded(
+                child: Text(
+                  str,
+                  textAlign: TextAlign.left,
+                  softWrap: true,
+                  style: TextStyle(
+                    fontSize: 14,
+                    color: Colors.black.withOpacity(0.6),
+                    height: 1.55,
+                  ),
+                ),
+              ),
+            ],
+          );
+        }).toList(),
       ),
     );
   }
