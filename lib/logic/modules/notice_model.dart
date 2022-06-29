@@ -19,7 +19,7 @@ class Notice {
   Notice.fromFirestore(Map<String, dynamic> firestoreMap)
       : id = firestoreMap['Id'],
         notice = firestoreMap['notice'],
-        time = firestoreMap['time'];
+        time = firestoreMap['time'].toDate();
 
   toList() {}
 

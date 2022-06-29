@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hostelapplication/logic/provider/notice_provider.dart';
 import 'package:hostelapplication/logic/service/auth_services/auth_service.dart';
+import 'package:hostelapplication/logic/service/fireStoreServices/notice_firestore_service.dart';
 import 'package:hostelapplication/presentation/router/route.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -20,6 +21,7 @@ Future<void> main() async {
           create: (_) => AuthService(),
         ),
         ChangeNotifierProvider.value(value: NoticeProvider()),
+        StreamProvider.value(value: NoticeFirestoreService().getNotice(), initialData: null,)
       ],
       child: const MyApp(),
     ),
