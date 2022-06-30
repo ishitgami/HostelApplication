@@ -32,7 +32,8 @@ class _StudentHomeState extends State<StudentHome> {
                             '/' +
                             noticeList[index].time.month.toString() +
                             '/' +
-                            noticeList[index].time.year.toString());
+                            noticeList[index].time.year.toString(),
+                        noticeList[index].url);
                   }),
             )
           : Center(
@@ -43,10 +44,33 @@ class _StudentHomeState extends State<StudentHome> {
 }
 
 class NoticeContainer extends StatelessWidget {
-  NoticeContainer(this.notice, this.date, {Key? key}) : super(key: key);
+  NoticeContainer(this.notice, this.date, this.src, {Key? key})
+      : super(key: key);
   String notice;
   String date;
-  String adminname = "Admin";
+  String name = "Admin";
+  String src;
+
+  var myMenuItems = <String>[
+    'Save Image',
+    'Share',
+  ];
+
+  void onSelect(item) async {
+    switch (item) {
+      case 'Save Image':
+        {
+          print("image save");
+        }
+        break;
+      case 'Share':
+        {
+          print("share button clicked");
+        }
+        break;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -61,30 +85,45 @@ class NoticeContainer extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                CircleAvatar(
-                  radius: 25,
-                  child: Center(
-                    child: Text(
-                      "${adminname[0]}",
-                      style: TextStyle(fontSize: 20),
-                    ),
-                  ),
-                ),
-                const SizedBox(
-                  width: 20,
-                ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                Row(
                   children: [
-                    Text(
-                      'Admin',
-                      style:
-                          TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
+                    CircleAvatar(
+                      radius: 25,
+                      child: Center(
+                        child: Text(
+                          "${name[0]}",
+                          style: TextStyle(fontSize: 20),
+                        ),
+                      ),
                     ),
-                    Text(date, style: TextStyle(fontSize: 12)),
+                    const SizedBox(
+                      width: 20,
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Admin',
+                          style: TextStyle(
+                              fontSize: 20, fontWeight: FontWeight.w500),
+                        ),
+                        Text(date, style: TextStyle(fontSize: 12)),
+                      ],
+                    ),
                   ],
                 ),
+                PopupMenuButton<String>(
+                    onSelected: onSelect,
+                    itemBuilder: (BuildContext context) {
+                      return myMenuItems.map((String choice) {
+                        return PopupMenuItem<String>(
+                          child: Text(choice),
+                          value: choice,
+                        );
+                      }).toList();
+                    })
               ],
             ),
             const SizedBox(
@@ -92,7 +131,11 @@ class NoticeContainer extends StatelessWidget {
             ),
             BulletLists(
               notice,
-            )
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            Center(child: Image.network(src)),
           ],
         ),
       ),
