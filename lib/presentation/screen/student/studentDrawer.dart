@@ -7,6 +7,13 @@ class StudentDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String studentname = "Student Name";
+    String studentenroll = "Student Enroll";
+    String hostelname = "Hostel Name";
+    String roomno = "Room No";
+    String department = "Department";
+    String phoneno = "Phone No";
+
     const studentDrawerText = TextStyle(fontSize: 15);
     return Drawer(
       child: SafeArea(
@@ -22,28 +29,56 @@ class StudentDrawer extends StatelessWidget {
                 padding: const EdgeInsets.all(8.0),
                 child: Column(
                   children: [
+                    SizedBox(
+                      height: 15,
+                    ),
                     Row(
-                      children: const [
-                        CircleAvatar(
-                          radius: 25,
-                          child: Icon(Icons.account_circle_rounded),
+                      children: [
+                        Container(
+                          width: 75,
+                          height: 65,
+                          decoration: const BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: Colors.white,
+                            image: DecorationImage(
+                              fit: BoxFit.cover,
+                              image:
+                                  AssetImage("assets/images/profileimage.jpg"),
+                            ),
+                          ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 10,
                         ),
-                        Text(
-                          'Student',
-                          style: TextStyle(
-                              fontSize: 25, fontWeight: FontWeight.bold),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              "$studentname",
+                              style: TextStyle(
+                                  fontSize: 18, fontWeight: FontWeight.w500),
+                            ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                            Text(
+                              "$studentenroll",
+                              style: TextStyle(
+                                  fontSize: 13,
+                                  color: Colors.grey,
+                                  fontWeight: FontWeight.w500),
+                            ),
+                          ],
                         ),
                       ],
                     ),
                     const SizedBox(
-                      height: 10,
+                      height: 20,
                     ),
                     Container(
-                      width: 250,
-                      height: 120,
+                      width: 260,
+                      height: 155,
                       decoration: const BoxDecoration(
                         color: Color.fromARGB(183, 203, 208, 211),
                         borderRadius: BorderRadius.all(Radius.circular(5)),
@@ -55,38 +90,50 @@ class StudentDrawer extends StatelessWidget {
                           children: [
                             Row(
                               mainAxisAlignment: MainAxisAlignment.start,
-                              children: const [
+                              children: [
                                 Text(
-                                  'Role             ',
+                                  'Hostel             ',
                                   style: studentDrawerText,
                                 ),
                                 Text(':', style: studentDrawerText),
-                                Text('     Student', style: studentDrawerText),
+                                Text('     $hostelname',
+                                    style: studentDrawerText),
                               ],
                             ),
                             const SizedBox(
-                              height: 10,
+                              height: 15,
                             ),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.start,
-                              children: const [
-                                Text('Hostel         ',
+                              children: [
+                                Text('Room No        ',
                                     style: studentDrawerText),
                                 Text(':'),
-                                Text('     Hostel Name',
+                                Text('     $roomno', style: studentDrawerText),
+                              ],
+                            ),
+                            const SizedBox(
+                              height: 15,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Text('Department   ', style: studentDrawerText),
+                                Text(':', style: studentDrawerText),
+                                Text('     $department',
                                     style: studentDrawerText),
                               ],
                             ),
                             const SizedBox(
-                              height: 10,
+                              height: 15,
                             ),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.start,
-                              children: const [
-                                Text('Phone No   ', style: studentDrawerText),
-                                Text(':', style: studentDrawerText),
-                                Text('     +91 12345 56789',
+                              children: [
+                                Text('Phone No       ',
                                     style: studentDrawerText),
+                                Text(':', style: studentDrawerText),
+                                Text('     $phoneno', style: studentDrawerText),
                               ],
                             ),
                           ],
@@ -97,6 +144,7 @@ class StudentDrawer extends StatelessWidget {
                 ),
               ),
             ),
+
             const SizedBox(width: 50, child: Divider()),
             ListTile(
               title: Row(
@@ -133,6 +181,7 @@ class StudentDrawer extends StatelessWidget {
                 Navigator.pushNamed(context, helpscreenRoute);
               },
             ),
+            Divider(),
             ListTile(
               title: Row(
                 children: const [
@@ -163,6 +212,10 @@ class Mycomplaints extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String Complaintdate = "01/01/2022";
+    String Complainttype = "Electricity";
+    String Compiantdesc =
+        "In my Hostel, there is low voltage power occurs most of time.Kindly solve our problem :).";
     return Scaffold(
       appBar: AppBar(
         title: const Text("My complaints"),
@@ -195,7 +248,7 @@ class Mycomplaints extends StatelessWidget {
                           children: [
                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,
-                              children: const [
+                              children: [
                                 Text(
                                   "Date ",
                                   style: TextStyle(
@@ -204,7 +257,7 @@ class Mycomplaints extends StatelessWidget {
                                 ),
                                 Text(":"),
                                 Text(
-                                  " 01/01/2022",
+                                  " $Complaintdate",
                                   style: TextStyle(
                                       fontSize: 18,
                                       fontWeight: FontWeight.bold),
@@ -218,7 +271,7 @@ class Mycomplaints extends StatelessWidget {
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
-                          children: const [
+                          children: [
                             Text(
                               "Complaint ",
                               style: TextStyle(
@@ -226,7 +279,7 @@ class Mycomplaints extends StatelessWidget {
                             ),
                             Text(":"),
                             Text(
-                              " Electricity",
+                              " $Complainttype",
                               style: TextStyle(
                                   fontSize: 18,
                                   color: Colors.red,
@@ -247,8 +300,7 @@ class Mycomplaints extends StatelessWidget {
                                 width: 2,
                                 color: Color.fromARGB(157, 158, 158, 158)),
                           ),
-                          child: const Text(
-                              'In my Hostel, there is low voltage power occurs most of time.Kindly solve our problem :).'),
+                          child: Text('$Compiantdesc'),
                         ),
                         const SizedBox(
                           height: 20,

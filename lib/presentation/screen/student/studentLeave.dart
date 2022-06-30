@@ -14,12 +14,14 @@ class _StudentLeaveState extends State<StudentLeave> {
   Widget build(BuildContext context) {
     final Currentdate =
         DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day);
-
     final leavingdate = Currentdate;
-
     final commingdate = Currentdate.add(Duration(days: 1));
-
     const tablepadding = EdgeInsets.all(15);
+
+    String Studentname = "Student name";
+    String Roomno = "Room No";
+
+    final totaldays = "";
 
     return Scaffold(
       appBar: AppBar(
@@ -82,9 +84,9 @@ class _StudentLeaveState extends State<StudentLeave> {
                                   ),
                                   Padding(
                                     padding: tablepadding,
-                                    child: Column(children: const [
+                                    child: Column(children: [
                                       Text(
-                                        'Ishit Gami',
+                                        '$Studentname',
                                         style: TextStyle(
                                             fontWeight: FontWeight.w600,
                                             fontSize: 18),
@@ -104,9 +106,9 @@ class _StudentLeaveState extends State<StudentLeave> {
                                   ),
                                   Padding(
                                     padding: tablepadding,
-                                    child: Column(children: const [
+                                    child: Column(children: [
                                       Text(
-                                        '510',
+                                        '$Roomno',
                                         style: TextStyle(
                                             fontWeight: FontWeight.w600,
                                             fontSize: 18),
@@ -133,14 +135,10 @@ class _StudentLeaveState extends State<StudentLeave> {
                                         lastDate: DateTime.now()
                                             .add(Duration(days: 30)),
                                         onChanged: (val) {
-                                          print(leavingdate);
-                                        },
-                                        validator: (val) {
-                                          print(val);
-                                          return null;
+                                          final commingdate = val;
                                         },
                                         onSaved: (val) => setState(() {
-                                          final leavingdate = val;
+                                          final commingdate = val;
                                         }),
                                       )
                                     ]),
@@ -160,18 +158,13 @@ class _StudentLeaveState extends State<StudentLeave> {
                                     padding: tablepadding,
                                     child: Column(children: [
                                       DateTimePicker(
-                                        initialValue: leavingdate.toString(),
-                                        firstDate:
-                                            leavingdate.add(Duration(days: 1)),
+                                        initialValue: commingdate.toString(),
+                                        firstDate: commingdate,
                                         lastDate:
-                                            leavingdate.add(Duration(days: 30)),
+                                            commingdate.add(Duration(days: 30)),
                                         onChanged: (val) => {
                                           // commingdate = val,
                                           print(commingdate)
-                                        },
-                                        validator: (val) {
-                                          print(val);
-                                          return null;
                                         },
                                         onSaved: (val) => print(val),
                                       ),
@@ -190,7 +183,8 @@ class _StudentLeaveState extends State<StudentLeave> {
                                   ),
                                   Padding(
                                     padding: tablepadding,
-                                    child: Column(children: [Text("")]),
+                                    child:
+                                        Column(children: [Text("$totaldays")]),
                                   ),
                                 ]),
                               ],
