@@ -19,7 +19,6 @@ class _AddNoticeScreenState extends State<AddNoticeScreen> {
   late File imageFile;
   PlatformFile? pickedFile;
   //  late File imageFile1;
-   
 
   String? _fileName;
   List<PlatformFile>? _paths;
@@ -30,15 +29,12 @@ class _AddNoticeScreenState extends State<AddNoticeScreen> {
   FileType _pickingType = FileType.any;
   FileType _PickingImage = FileType.image;
   TextEditingController _controller = TextEditingController();
-  
 
   @override
   void initState() {
     super.initState();
     _controller.addListener(() => _extension = _controller.text);
   }
-
-  
 
   @override
   Widget build(BuildContext context) {
@@ -174,16 +170,16 @@ class _AddNoticeScreenState extends State<AddNoticeScreen> {
                       ),
                       pickedFile != null
                           ? Container(
-                            margin: EdgeInsets.symmetric(horizontal: 20),
-                            padding: EdgeInsets.all(5),
-                            color: Colors.blue[100],
-                            child: Text(
+                              margin: EdgeInsets.symmetric(horizontal: 20),
+                              padding: EdgeInsets.all(5),
+                              color: Colors.blue[100],
+                              child: Text(
                                 "${pickedFile!.name}",
                                 softWrap: false,
                                 overflow: TextOverflow.fade,
                                 maxLines: 2,
                               ),
-                          )
+                            )
                           : const SizedBox(),
                       SizedBox(
                         height: 30,
@@ -197,11 +193,14 @@ class _AddNoticeScreenState extends State<AddNoticeScreen> {
                 left: 0,
                 bottom: 20,
                 child: FloatingActionButton(
-                    onPressed: () async{
-                      final ref = FirebaseStorage.instance.ref().child('noticeImg').child(pickedFile.name.toString());
+                    onPressed: () async {
+                      final ref = FirebaseStorage.instance
+                          .ref()
+                          .child('noticeImg')
+                          .child(pickedFile!.name.toString());
                       await ref.putFile(imageFile);
                       String url = await ref.getDownloadURL();
-                     noticeProvider.changeUrl(url);
+                      noticeProvider.changeUrl(url);
                       noticeProvider.changetime(DateTime.now());
                       noticeProvider.saveNotice();
                       noticeController.clear();
@@ -220,70 +219,68 @@ class _AddNoticeScreenState extends State<AddNoticeScreen> {
     );
   }
 
-  Future selectFile() async{
+  Future selectFile() async {
     final result = await FilePicker.platform.pickFiles();
-    if (result== null) return;
+    if (result == null) return;
     setState(() {
-      pickedFile =result.files.first;
-      
+      pickedFile = result.files.first;
+
       if (pickedFile != null) {
-            imageFile = File(pickedFile!.path!);
+        imageFile = File(pickedFile!.path!);
       }
-      
     });
   }
 
-//Get From File
-  void _openFileExplorer() async {
-    try {
-      setState(() async {
-        _paths = (await FilePicker.platform.pickFiles(
-          type: _pickingType,
-        ))
-            ?.files;
-      });
+// //Get From File
+//   void _openFileExplorer() async {
+//     try {
+//       setState(() async {
+//         _paths = (await FilePicker.platform.pickFiles(
+//           type: _pickingType,
+//         ))
+//             ?.files;
+//       });
 
-      setState(() {
-        img = _paths?.map((e) => e.name);
-      });
-    } on PlatformException catch (e) {
-      print("Unsupported operation" + e.toString());
-    } catch (ex) {
-      print(ex);
-    }
-  }
+//       setState(() {
+//         img = _paths?.map((e) => e.name);
+//       });
+//     } on PlatformException catch (e) {
+//       print("Unsupported operation" + e.toString());
+//     } catch (ex) {
+//       print(ex);
+//     }
+//   }
 
-  //Get From Gallery
-  void _openImagePicker() async {
-    try {
-      setState(() async {
-        _paths = (await FilePicker.platform.pickFiles(
-          type: _PickingImage,
-        ))
-            ?.files;
-      });
+//   //Get From Gallery
+//   void _openImagePicker() async {
+//     try {
+//       setState(() async {
+//         _paths = (await FilePicker.platform.pickFiles(
+//           type: _PickingImage,
+//         ))
+//             ?.files;
+//       });
+//     } on PlatformException catch (e) {
+//       print("Unsupported operation" + e.toString());
+//     } catch (ex) {
+//       print(ex);
+//     }
+//   }
 
-    } on PlatformException catch (e) {
-      print("Unsupported operation" + e.toString());
-    } catch (ex) {
-      print(ex);
-    }
-  }
-
-  /// Get from Camera
-  _getFromCamera() async {
-    PickedFile? pickedFile = await ImagePicker().getImage(
-      source: ImageSource.camera,
-      maxWidth: 1800,
-      maxHeight: 1800,
-    );
-    if (pickedFile != null) {
-      setState(() {
-        imageFile = File(pickedFile.path);
-        String fileName = imageFile.path.split('/').last;
-      });
-    }
-  }
+//   /// Get from Camera
+//   _getFromCamera() async {
+//     PickedFile? pickedFile = await ImagePicker().getImage(
+//       source: ImageSource.camera,
+//       maxWidth: 1800,
+//       maxHeight: 1800,
+//     );
+//     if (pickedFile != null) {
+//       setState(() {
+//         imageFile = File(pickedFile.path);
+//         String fileName = imageFile.path.split('/').last;
+//       });
+//     }
+//   }
 }
 
 Widget attachmenticon(IconData icon, Color color, String str) {

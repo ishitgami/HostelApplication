@@ -50,8 +50,7 @@ class _AdminHomeState extends State<AdminHome> {
                             noticeList[index].time.month.toString() +
                             '/' +
                             noticeList[index].time.year.toString(),
-                            noticeList[index].url
-                            );
+                        noticeList[index].url);
                   }),
             )
           : Center(
@@ -82,7 +81,8 @@ class _AdminHomeState extends State<AdminHome> {
 }
 
 class NoticeContainer extends StatelessWidget {
-  NoticeContainer(this.notice, this.date,this.src,{Key? key}) : super(key: key);
+  NoticeContainer(this.notice, this.date, this.src, {Key? key})
+      : super(key: key);
   String notice;
   String date;
   String adminname = "Admin";
@@ -134,9 +134,9 @@ class NoticeContainer extends StatelessWidget {
               notice,
             ),
             const SizedBox(
-              height: 20,
+              height: 10,
             ),
-            Image.network(src),
+            Center(child: Image.network(src)),
           ],
         ),
       ),
