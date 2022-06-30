@@ -41,5 +41,9 @@ class NoticeProvider with ChangeNotifier {
     service.saveNotice(newNotice);
   }
 
+  void deleteNotice(noticeId) {
+    service.removeNotice(noticeId);
+  }
+
 
 } 
