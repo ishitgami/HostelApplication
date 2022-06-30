@@ -19,6 +19,7 @@ dependencies:
   firebase_core: ^1.18.0
   firebase_auth: ^3.3.20
   cloud_firestore: ^3.1.18
+  firebase_storage: ^10.2.18
   uuid: ^3.0.6
   provider: ^6.0.3
   rflutter_alert:

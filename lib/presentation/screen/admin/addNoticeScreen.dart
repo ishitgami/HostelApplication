@@ -1,6 +1,8 @@
 import 'package:file_picker/file_picker.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:hostelapplication/core/constant/textController.dart';
 import 'package:hostelapplication/logic/provider/notice_provider.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
@@ -15,21 +17,28 @@ class AddNoticeScreen extends StatefulWidget {
 
 class _AddNoticeScreenState extends State<AddNoticeScreen> {
   late File imageFile;
+  PlatformFile? pickedFile;
+  //  late File imageFile1;
+   
 
   String? _fileName;
   List<PlatformFile>? _paths;
 
   String? _extension;
+  var img;
 
   FileType _pickingType = FileType.any;
   FileType _PickingImage = FileType.image;
   TextEditingController _controller = TextEditingController();
+  
 
   @override
   void initState() {
     super.initState();
     _controller.addListener(() => _extension = _controller.text);
   }
+
+  
 
   @override
   Widget build(BuildContext context) {
@@ -68,6 +77,7 @@ class _AddNoticeScreenState extends State<AddNoticeScreen> {
                         child: TextFormField(
                           onChanged: ((value) =>
                               noticeProvider.changeNotice(value)),
+                          controller: noticeController,
                           decoration: InputDecoration(
                               focusedBorder: const OutlineInputBorder(
                                   borderSide: BorderSide(color: Colors.black)),
@@ -85,89 +95,99 @@ class _AddNoticeScreenState extends State<AddNoticeScreen> {
                       ),
                       Padding(
                         padding: const EdgeInsets.only(left: 18.0, right: 20),
-                        child: Row(
-                          children: [
-                            ElevatedButton(
-                              onPressed: () {
-                                showModalBottomSheet<void>(
-                                  backgroundColor: Colors.transparent,
-                                  context: context,
-                                  builder: (BuildContext context) {
-                                    return Container(
-                                      decoration: BoxDecoration(
-                                          color: Colors.white,
-                                          borderRadius: BorderRadius.only(
-                                              topLeft: Radius.circular(20),
-                                              topRight: Radius.circular(20))),
-                                      height: 150,
-                                      child: Center(
-                                        child: Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          mainAxisSize: MainAxisSize.min,
-                                          children: <Widget>[
-                                            Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.spaceAround,
-                                              children: [
-                                                GestureDetector(
-                                                  onTap: () {
-                                                    _openFileExplorer();
-                                                  },
-                                                  child: attachmenticon(
-                                                      Icons.insert_drive_file,
-                                                      Colors.indigo,
-                                                      "Document"),
-                                                ),
-                                                GestureDetector(
-                                                  onTap: () {
-                                                    _getFromCamera();
-                                                  },
-                                                  child: attachmenticon(
-                                                      Icons.camera_alt,
-                                                      Colors.pink,
-                                                      "Camera"),
-                                                ),
-                                                GestureDetector(
-                                                  onTap: () {
-                                                    _openImagePicker();
-                                                  },
-                                                  child: attachmenticon(
-                                                      Icons.insert_photo,
-                                                      Colors.purple,
-                                                      "Gallery"),
-                                                )
-                                              ],
-                                            )
-                                          ],
-                                        ),
-                                      ),
-                                    );
-                                  },
-                                );
-                              },
-                              child: Text(
-                                "Add\nAttachment",
-                                textAlign: TextAlign.center,
-                              ),
+                        child: Center(
+                          child: ElevatedButton(
+                            onPressed: () {
+                              selectFile();
+                              // showModalBottomSheet<void>(
+                              //   backgroundColor: Colors.transparent,
+                              //   context: context,
+                              //   builder: (BuildContext context) {
+                              //     return Container(
+                              //       decoration: BoxDecoration(
+                              //           color: Colors.white,
+                              //           borderRadius: BorderRadius.only(
+                              //               topLeft: Radius.circular(20),
+                              //               topRight: Radius.circular(20))),
+                              //       height: 150,
+                              //       child: Center(
+                              //         child: Column(
+                              //           mainAxisAlignment:
+                              //               MainAxisAlignment.center,
+                              //           mainAxisSize: MainAxisSize.min,
+                              //           children: <Widget>[
+                              //             Row(
+                              //               mainAxisAlignment:
+                              //                   MainAxisAlignment.spaceAround,
+                              //               children: [
+                              //                 GestureDetector(
+                              //                   onTap: () {
+                              //                     setState(() {
+                              //                       _openFileExplorer();
+                              //                     });
+                              //                   },
+                              //                   child: attachmenticon(
+                              //                       Icons.insert_drive_file,
+                              //                       Colors.indigo,
+                              //                       "Document"),
+                              //                 ),
+                              //                 GestureDetector(
+                              //                   onTap: () {
+                              //                     setState(() {
+                              //                       _getFromCamera();
+                              //                     });
+                              //                   },
+                              //                   child: attachmenticon(
+                              //                       Icons.camera_alt,
+                              //                       Colors.pink,
+                              //                       "Camera"),
+                              //                 ),
+                              //                 GestureDetector(
+                              //                   onTap: () {
+                              //                     setState(() {
+                              //                       _openImagePicker();
+                              //                     });
+                              //                   },
+                              //                   child: attachmenticon(
+                              //                       Icons.insert_photo,
+                              //                       Colors.purple,
+                              //                       "Gallery"),
+                              //                 )
+                              //               ],
+                              //             )
+                              //           ],
+                              //         ),
+                              //       ),
+                              //     );
+                              //   },
+                              // );
+                            },
+                            child: Text(
+                              "Add Attachment",
+                              textAlign: TextAlign.center,
                             ),
-                            SizedBox(
-                              width: 10,
-                            ),
-                            _paths != null
-                                ? Text(
-                                    "${_paths!.map((e) => e.name)}",
-                                    softWrap: false,
-                                    overflow: TextOverflow.fade,
-                                    maxLines: 2,
-                                  )
-                                : const SizedBox()
-                          ],
+                          ),
                         ),
                       ),
                       SizedBox(
+                        height: 5,
+                      ),
+                      pickedFile != null
+                          ? Container(
+                            margin: EdgeInsets.symmetric(horizontal: 20),
+                            padding: EdgeInsets.all(5),
+                            color: Colors.blue[100],
+                            child: Text(
+                                "${pickedFile!.name}",
+                                softWrap: false,
+                                overflow: TextOverflow.fade,
+                                maxLines: 2,
+                              ),
+                          )
+                          : const SizedBox(),
+                      SizedBox(
                         height: 30,
-                      )
+                      ),
                     ],
                   ),
                 ),
@@ -177,9 +197,14 @@ class _AddNoticeScreenState extends State<AddNoticeScreen> {
                 left: 0,
                 bottom: 20,
                 child: FloatingActionButton(
-                    onPressed: () {
+                    onPressed: () async{
+                      final ref = FirebaseStorage.instance.ref().child('noticeImg').child(pickedFile.name.toString());
+                      await ref.putFile(imageFile);
+                      String url = await ref.getDownloadURL();
+                     noticeProvider.changeUrl(url);
                       noticeProvider.changetime(DateTime.now());
                       noticeProvider.saveNotice();
+                      noticeController.clear();
                       Navigator.pop(context);
                     },
                     child: const Icon(
@@ -195,13 +220,32 @@ class _AddNoticeScreenState extends State<AddNoticeScreen> {
     );
   }
 
+  Future selectFile() async{
+    final result = await FilePicker.platform.pickFiles();
+    if (result== null) return;
+    setState(() {
+      pickedFile =result.files.first;
+      
+      if (pickedFile != null) {
+            imageFile = File(pickedFile!.path!);
+      }
+      
+    });
+  }
+
 //Get From File
   void _openFileExplorer() async {
     try {
-      _paths = (await FilePicker.platform.pickFiles(
-        type: _pickingType,
-      ))
-          ?.files;
+      setState(() async {
+        _paths = (await FilePicker.platform.pickFiles(
+          type: _pickingType,
+        ))
+            ?.files;
+      });
+
+      setState(() {
+        img = _paths?.map((e) => e.name);
+      });
     } on PlatformException catch (e) {
       print("Unsupported operation" + e.toString());
     } catch (ex) {
@@ -212,10 +256,13 @@ class _AddNoticeScreenState extends State<AddNoticeScreen> {
   //Get From Gallery
   void _openImagePicker() async {
     try {
-      _paths = (await FilePicker.platform.pickFiles(
-        type: _PickingImage,
-      ))
-          ?.files;
+      setState(() async {
+        _paths = (await FilePicker.platform.pickFiles(
+          type: _PickingImage,
+        ))
+            ?.files;
+      });
+
     } on PlatformException catch (e) {
       print("Unsupported operation" + e.toString());
     } catch (ex) {
