@@ -8,14 +8,18 @@ class ComplaintProvider with ChangeNotifier {
   late String _id;
   late String _complaint;
   late String _complaintTitle;
-  late String _studenyUid;
+  late String _studentUid;
+  late String _roomNo;
+  late String _name;
   DateTime _time = DateTime.now();
   var uuid = Uuid();
 
   // getter
   String get getCommplaint => _complaint;
   String get getComplaintTitle => _complaintTitle;
-  String get gerStudentUid => _studenyUid;
+  String get gerStudentUid => _studentUid;
+  String get gerRoomNo => _roomNo;
+  String get gerName => _name;
 
   // setter
   void changeComplaint(String value) {
@@ -27,7 +31,15 @@ class ComplaintProvider with ChangeNotifier {
   }
 
   void changeStudentUid(String value) {
-    _studenyUid = value;
+    _studentUid = value;
+  }
+
+   void changeRoomNo(String value) {
+    _roomNo = value;
+  }
+
+   void changeName(String value) {
+    _name = value;
   }
 
   void saveComplaint() {
@@ -36,6 +48,8 @@ class ComplaintProvider with ChangeNotifier {
         complaint: getCommplaint,
         complaintTitle: getComplaintTitle,
         time: _time,
+        name: gerName,
+        roomNo: gerRoomNo,
         studentUid: gerStudentUid);
     service.saveComplaint(newComplaint);
   }

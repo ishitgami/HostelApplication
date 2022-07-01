@@ -54,7 +54,7 @@ class _StudentComplainScreenState extends State<StudentComplainScreen> {
           itemBuilder: (BuildContext context, int index) {
             return GestureDetector(
               onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context)=> StudentAddComplaintScreen(imagesText[index])));
+                Navigator.push(context, MaterialPageRoute(builder: (context)=> StudentAddComplaintScreen(imagesText[index],user!.uid)));
               },
               child: Card(
                 shape: RoundedRectangleBorder(

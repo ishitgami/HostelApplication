@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:hostelapplication/logic/modules/userData_model.dart';
 import 'package:hostelapplication/logic/provider/complaint_provider.dart';
 import 'package:hostelapplication/logic/provider/notice_provider.dart';
 import 'package:hostelapplication/logic/provider/userData_provider.dart';
 import 'package:hostelapplication/logic/service/auth_services/auth_service.dart';
 import 'package:hostelapplication/logic/service/fireStoreServices/notice_firestore_service.dart';
+import 'package:hostelapplication/logic/service/fireStoreServices/user_firestore_services.dart';
 import 'package:hostelapplication/presentation/router/route.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -22,11 +24,18 @@ Future<void> main() async {
         Provider<AuthService>(
           create: (_) => AuthService(),
         ),
+         Provider<UserDataFirestoreService>(
+          create: (_) => UserDataFirestoreService(),
+        ),
         ChangeNotifierProvider.value(
           value: NoticeProvider(),
         ),
         StreamProvider.value(
           value: NoticeFirestoreService().getNotice(),
+          initialData: null,
+        ),
+        StreamProvider.value(
+          value: UserDataFirestoreService().getUserData(),
           initialData: null,
         ),
         ChangeNotifierProvider.value(

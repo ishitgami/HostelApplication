@@ -4,28 +4,36 @@ class Complaint {
   String complaintTitle;
   DateTime time;
   String studentUid;
+  String name;
+  String roomNo;
   Complaint({
     required this.id,
     required this.complaint,
     required this.complaintTitle,
     required this.time,
-    required this.studentUid
+    required this.studentUid,
+    required this.name,
+    required this.roomNo,
   });
 
   Map<String,dynamic> createMap() {
     return {
       'id': id,
-      'complaint' : complaint,
-      'time' : time,
-      'studentUid' : studentUid,
-      'complaintTitle' : complaintTitle,
+      'Complaint' : complaint,
+      'Time' : time,
+      'StudentUid' : studentUid,
+      'ComplaintTitle' : complaintTitle,
+      'Name' : name,
+      'RoomNo' : roomNo,
     };
   }
 
   Complaint.fromFirestore(Map<String, dynamic> firestoreMap) 
     : id = firestoreMap['id'],
-    complaintTitle = firestoreMap['complaintTitle'],
-    complaint = firestoreMap['complaint'],
-    time = firestoreMap['time'].toDate(),
-    studentUid = firestoreMap['studentUid'];
+    complaintTitle = firestoreMap['ComplaintTitle'],
+    complaint = firestoreMap['Complaint'],
+    time = firestoreMap['Time'].toDate(),
+    studentUid = firestoreMap['StudentUid'],
+    roomNo = firestoreMap['RoomNo'],
+    name = firestoreMap['Name'];
 }

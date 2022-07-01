@@ -25,10 +25,10 @@ class UserData {
     };
   }
 
-  UserData.fromFirestore(Map<String,dynamic> firestoreMap) 
-  : id = firestoreMap['id'],
+  UserData.fromFirestore(Map<String,dynamic>? firestoreMap) 
+  : id = firestoreMap!['id'],
   firstName = firestoreMap['FirstName'],
-  lastName = firestoreMap['LastName'],
+  lastName = firestoreMap['Lastname'],
   email = firestoreMap['Email'],
   roomNo = firestoreMap['RoomNo'],
   time = firestoreMap['time'].toDate();
