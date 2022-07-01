@@ -3,6 +3,7 @@ import 'package:hostelapplication/core/constant/string.dart';
 
 import 'package:hostelapplication/presentation/screen/admin/addNoticeScreen.dart';
 import 'package:hostelapplication/presentation/screen/admin/adminDashbord.dart';
+import 'package:hostelapplication/presentation/screen/admin/admindetilaspage/admindetails.dart';
 import 'package:hostelapplication/presentation/screen/admin/approveDenyCompScreen.dart';
 import 'package:hostelapplication/presentation/screen/admin/approveDenyLeave.dart';
 import 'package:hostelapplication/presentation/screen/admin/complaintListScreen.dart';
@@ -11,9 +12,11 @@ import 'package:hostelapplication/presentation/screen/auth/registrationScreen.da
 import 'package:hostelapplication/presentation/screen/notifications/adminnotification.dart';
 import 'package:hostelapplication/presentation/screen/onBordingScreen.dart';
 import 'package:hostelapplication/presentation/screen/splashScreen.dart';
+import 'package:hostelapplication/presentation/screen/student/Drawer/helpscreen.dart';
+import 'package:hostelapplication/presentation/screen/student/Drawer/mycomplaint.dart';
 import 'package:hostelapplication/presentation/screen/student/complains/fanlightcomplaint.dart';
 import 'package:hostelapplication/presentation/screen/student/detailspage/studentdetails.dart';
-import 'package:hostelapplication/presentation/screen/student/help/helpscreen.dart';
+
 import 'package:hostelapplication/presentation/screen/student/studentDashbord.dart';
 
 import 'package:hostelapplication/presentation/screen/student/studentDrawer.dart';
@@ -86,6 +89,10 @@ class Routes {
       case adminnotificationRoute:
         return MaterialPageRoute(
             builder: (context) => const AdminNotification());
+
+      case adminDetailsScreenRoute:
+        return MaterialPageRoute(
+            builder: (context) => const AdminDetailsScreen());
 
       default:
         return MaterialPageRoute(

@@ -15,6 +15,9 @@ class AdminDrawer extends StatelessWidget {
           children: <Widget>[
             // _createHeader(),
             ListTile(
+              onTap: () {
+                Navigator.pushNamed(context, adminDetailsScreenRoute);
+              },
               title: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Column(
@@ -107,7 +110,7 @@ class AdminDrawer extends StatelessWidget {
                 ],
               ),
               onTap: () {
-                 Navigator.pushNamed(context, helpscreenRoute);
+                Navigator.pushNamed(context, helpscreenRoute);
                 // Navigator.pop(context);
               },
             ),
@@ -125,7 +128,6 @@ class AdminDrawer extends StatelessWidget {
                 ],
               ),
               onTap: () {
-               
                 Navigator.pop(context);
               },
             ),

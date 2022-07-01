@@ -18,9 +18,9 @@ class _AdminHomeState extends State<AdminHome> {
   @override
   Widget build(BuildContext context) {
     final noticeList = Provider.of<List<Notice>?>(context);
-     final noticeProvider = Provider.of<NoticeProvider>(context);
+    final noticeProvider = Provider.of<NoticeProvider>(context);
     return Scaffold(
-      backgroundColor:  Colors.grey[100],
+      backgroundColor: Colors.grey[100],
       appBar: AppBar(
         title: const Text('DashBoard'),
         actions: [
@@ -46,45 +46,44 @@ class _AdminHomeState extends State<AdminHome> {
                   itemCount: noticeList.length,
                   itemBuilder: (context, index) {
                     return NoticeContainer(
-                        noticeList[index].notice,
-                        noticeList[index].time.day.toString() +
-                            '/' +
-                            noticeList[index].time.month.toString() +
-                            '/' +
-                            noticeList[index].time.year.toString(),
-                            noticeList[index].url,
-                            (){
-                              showDialog(
-                              context: context,
-                              builder: (_) => AlertDialog(
-                                content:
-                                    Text("Are you sure you want to delete ?"),
-                                actions: [
-                                  TextButton(
-                                    child: Text(
-                                      "Cancel",
-                                      style: TextStyle(color: Colors.black),
-                                    ),
-                                    onPressed: () {
-                                      Navigator.of(context).pop();
-                                    },
-                                  ),
-                                  TextButton(
-                                    child: Text(
-                                      "Delete",
-                                      style: TextStyle(color: Colors.red),
-                                    ),
-                                    onPressed: () {
-                                     noticeProvider.deleteNotice(noticeList[index].id);
-                                      Navigator.of(context).pop();
-                                    },
-                                  ),
-                                ],
+                      noticeList[index].notice,
+                      noticeList[index].time.day.toString() +
+                          '/' +
+                          noticeList[index].time.month.toString() +
+                          '/' +
+                          noticeList[index].time.year.toString(),
+                      noticeList[index].url,
+                      () {
+                        showDialog(
+                          context: context,
+                          builder: (_) => AlertDialog(
+                            content: Text("Are you sure you want to delete ?"),
+                            actions: [
+                              TextButton(
+                                child: Text(
+                                  "Cancel",
+                                  style: TextStyle(color: Colors.black),
+                                ),
+                                onPressed: () {
+                                  Navigator.of(context).pop();
+                                },
                               ),
-                            );
-                            },
-                            
-                            );
+                              TextButton(
+                                child: Text(
+                                  "Delete",
+                                  style: TextStyle(color: Colors.red),
+                                ),
+                                onPressed: () {
+                                  noticeProvider
+                                      .deleteNotice(noticeList[index].id);
+                                  Navigator.of(context).pop();
+                                },
+                              ),
+                            ],
+                          ),
+                        );
+                      },
+                    );
                   }),
             )
           : Center(
@@ -95,7 +94,8 @@ class _AdminHomeState extends State<AdminHome> {
 }
 
 class NoticeContainer extends StatelessWidget {
-  NoticeContainer(this.notice, this.date,this.src,this.delete,{Key? key}) : super(key: key);
+  NoticeContainer(this.notice, this.date, this.src, this.delete, {Key? key})
+      : super(key: key);
   String notice;
   String date;
   String adminname = "Admin";
@@ -141,12 +141,11 @@ class NoticeContainer extends StatelessWidget {
                 ),
                 Spacer(),
                 GestureDetector(
-                  onTap:(){
+                  onTap: () {
                     delete();
                   },
                   child: Icon(Icons.delete),
                 ),
-              
               ],
             ),
             Divider(),

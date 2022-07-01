@@ -14,6 +14,7 @@ const String addNoticeScreenRoute = '/addNoticeScreen';
 const String complaintListScreenRoute = '/complainListScreen';
 const String approveDenyComplainListRoute = '/approveDenyComplainListScreen';
 const String approveDennyLeaveScreenRoute = '/approveDennyLeaveScreen';
+const String adminDetailsScreenRoute = "/adminDetails";
 
 //student
 const String studentDashboardScreenRoute = "/stuDash";

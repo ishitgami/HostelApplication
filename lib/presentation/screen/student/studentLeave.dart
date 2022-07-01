@@ -134,12 +134,8 @@ class _StudentLeaveState extends State<StudentLeave> {
                                         firstDate: DateTime.now(),
                                         lastDate: DateTime.now()
                                             .add(Duration(days: 30)),
-                                        onChanged: (val) {
-                                          final commingdate = val;
-                                        },
-                                        onSaved: (val) => setState(() {
-                                          final commingdate = val;
-                                        }),
+                                        onChanged: (val) {},
+                                        onSaved: (val) => setState(() {}),
                                       )
                                     ]),
                                   ),
@@ -162,10 +158,8 @@ class _StudentLeaveState extends State<StudentLeave> {
                                         firstDate: commingdate,
                                         lastDate:
                                             commingdate.add(Duration(days: 30)),
-                                        onChanged: (val) => {
-                                          // commingdate = val,
-                                          print(commingdate)
-                                        },
+                                        onChanged: (val) =>
+                                            {print(commingdate)},
                                         onSaved: (val) => print(val),
                                       ),
                                     ]),

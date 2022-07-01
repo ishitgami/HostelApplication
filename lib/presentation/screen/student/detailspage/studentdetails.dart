@@ -53,7 +53,7 @@ class StudentDetailScreen extends StatelessWidget {
                 Text(
                   "($studentid)",
                   style: TextStyle(
-                    fontSize: 18,
+                    fontSize: 14,
                   ),
                 ),
               ],
