@@ -5,7 +5,6 @@ import 'package:uuid/uuid.dart';
 
 class NoticeProvider with ChangeNotifier {
    final service = NoticeFirestoreService();
-  late String _id;
   late String _notice;
   late DateTime _time;
   late String _url;

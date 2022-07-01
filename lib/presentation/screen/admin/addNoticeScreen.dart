@@ -1,10 +1,8 @@
 import 'package:file_picker/file_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:hostelapplication/core/constant/textController.dart';
 import 'package:hostelapplication/logic/provider/notice_provider.dart';
-import 'package:image_picker/image_picker.dart';
 import 'dart:io';
 import 'package:provider/provider.dart';
 
@@ -18,26 +16,8 @@ class AddNoticeScreen extends StatefulWidget {
 class _AddNoticeScreenState extends State<AddNoticeScreen> {
   late File imageFile;
   PlatformFile? pickedFile;
-  //  late File imageFile1;
-
-  String? _fileName;
-  List<PlatformFile>? _paths;
-
-  String? _extension;
-  var img;
-
   bool showLoading = false;
   bool showAlert = false;
-
-  FileType _pickingType = FileType.any;
-  FileType _PickingImage = FileType.image;
-  TextEditingController _controller = TextEditingController();
-
-  @override
-  void initState() {
-    super.initState();
-    _controller.addListener(() => _extension = _controller.text);
-  }
 
   @override
   Widget build(BuildContext context) {

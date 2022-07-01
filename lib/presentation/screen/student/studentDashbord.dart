@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:hostelapplication/core/constant/string.dart';
 import 'package:hostelapplication/presentation/screen/student/studentHome.dart';
 import 'package:hostelapplication/presentation/screen/student/studentServices.dart';
 import 'package:hostelapplication/presentation/screen/student/studentcomplainscreen.dart';

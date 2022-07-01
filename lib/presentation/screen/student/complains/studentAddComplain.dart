@@ -1,10 +1,6 @@
-import 'dart:math';
-
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:hostelapplication/logic/modules/userData_model.dart';
 import 'package:hostelapplication/logic/provider/complaint_provider.dart';
-import 'package:hostelapplication/logic/service/fireStoreServices/user_firestore_services.dart';
 import 'package:provider/provider.dart';
 
 class StudentAddComplaintScreen extends StatelessWidget {

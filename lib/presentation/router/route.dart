@@ -15,13 +15,8 @@ import 'package:hostelapplication/presentation/screen/splashScreen.dart';
 import 'package:hostelapplication/presentation/screen/student/Drawer/helpscreen.dart';
 import 'package:hostelapplication/presentation/screen/student/Drawer/mycomplaint.dart';
 import 'package:hostelapplication/presentation/screen/student/complains/fanlightcomplaint.dart';
-import 'package:hostelapplication/presentation/screen/student/complains/studentAddComplain.dart';
 import 'package:hostelapplication/presentation/screen/student/detailspage/studentdetails.dart';
-
 import 'package:hostelapplication/presentation/screen/student/studentDashbord.dart';
-
-import 'package:hostelapplication/presentation/screen/student/studentDrawer.dart';
-import 'package:hostelapplication/presentation/screen/student/studentLeave.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Routes {

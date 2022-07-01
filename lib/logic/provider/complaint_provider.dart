@@ -5,7 +5,6 @@ import 'package:uuid/uuid.dart';
 
 class ComplaintProvider with ChangeNotifier {
   final service = ComplaintFirestoreService();
-  late String _id;
   late String _complaint;
   late String _complaintTitle;
   late String _studentUid;

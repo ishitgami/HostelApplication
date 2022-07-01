@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:hostelapplication/core/constant/string.dart';
 
 class Mycomplaints extends StatelessWidget {
   const Mycomplaints({Key? key}) : super(key: key);

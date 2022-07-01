@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:hostelapplication/logic/modules/userData_model.dart';
-import 'package:hostelapplication/logic/provider/userData_provider.dart';
 
 class UserDataFirestoreService {
   FirebaseFirestore _db = FirebaseFirestore.instance;

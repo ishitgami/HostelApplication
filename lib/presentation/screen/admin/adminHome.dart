@@ -5,8 +5,6 @@ import 'package:hostelapplication/logic/provider/notice_provider.dart';
 import 'package:hostelapplication/presentation/screen/admin/AdminDrawer.dart';
 import 'package:provider/provider.dart';
 
-import '../student/studentHome.dart';
-
 class AdminHome extends StatefulWidget {
   const AdminHome({Key? key}) : super(key: key);
 

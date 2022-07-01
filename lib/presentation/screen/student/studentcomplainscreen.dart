@@ -1,11 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:hostelapplication/core/constant/string.dart';
-import 'package:hostelapplication/logic/modules/user_model.dart';
-import 'package:hostelapplication/logic/service/auth_services/auth_service.dart';
 import 'package:hostelapplication/presentation/screen/student/complains/studentAddComplain.dart';
 import 'package:hostelapplication/presentation/screen/student/studentDrawer.dart';
-import 'package:provider/provider.dart';
 
 
 class StudentComplainScreen extends StatefulWidget {

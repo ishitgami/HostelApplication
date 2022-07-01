@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hostelapplication/core/constant/string.dart';
 import 'package:hostelapplication/core/constant/textController.dart';
-import 'package:hostelapplication/logic/modules/userData_model.dart';
 import 'package:hostelapplication/logic/modules/user_model.dart';
 import 'package:hostelapplication/logic/provider/userData_provider.dart';
 import 'package:hostelapplication/logic/service/auth_services/auth_service.dart';

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:hostelapplication/logic/modules/userData_model.dart';
 import 'package:hostelapplication/logic/provider/complaint_provider.dart';
 import 'package:hostelapplication/logic/provider/notice_provider.dart';
 import 'package:hostelapplication/logic/provider/userData_provider.dart';
