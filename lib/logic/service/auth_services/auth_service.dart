@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart' as auth;
 import 'package:flutter/services.dart';
 import 'package:hostelapplication/logic/modules/user_model.dart';
@@ -6,19 +7,26 @@ import 'package:hostelapplication/logic/service/auth_services/authError.dart';
 
 class AuthService {
   final auth.FirebaseAuth _firebaseAuth = auth.FirebaseAuth.instance;
+  FirebaseFirestore _db = FirebaseFirestore.instance;
 
-  User? _userFromFirebase(auth.User? user) {
+
+  Future<auth.User?> getcurrentUser() async {
+    return  await _firebaseAuth.currentUser;
+  }
+
+  FireBaseUser? _userFromFirebase(auth.User? user) {
+   
     if (user == null) {
       return null;
     }
-    return User(uid: user.uid, email: user.email);
+    return FireBaseUser(uid: user.uid, email: user.email);
   }
 
-  Stream<User?>? get user {
+  Stream<FireBaseUser?>? get user {
     return _firebaseAuth.authStateChanges().map(_userFromFirebase);
   }
 
-  Future<User?> signInWithEmailAndPassword(
+  Future<FireBaseUser?> signInWithEmailAndPassword(
       String email, String password) async {
     try {
       final credential = await _firebaseAuth.signInWithEmailAndPassword(
@@ -31,7 +39,7 @@ class AuthService {
     }
   }
 
-  Future<User?> createUserWithEmailAndPassword(
+  Future<FireBaseUser?> createUserWithEmailAndPassword(
       String email, String password) async {
     try {
       final credential = await _firebaseAuth.createUserWithEmailAndPassword(
@@ -42,6 +50,18 @@ class AuthService {
           ErrorHangling().throwErrorMesg(errorCode: error.code);
       throw errorMessage;
     }
+  }
+
+  Future<void> addUserToFirestore({
+    uid,firstname,lastname,roomNo,email
+  }) {
+    return _db.collection('User').doc(uid).set({
+      'id' : uid,
+      'FirstName' : firstname,
+      'Lastname' : lastname,
+      'RoomNo' : roomNo,
+      'Email' : email,
+    });
   }
 
   Future<void> signOut() async {

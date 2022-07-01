@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:hostelapplication/logic/provider/complaint_provider.dart';
 import 'package:hostelapplication/logic/provider/notice_provider.dart';
+import 'package:hostelapplication/logic/provider/userData_provider.dart';
 import 'package:hostelapplication/logic/service/auth_services/auth_service.dart';
 import 'package:hostelapplication/logic/service/fireStoreServices/notice_firestore_service.dart';
 import 'package:hostelapplication/presentation/router/route.dart';
@@ -20,8 +22,19 @@ Future<void> main() async {
         Provider<AuthService>(
           create: (_) => AuthService(),
         ),
-        ChangeNotifierProvider.value(value: NoticeProvider()),
-        StreamProvider.value(value: NoticeFirestoreService().getNotice(), initialData: null,)
+        ChangeNotifierProvider.value(
+          value: NoticeProvider(),
+        ),
+        StreamProvider.value(
+          value: NoticeFirestoreService().getNotice(),
+          initialData: null,
+        ),
+        ChangeNotifierProvider.value(
+          value: ComplaintProvider(),
+        ),
+        ChangeNotifierProvider.value(
+          value: UsereDataProvider(),
+        ),
       ],
       child: const MyApp(),
     ),

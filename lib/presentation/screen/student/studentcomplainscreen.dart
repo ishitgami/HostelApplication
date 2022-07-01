@@ -1,6 +1,12 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:hostelapplication/core/constant/string.dart';
+import 'package:hostelapplication/logic/modules/user_model.dart';
+import 'package:hostelapplication/logic/service/auth_services/auth_service.dart';
 import 'package:hostelapplication/presentation/screen/student/complains/studentAddComplain.dart';
 import 'package:hostelapplication/presentation/screen/student/studentDrawer.dart';
+import 'package:provider/provider.dart';
+
 
 class StudentComplainScreen extends StatefulWidget {
   const StudentComplainScreen({Key? key}) : super(key: key);
@@ -10,6 +16,7 @@ class StudentComplainScreen extends StatefulWidget {
 }
 
 class _StudentComplainScreenState extends State<StudentComplainScreen> {
+  final FirebaseAuth auth = FirebaseAuth.instance;
   List<String> images = [
     'assets/images/water-bottle.png',
     'assets/images/electrical-energy.png',
@@ -26,6 +33,9 @@ class _StudentComplainScreenState extends State<StudentComplainScreen> {
   ];
   @override
   Widget build(BuildContext context) {
+
+    User? user = auth.currentUser;
+   
     return Scaffold(
       backgroundColor: Colors.grey[200],
       appBar: AppBar(
@@ -44,7 +54,7 @@ class _StudentComplainScreenState extends State<StudentComplainScreen> {
           itemBuilder: (BuildContext context, int index) {
             return GestureDetector(
               onTap: () {
-                // Navigator.pushNamed(context, complainListScreenRoute);
+                Navigator.push(context, MaterialPageRoute(builder: (context)=> StudentAddComplaintScreen(imagesText[index])));
               },
               child: Card(
                 shape: RoundedRectangleBorder(

@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/cupertino.dart';
 import 'package:hostelapplication/logic/modules/notice_model.dart';
 import 'package:hostelapplication/logic/service/fireStoreServices/notice_firestore_service.dart';

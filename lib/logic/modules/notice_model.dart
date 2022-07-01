@@ -1,27 +1,18 @@
-
-
-import 'package:cloud_firestore/cloud_firestore.dart';
-
 class Notice {
   String id;
   String notice;
   DateTime time;
   late String url;
   Notice(
-   this.url,
-    {
+    this.url, {
     required this.id,
     required this.notice,
     required this.time,
-     
-     
   });
 
   Map<String, dynamic> createMap() {
-    return {'Id': id, 'notice': notice, 'time': time,'url' : url};
+    return {'Id': id, 'notice': notice, 'time': time, 'url': url};
   }
-
- 
 
   Notice.fromFirestore(Map<String, dynamic> firestoreMap)
       : id = firestoreMap['Id'],
@@ -30,6 +21,4 @@ class Notice {
         url = firestoreMap['url'];
 
   toList() {}
-
- 
 }

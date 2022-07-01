@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:hostelapplication/logic/provider/complaint_provider.dart';
+import 'package:provider/provider.dart';
 
 class StudentAddComplaintScreen extends StatelessWidget {
    const StudentAddComplaintScreen(this.complain, {Key? key}) : super(key: key);
@@ -7,6 +9,7 @@ class StudentAddComplaintScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final noticeProvider = Provider.of<ComplaintProvider>(context);
     DateTime now = DateTime.now();
     
     const tablepadding = EdgeInsets.all(15);
