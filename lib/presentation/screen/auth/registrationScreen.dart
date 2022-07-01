@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:hostelapplication/core/constant/string.dart';
 import 'package:hostelapplication/core/constant/textController.dart';
+import 'package:hostelapplication/logic/modules/userData_model.dart';
+import 'package:hostelapplication/logic/modules/user_model.dart';
+import 'package:hostelapplication/logic/provider/userData_provider.dart';
 import 'package:hostelapplication/logic/service/auth_services/auth_service.dart';
 import 'package:provider/provider.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
@@ -31,6 +34,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   @override
   Widget build(BuildContext context) {
     authService = Provider.of<AuthService>(context);
+    final userDataProvider = Provider.of<UsereDataProvider>(context);
     return Scaffold(
       body: SafeArea(
         child: Form(
@@ -75,6 +79,9 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     height: 20,
                   ),
                   TextFormField(
+                    onChanged: (((value) => 
+                    userDataProvider.changeFirstName(value)
+                    )),
                     controller: firstNameController,
                     keyboardType: TextInputType.name,
                     textInputAction: TextInputAction.next,
@@ -105,6 +112,9 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     height: 20,
                   ),
                   TextFormField(
+                    onChanged: (((value) => 
+                    userDataProvider.changeLastName(value)
+                    )),
                     keyboardType: TextInputType.name,
                     textInputAction: TextInputAction.next,
                     validator: (text) {
@@ -135,6 +145,9 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     height: 20,
                   ),
                   TextFormField(
+                    onChanged: (((value) => 
+                    userDataProvider.changeRoomNo(value)
+                    )),
                     textInputAction: TextInputAction.next,
                     keyboardType: TextInputType.text,
                     validator: (text) {
@@ -165,6 +178,9 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     height: 20,
                   ),
                   TextField(
+                    onChanged: (((value) => 
+                    userDataProvider.changeEmail(value)
+                    )),
                     controller: emailController,
                     keyboardType: TextInputType.emailAddress,
                     textInputAction: TextInputAction.next,
@@ -240,7 +256,9 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                               showLoading = true;
                             });
                             progressIndicater(context, showLoading = true);
-                            await createUser();
+                            FireBaseUser? user=  await createUser();
+                            userDataProvider.changeId(user!.uid);
+                            userDataProvider.saveUserData();
                             await showAlert == true
                                 ? null
                                 : progressIndicater(
@@ -290,10 +308,12 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
 
   createUser() async {
     try {
-      await authService.createUserWithEmailAndPassword(
+     FireBaseUser? user = await authService.createUserWithEmailAndPassword(
           emailController.text.toString(), passwordController.text.toString());
+      
       Navigator.pop(context);
       Navigator.pushReplacementNamed(context, logInScreenRoute);
+      return user;
     } catch (e) {
       print(e);
       return alertBox(context, e);

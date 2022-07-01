@@ -12,6 +12,7 @@ import 'package:hostelapplication/presentation/screen/notifications/adminnotific
 import 'package:hostelapplication/presentation/screen/onBordingScreen.dart';
 import 'package:hostelapplication/presentation/screen/splashScreen.dart';
 import 'package:hostelapplication/presentation/screen/student/complains/fanlightcomplaint.dart';
+import 'package:hostelapplication/presentation/screen/student/complains/studentAddComplain.dart';
 import 'package:hostelapplication/presentation/screen/student/detailspage/studentdetails.dart';
 import 'package:hostelapplication/presentation/screen/student/help/helpscreen.dart';
 import 'package:hostelapplication/presentation/screen/student/studentDashbord.dart';
@@ -57,7 +58,7 @@ class Routes {
 
       // case studentAddComplaintRoute:
       //   return MaterialPageRoute(
-      //       builder: (context) => const StudentAddComplaintScreen());
+      //       builder: (context) =>  StudentAddComplaintScreen());
 
       case addNoticeScreenRoute:
         return MaterialPageRoute(builder: (context) => AddNoticeScreen());
