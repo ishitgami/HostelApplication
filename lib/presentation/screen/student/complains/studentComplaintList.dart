@@ -117,7 +117,7 @@ class StudentComplaintListScreen extends StatelessWidget {
                                         style: TextStyle(
                                           color:
                                               Color.fromARGB(255, 214, 108, 22),
-                                              fontWeight: FontWeight.w600,
+                                          fontWeight: FontWeight.w600,
                                         ),
                                       )
                                     : complaintList[index].status == 1
@@ -145,19 +145,31 @@ class StudentComplaintListScreen extends StatelessWidget {
                               height: 10,
                             ),
                             Container(
-                                margin:
-                                    const EdgeInsets.symmetric(horizontal: 10),
-                                padding: const EdgeInsets.all(10),
-                                decoration: BoxDecoration(
-                                  color: Color.fromARGB(87, 238, 238, 238),
-                                  borderRadius: BorderRadius.circular(5),
-                                  border: Border.all(
-                                    width: 1,
-                                    color: const Color.fromARGB(
-                                        157, 158, 158, 158),
+                              margin:
+                                  const EdgeInsets.symmetric(horizontal: 10),
+                              padding: const EdgeInsets.all(10),
+                              decoration: BoxDecoration(
+                                color: Color.fromARGB(
+                                  87,
+                                  238,
+                                  238,
+                                  238,
+                                ),
+                                borderRadius: BorderRadius.circular(5),
+                                border: Border.all(
+                                  width: 1,
+                                  color: const Color.fromARGB(
+                                    157,
+                                    158,
+                                    158,
+                                    158,
                                   ),
                                 ),
-                                child: Text(complaintList[index].complaint)),
+                              ),
+                              child: Text(
+                                complaintList[index].complaint,
+                              ),
+                            ),
                           ],
                         ),
                       ),
