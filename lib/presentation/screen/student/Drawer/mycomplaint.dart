@@ -1,19 +1,76 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:hostelapplication/logic/modules/complaint_model.dart';
+import 'package:hostelapplication/logic/modules/notice_model.dart';
+import 'package:provider/provider.dart';
+import 'package:intl/intl.dart';
+import 'package:uuid/uuid.dart';
+import '../../../../logic/modules/userData_model.dart';
+import '../../../../logic/provider/complaint_provider.dart';
 
-class Mycomplaints extends StatelessWidget {
+class Mycomplaints extends StatefulWidget {
   const Mycomplaints({Key? key}) : super(key: key);
 
   @override
+  State<Mycomplaints> createState() => _MycomplaintsState();
+}
+
+class _MycomplaintsState extends State<Mycomplaints> {
+  final FirebaseAuth auth = FirebaseAuth.instance;
+
+  @override
   Widget build(BuildContext context) {
+    final Stream<QuerySnapshot> _usersStream =
+        FirebaseFirestore.instance.collection('Complaint').snapshots();
+
+    final complaintlist = Provider.of<List<Complaint>?>(context);
+
     return Scaffold(
         appBar: AppBar(
           title: const Text("My complaints"),
         ),
-        body: ListView.builder(
-            itemCount: 2,
-            itemBuilder: (context, index) {
-              return MycomplaintsListModel("01/01/01", "Electricity",
-                  "In my hostel, there is low voltage power occurs most of the time. kindly solve our problem :)");
+        body: StreamBuilder<QuerySnapshot>(
+            stream: _usersStream,
+            builder:
+                (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+              if (snapshot.hasError) {
+                return Text('Something went wrong');
+              }
+
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return Text("Loading");
+              }
+
+              return
+                  // complaintlist != null
+                  //     ?
+                  // ListView.builder(
+                  //     itemCount: complaintlist.length,
+                  //     itemBuilder: (context, index) {
+                  //       return MycomplaintsListModel(
+                  //           "${complaintlist[index].time} ",
+                  //           complaintlist[index].complaintTitle,
+                  //           complaintlist[index].complaint);
+                  //     })
+
+                  ListView(
+                      children:
+                          snapshot.data!.docs.map((DocumentSnapshot document) {
+                Map<String, dynamic> data =
+                    document.data()! as Map<String, dynamic>;
+                final Timestamp timestamp = data["Time"] as Timestamp;
+                final DateTime dateTime = timestamp.toDate();
+                final dateString = DateFormat.yMMMEd().format(dateTime);
+
+                final Studentid = data["StudentUid"];
+
+                return MycomplaintsListModel(
+                    dateString, data["ComplaintTitle"], data["Complaint"]);
+              }).toList());
+              // : Center(
+              //     child: CircularProgressIndicator(),
+              //   );
             }));
   }
 }
