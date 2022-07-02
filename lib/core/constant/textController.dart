@@ -1,8 +1,9 @@
-  import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 
 final TextEditingController emailController = TextEditingController();
 final TextEditingController passwordController = TextEditingController();
 final TextEditingController firstNameController = TextEditingController();
 final TextEditingController lastNameController = TextEditingController();
+final TextEditingController enrollmentController = TextEditingController();
 final TextEditingController roomNoController = TextEditingController();
 final TextEditingController noticeController = TextEditingController();

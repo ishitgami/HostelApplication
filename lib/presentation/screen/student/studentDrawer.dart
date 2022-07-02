@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hostelapplication/core/constant/string.dart';
 import 'package:hostelapplication/logic/service/auth_services/auth_service.dart';
+import 'package:hostelapplication/presentation/screen/student/complains/studentComplaintList.dart';
 import 'package:provider/provider.dart';
 
 class StudentDrawer extends StatelessWidget {
@@ -164,7 +165,10 @@ class StudentDrawer extends StatelessWidget {
                 ],
               ),
               onTap: () {
-                Navigator.pushNamed(context, mycomplaintscreenRoute);
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => StudentComplaintListScreen()));
               },
             ),
             const SizedBox(width: 50, child: Divider()),

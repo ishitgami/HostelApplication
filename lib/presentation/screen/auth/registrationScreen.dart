@@ -78,9 +78,8 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     height: 20,
                   ),
                   TextFormField(
-                    onChanged: (((value) => 
-                    userDataProvider.changeFirstName(value)
-                    )),
+                    onChanged: (((value) =>
+                        userDataProvider.changeFirstName(value))),
                     controller: firstNameController,
                     keyboardType: TextInputType.name,
                     textInputAction: TextInputAction.next,
@@ -111,9 +110,8 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     height: 20,
                   ),
                   TextFormField(
-                    onChanged: (((value) => 
-                    userDataProvider.changeLastName(value)
-                    )),
+                    onChanged: (((value) =>
+                        userDataProvider.changeLastName(value))),
                     keyboardType: TextInputType.name,
                     textInputAction: TextInputAction.next,
                     validator: (text) {
@@ -144,9 +142,40 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     height: 20,
                   ),
                   TextFormField(
-                    onChanged: (((value) => 
-                    userDataProvider.changeRoomNo(value)
-                    )),
+                    onChanged: (((value) =>
+                        userDataProvider.changeEnrollment(value))),
+                    keyboardType: TextInputType.number,
+                    textInputAction: TextInputAction.next,
+                    validator: (text) {
+                      if (text!.isEmpty) {
+                        return "Enter Enrollment number ";
+                      }
+                      return null;
+                    },
+                    controller: enrollmentController,
+                    decoration: InputDecoration(
+                      prefixIcon: Icon(
+                        Icons.person_rounded,
+                        color: Color.fromARGB(255, 108, 99, 255),
+                      ),
+                      hintText: 'Enrollment No',
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(10.0),
+                        ),
+                        borderSide: BorderSide(
+                          width: 1,
+                          style: BorderStyle.none,
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  TextFormField(
+                    onChanged: (((value) =>
+                        userDataProvider.changeRoomNo(value))),
                     textInputAction: TextInputAction.next,
                     keyboardType: TextInputType.text,
                     validator: (text) {
@@ -177,9 +206,8 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     height: 20,
                   ),
                   TextField(
-                    onChanged: (((value) => 
-                    userDataProvider.changeEmail(value)
-                    )),
+                    onChanged: (((value) =>
+                        userDataProvider.changeEmail(value))),
                     controller: emailController,
                     keyboardType: TextInputType.emailAddress,
                     textInputAction: TextInputAction.next,
@@ -255,7 +283,9 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                               showLoading = true;
                             });
                             progressIndicater(context, showLoading = true);
-                            FireBaseUser? user=  await createUser();
+                            FireBaseUser? user = await createUser();
+                            userDataProvider.changeUserimage(
+                                "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png");
                             userDataProvider.changeId(user!.uid);
                             userDataProvider.saveUserData();
                             await showAlert == true
@@ -307,9 +337,9 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
 
   createUser() async {
     try {
-     FireBaseUser? user = await authService.createUserWithEmailAndPassword(
+      FireBaseUser? user = await authService.createUserWithEmailAndPassword(
           emailController.text.toString(), passwordController.text.toString());
-      
+
       Navigator.pop(context);
       Navigator.pushReplacementNamed(context, logInScreenRoute);
       return user;
@@ -335,8 +365,6 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
     ).show();
   }
 }
-
-
 
 class WavyHeader extends StatelessWidget {
   @override

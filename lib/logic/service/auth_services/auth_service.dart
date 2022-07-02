@@ -8,13 +8,11 @@ class AuthService {
   final auth.FirebaseAuth _firebaseAuth = auth.FirebaseAuth.instance;
   FirebaseFirestore _db = FirebaseFirestore.instance;
 
-
   Future<auth.User?> getcurrentUser() async {
-    return  await _firebaseAuth.currentUser;
+    return await _firebaseAuth.currentUser;
   }
 
   FireBaseUser? _userFromFirebase(auth.User? user) {
-   
     if (user == null) {
       return null;
     }
@@ -51,15 +49,15 @@ class AuthService {
     }
   }
 
-  Future<void> addUserToFirestore({
-    uid,firstname,lastname,roomNo,email
-  }) {
+  Future<void> addUserToFirestore(
+      {uid, firstname, lastname, roomNo, email, enrollment}) {
     return _db.collection('User').doc(uid).set({
-      'id' : uid,
-      'FirstName' : firstname,
-      'Lastname' : lastname,
-      'RoomNo' : roomNo,
-      'Email' : email,
+      'id': uid,
+      'FirstName': firstname,
+      'Lastname': lastname,
+      'RoomNo': roomNo,
+      'Email': email,
+      'Enrollment': enrollment,
     });
   }
 

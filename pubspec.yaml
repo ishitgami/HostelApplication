@@ -24,7 +24,7 @@ dependencies:
   provider: ^6.0.3
   rflutter_alert:
   date_time_picker:
-  image_picker:
+  image_picker: ^0.8.5+3
   file_picker:
 
 

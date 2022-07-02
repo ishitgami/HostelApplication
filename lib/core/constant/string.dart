@@ -26,9 +26,10 @@ const String studentComplaintListScreenRoute = "/studentComplaintListScreen";
 
 //drawer
 const String helpscreenRoute = "/help";
-const String mycomplaintscreenRoute = "/mycomplaints";
 
 //notification
 const String adminnotificationRoute = "/adminnotif";
+
+
 
 //****************End-Routes***********************

@@ -4,17 +4,13 @@ import 'package:hostelapplication/core/constant/string.dart';
 import 'package:hostelapplication/presentation/screen/admin/notice/addNoticeScreen.dart';
 import 'package:hostelapplication/presentation/screen/admin/adminDashbord.dart';
 import 'package:hostelapplication/presentation/screen/admin/admindetilaspage/admindetails.dart';
-import 'package:hostelapplication/presentation/screen/admin/complaint/approveDenyCompScreen.dart';
 import 'package:hostelapplication/presentation/screen/admin/leave/approveDenyLeave.dart';
-import 'package:hostelapplication/presentation/screen/admin/complaint/pendingComplaintListScreen.dart';
 import 'package:hostelapplication/presentation/screen/auth/logInScreen.dart';
 import 'package:hostelapplication/presentation/screen/auth/registrationScreen.dart';
 import 'package:hostelapplication/presentation/screen/notifications/adminnotification.dart';
 import 'package:hostelapplication/presentation/screen/onBordingScreen.dart';
 import 'package:hostelapplication/presentation/screen/splashScreen.dart';
 import 'package:hostelapplication/presentation/screen/student/Drawer/helpscreen.dart';
-import 'package:hostelapplication/presentation/screen/student/Drawer/mycomplaint.dart';
-import 'package:hostelapplication/presentation/screen/student/complains/studentComplaintList.dart';
 import 'package:hostelapplication/presentation/screen/student/services/RoomElectricServices.dart';
 import 'package:hostelapplication/presentation/screen/student/detailspage/studentdetails.dart';
 import 'package:hostelapplication/presentation/screen/student/studentDashbord.dart';
@@ -80,9 +76,6 @@ class Routes {
         return MaterialPageRoute(
             builder: (context) => const FanLightComplaints());
 
-      case mycomplaintscreenRoute:
-        return MaterialPageRoute(builder: (context) => const Mycomplaints());
-
       case adminnotificationRoute:
         return MaterialPageRoute(
             builder: (context) => const AdminNotification());
@@ -90,11 +83,10 @@ class Routes {
       case adminDetailsScreenRoute:
         return MaterialPageRoute(
             builder: (context) => const AdminDetailsScreen());
-      
+
       // case studentComplaintListScreenRoute:
       //   return MaterialPageRoute(
       //       builder: (context) => const StudentComplaintListScreen());
-            
 
       default:
         return MaterialPageRoute(
