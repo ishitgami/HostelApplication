@@ -14,7 +14,7 @@ class StudentComplaintListScreen extends StatelessWidget {
     final complaintProvider = Provider.of<ComplaintProvider>(context);
     final complaintListRaw = Provider.of<List<Complaint>?>(context);
     complaintListRaw?.forEach((element) {
-      if (auth.currentUser?.uid == element.studentUid) {
+      if (auth.currentUser?.uid == element.studentUid &&(element.status == 1 || element.status == 2)) {
         complaintList.add(element);
       }
       ;
@@ -23,7 +23,11 @@ class StudentComplaintListScreen extends StatelessWidget {
     return Scaffold(
         backgroundColor: Colors.grey[200],
         appBar: AppBar(
+<<<<<<< HEAD
           title: Text('My Complaint'),
+=======
+          title: Text('Past Complaint'),
+>>>>>>> 3a61878e56b53ff1c25584a225f592404849420f
         ),
         body: complaintList != []
             ? Padding(
@@ -39,53 +43,6 @@ class StudentComplaintListScreen extends StatelessWidget {
                           children: [
                             Row(
                               children: [
-                                IconButton(
-                                  onPressed: () {
-                                    showDialog(
-                                      context: context,
-                                      builder: (_) => AlertDialog(
-                                        content: Text(
-                                            "Are you sure you want to delete ?"),
-                                        actions: [
-                                          TextButton(
-                                            child: Text(
-                                              "Cancel",
-                                              style: TextStyle(
-                                                  color: Colors.black),
-                                            ),
-                                            onPressed: () {
-                                              Navigator.of(context).pop();
-                                            },
-                                          ),
-                                          TextButton(
-                                            child: Text(
-                                              "Delete",
-                                              style:
-                                                  TextStyle(color: Colors.red),
-                                            ),
-                                            onPressed: () {
-                                              complaintProvider.deleteComplaint(
-                                                  complaintList[index].id);
-                                              Navigator.of(context).pop();
-                                            },
-                                          ),
-                                        ],
-                                      ),
-                                    );
-                                  },
-                                  icon: Icon(
-                                    Icons.delete,
-                                    color: Colors.black54,
-                                  ),
-                                ),
-                                Container(
-                                  color: Color.fromARGB(173, 0, 0, 0),
-                                  height: 30,
-                                  width: 2,
-                                ),
-                                SizedBox(
-                                  width: 10,
-                                ),
                                 Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
@@ -111,16 +68,7 @@ class StudentComplaintListScreen extends StatelessWidget {
                                   ],
                                 ),
                                 Spacer(),
-                                complaintList[index].status == 0
-                                    ? Text(
-                                        'Pending',
-                                        style: TextStyle(
-                                          color:
-                                              Color.fromARGB(255, 214, 108, 22),
-                                          fontWeight: FontWeight.w600,
-                                        ),
-                                      )
-                                    : complaintList[index].status == 1
+                                 complaintList[index].status == 1
                                         ? Text(
                                             'Approved',
                                             style: TextStyle(
@@ -145,8 +93,6 @@ class StudentComplaintListScreen extends StatelessWidget {
                               height: 10,
                             ),
                             Container(
-                              margin:
-                                  const EdgeInsets.symmetric(horizontal: 10),
                               padding: const EdgeInsets.all(10),
                               decoration: BoxDecoration(
                                 color: Color.fromARGB(
