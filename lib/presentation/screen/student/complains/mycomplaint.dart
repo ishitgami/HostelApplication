@@ -2,87 +2,102 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:hostelapplication/logic/modules/complaint_model.dart';
-import 'package:hostelapplication/logic/modules/notice_model.dart';
+import 'package:hostelapplication/logic/provider/complaint_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:intl/intl.dart';
-import 'package:uuid/uuid.dart';
-import '../../../../logic/modules/userData_model.dart';
-import '../../../../logic/provider/complaint_provider.dart';
 
-class Mycomplaints extends StatefulWidget {
-  const Mycomplaints({Key? key}) : super(key: key);
+class Mycomplaints extends StatelessWidget {
+   Mycomplaints({Key? key}) : super(key: key);
 
-  @override
-  State<Mycomplaints> createState() => _MycomplaintsState();
-}
 
-class _MycomplaintsState extends State<Mycomplaints> {
-  final FirebaseAuth auth = FirebaseAuth.instance;
+  
 
   @override
   Widget build(BuildContext context) {
-    final Stream<QuerySnapshot> _usersStream =
-        FirebaseFirestore.instance.collection('Complaint').snapshots();
+     final FirebaseAuth auth = FirebaseAuth.instance;
+     List<Complaint> complaintList = [];
+    final complaintProvider = Provider.of<ComplaintProvider>(context);
+    final complaintListRaw = Provider.of<List<Complaint>?>(context);
+    complaintListRaw?.forEach((element) {
+      if (auth.currentUser?.uid == element.studentUid && element.status == 0) {
+        complaintList.add(element);
+      }
+      ;
+    });
 
-    final complaintlist = Provider.of<List<Complaint>?>(context);
+
+
+
+
+
+    // final Stream<QuerySnapshot> _usersStream =
+    //     FirebaseFirestore.instance.collection('Complaint').snapshots();
+
+    // final complaintlist = Provider.of<List<Complaint>?>(context);
 
     return Scaffold(
         appBar: AppBar(
           title: const Text("My complaints"),
         ),
-        body: StreamBuilder<QuerySnapshot>(
-            stream: _usersStream,
-            builder:
-                (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-              if (snapshot.hasError) {
-                return Text('Something went wrong');
-              }
+        body: complaintList != []
+            ? Padding(
+          padding: EdgeInsets.all(8),
+          child: ListView.builder(
+            itemCount: complaintList.length,
+            itemBuilder: (context,index) {
+              return MycomplaintsListModel(
+              Compiantdesc: complaintList[index].complaint,
+              Complainttype: complaintList[index].complaintTitle,
+              Complaintdate: complaintList[index].time,
+              deletecomplaint: (){
+                   showDialog(
+                                      context: context,
+                                      builder: (_) => AlertDialog(
+                                        content: Text(
+                                            "Are you sure you want to delete ?"),
+                                        actions: [
+                                          TextButton(
+                                            child: Text(
+                                              "Cancel",
+                                              style: TextStyle(
+                                                  color: Colors.black),
+                                            ),
+                                            onPressed: () {
+                                              Navigator.of(context).pop();
+                                            },
+                                          ),
+                                          TextButton(
+                                            child: Text(
+                                              "Delete",
+                                              style:
+                                                  TextStyle(color: Colors.red),
+                                            ),
+                                            onPressed: () {
+                                              complaintProvider.deleteComplaint(
+                                                  complaintList[index].id);
+                                              Navigator.of(context).pop();
+                                            },
+                                          ),
+                                        ],
+                                      ),
+                                    );
+              },
+              );
+            },
 
-              if (snapshot.connectionState == ConnectionState.waiting) {
-                return Text("Loading");
-              }
-
-              return
-                  // complaintlist != null
-                  //     ?
-                  // ListView.builder(
-                  //     itemCount: complaintlist.length,
-                  //     itemBuilder: (context, index) {
-                  //       return MycomplaintsListModel(
-                  //           "${complaintlist[index].time} ",
-                  //           complaintlist[index].complaintTitle,
-                  //           complaintlist[index].complaint);
-                  //     })
-
-                  ListView(
-                      children:
-                          snapshot.data!.docs.map((DocumentSnapshot document) {
-                Map<String, dynamic> data =
-                    document.data()! as Map<String, dynamic>;
-                final Timestamp timestamp = data["Time"] as Timestamp;
-                final DateTime dateTime = timestamp.toDate();
-                final dateString = DateFormat.yMMMEd().format(dateTime);
-
-                final Studentid = data["StudentUid"];
-
-                return MycomplaintsListModel(
-                    dateString, data["ComplaintTitle"], data["Complaint"]);
-              }).toList());
-              // : Center(
-              //     child: CircularProgressIndicator(),
-              //   );
-            }));
+          ),
+          ) :  Center(child: CircularProgressIndicator(),)
+        );
   }
 }
 
 class MycomplaintsListModel extends StatelessWidget {
   MycomplaintsListModel(
-      this.Complaintdate, this.Complainttype, this.Compiantdesc,
-      {Key? key})
-      : super(key: key);
-  String Complaintdate;
+      {required this.Complaintdate,required this.Complainttype,required this.Compiantdesc,required this.deletecomplaint});
+  DateTime Complaintdate;
   String Complainttype;
   String Compiantdesc;
+  Function deletecomplaint;
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -120,7 +135,7 @@ class MycomplaintsListModel extends StatelessWidget {
                             ),
                             Text(":"),
                             Text(
-                              " $Complaintdate",
+                              Complaintdate.day.toString() +'/'+Complaintdate.month.toString() +'/'+ Complaintdate.year.toString(),
                               style: TextStyle(
                                   fontSize: 18, fontWeight: FontWeight.bold),
                             ),
@@ -141,7 +156,7 @@ class MycomplaintsListModel extends StatelessWidget {
                         ),
                         Text(":"),
                         Text(
-                          " $Complainttype",
+                          Complainttype,
                           style: TextStyle(
                               fontSize: 18,
                               color: Colors.red,
@@ -162,7 +177,7 @@ class MycomplaintsListModel extends StatelessWidget {
                             width: 2,
                             color: Color.fromARGB(157, 158, 158, 158)),
                       ),
-                      child: Text('$Compiantdesc'),
+                      child: Text(Compiantdesc),
                     ),
                     const SizedBox(
                       height: 20,
@@ -171,6 +186,9 @@ class MycomplaintsListModel extends StatelessWidget {
                       children: [
                         Expanded(
                           child: GestureDetector(
+                            onTap: (){
+                              deletecomplaint();
+                            },
                             child: Container(
                               margin: const EdgeInsets.only(
                                   left: 1, right: 1, bottom: 2),
