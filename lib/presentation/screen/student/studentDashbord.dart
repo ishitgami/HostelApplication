@@ -2,10 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hostelapplication/logic/service/fireStoreServices/complaint_firestore_service.dart';
 import 'package:hostelapplication/presentation/screen/student/complains/studentComplaintList.dart';
-import 'package:hostelapplication/presentation/screen/student/studentHome.dart';
-import 'package:hostelapplication/presentation/screen/student/studentServices.dart';
-import 'package:hostelapplication/presentation/screen/student/studentcomplainscreen.dart';
-import 'package:hostelapplication/presentation/screen/student/studentLeave.dart';
+import 'package:hostelapplication/presentation/screen/student/notice/StudentNoticeScreen.dart';
+import 'package:hostelapplication/presentation/screen/student/services/studentServices.dart';
+import 'package:hostelapplication/presentation/screen/student/complains/studentcomplainscreen.dart';
+import 'package:hostelapplication/presentation/screen/student/leave/studentLeave.dart';
 import 'package:provider/provider.dart';
 
 class StudentDashboardScreen extends StatefulWidget {

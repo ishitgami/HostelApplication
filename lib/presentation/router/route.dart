@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:hostelapplication/core/constant/string.dart';
 
-import 'package:hostelapplication/presentation/screen/admin/addNoticeScreen.dart';
+import 'package:hostelapplication/presentation/screen/admin/notice/addNoticeScreen.dart';
 import 'package:hostelapplication/presentation/screen/admin/adminDashbord.dart';
 import 'package:hostelapplication/presentation/screen/admin/admindetilaspage/admindetails.dart';
-import 'package:hostelapplication/presentation/screen/admin/approveDenyCompScreen.dart';
-import 'package:hostelapplication/presentation/screen/admin/approveDenyLeave.dart';
-import 'package:hostelapplication/presentation/screen/admin/complaintListScreen.dart';
+import 'package:hostelapplication/presentation/screen/admin/complaint/approveDenyCompScreen.dart';
+import 'package:hostelapplication/presentation/screen/admin/leave/approveDenyLeave.dart';
+import 'package:hostelapplication/presentation/screen/admin/complaint/complaintListScreen.dart';
 import 'package:hostelapplication/presentation/screen/auth/logInScreen.dart';
 import 'package:hostelapplication/presentation/screen/auth/registrationScreen.dart';
 import 'package:hostelapplication/presentation/screen/notifications/adminnotification.dart';

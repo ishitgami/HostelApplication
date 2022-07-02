@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hostelapplication/presentation/screen/admin/AdminDrawer.dart';
-import 'package:hostelapplication/presentation/screen/admin/complaintListScreen.dart';
+import 'package:hostelapplication/presentation/screen/admin/complaint/complaintListScreen.dart';
 
 
 class AdminComplaintScreen extends StatefulWidget {

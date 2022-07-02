@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hostelapplication/core/constant/string.dart';
 import 'package:hostelapplication/logic/modules/complaint_model.dart';
 import 'package:hostelapplication/logic/provider/complaint_provider.dart';
-import 'package:hostelapplication/presentation/screen/admin/approveDenyCompScreen.dart';
+import 'package:hostelapplication/presentation/screen/admin/complaint/approveDenyCompScreen.dart';
 import 'package:provider/provider.dart';
 
 class adminComplainListScreen extends StatelessWidget {

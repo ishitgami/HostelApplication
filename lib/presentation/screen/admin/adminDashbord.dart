@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:hostelapplication/presentation/screen/admin/AdminLeave.dart';
-import 'package:hostelapplication/presentation/screen/admin/AdminServices.dart';
-import 'package:hostelapplication/presentation/screen/admin/AdmincomplaintScreen.dart';
-import 'package:hostelapplication/presentation/screen/admin/adminHome.dart';
+import 'package:hostelapplication/presentation/screen/admin/leave/AdminLeave.dart';
+import 'package:hostelapplication/presentation/screen/admin/service/AdminServices.dart';
+import 'package:hostelapplication/presentation/screen/admin/complaint/AdmincomplaintScreen.dart';
+import 'package:hostelapplication/presentation/screen/admin/notice/adminNotice.dart';
 
 
 class AdminDashbordScreen extends StatefulWidget {
