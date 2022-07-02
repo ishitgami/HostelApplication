@@ -37,4 +37,14 @@ class ComplaintFirestoreService {
   Future<void> removeComplaint(String complaintId) {
     return _db.collection('Complaint').doc(complaintId).delete();
   }
+
+  Future<void> changeComplaintStatus(int status,String compaintId) {
+    return _db.collection('Complaint').doc(compaintId).set({
+      'Status' : status
+    },
+    SetOptions(
+            merge: true,
+          ),
+    );
+  }
 }

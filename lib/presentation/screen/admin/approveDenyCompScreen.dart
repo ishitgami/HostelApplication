@@ -1,23 +1,31 @@
 import 'package:flutter/material.dart';
+import 'package:hostelapplication/logic/modules/complaint_model.dart';
+import 'package:hostelapplication/logic/provider/complaint_provider.dart';
+import 'package:provider/provider.dart';
 
 class ApproveDenyComplainList extends StatelessWidget {
-  const ApproveDenyComplainList({Key? key}) : super(key: key);
+  ApproveDenyComplainList(this.complaint, {Key? key}) : super(key: key);
+  Complaint complaint;
 
   @override
   Widget build(BuildContext context) {
+     final complaintProvider = Provider.of<ComplaintProvider>(context);
     const tablepadding = EdgeInsets.all(15);
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Approve/Denny Services'),
+        title: const Text('Approve/Denny Complaint'),
       ),
       body: SingleChildScrollView(
         child: Column(
           children: [
             Padding(
               padding: const EdgeInsets.only(
-                  top: 18.0, left: 18, right: 18, bottom: 50),
+                top: 18.0,
+                left: 18,
+                right: 18,
+                bottom: 50,
+              ),
               child: Container(
-                // padding: EdgeInsets.all(1),
                 clipBehavior: Clip.hardEdge,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
@@ -41,93 +49,116 @@ class ApproveDenyComplainList extends StatelessWidget {
                             1: FlexColumnWidth(),
                           },
                           border: TableBorder.all(
-                              color: Colors.grey,
-                              style: BorderStyle.solid,
-                              width: 1),
+                            color: Colors.grey,
+                            style: BorderStyle.solid,
+                            width: 1,
+                          ),
                           children: [
-                            TableRow(children: [
-                              Padding(
-                                padding: tablepadding,
-                                child: Column(children: const [
-                                  Center(
-                                    child: Text(
-                                      'Name',
-                                      style: TextStyle(fontSize: 18),
-                                    ),
-                                  )
-                                ]),
-                              ),
-                              Padding(
-                                padding: tablepadding,
-                                child: Column(children: const [
-                                  Text(
-                                    'Ishit Gami',
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.w600,
-                                        fontSize: 18),
-                                  )
-                                ]),
-                              ),
-                            ]),
-                            TableRow(children: [
-                              Padding(
-                                padding: tablepadding,
-                                child: Column(children: const [
-                                  Text(
-                                    'Room No.',
-                                    style: TextStyle(fontSize: 18),
-                                  )
-                                ]),
-                              ),
-                              Padding(
-                                padding: tablepadding,
-                                child: Column(children: const [
-                                  Text(
-                                    '510',
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.w600,
-                                        fontSize: 18),
-                                  )
-                                ]),
-                              ),
-                            ]),
-                            TableRow(children: [
-                              Padding(
-                                padding: tablepadding,
-                                child: Column(children: const [
-                                  Text(
-                                    'Date',
-                                    style: TextStyle(fontSize: 18),
-                                  )
-                                ]),
-                              ),
-                              Padding(
-                                padding: tablepadding,
-                                child: Column(children: const [
-                                  Text(
-                                    '01 July 2022',
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.w600,
-                                        fontSize: 18),
-                                  )
-                                ]),
-                              ),
-                            ]),
+                            TableRow(
+                              children: [
+                                Padding(
+                                  padding: tablepadding,
+                                  child: Column(
+                                    children: const [
+                                      Center(
+                                        child: Text(
+                                          'Name',
+                                          style: TextStyle(fontSize: 18),
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                                Padding(
+                                  padding: tablepadding,
+                                  child: Column(
+                                    children: [
+                                      Text(
+                                        complaint.name,
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.w600,
+                                            fontSize: 18),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                            TableRow(
+                              children: [
+                                Padding(
+                                  padding: tablepadding,
+                                  child: Column(
+                                    children: const [
+                                      Text(
+                                        'Room No.',
+                                        style: TextStyle(fontSize: 18),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                                Padding(
+                                  padding: tablepadding,
+                                  child: Column(
+                                    children: [
+                                      Text(
+                                        complaint.roomNo,
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.w600,
+                                            fontSize: 18),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                            TableRow(
+                              children: [
+                                Padding(
+                                  padding: tablepadding,
+                                  child: Column(
+                                    children: const [
+                                      Text(
+                                        'Date',
+                                        style: TextStyle(fontSize: 18),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                                Padding(
+                                  padding: tablepadding,
+                                  child: Column(
+                                    children: [
+                                      Text(
+                                        complaint.time.day.toString() +
+                                            '/' +
+                                            complaint.time.month.toString() +
+                                            '/' +
+                                            complaint.time.year.toString(),
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.w600,
+                                            fontSize: 18),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
                           ],
                         ),
                       ),
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: const [
+                      children: [
                         Text(
-                          "Services ",
+                          "Complaint ",
                           style: TextStyle(
                               fontSize: 18, fontWeight: FontWeight.bold),
                         ),
-                        Text(":"),
+                        Text(": "),
                         Text(
-                          " Room",
+                          complaint.complaintTitle,
                           style: TextStyle(
                               fontSize: 18,
                               color: Colors.red,
@@ -148,8 +179,7 @@ class ApproveDenyComplainList extends StatelessWidget {
                             width: 2,
                             color: const Color.fromARGB(157, 158, 158, 158)),
                       ),
-                      child: const Text(
-                          'Kindy Request to repair my room table:).'),
+                      child: Text(complaint.complaint),
                     ),
                     const SizedBox(
                       height: 20,
@@ -158,6 +188,10 @@ class ApproveDenyComplainList extends StatelessWidget {
                       children: [
                         Expanded(
                           child: GestureDetector(
+                            onDoubleTap: (){
+                              complaintProvider.changeStatus(2, complaint.id);
+                              Navigator.pop(context);
+                            },
                             child: Container(
                               decoration: BoxDecoration(
                                   color: Colors.red[400],
@@ -180,8 +214,12 @@ class ApproveDenyComplainList extends StatelessWidget {
                         ),
                         Expanded(
                           child: GestureDetector(
+                            onTap: (){
+                               complaintProvider.changeStatus(1, complaint.id);
+                               Navigator.pop(context);
+                            },
                             child: Container(
-                              decoration:  BoxDecoration(
+                              decoration: BoxDecoration(
                                   color: Colors.green[400],
                                   borderRadius: const BorderRadius.only(
                                       bottomRight: Radius.circular(20))),

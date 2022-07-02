@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:hostelapplication/core/constant/string.dart';
 import 'package:hostelapplication/presentation/screen/admin/AdminDrawer.dart';
+import 'package:hostelapplication/presentation/screen/admin/complaintListScreen.dart';
+
 
 class AdminComplaintScreen extends StatefulWidget {
   const AdminComplaintScreen({Key? key}) : super(key: key);
@@ -44,7 +45,7 @@ class _AdminComplaintScreenState extends State<AdminComplaintScreen> {
           itemBuilder: (BuildContext context, int index) {
             return GestureDetector(
               onTap: () {
-                Navigator.pushNamed(context, complaintListScreenRoute);
+                Navigator.push(context, MaterialPageRoute(builder: (context)=> adminComplainListScreen(imagesText[index])));
               },
               child: Card(
                 shape: RoundedRectangleBorder(

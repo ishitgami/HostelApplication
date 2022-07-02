@@ -39,14 +39,20 @@ class _StudentComplainScreenState extends State<StudentComplainScreen> {
       backgroundColor: Colors.grey[200],
       appBar: AppBar(
         title: const Text('Complain'),
-        actions: [
-        IconButton(
-          onPressed: () {
+      //   actions: [
+      //   IconButton(
+      //     onPressed: () {
+          
+      //     },
+      //     icon: const Icon(Icons.list_alt_rounded),
+      //   )
+      // ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: (){
            Navigator.push(context,  MaterialPageRoute(builder: (context) => StudentComplaintListScreen()));
-          },
-          icon: const Icon(Icons.notifications),
-        )
-      ],
+        },
+        child: Icon(Icons.comment),
       ),
       drawer: const StudentDrawer(),
       body: Container(

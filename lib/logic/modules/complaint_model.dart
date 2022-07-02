@@ -6,7 +6,7 @@ class Complaint {
   String studentUid;
   String name;
   String roomNo;
-  bool status;
+  int status;
   Complaint({
     required this.id,
     required this.complaint,
