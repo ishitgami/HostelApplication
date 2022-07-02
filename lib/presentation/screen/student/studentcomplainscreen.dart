@@ -1,7 +1,12 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:hostelapplication/core/constant/string.dart';
+import 'package:hostelapplication/logic/modules/complaint_model.dart';
+import 'package:hostelapplication/logic/service/fireStoreServices/complaint_firestore_service.dart';
 import 'package:hostelapplication/presentation/screen/student/complains/studentAddComplain.dart';
+import 'package:hostelapplication/presentation/screen/student/complains/studentComplaintList.dart';
 import 'package:hostelapplication/presentation/screen/student/studentDrawer.dart';
+import 'package:provider/provider.dart';
 
 
 class StudentComplainScreen extends StatefulWidget {
@@ -29,13 +34,19 @@ class _StudentComplainScreenState extends State<StudentComplainScreen> {
   ];
   @override
   Widget build(BuildContext context) {
-
     User? user = auth.currentUser;
-   
     return Scaffold(
       backgroundColor: Colors.grey[200],
       appBar: AppBar(
         title: const Text('Complain'),
+        actions: [
+        IconButton(
+          onPressed: () {
+           Navigator.push(context,  MaterialPageRoute(builder: (context) => StudentComplaintListScreen()));
+          },
+          icon: const Icon(Icons.notifications),
+        )
+      ],
       ),
       drawer: const StudentDrawer(),
       body: Container(

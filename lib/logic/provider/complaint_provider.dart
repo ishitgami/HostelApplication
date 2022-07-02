@@ -49,6 +49,7 @@ class ComplaintProvider with ChangeNotifier {
         time: _time,
         name: gerName,
         roomNo: gerRoomNo,
+        status: false,
         studentUid: gerStudentUid);
     service.saveComplaint(newComplaint);
   }

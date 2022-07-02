@@ -14,7 +14,8 @@ import 'package:hostelapplication/presentation/screen/onBordingScreen.dart';
 import 'package:hostelapplication/presentation/screen/splashScreen.dart';
 import 'package:hostelapplication/presentation/screen/student/Drawer/helpscreen.dart';
 import 'package:hostelapplication/presentation/screen/student/Drawer/mycomplaint.dart';
-import 'package:hostelapplication/presentation/screen/student/complains/fanlightcomplaint.dart';
+import 'package:hostelapplication/presentation/screen/student/complains/studentComplaintList.dart';
+import 'package:hostelapplication/presentation/screen/student/services/RoomElectricServices.dart';
 import 'package:hostelapplication/presentation/screen/student/detailspage/studentdetails.dart';
 import 'package:hostelapplication/presentation/screen/student/studentDashbord.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -89,6 +90,11 @@ class Routes {
       case adminDetailsScreenRoute:
         return MaterialPageRoute(
             builder: (context) => const AdminDetailsScreen());
+      
+      // case studentComplaintListScreenRoute:
+      //   return MaterialPageRoute(
+      //       builder: (context) => const StudentComplaintListScreen());
+            
 
       default:
         return MaterialPageRoute(

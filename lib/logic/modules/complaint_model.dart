@@ -6,6 +6,7 @@ class Complaint {
   String studentUid;
   String name;
   String roomNo;
+  bool status;
   Complaint({
     required this.id,
     required this.complaint,
@@ -14,6 +15,7 @@ class Complaint {
     required this.studentUid,
     required this.name,
     required this.roomNo,
+    required this.status,
   });
 
   Map<String,dynamic> createMap() {
@@ -25,6 +27,7 @@ class Complaint {
       'ComplaintTitle' : complaintTitle,
       'Name' : name,
       'RoomNo' : roomNo,
+      'Status' : status,
     };
   }
 
@@ -35,5 +38,6 @@ class Complaint {
     time = firestoreMap['Time'].toDate(),
     studentUid = firestoreMap['StudentUid'],
     roomNo = firestoreMap['RoomNo'],
+    status = firestoreMap['Status'],
     name = firestoreMap['Name'];
 }

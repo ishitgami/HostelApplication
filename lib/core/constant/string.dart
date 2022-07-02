@@ -22,6 +22,7 @@ const String studentDetailScreenRoute = "/studentDetails";
 const String electricitycomplaintscreenRoute = "/electricitycomplaint";
 const String fanlightcomplaintscreenRoute = "/fanlightcomplaintscreen";
 const String studentAddComplaintRoute = "/studentAddcomplaintscreen";
+const String studentComplaintListScreenRoute = "/studentComplaintListScreen";
 
 //drawer
 const String helpscreenRoute = "/help";
