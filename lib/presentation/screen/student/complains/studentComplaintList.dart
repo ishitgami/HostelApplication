@@ -14,7 +14,8 @@ class StudentComplaintListScreen extends StatelessWidget {
     final complaintProvider = Provider.of<ComplaintProvider>(context);
     final complaintListRaw = Provider.of<List<Complaint>?>(context);
     complaintListRaw?.forEach((element) {
-      if (auth.currentUser?.uid == element.studentUid &&(element.status == 1 || element.status == 2)) {
+      if (auth.currentUser?.uid == element.studentUid &&
+          (element.status == 1 || element.status == 2)) {
         complaintList.add(element);
       }
       ;
@@ -23,11 +24,7 @@ class StudentComplaintListScreen extends StatelessWidget {
     return Scaffold(
         backgroundColor: Colors.grey[200],
         appBar: AppBar(
-<<<<<<< HEAD
           title: Text('My Complaint'),
-=======
-          title: Text('Past Complaint'),
->>>>>>> 3a61878e56b53ff1c25584a225f592404849420f
         ),
         body: complaintList != []
             ? Padding(
@@ -68,21 +65,21 @@ class StudentComplaintListScreen extends StatelessWidget {
                                   ],
                                 ),
                                 Spacer(),
-                                 complaintList[index].status == 1
-                                        ? Text(
-                                            'Approved',
-                                            style: TextStyle(
-                                              color: Colors.green,
-                                              fontWeight: FontWeight.w600,
-                                            ),
-                                          )
-                                        : Text(
-                                            'Declined',
-                                            style: TextStyle(
-                                              color: Colors.red,
-                                              fontWeight: FontWeight.w600,
-                                            ),
-                                          ),
+                                complaintList[index].status == 1
+                                    ? Text(
+                                        'Approved',
+                                        style: TextStyle(
+                                          color: Colors.green,
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                      )
+                                    : Text(
+                                        'Declined',
+                                        style: TextStyle(
+                                          color: Colors.red,
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                      ),
                                 SizedBox(
                                   width: 5,
                                 ),

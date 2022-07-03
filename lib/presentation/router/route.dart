@@ -11,11 +11,6 @@ import 'package:hostelapplication/presentation/screen/notifications/adminnotific
 import 'package:hostelapplication/presentation/screen/onBordingScreen.dart';
 import 'package:hostelapplication/presentation/screen/splashScreen.dart';
 import 'package:hostelapplication/presentation/screen/student/Drawer/helpscreen.dart';
-<<<<<<< HEAD
-=======
-import 'package:hostelapplication/presentation/screen/student/complains/mycomplaint.dart';
-import 'package:hostelapplication/presentation/screen/student/complains/studentComplaintList.dart';
->>>>>>> 3a61878e56b53ff1c25584a225f592404849420f
 import 'package:hostelapplication/presentation/screen/student/services/RoomElectricServices.dart';
 import 'package:hostelapplication/presentation/screen/student/detailspage/studentdetails.dart';
 import 'package:hostelapplication/presentation/screen/student/studentDashbord.dart';
@@ -81,12 +76,6 @@ class Routes {
         return MaterialPageRoute(
             builder: (context) => const FanLightComplaints());
 
-<<<<<<< HEAD
-=======
-      case mycomplaintscreenRoute:
-        return MaterialPageRoute(builder: (context) =>  Mycomplaints());
-
->>>>>>> 3a61878e56b53ff1c25584a225f592404849420f
       case adminnotificationRoute:
         return MaterialPageRoute(
             builder: (context) => const AdminNotification());
