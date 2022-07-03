@@ -28,12 +28,12 @@ class Leave {
       'Name': name,
       'LeaveReason': leaveReason,
       'RoomNo': roomNo,
-      'StudentId' : studentId,
+      'StudentId': studentId,
       'DateOfLeaving': dateOfLeave,
       'DateOfComing': dateOfComing,
       'Status': status,
       'TotalDay': totalDay,
-      'LeaveApplyDate' : leaveApplyDate,
+      'LeaveApplyDate': leaveApplyDate,
     };
   }
 
@@ -47,5 +47,5 @@ class Leave {
         dateOfComing = firestoreMap['DateOfComing'].toDate(),
         leaveApplyDate = firestoreMap['LeaveApplyDate'].toDate(),
         status = firestoreMap['Status'],
-        totalDay = firestoreMap['totalDay'];
+        totalDay = firestoreMap['TotalDay'];
 }

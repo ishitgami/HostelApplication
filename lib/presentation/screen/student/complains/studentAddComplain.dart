@@ -4,7 +4,8 @@ import 'package:hostelapplication/logic/provider/complaint_provider.dart';
 import 'package:provider/provider.dart';
 
 class StudentAddComplaintScreen extends StatelessWidget {
-  const StudentAddComplaintScreen(this.complainTitle, this.studentId, {Key? key})
+  const StudentAddComplaintScreen(this.complainTitle, this.studentId,
+      {Key? key})
       : super(key: key);
   final String complainTitle;
   final String studentId;
@@ -116,7 +117,7 @@ class StudentAddComplaintScreen extends StatelessWidget {
                                   padding: tablepadding,
                                   child: Column(children: [
                                     Text(
-                                      DateTime( now.year, now.month,now.day)
+                                      DateTime(now.year, now.month, now.day)
                                           .toString()
                                           .replaceAll("00:00:00.000", ""),
                                       style: const TextStyle(
@@ -167,9 +168,8 @@ class StudentAddComplaintScreen extends StatelessWidget {
                               Padding(
                                 padding: const EdgeInsets.all(18.0),
                                 child: TextFormField(
-                                  onChanged: (((value) => 
-                                  complaintProvider.changeComplaint(value))
-                                  ),
+                                  onChanged: (((value) => complaintProvider
+                                      .changeComplaint(value))),
                                   decoration: InputDecoration(
                                       focusedBorder: const OutlineInputBorder(
                                           borderSide:
@@ -201,11 +201,16 @@ class StudentAddComplaintScreen extends StatelessWidget {
                         bottom: 20,
                         child: FloatingActionButton(
                             onPressed: () {
-                               complaintProvider.changeComplaintTitle(complainTitle);
-                               complaintProvider.changeStudentUid(studentId);
-                               complaintProvider.changeName(userData.first.firstName +' '+userData.first.lastName);
-                               complaintProvider.changeRoomNo(userData.first.roomNo);
-                               complaintProvider.saveComplaint();
+                              complaintProvider
+                                  .changeComplaintTitle(complainTitle);
+                              complaintProvider.changeStudentUid(studentId);
+                              complaintProvider.changeName(
+                                  userData.first.firstName +
+                                      ' ' +
+                                      userData.first.lastName);
+                              complaintProvider
+                                  .changeRoomNo(userData.first.roomNo);
+                              complaintProvider.saveComplaint();
                               Navigator.pop(context);
                             },
                             child: const Icon(
