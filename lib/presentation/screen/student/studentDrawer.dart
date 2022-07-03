@@ -1,24 +1,36 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hostelapplication/core/constant/string.dart';
+import 'package:hostelapplication/logic/modules/userData_model.dart';
 import 'package:hostelapplication/logic/service/auth_services/auth_service.dart';
+import 'package:hostelapplication/logic/service/fireStoreServices/user_firestore_services.dart';
 import 'package:hostelapplication/presentation/screen/student/complains/studentComplaintList.dart';
 import 'package:provider/provider.dart';
 
 class StudentDrawer extends StatelessWidget {
   const StudentDrawer({Key? key}) : super(key: key);
+  
 
   @override
   Widget build(BuildContext context) {
-    late AuthService authService;
-    authService = Provider.of<AuthService>(context);
-    String studentname = "Student Name";
-    String studentenroll = "Student Enroll";
-    String hostelname = "Hostel Name";
-    String roomno = "Room No";
-    String department = "Department";
-    String phoneno = "Phone No";
+      UserData? userData;
+    final authService = Provider.of<AuthService>(context);
+    User user = authService.getcurrentUser();
+     List<UserData> complaintList = [];
+    final complaintListRaw = Provider.of<List<UserData>?>(context);
+    complaintListRaw?.forEach((element) {
+      if (user.uid == element.id) {
+        complaintList.add(element);
+      }
+      ;
+    });
 
+
+    
+    
+
+  
     const studentDrawerText = TextStyle(fontSize: 15);
     return Drawer(
       child: SafeArea(
@@ -42,13 +54,13 @@ class StudentDrawer extends StatelessWidget {
                         Container(
                           width: 75,
                           height: 65,
-                          decoration: const BoxDecoration(
+                          decoration:  BoxDecoration(
                             shape: BoxShape.circle,
                             color: Colors.white,
                             image: DecorationImage(
                               fit: BoxFit.cover,
                               image:
-                                  AssetImage("assets/images/profileimage.jpg"),
+                                  NetworkImage(complaintList.first.userimage),
                             ),
                           ),
                         ),
@@ -60,7 +72,7 @@ class StudentDrawer extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
-                              "$studentname",
+                              complaintList.first.firstName + ' ' + complaintList.first.lastName,
                               style: TextStyle(
                                   fontSize: 18, fontWeight: FontWeight.w500),
                             ),
@@ -68,7 +80,7 @@ class StudentDrawer extends StatelessWidget {
                               height: 5,
                             ),
                             Text(
-                              "$studentenroll",
+                              "View Profile",
                               style: TextStyle(
                                   fontSize: 13,
                                   color: Colors.grey,
@@ -81,70 +93,7 @@ class StudentDrawer extends StatelessWidget {
                     const SizedBox(
                       height: 20,
                     ),
-                    Container(
-                      width: 260,
-                      height: 155,
-                      decoration: const BoxDecoration(
-                        color: Color.fromARGB(183, 203, 208, 211),
-                        borderRadius: BorderRadius.all(Radius.circular(5)),
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(15.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                Text(
-                                  'Hostel             ',
-                                  style: studentDrawerText,
-                                ),
-                                Text(':', style: studentDrawerText),
-                                Text('     $hostelname',
-                                    style: studentDrawerText),
-                              ],
-                            ),
-                            const SizedBox(
-                              height: 15,
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                Text('Room No        ',
-                                    style: studentDrawerText),
-                                Text(':'),
-                                Text('     $roomno', style: studentDrawerText),
-                              ],
-                            ),
-                            const SizedBox(
-                              height: 15,
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                Text('Department   ', style: studentDrawerText),
-                                Text(':', style: studentDrawerText),
-                                Text('     $department',
-                                    style: studentDrawerText),
-                              ],
-                            ),
-                            const SizedBox(
-                              height: 15,
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                Text('Phone No       ',
-                                    style: studentDrawerText),
-                                Text(':', style: studentDrawerText),
-                                Text('     $phoneno', style: studentDrawerText),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-                    )
+                  
                   ],
                 ),
               ),

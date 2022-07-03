@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:hostelapplication/logic/provider/complaint_provider.dart';
+import 'package:hostelapplication/logic/provider/leave_provider.dart';
 import 'package:hostelapplication/logic/provider/notice_provider.dart';
 import 'package:hostelapplication/logic/provider/userData_provider.dart';
 import 'package:hostelapplication/logic/service/auth_services/auth_service.dart';
 import 'package:hostelapplication/logic/service/fireStoreServices/complaint_firestore_service.dart';
+import 'package:hostelapplication/logic/service/fireStoreServices/leave_firestore_service.dart';
 import 'package:hostelapplication/logic/service/fireStoreServices/notice_firestore_service.dart';
 import 'package:hostelapplication/logic/service/fireStoreServices/user_firestore_services.dart';
 import 'package:hostelapplication/presentation/router/route.dart';
@@ -52,6 +54,13 @@ Future<void> main() async {
         ),
         ChangeNotifierProvider.value(
           value: UsereDataProvider(),
+        ),
+        ChangeNotifierProvider.value(
+          value: LeaveProvider(),
+        ),
+        StreamProvider.value(
+          value: LeaveFirestoreService().getLeave(),
+          initialData: null,
         ),
       ],
       child: const MyApp(),
