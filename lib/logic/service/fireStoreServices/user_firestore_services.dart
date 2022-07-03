@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:hostelapplication/logic/modules/userData_model.dart';
 
 class UserDataFirestoreService {
@@ -18,12 +19,15 @@ class UserDataFirestoreService {
             .toList());
   }
 
-   Stream<UserData> getUserDataFromUId(uid) {
-    return _db
+   Future<UserData?> getUserDataFromUId(uid) async {
+    UserData?  userdata;
+    await  _db
         .collection('User')
         .doc(uid)
-        .snapshots()
-        .map((document) => UserData.fromFirestore(document.data()));
+        .get()
+        .then((value) { 
+        userdata =   UserData.fromFirestore(value.data());});
+        return userdata;
   }
   // Stream<UserData> getUserDataFromUId(uid) {
   //   print(uid);

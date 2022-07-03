@@ -143,22 +143,22 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   ),
                   TextFormField(
                     onChanged: (((value) =>
-                        userDataProvider.changeEnrollment(value))),
+                        userDataProvider.changeMobileNo(value))),
                     keyboardType: TextInputType.number,
                     textInputAction: TextInputAction.next,
                     validator: (text) {
                       if (text!.isEmpty) {
-                        return "Enter Enrollment number ";
+                        return "Enter Mobile number ";
                       }
                       return null;
                     },
-                    controller: enrollmentController,
+                    controller: mobileNoController,
                     decoration: InputDecoration(
                       prefixIcon: Icon(
-                        Icons.person_rounded,
+                        Icons.phone,
                         color: Color.fromARGB(255, 108, 99, 255),
                       ),
-                      hintText: 'Enrollment No',
+                      hintText: 'Mobile No.',
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.all(
                           Radius.circular(10.0),
@@ -284,8 +284,6 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                             });
                             progressIndicater(context, showLoading = true);
                             FireBaseUser? user = await createUser();
-                            userDataProvider.changeUserimage(
-                                "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png");
                             userDataProvider.changeId(user!.uid);
                             userDataProvider.saveUserData();
                             await showAlert == true

@@ -9,8 +9,8 @@ class UsereDataProvider with ChangeNotifier {
   late String _lastName;
   late String _roomNo;
   late String _email;
-  late String _enrollment;
-  late String _userimage;
+  late String _mobileNo;
+   String _userimage = "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png";
   DateTime _time = DateTime.now();
 
   // getter
@@ -20,7 +20,7 @@ class UsereDataProvider with ChangeNotifier {
   String get getRoomNo => _roomNo;
   String get getEmail => _email;
   String get getUserimage => _userimage;
-  String get getEnrollment => _enrollment;
+  String get getEnrollment => _mobileNo;
 
   // setter
   void changeId(String value) {
@@ -43,8 +43,8 @@ class UsereDataProvider with ChangeNotifier {
     _email = value;
   }
 
-  void changeEnrollment(String value) {
-    _enrollment = value;
+  void changeMobileNo(String value) {
+    _mobileNo = value;
   }
 
   void changeUserimage(String value) {
@@ -58,8 +58,8 @@ class UsereDataProvider with ChangeNotifier {
         id: getId,
         lastName: getLastName,
         roomNo: getRoomNo,
-        enrollment: getEnrollment,
-        userimage: getUserimage,
+        mobileNo: getEnrollment,
+        userimage: getUserimage.isEmpty ? '' :getUserimage ,
         time: _time);
     service.saveUser(newUserData);
   }

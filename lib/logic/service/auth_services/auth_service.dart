@@ -8,8 +8,8 @@ class AuthService {
   final auth.FirebaseAuth _firebaseAuth = auth.FirebaseAuth.instance;
   FirebaseFirestore _db = FirebaseFirestore.instance;
 
-  Future<auth.User?> getcurrentUser() async {
-    return await _firebaseAuth.currentUser;
+   getcurrentUser()  {
+    return  _firebaseAuth.currentUser;
   }
 
   FireBaseUser? _userFromFirebase(auth.User? user) {

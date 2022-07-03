@@ -23,11 +23,7 @@ class StudentComplaintListScreen extends StatelessWidget {
     return Scaffold(
         backgroundColor: Colors.grey[200],
         appBar: AppBar(
-<<<<<<< HEAD
           title: Text('My Complaint'),
-=======
-          title: Text('Past Complaint'),
->>>>>>> 3a61878e56b53ff1c25584a225f592404849420f
         ),
         body: complaintList != []
             ? Padding(

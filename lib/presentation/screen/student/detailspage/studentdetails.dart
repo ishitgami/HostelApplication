@@ -3,10 +3,8 @@ import 'package:file_picker/file_picker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:hostelapplication/logic/modules/userData_model.dart';
-import 'package:hostelapplication/logic/provider/userData_provider.dart';
 import 'package:hostelapplication/logic/service/auth_services/auth_service.dart';
 import 'package:provider/provider.dart';
-
 class StudentDetailScreen extends StatefulWidget {
   const StudentDetailScreen({Key? key}) : super(key: key);
 
@@ -19,32 +17,17 @@ class _StudentDetailScreenState extends State<StudentDetailScreen> {
   PlatformFile? pickedFile;
   @override
   Widget build(BuildContext context) {
-    // late AuthService authService;
-    // authService = Provider.of<AuthService>(context);
-    // final userList = Provider.of<List<UserData>?>(context);
-    // final userprovider = Provider.of<UsereDataProvider>(context);
-    // final FirebaseAuth auth = FirebaseAuth.instance;
-    // User? user = auth.currentUser;
-    // String studentid = user!.uid;
-    // Iterable<UserData>? userData =
-    //     userList?.where((element) => studentid == element.id);
-
-    // String studentname =
-    //     userData!.first.firstName + ' ' + userData.first.lastName;
-    // String imageurl = "url here";
-    // String studentenroll = userData.first.enrollment;
-    // String roomno = userData.first.roomNo;
-    String studentname = "";
-    String imageurl = "";
-    String studentenroll = "";
-    String roomno = "";
-    String phonenumber =
-        // userData.first.roomNo
-        "9991001999";
-    String department = "CSE";
-    // userData.first.roomNo;
-    String joiningdate = "01/01/2022";
-    // userData.first.roomNo;
+      UserData? userData;
+    final authService = Provider.of<AuthService>(context);
+    User user = authService.getcurrentUser();
+     List<UserData> userDataList = [];
+    final userDataListRaw = Provider.of<List<UserData>?>(context);
+    userDataListRaw?.forEach((element) {
+      if (user.uid == element.id) {
+        userDataList.add(element);
+      }
+      ;
+    });
 
     return Scaffold(
       appBar: AppBar(
@@ -85,13 +68,7 @@ class _StudentDetailScreenState extends State<StudentDetailScreen> {
                             color: Colors.white,
                             image: DecorationImage(
                                 fit: BoxFit.cover,
-                                image:
-                                    AssetImage("assets/image/profile_image.jpg")
-                                // pickedFile == null
-                                //     ? Image.network("${userData.first.userimage}")
-                                //         as ImageProvider
-                                //     : Image.asset("${pickedFile!.path!}")
-                                //         as ImageProvider,
+                                image:NetworkImage(userDataList.first.userimage),
                                 ),
                           ),
                         ),
@@ -103,15 +80,9 @@ class _StudentDetailScreenState extends State<StudentDetailScreen> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            "   $studentname ",
+                            userDataList.first.firstName + ' ' + userDataList.first.lastName,
                             style: TextStyle(
                                 fontSize: 22, fontWeight: FontWeight.w600),
-                          ),
-                          Text(
-                            "   ($studentenroll)",
-                            style: TextStyle(
-                              fontSize: 14,
-                            ),
                           ),
                         ],
                       ),
@@ -131,37 +102,33 @@ class _StudentDetailScreenState extends State<StudentDetailScreen> {
                               color: Color.fromARGB(183, 235, 237, 237),
                             ),
                             child: DataTable(
-                              columns: const [
+                              columns:  [
                                 DataColumn(
                                   label: Text(
-                                    'Hostel',
+                                    'Room No',
                                     style: TextStyle(
                                         fontWeight: FontWeight.normal),
                                   ),
                                 ),
                                 DataColumn(
                                     label: Text(
-                                  ': Abdul Kalam illam',
+                                  userDataList.first.roomNo,
                                   style:
                                       TextStyle(fontWeight: FontWeight.normal),
                                 )),
                               ],
                               rows: [
                                 DataRow(cells: [
-                                  DataCell(Text('Room No')),
-                                  DataCell(Text(':$roomno')),
-                                ]),
-                                DataRow(cells: [
-                                  DataCell(Text('Department')),
-                                  DataCell(Text(': $department')),
+                                  DataCell(Text('Email')),
+                                  DataCell(Text(userDataList.first.email)),
                                 ]),
                                 DataRow(cells: [
                                   DataCell(Text('Phone No')),
-                                  DataCell(Text(': $phonenumber')),
+                                  DataCell(Text(userDataList.first.mobileNo)),
                                 ]),
                                 DataRow(cells: [
                                   DataCell(Text('Date of joining')),
-                                  DataCell(Text(': $joiningdate')),
+                                  DataCell(Text(userDataList.first.time.day.toString()+'/'+userDataList.first.time.month.toString()+'/'+userDataList.first.time.year.toString())),
                                 ]),
                               ],
                             ),
