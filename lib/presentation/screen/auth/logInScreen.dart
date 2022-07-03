@@ -186,13 +186,12 @@ class _LogInScreenState extends State<LogInScreen> {
     try {
       await authService.signInWithEmailAndPassword(
           emailController.text.toString(), passwordController.text.toString());
-      if (emailController.text.toString() == 'admin@gmail.com' &&
-          passwordController.text.toString() == 'admin@123') {
-        Navigator.pop(context);
-        Navigator.pushReplacementNamed(context, adminDashbordScreenRoute);
+      if (emailController.text.toString() == 'admin@gmail.com') {
+        Navigator.pushNamedAndRemoveUntil(
+                    context, adminDashbordScreenRoute, (route) => false);
       } else {
-        Navigator.pop(context);
-        Navigator.pushReplacementNamed(context, studentDashboardScreenRoute);
+         Navigator.pushNamedAndRemoveUntil(
+                    context, studentDashboardScreenRoute, (route) => false);
       }
     } catch (e) {
       print(e);
