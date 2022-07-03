@@ -84,10 +84,6 @@ class Routes {
         return MaterialPageRoute(
             builder: (context) => const AdminDetailsScreen());
 
-      // case studentComplaintListScreenRoute:
-      //   return MaterialPageRoute(
-      //       builder: (context) => const StudentComplaintListScreen());
-
       default:
         return MaterialPageRoute(
           builder: (_) => Scaffold(

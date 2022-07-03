@@ -1,103 +1,91 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:hostelapplication/logic/modules/complaint_model.dart';
-import 'package:hostelapplication/logic/provider/complaint_provider.dart';
+import 'package:hostelapplication/logic/modules/leave_model.dart';
+import 'package:hostelapplication/logic/provider/leave_provider.dart';
 import 'package:provider/provider.dart';
-import 'package:intl/intl.dart';
 
-class Mycomplaints extends StatelessWidget {
-   Mycomplaints({Key? key}) : super(key: key);
-
-
-  
+class MyLeave extends StatelessWidget {
+  const MyLeave({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-     final FirebaseAuth auth = FirebaseAuth.instance;
-     List<Complaint> complaintList = [];
-    final complaintProvider = Provider.of<ComplaintProvider>(context);
-    final complaintListRaw = Provider.of<List<Complaint>?>(context);
-    complaintListRaw?.forEach((element) {
-      if (auth.currentUser?.uid == element.studentUid && element.status == 0) {
-        complaintList.add(element);
+    final FirebaseAuth auth = FirebaseAuth.instance;
+    List<Leave> Leavelist = [];
+    final leaveprovider = Provider.of<LeaveProvider>(context);
+    final leaveListRaw = Provider.of<List<Leave>?>(context);
+    leaveListRaw?.forEach((element) {
+      if (auth.currentUser?.uid == element.studentId && element.status == 0) {
+        Leavelist.add(element);
       }
       ;
     });
-
-
-
-
-
-
-    // final Stream<QuerySnapshot> _usersStream =
-    //     FirebaseFirestore.instance.collection('Complaint').snapshots();
-
-    // final complaintlist = Provider.of<List<Complaint>?>(context);
-
     return Scaffold(
         appBar: AppBar(
-          title: const Text("My complaints"),
+          title: const Text("My Leaves"),
         ),
-        body: complaintList != []
+        body: Leavelist != []
             ? Padding(
-          padding: EdgeInsets.all(8),
-          child: ListView.builder(
-            itemCount: complaintList.length,
-            itemBuilder: (context,index) {
-              return MycomplaintsListModel(
-              Compiantdesc: complaintList[index].complaint,
-              Complainttype: complaintList[index].complaintTitle,
-              Complaintdate: complaintList[index].time,
-              deletecomplaint: (){
-                   showDialog(
-                                      context: context,
-                                      builder: (_) => AlertDialog(
-                                        content: Text(
-                                            "Are you sure you want to delete ?"),
-                                        actions: [
-                                          TextButton(
-                                            child: Text(
-                                              "Cancel",
-                                              style: TextStyle(
-                                                  color: Colors.black),
-                                            ),
-                                            onPressed: () {
-                                              Navigator.of(context).pop();
-                                            },
-                                          ),
-                                          TextButton(
-                                            child: Text(
-                                              "Delete",
-                                              style:
-                                                  TextStyle(color: Colors.red),
-                                            ),
-                                            onPressed: () {
-                                              complaintProvider.deleteComplaint(
-                                                  complaintList[index].id);
-                                              Navigator.of(context).pop();
-                                            },
-                                          ),
-                                        ],
-                                      ),
-                                    );
-              },
-              );
-            },
-
-          ),
-          ) :  Center(child: CircularProgressIndicator(),)
-        );
+                padding: EdgeInsets.all(8),
+                child: ListView.builder(
+                  itemCount: Leavelist.length,
+                  itemBuilder: (context, index) {
+                    return MyLeaveListModel(
+                      leavingdate: Leavelist[index].dateOfLeave,
+                      commingdate: Leavelist[index].dateOfComing,
+                      leavereason: Leavelist[index].leaveReason,
+                      deleteleave: () {
+                        showDialog(
+                          context: context,
+                          builder: (_) => AlertDialog(
+                            content: Text("Are you sure you want to delete ?"),
+                            actions: [
+                              TextButton(
+                                child: Text(
+                                  "Cancel",
+                                  style: TextStyle(color: Colors.black),
+                                ),
+                                onPressed: () {
+                                  Navigator.of(context).pop();
+                                },
+                              ),
+                              TextButton(
+                                child: Text(
+                                  "Delete",
+                                  style: TextStyle(color: Colors.red),
+                                ),
+                                onPressed: () {
+                                  leaveprovider
+                                      .deleteLeave(Leavelist[index].id);
+                                  Navigator.of(context).pop();
+                                },
+                              ),
+                            ],
+                          ),
+                        );
+                      },
+                    );
+                  },
+                ),
+              )
+            : Center(
+                child: CircularProgressIndicator(),
+              ));
   }
 }
 
-class MycomplaintsListModel extends StatelessWidget {
-  MycomplaintsListModel(
-      {required this.Complaintdate,required this.Complainttype,required this.Compiantdesc,required this.deletecomplaint});
-  DateTime Complaintdate;
-  String Complainttype;
-  String Compiantdesc;
-  Function deletecomplaint;
+class MyLeaveListModel extends StatelessWidget {
+  MyLeaveListModel(
+      {required this.leavingdate,
+      required this.commingdate,
+      required this.leavereason,
+      required this.deleteleave,
+      Key? key})
+      : super(key: key);
+
+  DateTime leavingdate;
+  DateTime commingdate;
+  String leavereason;
+  Function deleteleave;
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -129,13 +117,17 @@ class MycomplaintsListModel extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
-                              "Date ",
+                              "Leaving Date ",
                               style: TextStyle(
                                   fontSize: 18, fontWeight: FontWeight.bold),
                             ),
                             Text(":"),
                             Text(
-                              Complaintdate.day.toString() +'/'+Complaintdate.month.toString() +'/'+ Complaintdate.year.toString(),
+                              leavingdate.day.toString() +
+                                  '/' +
+                                  leavingdate.month.toString() +
+                                  '/' +
+                                  leavingdate.year.toString(),
                               style: TextStyle(
                                   fontSize: 18, fontWeight: FontWeight.bold),
                             ),
@@ -150,17 +142,38 @@ class MycomplaintsListModel extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          "Complaint ",
+                          "Comming Date ",
                           style: TextStyle(
                               fontSize: 18, fontWeight: FontWeight.bold),
                         ),
                         Text(":"),
                         Text(
-                          Complainttype,
+                          commingdate.day.toString() +
+                              '/' +
+                              commingdate.month.toString() +
+                              '/' +
+                              commingdate.year.toString(),
                           style: TextStyle(
-                              fontSize: 18,
-                              color: Colors.red,
-                              fontWeight: FontWeight.bold),
+                              fontSize: 18, fontWeight: FontWeight.bold),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          "TotalDay ",
+                          style: TextStyle(
+                              fontSize: 18, fontWeight: FontWeight.bold),
+                        ),
+                        Text(":"),
+                        Text(
+                          "${commingdate.difference(leavingdate).inDays}",
+                          style: TextStyle(
+                              fontSize: 18, fontWeight: FontWeight.bold),
                         ),
                       ],
                     ),
@@ -177,7 +190,7 @@ class MycomplaintsListModel extends StatelessWidget {
                             width: 2,
                             color: Color.fromARGB(157, 158, 158, 158)),
                       ),
-                      child: Text(Compiantdesc),
+                      child: Text(leavereason),
                     ),
                     const SizedBox(
                       height: 20,
@@ -186,8 +199,8 @@ class MycomplaintsListModel extends StatelessWidget {
                       children: [
                         Expanded(
                           child: GestureDetector(
-                            onTap: (){
-                              deletecomplaint();
+                            onTap: () {
+                              deleteleave();
                             },
                             child: Container(
                               margin: const EdgeInsets.only(

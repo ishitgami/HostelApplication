@@ -30,14 +30,11 @@ const String helpscreenRoute = "/help";
 //notification
 const String adminnotificationRoute = "/adminnotif";
 
-
-
 //****************End-Routes***********************
 
-
-  String studentname = "Student Name";
-    String studentenroll = "Student Enroll";
-    String hostelname = "Hostel Name";
-    String roomno = "Room No";
-    String department = "Department";
-    String phoneno = "Phone No";
+String studentname = "Student Name";
+String studentenroll = "Student Enroll";
+String hostelname = "Hostel Name";
+String roomno = "Room No";
+String department = "Department";
+String phoneno = "Phone No";

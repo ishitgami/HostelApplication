@@ -4,20 +4,19 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hostelapplication/core/constant/string.dart';
 import 'package:hostelapplication/logic/modules/userData_model.dart';
 import 'package:hostelapplication/logic/service/auth_services/auth_service.dart';
-import 'package:hostelapplication/logic/service/fireStoreServices/user_firestore_services.dart';
-import 'package:hostelapplication/presentation/screen/student/complains/studentComplaintList.dart';
+import 'package:hostelapplication/presentation/screen/student/Drawer/mycomplaint.dart';
+import 'package:hostelapplication/presentation/screen/student/Drawer/myleave.dart';
 import 'package:provider/provider.dart';
 
 class StudentDrawer extends StatelessWidget {
   const StudentDrawer({Key? key}) : super(key: key);
-  
 
   @override
   Widget build(BuildContext context) {
-      UserData? userData;
+    UserData? userData;
     final authService = Provider.of<AuthService>(context);
     User user = authService.getcurrentUser();
-     List<UserData> complaintList = [];
+    List<UserData> complaintList = [];
     final complaintListRaw = Provider.of<List<UserData>?>(context);
     complaintListRaw?.forEach((element) {
       if (user.uid == element.id) {
@@ -26,11 +25,6 @@ class StudentDrawer extends StatelessWidget {
       ;
     });
 
-
-    
-    
-
-  
     const studentDrawerText = TextStyle(fontSize: 15);
     return Drawer(
       child: SafeArea(
@@ -54,7 +48,7 @@ class StudentDrawer extends StatelessWidget {
                         Container(
                           width: 75,
                           height: 65,
-                          decoration:  BoxDecoration(
+                          decoration: BoxDecoration(
                             shape: BoxShape.circle,
                             color: Colors.white,
                             image: DecorationImage(
@@ -72,7 +66,9 @@ class StudentDrawer extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
-                              complaintList.first.firstName + ' ' + complaintList.first.lastName,
+                              complaintList.first.firstName +
+                                  ' ' +
+                                  complaintList.first.lastName,
                               style: TextStyle(
                                   fontSize: 18, fontWeight: FontWeight.w500),
                             ),
@@ -93,7 +89,6 @@ class StudentDrawer extends StatelessWidget {
                     const SizedBox(
                       height: 20,
                     ),
-                  
                   ],
                 ),
               ),
@@ -114,10 +109,27 @@ class StudentDrawer extends StatelessWidget {
                 ],
               ),
               onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => StudentComplaintListScreen()));
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => Mycomplaints()));
+              },
+            ),
+            const SizedBox(width: 50, child: Divider()),
+            ListTile(
+              title: Row(
+                children: const [
+                  Icon(
+                    FontAwesomeIcons.personWalkingDashedLineArrowRight,
+                    color: Colors.blue,
+                  ),
+                  SizedBox(
+                    width: 30,
+                  ),
+                  Text('My Leaves'),
+                ],
+              ),
+              onTap: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => MyLeave()));
               },
             ),
             const SizedBox(width: 50, child: Divider()),
