@@ -1,8 +1,10 @@
 // ignore_for_file: must_be_immutable
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:hostelapplication/logic/modules/notice_model.dart';
 import 'package:hostelapplication/presentation/screen/student/studentDrawer.dart';
+import 'package:image_downloader/image_downloader.dart';
 import 'package:provider/provider.dart';
 
 class StudentHome extends StatefulWidget {
@@ -62,7 +64,16 @@ class NoticeContainer extends StatelessWidget {
     switch (item) {
       case 'Save Image':
         {
-          print("image save");
+          try {
+            var imageId = await ImageDownloader.downloadImage(src);
+            if (imageId == null) {
+              return print("Image download faild");
+            }
+            var path = await ImageDownloader.findPath(imageId);
+          } on PlatformException catch (error) {
+            print(error);
+          }
+          // print("image save");
         }
         break;
       case 'Share':
