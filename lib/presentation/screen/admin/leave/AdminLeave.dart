@@ -15,28 +15,21 @@ class AdminLeaveScreen extends StatefulWidget {
 class _AdminLeaveScreenState extends State<AdminLeaveScreen> {
   @override
   Widget build(BuildContext context) {
-    final FirebaseAuth auth = FirebaseAuth.instance;
-    List<Leave> Leavelist = [];
-    final leaveListRaw = Provider.of<List<Leave>?>(context);
-    leaveListRaw?.forEach((element) {
-      if (auth.currentUser?.uid == element.studentId && element.status == 0) {
-        Leavelist.add(element);
-      }
-      ;
-    });
+    final leaveList = Provider.of<List<Leave>?>(context);
+
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.lightBlue,
           title: const Text('Leave'),
         ),
         drawer: const AdminDrawer(),
-        body: Leavelist != []
+        body: leaveList != null
             ? ListView.builder(
-                itemCount: Leavelist.length,
+                itemCount: leaveList.length,
                 itemBuilder: (BuildContext context, int index) {
                   return adminleavelistmodel(
-                      studentname: Leavelist[index].name,
-                      roomno: Leavelist[index].roomNo);
+                      studentname: leaveList[index].name,
+                      roomno: leaveList[index].roomNo);
                 },
               )
             : Center(child: CircularProgressIndicator()));
@@ -67,12 +60,12 @@ class adminleavelistmodel extends StatelessWidget {
               padding: const EdgeInsets.all(20),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: const [
+                children: [
                   Text(
-                    'Ishit Gami',
+                    "$studentname",
                     style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
                   ),
-                  Text('Room No. : 510'),
+                  Text('Room No. : $roomno'),
                 ],
               ),
             ),
