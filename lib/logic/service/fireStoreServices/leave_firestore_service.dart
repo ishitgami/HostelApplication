@@ -11,9 +11,10 @@ class LeaveFirestoreService {
   }
 
   Stream<List<Leave>> getLeave() {
+    print('inGetLeave');
     return _db
         .collection('Leave')
-        .orderBy("Time", descending: true)
+        // .orderBy("Time", descending: true)
         .snapshots()
         .map((snapshot) => snapshot.docs
             .map((document) => Leave.fromFirestore(document.data()))

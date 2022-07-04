@@ -16,7 +16,17 @@ class AdminLeaveScreen extends StatefulWidget {
 class _AdminLeaveScreenState extends State<AdminLeaveScreen> {
   @override
   Widget build(BuildContext context) {
-    final leaveList = Provider.of<List<Leave>?>(context);
+    List<Leave> leaveList = [];
+    final leaveListRaw = Provider.of<List<Leave>?>(context);
+    leaveListRaw?.forEach(
+      (element) {
+        if (element.status == 0) {
+          print(element);
+          leaveList.add(element);
+        }
+        ;
+      },
+    );
 
     return Scaffold(
         appBar: AppBar(

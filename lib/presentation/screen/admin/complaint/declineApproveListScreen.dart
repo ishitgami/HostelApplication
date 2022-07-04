@@ -12,6 +12,7 @@ class DeclineApproveListScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     List<Complaint> complaintList = [];
     final complaintListRaw = Provider.of<List<Complaint>?>(context);
+   
     complaintListRaw?.forEach(
       (element) {
         if (element.status == complainStatus) {

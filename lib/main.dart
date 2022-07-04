@@ -27,6 +27,10 @@ Future<void> main() async {
   runApp(
     MultiProvider(
       providers: [
+        StreamProvider.value(
+          value: LeaveFirestoreService().getLeave(),
+          initialData: null,
+        ),
         Provider<AuthService>(
           create: (_) => AuthService(),
         ),
@@ -60,10 +64,7 @@ Future<void> main() async {
         ChangeNotifierProvider.value(
           value: LeaveProvider(),
         ),
-        StreamProvider.value(
-          value: LeaveFirestoreService().getLeave(),
-          initialData: null,
-        ),
+        
       ],
       child: const MyApp(),
     ),
