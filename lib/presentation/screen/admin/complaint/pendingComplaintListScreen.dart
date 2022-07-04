@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/material.dart';
 import 'package:hostelapplication/logic/modules/complaint_model.dart';
 import 'package:hostelapplication/presentation/screen/admin/complaint/approveDenyCompScreen.dart';
@@ -19,7 +21,8 @@ class PendingComplainListScreen extends StatelessWidget {
       },
     );
     return Scaffold(
-      backgroundColor:complaintList.length != 0? Colors.grey[200]:Colors.white,
+      backgroundColor:
+          complaintList.length != 0 ? Colors.grey[200] : Colors.white,
       appBar: AppBar(
         title: Text('$complaintTitle complaints'),
       ),
@@ -117,8 +120,18 @@ class PendingComplainListScreen extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Image.asset('assets/images/nodata.jpg',height: 250,width: 250,),
-                  Text('No Complaints :)',style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold,color: Colors.grey),),
+                  Image.asset(
+                    'assets/images/nodata.jpg',
+                    height: 250,
+                    width: 250,
+                  ),
+                  Text(
+                    'No Complaints :)',
+                    style: TextStyle(
+                        fontSize: 25,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.grey),
+                  ),
                 ],
               ),
             ),

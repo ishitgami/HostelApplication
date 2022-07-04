@@ -1,7 +1,7 @@
 class Leave {
   String id;
   String name;
-  String studentId;
+  String studentUid;
   String leaveReason;
   String roomNo;
   DateTime dateOfLeave;
@@ -12,7 +12,7 @@ class Leave {
   Leave({
     required this.id,
     required this.name,
-    required this.studentId,
+    required this.studentUid,
     required this.leaveReason,
     required this.roomNo,
     required this.leaveApplyDate,
@@ -28,7 +28,7 @@ class Leave {
       'Name': name,
       'LeaveReason': leaveReason,
       'RoomNo': roomNo,
-      'StudentId': studentId,
+      'StudentUid': studentUid,
       'DateOfLeaving': dateOfLeave,
       'DateOfComing': dateOfComing,
       'Status': status,
@@ -40,7 +40,7 @@ class Leave {
   Leave.fromFirestore(Map<String, dynamic> firestoreMap)
       : id = firestoreMap['id'],
         name = firestoreMap['Name'],
-        studentId = firestoreMap['StudentId'],
+        studentUid = firestoreMap['StudentUid'],
         leaveReason = firestoreMap['LeaveReason'],
         roomNo = firestoreMap['RoomNo'],
         dateOfLeave = firestoreMap['DateOfLeaving'].toDate(),

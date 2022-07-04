@@ -1,14 +1,12 @@
-import 'package:date_time_picker/date_time_picker.dart';
+// ignore_for_file: deprecated_member_use, unnecessary_null_comparison
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:hostelapplication/core/constant/string.dart';
-import 'package:hostelapplication/logic/modules/leave_model.dart';
 import 'package:hostelapplication/logic/modules/userData_model.dart';
 import 'package:hostelapplication/logic/provider/leave_provider.dart';
-import 'package:hostelapplication/presentation/screen/student/Drawer/myleave.dart';
 import 'package:hostelapplication/presentation/screen/student/studentDrawer.dart';
 import 'package:provider/provider.dart';
-import 'package:uuid/uuid.dart';
 
 class StudentLeave extends StatefulWidget {
   const StudentLeave({Key? key}) : super(key: key);
@@ -18,6 +16,9 @@ class StudentLeave extends StatefulWidget {
 }
 
 class _StudentLeaveState extends State<StudentLeave> {
+  DateTime leavingDate = DateTime.now();
+  DateTime commingDate = DateTime.now();
+
   @override
   Widget build(BuildContext context) {
     final FirebaseAuth auth = FirebaseAuth.instance;
@@ -28,11 +29,8 @@ class _StudentLeaveState extends State<StudentLeave> {
     Iterable<UserData>? userData =
         userList?.where((element) => user!.uid == element.id);
 
-    final Currentdate =
-        DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day);
-    final leavingdate = Currentdate;
-    final commingdate = Currentdate.add(Duration(days: 2));
     const tablepadding = EdgeInsets.all(15);
+    int totalday = commingDate.difference(leavingDate).inDays;
 
     String Studentname =
         "${userData!.first.firstName}" + " " + "${userData.first.lastName}";
@@ -151,18 +149,32 @@ class _StudentLeaveState extends State<StudentLeave> {
                                           Padding(
                                             padding: tablepadding,
                                             child: Column(children: [
-                                              DateTimePicker(
-                                                initialValue:
-                                                    Currentdate.toString(),
-                                                firstDate: DateTime.now(),
-                                                lastDate: DateTime.now()
-                                                    .add(Duration(days: 30)),
-                                                onChanged: (val) {
+                                              Text("${leavingDate.toLocal()}"
+                                                  .split(' ')[0]),
+                                              RaisedButton(
+                                                onPressed: () async {
+                                                  final DateTime? picked =
+                                                      await showDatePicker(
+                                                    context: context,
+                                                    initialDate: leavingDate,
+                                                    firstDate: leavingDate,
+                                                    lastDate: leavingDate.add(
+                                                        Duration(days: 30)),
+                                                  );
+
+                                                  if (picked != null &&
+                                                      picked != leavingDate) {
+                                                    setState(() {
+                                                      leavingDate = picked;
+                                                    });
+                                                  }
+
                                                   leaveProvider
                                                       .changeLeavingDate(
-                                                          DateTime.parse(val));
+                                                          leavingDate);
                                                 },
-                                              )
+                                                child: Text('Select date'),
+                                              ),
                                             ]),
                                           ),
                                         ]),
@@ -179,18 +191,33 @@ class _StudentLeaveState extends State<StudentLeave> {
                                           Padding(
                                             padding: tablepadding,
                                             child: Column(children: [
-                                              DateTimePicker(
-                                                initialValue:
-                                                    commingdate.toString(),
-                                                firstDate: commingdate,
-                                                lastDate: commingdate
-                                                    .add(Duration(days: 30)),
-                                                onChanged: (val) {
+                                              Text("${commingDate.toLocal()}"
+                                                  .split(' ')[0]),
+                                              RaisedButton(
+                                                onPressed: () async {
+                                                  final DateTime? picked =
+                                                      await showDatePicker(
+                                                          context: context,
+                                                          initialDate:
+                                                              leavingDate,
+                                                          firstDate:
+                                                              DateTime.now(),
+                                                          lastDate: leavingDate
+                                                              .add(Duration(
+                                                                  days: 30)));
+
+                                                  if (picked != null &&
+                                                      picked != commingDate) {
+                                                    setState(() {
+                                                      commingDate = picked;
+                                                    });
+                                                  }
                                                   leaveProvider
                                                       .changeComingDate(
-                                                          DateTime.parse(val));
+                                                          commingDate);
                                                 },
-                                              ),
+                                                child: Text('Select date'),
+                                              )
                                             ]),
                                           ),
                                         ]),
@@ -206,8 +233,8 @@ class _StudentLeaveState extends State<StudentLeave> {
                                           ),
                                           Padding(
                                             padding: tablepadding,
-                                            child:
-                                                Column(children: [Text("0")]),
+                                            child: Column(
+                                                children: [Text("$totalday")]),
                                           ),
                                         ]),
                                       ],
@@ -264,8 +291,8 @@ class _StudentLeaveState extends State<StudentLeave> {
                                           leaveProvider.changeRoomNo(
                                               userData.first.roomNo);
                                           leaveProvider.changeTotalDay(
-                                              commingdate
-                                                  .difference(leavingdate)
+                                              commingDate
+                                                  .difference(leavingDate)
                                                   .inDays);
                                           leaveProvider.changeStudentUid(
                                               userData.first.id);

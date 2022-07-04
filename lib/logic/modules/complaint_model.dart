@@ -18,26 +18,26 @@ class Complaint {
     required this.status,
   });
 
-  Map<String,dynamic> createMap() {
+  Map<String, dynamic> createMap() {
     return {
       'id': id,
-      'Complaint' : complaint,
-      'Time' : time,
-      'StudentUid' : studentUid,
-      'ComplaintTitle' : complaintTitle,
-      'Name' : name,
-      'RoomNo' : roomNo,
-      'Status' : status,
+      'Complaint': complaint,
+      'Time': time,
+      'StudentUid': studentUid,
+      'ComplaintTitle': complaintTitle,
+      'Name': name,
+      'RoomNo': roomNo,
+      'Status': status,
     };
   }
 
-  Complaint.fromFirestore(Map<String, dynamic> firestoreMap) 
-    : id = firestoreMap['id'],
-    complaintTitle = firestoreMap['ComplaintTitle'],
-    complaint = firestoreMap['Complaint'],
-    time = firestoreMap['Time'].toDate(),
-    studentUid = firestoreMap['StudentUid'],
-    roomNo = firestoreMap['RoomNo'],
-    status = firestoreMap['Status'],
-    name = firestoreMap['Name'];
+  Complaint.fromFirestore(Map<String, dynamic> firestoreMap)
+      : id = firestoreMap['id'],
+        complaintTitle = firestoreMap['ComplaintTitle'],
+        complaint = firestoreMap['Complaint'],
+        time = firestoreMap['Time'].toDate(),
+        studentUid = firestoreMap['StudentUid'],
+        roomNo = firestoreMap['RoomNo'],
+        status = firestoreMap['Status'],
+        name = firestoreMap['Name'];
 }

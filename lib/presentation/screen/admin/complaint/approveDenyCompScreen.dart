@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/material.dart';
 import 'package:hostelapplication/logic/modules/complaint_model.dart';
 import 'package:hostelapplication/logic/provider/complaint_provider.dart';
@@ -9,7 +11,7 @@ class ApproveDenyComplainList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-     final complaintProvider = Provider.of<ComplaintProvider>(context);
+    final complaintProvider = Provider.of<ComplaintProvider>(context);
     const tablepadding = EdgeInsets.all(15);
     return Scaffold(
       appBar: AppBar(
@@ -188,7 +190,7 @@ class ApproveDenyComplainList extends StatelessWidget {
                       children: [
                         Expanded(
                           child: GestureDetector(
-                            onDoubleTap: (){
+                            onDoubleTap: () {
                               complaintProvider.changeStatus(2, complaint.id);
                               Navigator.pop(context);
                             },
@@ -214,9 +216,9 @@ class ApproveDenyComplainList extends StatelessWidget {
                         ),
                         Expanded(
                           child: GestureDetector(
-                            onTap: (){
-                               complaintProvider.changeStatus(1, complaint.id);
-                               Navigator.pop(context);
+                            onTap: () {
+                              complaintProvider.changeStatus(1, complaint.id);
+                              Navigator.pop(context);
                             },
                             child: Container(
                               decoration: BoxDecoration(

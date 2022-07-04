@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:hostelapplication/logic/modules/leave_model.dart';
@@ -14,12 +16,11 @@ class MyLeave extends StatelessWidget {
     final leaveprovider = Provider.of<LeaveProvider>(context);
     final leaveListRaw = Provider.of<List<Leave>?>(context);
     leaveListRaw?.forEach((element) {
-      if (auth.currentUser?.uid == element.studentId && element.status == 0) {
+      if (auth.currentUser?.uid == element.studentUid && element.status == 0) {
         Leavelist.add(element);
       }
       ;
     });
-    
     return Scaffold(
       appBar: AppBar(
         title: const Text("My Leaves"),
@@ -34,6 +35,7 @@ class MyLeave extends StatelessWidget {
                     leavingdate: Leavelist[index].dateOfLeave,
                     commingdate: Leavelist[index].dateOfComing,
                     leavereason: Leavelist[index].leaveReason,
+                    totalday: Leavelist[index].totalDay,
                     deleteleave: () {
                       showDialog(
                         context: context,
@@ -79,6 +81,7 @@ class MyLeaveListModel extends StatelessWidget {
       {required this.leavingdate,
       required this.commingdate,
       required this.leavereason,
+      required this.totalday,
       required this.deleteleave,
       Key? key})
       : super(key: key);
@@ -86,6 +89,7 @@ class MyLeaveListModel extends StatelessWidget {
   DateTime leavingdate;
   DateTime commingdate;
   String leavereason;
+  int totalday;
   Function deleteleave;
   @override
   Widget build(BuildContext context) {
@@ -172,7 +176,7 @@ class MyLeaveListModel extends StatelessWidget {
                         ),
                         Text(":"),
                         Text(
-                          "${commingdate.difference(leavingdate).inDays}",
+                          "$totalday",
                           style: TextStyle(
                               fontSize: 18, fontWeight: FontWeight.bold),
                         ),

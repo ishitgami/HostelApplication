@@ -1,3 +1,5 @@
+// ignore_for_file: unused_local_variable
+
 import 'dart:io';
 import 'package:file_picker/file_picker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -5,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:hostelapplication/logic/modules/userData_model.dart';
 import 'package:hostelapplication/logic/service/auth_services/auth_service.dart';
 import 'package:provider/provider.dart';
+
 class StudentDetailScreen extends StatefulWidget {
   const StudentDetailScreen({Key? key}) : super(key: key);
 
@@ -17,10 +20,10 @@ class _StudentDetailScreenState extends State<StudentDetailScreen> {
   PlatformFile? pickedFile;
   @override
   Widget build(BuildContext context) {
-      UserData? userData;
+    UserData? userData;
     final authService = Provider.of<AuthService>(context);
     User user = authService.getcurrentUser();
-     List<UserData> userDataList = [];
+    List<UserData> userDataList = [];
     final userDataListRaw = Provider.of<List<UserData>?>(context);
     userDataListRaw?.forEach((element) {
       if (user.uid == element.id) {
@@ -67,9 +70,9 @@ class _StudentDetailScreenState extends State<StudentDetailScreen> {
                             shape: BoxShape.circle,
                             color: Colors.white,
                             image: DecorationImage(
-                                fit: BoxFit.cover,
-                                image:NetworkImage(userDataList.first.userimage),
-                                ),
+                              fit: BoxFit.cover,
+                              image: NetworkImage(userDataList.first.userimage),
+                            ),
                           ),
                         ),
                       ),
@@ -80,7 +83,9 @@ class _StudentDetailScreenState extends State<StudentDetailScreen> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            userDataList.first.firstName + ' ' + userDataList.first.lastName,
+                            userDataList.first.firstName +
+                                ' ' +
+                                userDataList.first.lastName,
                             style: TextStyle(
                                 fontSize: 22, fontWeight: FontWeight.w600),
                           ),
@@ -102,7 +107,7 @@ class _StudentDetailScreenState extends State<StudentDetailScreen> {
                               color: Color.fromARGB(183, 235, 237, 237),
                             ),
                             child: DataTable(
-                              columns:  [
+                              columns: [
                                 DataColumn(
                                   label: Text(
                                     'Room No',
@@ -128,7 +133,12 @@ class _StudentDetailScreenState extends State<StudentDetailScreen> {
                                 ]),
                                 DataRow(cells: [
                                   DataCell(Text('Date of joining')),
-                                  DataCell(Text(userDataList.first.time.day.toString()+'/'+userDataList.first.time.month.toString()+'/'+userDataList.first.time.year.toString())),
+                                  DataCell(Text(userDataList.first.time.day
+                                          .toString() +
+                                      '/' +
+                                      userDataList.first.time.month.toString() +
+                                      '/' +
+                                      userDataList.first.time.year.toString())),
                                 ]),
                               ],
                             ),

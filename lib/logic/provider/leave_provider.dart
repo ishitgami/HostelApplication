@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/cupertino.dart';
 import 'package:hostelapplication/logic/modules/leave_model.dart';
 import 'package:hostelapplication/logic/service/fireStoreServices/leave_firestore_service.dart';
@@ -59,7 +57,7 @@ class LeaveProvider with ChangeNotifier {
     var newLeave = Leave(
       id: uuid.v4(),
       name: _name,
-      studentId: _studentUid,
+      studentUid: _studentUid,
       leaveReason: _leaveReason,
       roomNo: _roomNo,
       leaveApplyDate: _time,
