@@ -1,56 +1,83 @@
-import 'package:flutter/material.dart';
+import 'dart:async';
 
-class SplashScreen extends StatelessWidget {
-  const SplashScreen({Key? key}) : super(key: key);
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
+import 'package:hostelapplication/presentation/screen/admin/adminDashbord.dart';
+import 'package:hostelapplication/presentation/screen/auth/logInScreen.dart';
+import 'package:hostelapplication/presentation/screen/student/studentDashbord.dart';
+
+FirebaseFirestore firestore = FirebaseFirestore.instance;
+
+class SplashScreen1 extends StatefulWidget {
+  @override
+  _SplashScreen1State createState() => _SplashScreen1State();
+}
+
+class _SplashScreen1State extends State<SplashScreen1> {
+  int loginNum = 0;
+  var emailAddress;
+  @override
+  void initState() {
+    super.initState();
+    checkUserType();
+    Timer(
+      Duration(seconds: 3),
+      () => Navigator.of(context).pushReplacement(
+        MaterialPageRoute(
+          builder: (BuildContext context) =>
+          loginNum == 1
+          ? AdminDashbordScreen()
+          : loginNum == 2
+              ? StudentDashboardScreen()
+              : LogInScreen()
+          ,
+        ),
+      ),
+    );
+    
+  }
+
+  checkUserType() {
+    var auth = FirebaseAuth.instance;
+    print(auth.currentUser);
+    auth.authStateChanges().listen((user) {
+      if (user != null) {
+        user = auth.currentUser;
+        emailAddress = user!.email;
+        if (emailAddress == 'admin@gmail.com') {
+          setState(() {
+            loginNum = 1;
+          });
+        }else {
+         
+          setState(() {
+            loginNum = 2;
+          });
+      }
+    } else {
+       setState(() {
+            loginNum = 3;
+          });
+    }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: [
-          Expanded(
-            flex: 8,
-            child: PageView(
-              children: [
-                Container(
-                  color: Colors.red,
-                  child: const Center(
-                    child: Text('Page 1'),
-                  ),
-                ),
-                Container(
-                  color: Colors.indigo,
-                  child: const Center(
-                    child: Text('Page 2'),
-                  ),
-                ),
-                Container(
-                  color: Colors.green,
-                  child: const Center(
-                    child: Text('Page 3'),
-                  ),
-                ),
-              ],
+      backgroundColor: Colors.white,
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Image.asset('assets/images/logo.png',height: 150,width: 150,),
+            SizedBox(
+              height: 150,
             ),
-          ),
-          Expanded(
-            flex: 1,
-            child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 10),
-              height: 80,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  TextButton(
-                    onPressed: () {},
-                    child: const Text('SKIP'),
-                  ),
-                  TextButton(onPressed: () {}, child: const Text('NEXT'))
-                ],
-              ),
-            ),
-          )
-        ],
+            CircularProgressIndicator(),
+          ],
+        ),
       ),
     );
   }

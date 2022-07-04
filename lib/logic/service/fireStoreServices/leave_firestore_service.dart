@@ -14,7 +14,7 @@ class LeaveFirestoreService {
     print('inGetLeave');
     return _db
         .collection('Leave')
-        // .orderBy("Time", descending: true)
+        .orderBy("LeaveApplyDate", descending: true)
         .snapshots()
         .map((snapshot) => snapshot.docs
             .map((document) => Leave.fromFirestore(document.data()))

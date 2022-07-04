@@ -21,16 +21,19 @@ class StudentDrawer extends StatelessWidget {
     List<UserData> complaintList = [];
     final complaintListRaw = Provider.of<List<UserData>?>(context);
     complaintListRaw?.forEach((element) {
+      print('userUid---->${user.uid}');
+      print(element.id);
       if (user.uid == element.id) {
         complaintList.add(element);
-      }
+      } else return null;
       ;
     });
 
     const studentDrawerText = TextStyle(fontSize: 15);
     return Drawer(
       child: SafeArea(
-        child: ListView(
+        child: complaintList.length ==0 ? Container() :
+        ListView(
           padding: EdgeInsets.zero,
           children: <Widget>[
             // _createHeader(),

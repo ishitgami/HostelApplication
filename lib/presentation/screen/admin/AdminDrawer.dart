@@ -3,12 +3,16 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hostelapplication/core/constant/string.dart';
+import 'package:hostelapplication/logic/modules/userData_model.dart';
+import 'package:hostelapplication/logic/service/auth_services/auth_service.dart';
+import 'package:provider/provider.dart';
 
 class AdminDrawer extends StatelessWidget {
   const AdminDrawer({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final authService = Provider.of<AuthService>(context);
     const adminDraweText = TextStyle(fontSize: 15);
     return Drawer(
       child: SafeArea(
@@ -130,7 +134,9 @@ class AdminDrawer extends StatelessWidget {
                 ],
               ),
               onTap: () {
-                Navigator.pop(context);
+                authService.signOut();
+                Navigator.pushNamedAndRemoveUntil(
+                    context, logInScreenRoute, (route) => false);
               },
             ),
             const SizedBox(width: 50, child: Divider()),

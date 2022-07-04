@@ -1,18 +1,18 @@
 //****************Start-Routes***********************
 
 //splashScreen
-const String splashScreenRoute = '/Splash';
-const String onboardingScreen = '/aaa';
+const String splashScreenRoute = '/';
+const String onboardingScreen = '/onBordingScreenRoute';
 
 //Authenication
-const String logInScreenRoute = '/';
-const String registrationScreenRoute = '/registration';
+const String logInScreenRoute = '/logInScreenRoute';
+const String registrationScreenRoute = '/registrationScreenRoute';
 
 //admin
-const String adminDashbordScreenRoute = '/admin';
-const String addNoticeScreenRoute = '/addNoticeScreen';
-const String complaintListScreenRoute = '/complainListScreen';
-const String approveDenyComplainListRoute = '/approveDenyComplainListScreen';
+const String adminDashbordScreenRoute = '/adminDashbordScreenRoute';
+const String addNoticeScreenRoute = '/adminAddNoticeScreenRoute';
+const String complaintListScreenRoute = '/AdminComplainListScreen';
+const String approveDenyComplainListRoute = '/AdminApproveDenyComplainListScreen';
 const String approveDennyLeaveScreenRoute = '/approveDennyLeaveScreen';
 const String adminDetailsScreenRoute = "/adminDetails";
 

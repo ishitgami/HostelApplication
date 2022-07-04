@@ -1,5 +1,7 @@
 // ignore_for_file: must_be_immutable
 
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:hostelapplication/logic/modules/leave_model.dart';
 import 'package:hostelapplication/presentation/screen/admin/AdminDrawer.dart';
@@ -22,23 +24,45 @@ class _AdminLeaveScreenState extends State<AdminLeaveScreen> {
     leaveListRaw?.forEach(
       (element) {
         if (element.status == 0) {
-          print(element);
           leaveList.add(element);
-        }
+        } else null;
         ;
       },
     );
 
     return Scaffold(
+      backgroundColor: Colors.white,
         appBar: AppBar(
-          backgroundColor: Colors.lightBlue,
+          
           title: const Text('Leave'),
         ),
         drawer: const AdminDrawer(),
-        body: Padding(
+        body: 
+        Padding(
           padding: const EdgeInsets.all(8.0),
           child: Stack(
             children: [
+              leaveList.length == 0 ? 
+              Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Image.asset(
+                    'assets/images/nodata.jpg',
+                    height: 250,
+                    width: 250,
+                  ),
+                  Text(
+                    'No Leave Request :)',
+                    style: TextStyle(
+                        fontSize: 25,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.grey),
+                  ),
+                ],
+              ),
+            )
+              : 
               Container(
                 padding: EdgeInsets.only(bottom: 120),
                 child: ListView.builder(
