@@ -1,22 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:hostelapplication/logic/modules/leave_model.dart';
+import 'package:hostelapplication/logic/provider/leave_provider.dart';
+import 'package:provider/provider.dart';
 
-class ApproveDennyLeaveScreen extends StatefulWidget {
-  const ApproveDennyLeaveScreen({Key? key}) : super(key: key);
+class ApproveDennyLeaveScreen extends StatelessWidget {
+  ApproveDennyLeaveScreen(this.leave, {Key? key}) : super(key: key);
+  Leave leave;
 
-  @override
-  State<ApproveDennyLeaveScreen> createState() =>
-      _ApproveDennyLeaveScreenState();
-}
-
-class _ApproveDennyLeaveScreenState extends State<ApproveDennyLeaveScreen> {
   @override
   Widget build(BuildContext context) {
+    final leaveProvider = Provider.of<LeaveProvider>(context);
     const tablepadding = EdgeInsets.all(15);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.blueGrey[100],
         title: const Text(
-          'Approve/Denny',
+          'Approve/Denny Leave',
           style: TextStyle(color: Colors.black),
         ),
       ),
@@ -70,9 +69,9 @@ class _ApproveDennyLeaveScreenState extends State<ApproveDennyLeaveScreen> {
                               ),
                               Padding(
                                 padding: tablepadding,
-                                child: Column(children: const [
+                                child: Column(children: [
                                   Text(
-                                    'Ishit Gami',
+                                    leave.name,
                                     style: TextStyle(
                                         fontWeight: FontWeight.w600,
                                         fontSize: 18),
@@ -92,9 +91,9 @@ class _ApproveDennyLeaveScreenState extends State<ApproveDennyLeaveScreen> {
                               ),
                               Padding(
                                 padding: tablepadding,
-                                child: Column(children: const [
+                                child: Column(children: [
                                   Text(
-                                    '510',
+                                    leave.roomNo,
                                     style: TextStyle(
                                         fontWeight: FontWeight.w600,
                                         fontSize: 18),
@@ -113,10 +112,14 @@ class _ApproveDennyLeaveScreenState extends State<ApproveDennyLeaveScreen> {
                                 ]),
                               ),
                               Padding(
-                                padding: tablepadding,
-                                child: Column(children: const [
+                                padding: EdgeInsets.all(25),
+                                child: Column(children: [
                                   Text(
-                                    '01 July 2022',
+                                    leave.dateOfLeave.day.toString() +
+                                        '/' +
+                                        leave.dateOfLeave.month.toString() +
+                                        '/' +
+                                        leave.dateOfLeave.year.toString(),
                                     style: TextStyle(
                                         fontWeight: FontWeight.w600,
                                         fontSize: 18),
@@ -135,10 +138,14 @@ class _ApproveDennyLeaveScreenState extends State<ApproveDennyLeaveScreen> {
                                 ]),
                               ),
                               Padding(
-                                padding: tablepadding,
-                                child: Column(children: const [
+                                padding: EdgeInsets.all(25),
+                                child: Column(children: [
                                   Text(
-                                    '10 July 2022',
+                                    leave.dateOfComing.day.toString() +
+                                        '/' +
+                                        leave.dateOfComing.month.toString() +
+                                        '/' +
+                                        leave.dateOfComing.year.toString(),
                                     style: TextStyle(
                                         fontWeight: FontWeight.w600,
                                         fontSize: 18),
@@ -158,9 +165,9 @@ class _ApproveDennyLeaveScreenState extends State<ApproveDennyLeaveScreen> {
                               ),
                               Padding(
                                 padding: tablepadding,
-                                child: Column(children: const [
+                                child: Column(children: [
                                   Text(
-                                    '10',
+                                    "${leave.totalDay}",
                                     style: TextStyle(
                                         fontWeight: FontWeight.w600,
                                         fontSize: 18),
@@ -192,8 +199,7 @@ class _ApproveDennyLeaveScreenState extends State<ApproveDennyLeaveScreen> {
                             width: 2,
                             color: const Color.fromARGB(157, 158, 158, 158)),
                       ),
-                      child: const Text(
-                          'I am Seetha Suresh, a final year student of BSc Chemistry with the ID number 18PEL54. I stay in Room no. F2. I am writing this letter to request you to permit me to go home for ten days (01/07/2022 – 10/07/2022). I will be back to the hostel on Monday morning (11/07/2022).'),
+                      child: Text(leave.leaveReason),
                     ),
                     const SizedBox(
                       height: 20,
@@ -202,6 +208,10 @@ class _ApproveDennyLeaveScreenState extends State<ApproveDennyLeaveScreen> {
                       children: [
                         Expanded(
                           child: GestureDetector(
+                            onTap: () {
+                              leaveProvider.chageStatus(2, leave.id);
+                              Navigator.pop(context);
+                            },
                             child: Container(
                               decoration: BoxDecoration(
                                   color: Colors.red[400],
@@ -224,6 +234,10 @@ class _ApproveDennyLeaveScreenState extends State<ApproveDennyLeaveScreen> {
                         ),
                         Expanded(
                           child: GestureDetector(
+                            onTap: () {
+                              leaveProvider.chageStatus(1, leave.id);
+                              Navigator.pop(context);
+                            },
                             child: Container(
                               decoration: BoxDecoration(
                                   color: Colors.green[400],

@@ -65,9 +65,9 @@ class Routes {
       //   return MaterialPageRoute(
       //       builder: (context) => const ApproveDenyComplainList());
 
-      case approveDennyLeaveScreenRoute:
-        return MaterialPageRoute(
-            builder: (context) => ApproveDennyLeaveScreen());
+      // case approveDennyLeaveScreenRoute:
+      //   return MaterialPageRoute(
+      //       builder: (context) => ApproveDennyLeaveScreen());
 
       case helpscreenRoute:
         return MaterialPageRoute(builder: (context) => const HelpScreen());

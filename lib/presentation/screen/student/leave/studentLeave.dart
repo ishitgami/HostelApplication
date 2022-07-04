@@ -16,8 +16,8 @@ class StudentLeave extends StatefulWidget {
 }
 
 class _StudentLeaveState extends State<StudentLeave> {
-  DateTime leavingDate = DateTime.now();
-  DateTime commingDate = DateTime.now();
+  DateTime leavingDate = DateTime.now().add(Duration(days: 1));
+  DateTime commingDate = DateTime.now().add(Duration(days: 2));
 
   @override
   Widget build(BuildContext context) {

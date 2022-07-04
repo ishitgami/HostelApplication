@@ -126,7 +126,7 @@ class MyLeaveListModel extends StatelessWidget {
                               style: TextStyle(
                                   fontSize: 18, fontWeight: FontWeight.bold),
                             ),
-                            Text(":"),
+                            Text(": "),
                             Text(
                               leavingdate.day.toString() +
                                   '/' +
@@ -151,13 +151,14 @@ class MyLeaveListModel extends StatelessWidget {
                           style: TextStyle(
                               fontSize: 18, fontWeight: FontWeight.bold),
                         ),
-                        Text(":"),
+                        Text(": "),
                         Text(
                           commingdate.day.toString() +
                               '/' +
                               commingdate.month.toString() +
                               '/' +
-                              commingdate.year.toString(),
+                              commingdate.year.toString() +
+                              " ",
                           style: TextStyle(
                               fontSize: 18, fontWeight: FontWeight.bold),
                         ),
@@ -174,9 +175,9 @@ class MyLeaveListModel extends StatelessWidget {
                           style: TextStyle(
                               fontSize: 18, fontWeight: FontWeight.bold),
                         ),
-                        Text(":"),
+                        Text("   :   "),
                         Text(
-                          "$totalday",
+                          "$totalday     ",
                           style: TextStyle(
                               fontSize: 18, fontWeight: FontWeight.bold),
                         ),
