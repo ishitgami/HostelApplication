@@ -26,7 +26,7 @@ dependencies:
   date_time_picker:
   image_picker: ^0.8.5+3
   file_picker:
-  bloc:
+  image_downloader: ^0.31.0
 
 
 dev_dependencies:
