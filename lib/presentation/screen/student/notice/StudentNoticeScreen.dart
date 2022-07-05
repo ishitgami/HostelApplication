@@ -57,7 +57,7 @@ class NoticeContainer extends StatelessWidget {
 
   var myMenuItems = <String>[
     'Save Image',
-    'Share',
+    // 'Share',
   ];
 
   void onSelect(item) async {

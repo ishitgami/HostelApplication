@@ -32,10 +32,6 @@ class _StudentAddLeaveState extends State<StudentAddLeave> {
     const tablepadding = EdgeInsets.all(15);
     int totalday = commingDate.difference(leavingDate).inDays;
 
-    String Studentname =
-        "${userData!.first.firstName}" + " " + "${userData.first.lastName}";
-    String Roomno = "${userData.first.roomNo}";
-
     return Scaffold(
       appBar: AppBar(
         title: const Text('Leave'),
@@ -105,7 +101,7 @@ class _StudentAddLeaveState extends State<StudentAddLeave> {
                                             padding: tablepadding,
                                             child: Column(children: [
                                               Text(
-                                                '$Studentname',
+                                                userData.first.firstName + ' ' + userData.first.lastName ,
                                                 style: TextStyle(
                                                     fontWeight: FontWeight.w600,
                                                     fontSize: 18),
@@ -127,7 +123,7 @@ class _StudentAddLeaveState extends State<StudentAddLeave> {
                                             padding: tablepadding,
                                             child: Column(children: [
                                               Text(
-                                                '$Roomno',
+                                                userData.first.roomNo,
                                                 style: TextStyle(
                                                     fontWeight: FontWeight.w600,
                                                     fontSize: 18),

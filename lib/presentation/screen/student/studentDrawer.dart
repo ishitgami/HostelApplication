@@ -21,15 +21,12 @@ class StudentDrawer extends StatelessWidget {
     List<UserData> complaintList = [];
     final complaintListRaw = Provider.of<List<UserData>?>(context);
     complaintListRaw?.forEach((element) {
-      print('userUid---->${user.uid}');
-      print(element.id);
-      if (user.uid == element.id) {
+           if (user.uid == element.id) {
         complaintList.add(element);
       } else return null;
       ;
     });
-
-    const studentDrawerText = TextStyle(fontSize: 15);
+    const studentDrawerText = TextStyle(fontSize: 15); 
     return Drawer(
       child: SafeArea(
         child: complaintList.length ==0 ? Container() :
