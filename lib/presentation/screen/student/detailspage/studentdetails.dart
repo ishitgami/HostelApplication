@@ -1,10 +1,12 @@
-// ignore_for_file: unused_local_variable
+// ignore_for_file: unused_local_variable, deprecated_member_use
 
 import 'dart:io';
 import 'package:file_picker/file_picker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:hostelapplication/logic/modules/userData_model.dart';
+import 'package:hostelapplication/logic/provider/userData_provider.dart';
 import 'package:hostelapplication/logic/service/auth_services/auth_service.dart';
 import 'package:provider/provider.dart';
 
@@ -24,7 +26,9 @@ class _StudentDetailScreenState extends State<StudentDetailScreen> {
     final authService = Provider.of<AuthService>(context);
     User user = authService.getcurrentUser();
     List<UserData> userDataList = [];
+    final userprovider = Provider.of<List<UsereDataProvider>?>(context);
     final userDataListRaw = Provider.of<List<UserData>?>(context);
+    print(user.uid);
     userDataListRaw?.forEach((element) {
       if (user.uid == element.id) {
         userDataList.add(element);
@@ -36,16 +40,18 @@ class _StudentDetailScreenState extends State<StudentDetailScreen> {
       appBar: AppBar(
         title: const Text("Details"),
         actions: [
-          GestureDetector(
-              onTap: () {
-                // userprovider.changeUserimage("${pickedFile!.path}");
-                // Navigator.pop(context);
-              },
-              child: Padding(
-                padding: const EdgeInsets.only(right: 28.0),
-                child:
-                    Center(child: Text("Save", style: TextStyle(fontSize: 17))),
-              ))
+          pickedFile != null
+              ? GestureDetector(
+                  onTap: () async {
+                    UsereDataProvider().saveUserData();
+                    Navigator.pop(context);
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.only(right: 28.0),
+                    child: Center(
+                        child: Text("Save", style: TextStyle(fontSize: 17))),
+                  ))
+              : const SizedBox(),
         ],
       ),
       body: SingleChildScrollView(
@@ -60,21 +66,30 @@ class _StudentDetailScreenState extends State<StudentDetailScreen> {
                       const SizedBox(
                         height: 30,
                       ),
-                      GestureDetector(
-                        // onTap: selectFile,
-                        child: Container(
-                          padding: const EdgeInsets.all(10.0),
-                          width: 120,
-                          height: 120,
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: Colors.white,
-                            image: DecorationImage(
-                              fit: BoxFit.cover,
-                              image: NetworkImage(userDataList.first.userimage),
-                            ),
+                      Container(
+                        padding: const EdgeInsets.all(10.0),
+                        width: 120,
+                        height: 120,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: Colors.white,
+                          image: DecorationImage(
+                            fit: BoxFit.cover,
+                            image: pickedFile != null
+                                ? FileImage((File("${pickedFile!.path}")))
+                                : NetworkImage(userDataList.first.userimage)
+                                    as ImageProvider,
                           ),
                         ),
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      RaisedButton(
+                        onPressed: () {
+                          selectFile();
+                        },
+                        child: Text("Change Profile Image"),
                       ),
                       const SizedBox(
                         height: 20,
@@ -160,6 +175,8 @@ class _StudentDetailScreenState extends State<StudentDetailScreen> {
 
       if (pickedFile != null) {
         imageFile = File(pickedFile!.path!);
+
+        UsereDataProvider().changeUserimage("${pickedFile!.path}");
       }
     });
   }
