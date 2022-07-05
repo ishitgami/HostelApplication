@@ -21,8 +21,7 @@ class StudentDetailScreen extends StatefulWidget {
 class _StudentDetailScreenState extends State<StudentDetailScreen> {
   late File imageFile;
   PlatformFile? pickedFile;
-   bool showLoading = false;
-
+  bool showLoading = false;
 
   @override
   Widget build(BuildContext context) {
@@ -39,9 +38,8 @@ class _StudentDetailScreenState extends State<StudentDetailScreen> {
       ;
     });
 
-     
-
     return Scaffold(
+      backgroundColor: Colors.grey[200],
       appBar: AppBar(
         title: const Text("Details"),
         actions: [
@@ -49,20 +47,21 @@ class _StudentDetailScreenState extends State<StudentDetailScreen> {
               ? GestureDetector(
                   onTap: () async {
                     setState(() {
-                          showLoading = true;
-                        });
-                        progressIndicater(context, showLoading = true);
+                      showLoading = true;
+                    });
+                    progressIndicater(context, showLoading = true);
                     final ref = FirebaseStorage.instance
-                            .ref()
-                            .child('profileImg')
-                            .child(pickedFile!.name.toString());
-                        await ref.putFile(imageFile);
-                         String url = await ref.getDownloadURL();
-                        userprovider.changeUserimage(url);
-                        userprovider.updateProfileImg(user.uid);
-                         setState(() {
-                          showLoading = false;
-                        });
+                        .ref()
+                        .child('profileImg')
+                        .child(pickedFile!.name.toString());
+                    await ref.putFile(imageFile);
+                    String url = await ref.getDownloadURL();
+                    userprovider.changeUserimage(url);
+                    userprovider.updateProfileImg(user.uid);
+                    setState(() {
+                      showLoading = false;
+                      pickedFile = null;
+                    });
                     Navigator.pop(context);
                   },
                   child: Padding(
@@ -85,30 +84,38 @@ class _StudentDetailScreenState extends State<StudentDetailScreen> {
                       const SizedBox(
                         height: 30,
                       ),
-                      Container(
-                        padding: const EdgeInsets.all(10.0),
-                        width: 120,
-                        height: 120,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: Colors.white,
-                          image: DecorationImage(
-                            fit: BoxFit.cover,
-                            image: pickedFile != null
-                                ? FileImage((File("${pickedFile!.path}")))
-                                : NetworkImage(userDataList.first.userimage)
-                                    as ImageProvider,
-                          ),
+                      Center(
+                        child: Stack(
+                          children: [
+                            CircleAvatar(
+                              radius: 75,
+                              backgroundColor: Colors.grey,
+                              child: CircleAvatar(
+                                backgroundImage: pickedFile != null
+                                    ? FileImage((File("${pickedFile!.path}")))
+                                    : NetworkImage(userDataList.first.userimage)
+                                        as ImageProvider,
+                                radius: 70,
+                              ),
+                            ),
+                            Positioned(
+                              child: buildCircle(
+                                  all: 8,
+                                  child: GestureDetector(
+                                    onTap: () {
+                                      selectFile();
+                                    },
+                                    child: Icon(
+                                      Icons.edit,
+                                      color: Color.fromRGBO(64, 105, 225, 1),
+                                      size: 20,
+                                    ),
+                                  )),
+                              right: 3,
+                              top: 110,
+                            )
+                          ],
                         ),
-                      ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      RaisedButton(
-                        onPressed: () {
-                          selectFile();
-                        },
-                        child: Text("Change Profile Image"),
                       ),
                       const SizedBox(
                         height: 20,
@@ -121,7 +128,7 @@ class _StudentDetailScreenState extends State<StudentDetailScreen> {
                                 ' ' +
                                 userDataList.first.lastName,
                             style: TextStyle(
-                                fontSize: 22, fontWeight: FontWeight.w600),
+                                fontSize: 29, fontWeight: FontWeight.w600),
                           ),
                         ],
                       ),
@@ -138,7 +145,7 @@ class _StudentDetailScreenState extends State<StudentDetailScreen> {
                             decoration: const BoxDecoration(
                               borderRadius:
                                   BorderRadius.all(Radius.circular(10)),
-                              color: Color.fromARGB(183, 235, 237, 237),
+                              color: Color.fromARGB(183, 255, 255, 255),
                             ),
                             child: DataTable(
                               columns: [
@@ -146,27 +153,30 @@ class _StudentDetailScreenState extends State<StudentDetailScreen> {
                                   label: Text(
                                     'Room No',
                                     style: TextStyle(
-                                        fontWeight: FontWeight.normal),
+                                        fontWeight: FontWeight.w700),
                                   ),
                                 ),
                                 DataColumn(
                                     label: Text(
                                   userDataList.first.roomNo,
                                   style:
-                                      TextStyle(fontWeight: FontWeight.normal),
+                                      TextStyle(fontWeight: FontWeight.w700),
                                 )),
                               ],
                               rows: [
                                 DataRow(cells: [
-                                  DataCell(Text('Email')),
+                                  DataCell(Text('Email', style:
+                                      TextStyle(fontWeight: FontWeight.w700))),
                                   DataCell(Text(userDataList.first.email)),
                                 ]),
                                 DataRow(cells: [
-                                  DataCell(Text('Phone No')),
+                                  DataCell(Text('Phone No', style:
+                                      TextStyle(fontWeight: FontWeight.w700))),
                                   DataCell(Text(userDataList.first.mobileNo)),
                                 ]),
                                 DataRow(cells: [
-                                  DataCell(Text('Date of joining')),
+                                  DataCell(Text('Date of joining', style:
+                                      TextStyle(fontWeight: FontWeight.w700))),
                                   DataCell(Text(userDataList.first.time.day
                                           .toString() +
                                       '/' +
@@ -185,7 +195,8 @@ class _StudentDetailScreenState extends State<StudentDetailScreen> {
       ),
     );
   }
-Future selectFile() async {
+
+  Future selectFile() async {
     final result = await FilePicker.platform.pickFiles();
     if (result == null) return;
     setState(() {
@@ -193,7 +204,6 @@ Future selectFile() async {
 
       if (pickedFile != null) {
         imageFile = File(pickedFile!.path!);
-
       }
     });
   }
@@ -210,5 +220,15 @@ Future selectFile() async {
     } else
       return null;
   }
- 
+
+  Widget buildCircle({
+    required Widget child,
+    required double all,
+  }) =>
+      ClipOval(
+          child: Container(
+        padding: EdgeInsets.all(all),
+        color: Colors.white,
+        child: child,
+      ));
 }
