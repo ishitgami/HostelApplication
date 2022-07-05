@@ -33,15 +33,11 @@ class _StudentAddLeaveState extends State<StudentAddLeave> {
     int totalday = commingDate.difference(leavingDate).inDays;
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Leave'),
-      ),
-      body: userData == null
-          ? Center(
-              child: CircularProgressIndicator(),
-            )
-          : Form(
-              child: Container(
+        appBar: AppBar(
+          title: const Text('Leave'),
+        ),
+        body: userData != null
+            ? Container(
                 color: Colors.grey[200],
                 padding: const EdgeInsets.all(5.0),
                 child: SingleChildScrollView(
@@ -330,8 +326,9 @@ class _StudentAddLeaveState extends State<StudentAddLeave> {
                     ),
                   ),
                 ),
-              ),
-            ),
-    );
+              )
+            : Center(
+                child: CircularProgressIndicator(),
+              ));
   }
 }
