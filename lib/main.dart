@@ -48,9 +48,6 @@ Future<void> main() async {
           value: ComplaintFirestoreService().getComplaintForAdmin(),
           initialData: null,
         ),
-        ChangeNotifierProvider.value(
-          value: ComplaintProvider(),
-        ),
         StreamProvider.value(
           value: UserDataFirestoreService().getUserData(),
           initialData: null,

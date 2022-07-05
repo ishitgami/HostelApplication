@@ -28,15 +28,17 @@ class UserDataFirestoreService {
         userdata =   UserData.fromFirestore(value.data());});
         return userdata;
   }
-  // Stream<UserData> getUserDataFromUId(uid) {
-  //   print(uid);
-  //   return  _db
-  //       .collection('User')
-  //       .doc(uid)
-  //       .snapshots()
-  //       .map((event) => UserData.fromFirestore(event.data()));
-        
-  // }
+  
+  Future<void> upadateProfileImg(String url,String studentntID) {
+    return _db.collection('User').doc(studentntID).set({
+      'UserImage' : url
+    },
+     SetOptions(
+            merge: true,
+          ),
+
+    );
+  }
 
    Future<void> removeUser(String userId) {
     return _db.collection('User').doc(userId).delete();

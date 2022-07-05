@@ -17,7 +17,6 @@ class _AddNoticeScreenState extends State<AddNoticeScreen> {
   late File imageFile;
   PlatformFile? pickedFile;
   bool showLoading = false;
-  bool showAlert = false;
 
   @override
   Widget build(BuildContext context) {

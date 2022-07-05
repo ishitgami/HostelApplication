@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:file_picker/file_picker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:hostelapplication/logic/modules/userData_model.dart';
 import 'package:hostelapplication/logic/provider/userData_provider.dart';
@@ -20,21 +21,25 @@ class StudentDetailScreen extends StatefulWidget {
 class _StudentDetailScreenState extends State<StudentDetailScreen> {
   late File imageFile;
   PlatformFile? pickedFile;
+   bool showLoading = false;
+
+
   @override
   Widget build(BuildContext context) {
     UserData? userData;
     final authService = Provider.of<AuthService>(context);
     User user = authService.getcurrentUser();
     List<UserData> userDataList = [];
-    final userprovider = Provider.of<List<UsereDataProvider>?>(context);
+    final userprovider = Provider.of<UsereDataProvider>(context);
     final userDataListRaw = Provider.of<List<UserData>?>(context);
-    print(user.uid);
     userDataListRaw?.forEach((element) {
       if (user.uid == element.id) {
         userDataList.add(element);
       }
       ;
     });
+
+     
 
     return Scaffold(
       appBar: AppBar(
@@ -43,7 +48,21 @@ class _StudentDetailScreenState extends State<StudentDetailScreen> {
           pickedFile != null
               ? GestureDetector(
                   onTap: () async {
-                    UsereDataProvider().saveUserData();
+                    setState(() {
+                          showLoading = true;
+                        });
+                        progressIndicater(context, showLoading = true);
+                    final ref = FirebaseStorage.instance
+                            .ref()
+                            .child('profileImg')
+                            .child(pickedFile!.name.toString());
+                        await ref.putFile(imageFile);
+                         String url = await ref.getDownloadURL();
+                        userprovider.changeUserimage(url);
+                        userprovider.updateProfileImg(user.uid);
+                         setState(() {
+                          showLoading = false;
+                        });
                     Navigator.pop(context);
                   },
                   child: Padding(
@@ -166,8 +185,7 @@ class _StudentDetailScreenState extends State<StudentDetailScreen> {
       ),
     );
   }
-
-  Future selectFile() async {
+Future selectFile() async {
     final result = await FilePicker.platform.pickFiles();
     if (result == null) return;
     setState(() {
@@ -176,8 +194,21 @@ class _StudentDetailScreenState extends State<StudentDetailScreen> {
       if (pickedFile != null) {
         imageFile = File(pickedFile!.path!);
 
-        UsereDataProvider().changeUserimage("${pickedFile!.path}");
       }
     });
   }
+
+  Future<dynamic>? progressIndicater(BuildContext context, showLoading) {
+    if (showLoading == true) {
+      return showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          });
+    } else
+      return null;
+  }
+ 
 }

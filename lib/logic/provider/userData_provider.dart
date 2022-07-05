@@ -67,4 +67,8 @@ class UsereDataProvider with ChangeNotifier {
   void deleteUserData(userId) {
     service.removeUser(userId);
   }
+
+  void updateProfileImg(studentntID) {
+    service.upadateProfileImg(_userimage, studentntID);
+  }
 }
