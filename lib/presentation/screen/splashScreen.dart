@@ -25,17 +25,14 @@ class _SplashScreen1State extends State<SplashScreen1> {
       Duration(seconds: 3),
       () => Navigator.of(context).pushReplacement(
         MaterialPageRoute(
-          builder: (BuildContext context) =>
-          loginNum == 1
-          ? AdminDashbordScreen()
-          : loginNum == 2
-              ? StudentDashboardScreen()
-              : LogInScreen()
-          ,
+          builder: (BuildContext context) => loginNum == 1
+              ? AdminDashbordScreen()
+              : loginNum == 2
+                  ? StudentDashboardScreen()
+                  : LogInScreen(),
         ),
       ),
     );
-    
   }
 
   checkUserType() {
@@ -49,17 +46,16 @@ class _SplashScreen1State extends State<SplashScreen1> {
           setState(() {
             loginNum = 1;
           });
-        }else {
-         
+        } else {
           setState(() {
             loginNum = 2;
           });
+        }
+      } else {
+        setState(() {
+          loginNum = 3;
+        });
       }
-    } else {
-       setState(() {
-            loginNum = 3;
-          });
-    }
     });
   }
 
@@ -71,7 +67,11 @@ class _SplashScreen1State extends State<SplashScreen1> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset('assets/images/logo.png',height: 150,width: 150,),
+            Image.asset(
+              'assets/images/logo.png',
+              height: 150,
+              width: 150,
+            ),
             SizedBox(
               height: 150,
             ),

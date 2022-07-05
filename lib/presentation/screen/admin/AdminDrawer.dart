@@ -3,7 +3,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hostelapplication/core/constant/string.dart';
-import 'package:hostelapplication/logic/modules/userData_model.dart';
 import 'package:hostelapplication/logic/service/auth_services/auth_service.dart';
 import 'package:provider/provider.dart';
 

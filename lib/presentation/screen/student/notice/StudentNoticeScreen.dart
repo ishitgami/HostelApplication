@@ -69,7 +69,6 @@ class NoticeContainer extends StatelessWidget {
             if (imageId == null) {
               return print("Image download faild");
             }
-            var path = await ImageDownloader.findPath(imageId);
           } on PlatformException catch (error) {
             print(error);
           }
