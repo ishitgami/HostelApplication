@@ -10,6 +10,7 @@ import 'package:hostelapplication/presentation/screen/notifications/adminnotific
 import 'package:hostelapplication/presentation/screen/onBordingScreen.dart';
 import 'package:hostelapplication/presentation/screen/splashScreen.dart';
 import 'package:hostelapplication/presentation/screen/student/Drawer/helpscreen.dart';
+import 'package:hostelapplication/presentation/screen/student/leave/studentAddLeave.dart';
 import 'package:hostelapplication/presentation/screen/student/services/RoomElectricServices.dart';
 import 'package:hostelapplication/presentation/screen/student/detailspage/studentdetails.dart';
 import 'package:hostelapplication/presentation/screen/student/studentDashbord.dart';
@@ -82,6 +83,11 @@ class Routes {
       case adminDetailsScreenRoute:
         return MaterialPageRoute(
             builder: (context) => const AdminDetailsScreen());
+
+      case studentLeaveScreenRoute:
+        return MaterialPageRoute(
+            builder: (context) => const StudentAddLeave());
+            
 
       default:
         return MaterialPageRoute(

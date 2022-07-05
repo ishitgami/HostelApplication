@@ -8,14 +8,14 @@ import 'package:hostelapplication/logic/provider/leave_provider.dart';
 import 'package:hostelapplication/presentation/screen/student/studentDrawer.dart';
 import 'package:provider/provider.dart';
 
-class StudentLeave extends StatefulWidget {
-  const StudentLeave({Key? key}) : super(key: key);
+class StudentAddLeave extends StatefulWidget {
+  const StudentAddLeave({Key? key}) : super(key: key);
 
   @override
-  State<StudentLeave> createState() => _StudentLeaveState();
+  State<StudentAddLeave> createState() => _StudentAddLeaveState();
 }
 
-class _StudentLeaveState extends State<StudentLeave> {
+class _StudentAddLeaveState extends State<StudentAddLeave> {
   DateTime leavingDate = DateTime.now().add(Duration(days: 1));
   DateTime commingDate = DateTime.now().add(Duration(days: 2));
 
@@ -40,7 +40,6 @@ class _StudentLeaveState extends State<StudentLeave> {
       appBar: AppBar(
         title: const Text('Leave'),
       ),
-      drawer: const StudentDrawer(),
       body: userData == null
           ? Center(
               child: CircularProgressIndicator(),
