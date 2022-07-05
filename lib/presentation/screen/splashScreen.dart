@@ -40,7 +40,6 @@ class _SplashScreen1State extends State<SplashScreen1> {
 
   checkUserType() {
     var auth = FirebaseAuth.instance;
-    print(auth.currentUser);
     auth.authStateChanges().listen((user) {
       if (user != null) {
         user = auth.currentUser;
@@ -50,7 +49,6 @@ class _SplashScreen1State extends State<SplashScreen1> {
             loginNum = 1;
           });
         }else {
-         
           setState(() {
             loginNum = 2;
           });

@@ -11,7 +11,6 @@ class LeaveFirestoreService {
   }
 
   Stream<List<Leave>> getLeave() {
-    print('inGetLeave');
     return _db
         .collection('Leave')
         .orderBy("LeaveApplyDate", descending: true)

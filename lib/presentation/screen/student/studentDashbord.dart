@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hostelapplication/presentation/screen/student/leave/studentLeaveList.dart';
 import 'package:hostelapplication/presentation/screen/student/notice/StudentNoticeScreen.dart';
 import 'package:hostelapplication/presentation/screen/student/services/studentServices.dart';
 import 'package:hostelapplication/presentation/screen/student/complains/studentcomplainscreen.dart';
-import 'package:hostelapplication/presentation/screen/student/leave/studentLeave.dart';
 
 class StudentDashboardScreen extends StatefulWidget {
   const StudentDashboardScreen({Key? key}) : super(key: key);
@@ -18,7 +18,7 @@ class _StudentDashboardScreenState extends State<StudentDashboardScreen> {
     StudentHome(),
     StudentComplainScreen(),
     StudentServicesScreen(),
-    StudentLeave()
+    StudentApproveDennyLeaveList()
   ];
   void _onItemTapped(int index) {
     setState(() {

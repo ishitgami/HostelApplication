@@ -245,7 +245,7 @@ class MyLeaveListModel extends StatelessWidget {
                 borderRadius: BorderRadius.circular(10),
               ),
               child: const Text(
-                'Please wait atleast two days to resolve the problems by Management.',
+                'Please wait atleast one days to approve/denny the leave by Management.',
                 style: TextStyle(color: Colors.grey),
               ),
             ),
