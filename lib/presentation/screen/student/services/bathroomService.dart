@@ -170,6 +170,7 @@ class _StudentBathroomServicesState extends State<StudentBathroomServices> {
                               serviceProvider
                                   .changeRoomNo(userData.first.roomNo);
                               serviceProvider.changeStudentUid(user.uid);
+                              serviceProvider.changeServiceTitle('Bathroom');
                               serviceProvider.saveService();
                               repairDeviceList.clear();
                               Navigator.pop(context);

@@ -169,6 +169,7 @@ class _StudentElectricityServicesState
                               serviceProvider
                                   .changeRoomNo(userData.first.roomNo);
                               serviceProvider.changeStudentUid(user.uid);
+                              serviceProvider.changeServiceTitle('Electricity');
                               serviceProvider.saveService();
                               repairDeviceList.clear();
                               Navigator.pop(context);

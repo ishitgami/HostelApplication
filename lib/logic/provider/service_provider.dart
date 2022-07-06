@@ -11,6 +11,7 @@ class ServiceProvider with ChangeNotifier {
   late String _name;
   late String _roomNo;
   late String _studentUid;
+  late String _serviceTitle;
   DateTime _time = DateTime.now();
   var uuid = Uuid();
 
@@ -21,6 +22,7 @@ class ServiceProvider with ChangeNotifier {
   List get getRepairDeviceList => _repairDeviceList;
   String get getName => _name;
   String get getStudentUid => _studentUid;
+  String get getServiceTitle => _serviceTitle;
 
 
   // setter
@@ -44,6 +46,10 @@ class ServiceProvider with ChangeNotifier {
     _repairDeviceList= value;
   }
 
+  void changeServiceTitle (String value) {
+    _serviceTitle = value;
+  }
+
   void saveService() {
     var newService = Service(
       id: uuid.v4(), 
@@ -53,6 +59,7 @@ class ServiceProvider with ChangeNotifier {
       repairDeviceList: _repairDeviceList, 
       time: _time, 
       status: 0, 
+      serviceTitle: _serviceTitle,
       roomNo: _roomNo);
       service.saveService(newService);
   }

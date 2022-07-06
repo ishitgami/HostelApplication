@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hostelapplication/presentation/screen/admin/AdminDrawer.dart';
+import 'package:hostelapplication/presentation/screen/admin/service/adminPendingServiceList.dart';
 
 class AdminServicesScreen extends StatefulWidget {
   const AdminServicesScreen({Key? key}) : super(key: key);
@@ -26,6 +27,7 @@ class _AdminServicesScreenState extends State<AdminServicesScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.grey[200],
       appBar: AppBar(
         backgroundColor: Colors.lightBlue,
         title: const Text('Services'),
@@ -41,33 +43,37 @@ class _AdminServicesScreenState extends State<AdminServicesScreen> {
             mainAxisSpacing: 4.0,
           ),
           itemBuilder: (BuildContext context, int index) {
-            return Card(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(15.0),
-              ),
-              color: Colors.grey[100],
-              elevation: 1,
-              child: Column(
-                children: [
-                  Expanded(
-                    child: Image.asset(
-                      images[index],
-                      height: 100,
-                      width: 100,
+            return GestureDetector(
+              onTap: (){
+                Navigator.push(context, MaterialPageRoute(builder: (context)=>AdminPendingServiceListScreen(imagesText[index])));
+              },
+              child: Card(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(15.0),
+                ),
+                elevation: 1,
+                child: Column(
+                  children: [
+                    Expanded(
+                      child: Image.asset(
+                        images[index],
+                        height: 100,
+                        width: 100,
+                      ),
                     ),
-                  ),
-                  SizedBox(
-                    height: 25,
-                    child: Text(
-                      textAlign: TextAlign.center,
-                      imagesText[index].toString(),
-                      style: const TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 18,
-                          color: Colors.blueGrey),
+                    SizedBox(
+                      height: 25,
+                      child: Text(
+                        textAlign: TextAlign.center,
+                        imagesText[index].toString(),
+                        style: const TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 18,
+                            color: Colors.blueGrey),
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             );
           },

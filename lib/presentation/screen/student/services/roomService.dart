@@ -167,6 +167,7 @@ class _StudentRoomServicesState extends State<StudentRoomServices> {
                               serviceProvider
                                   .changeRoomNo(userData.first.roomNo);
                               serviceProvider.changeStudentUid(user.uid);
+                              serviceProvider.changeServiceTitle('Room');
                               serviceProvider.saveService();
                               repairDeviceList.clear();
                               Navigator.pop(context);
