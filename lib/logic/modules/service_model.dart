@@ -7,6 +7,7 @@ class Service {
   DateTime time;
   int status;
   String roomNo;
+  String serviceTitle;
   Service({
     required this.id,
     required this.name,
@@ -16,6 +17,7 @@ class Service {
     required this.time,
     required this.status,
     required this.roomNo,
+    required this.serviceTitle,
   });
 
   Map<String,dynamic> createMap() {
@@ -36,8 +38,9 @@ class Service {
       name = firestoreMap['Name'],
       roomNo = firestoreMap['RoomNo'],
       studentUid = firestoreMap['StudentUid'],
-      time = firestoreMap['Time'],
+      time = firestoreMap['Time'].toDate(),
       status = firestoreMap['Status'],
       serviceDes = firestoreMap['ServiceDes'],
+      serviceTitle = firestoreMap['ServiceTitle'],
       repairDeviceList = firestoreMap['RepairDeviceList'];
 }

@@ -164,6 +164,7 @@ class _StudentRoomServicesState
                               serviceProvider
                                   .changeRoomNo(userData.first.roomNo);
                               serviceProvider.changeStudentUid(user.uid);
+                              serviceProvider.changeServiceTitle('Room');
                               serviceProvider.saveService();
                               repairDeviceList.clear();
                               Navigator.pop(context);
