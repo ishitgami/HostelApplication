@@ -18,7 +18,6 @@ class AdminDrawer extends StatelessWidget {
         child: ListView(
           padding: EdgeInsets.zero,
           children: <Widget>[
-            // _createHeader(),
             ListTile(
               onTap: () {
                 Navigator.pushNamed(context, adminDetailsScreenRoute);
@@ -27,21 +26,43 @@ class AdminDrawer extends StatelessWidget {
                 padding: const EdgeInsets.all(8.0),
                 child: Column(
                   children: [
+                    SizedBox(
+                      height: 15,
+                    ),
                     Row(
-                      children: const [
+                      children: [
                         CircleAvatar(
                           radius: 25,
                           child: Icon(Icons.account_circle_rounded),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 10,
                         ),
-                        Text(
-                          'Admin',
-                          style: TextStyle(
-                              fontSize: 25, fontWeight: FontWeight.bold),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              "Admin",
+                              style: TextStyle(
+                                  fontSize: 18, fontWeight: FontWeight.w500),
+                            ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                            Text(
+                              "View Profile",
+                              style: TextStyle(
+                                  fontSize: 13,
+                                  color: Colors.grey,
+                                  fontWeight: FontWeight.w500),
+                            ),
+                          ],
                         ),
                       ],
+                    ),
+                    const SizedBox(
+                      height: 20,
                     ),
                   ],
                 ),

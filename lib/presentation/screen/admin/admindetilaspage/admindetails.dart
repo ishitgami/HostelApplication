@@ -5,7 +5,7 @@ class AdminDetailsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const String studentname = "Ishit Gami";
+    const String studentname = "Admin";
 
     return Scaffold(
       appBar: AppBar(
