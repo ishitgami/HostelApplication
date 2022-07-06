@@ -14,7 +14,6 @@ class ComplaintFirestoreService {
   }
 
   Stream<List<Complaint>> getComplaintForStudent() {
-    print(auth.currentUser?.uid);
     return _db
         .collection('Complaint')
         .where('StudentUid', isEqualTo: auth.currentUser?.uid)

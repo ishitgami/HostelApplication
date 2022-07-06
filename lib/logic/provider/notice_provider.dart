@@ -28,7 +28,6 @@ class NoticeProvider with ChangeNotifier {
   }
 
   void changeUrl(String url) {
-    print('url--->$url');
     _url = url;
     notifyListeners();
   }

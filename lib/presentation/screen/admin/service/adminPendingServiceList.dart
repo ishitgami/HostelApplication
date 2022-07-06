@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:hostelapplication/logic/modules/service_model.dart';
+import 'package:hostelapplication/presentation/screen/admin/service/approveDennyService.dart';
 import 'package:provider/provider.dart';
 
 class AdminPendingServiceListScreen extends StatelessWidget {
@@ -15,7 +16,6 @@ class AdminPendingServiceListScreen extends StatelessWidget {
     final serviceListRaw = Provider.of<List<Service>?>(context);
     serviceListRaw?.forEach(
       (element) {
-        print(element);
         if (element.status == 0 && serviceTitle == element.serviceTitle) {
           serviceList.add(element);
         }
@@ -36,11 +36,11 @@ class AdminPendingServiceListScreen extends StatelessWidget {
                 itemBuilder: (context, index) {
                   return GestureDetector(
                     onTap: () {
-                      // Navigator.push(
-                      //     context,
-                      //     MaterialPageRoute(
-                      //         builder: (context) => ApproveDenyComplainList(
-                      //             serviceList[index])));
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => ApproveDennyServiceSceen(
+                                  serviceList[index])));
                     },
                     child: Card(
                       child: Container(
@@ -48,65 +48,65 @@ class AdminPendingServiceListScreen extends StatelessWidget {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            // Row(
-                            //   children: [
-                            //     Column(
-                            //       crossAxisAlignment: CrossAxisAlignment.start,
-                            //       children: [
-                            //         Text(
-                            //           serviceList[index].name,
-                            //           style: TextStyle(
-                            //             fontWeight: FontWeight.w700,
-                            //             fontSize: 20,
-                            //           ),
-                            //         ),
-                            //         Text(
-                            //             'Room - ${serviceList[index].roomNo}'),
-                            //         Text(
-                            //           serviceList[index].time.day.toString() +
-                            //               '/' +
-                            //               serviceList[index]
-                            //                   .time
-                            //                   .month
-                            //                   .toString() +
-                            //               '/' +
-                            //               serviceList[index]
-                            //                   .time
-                            //                   .year
-                            //                   .toString(),
-                            //           style: TextStyle(
-                            //               fontSize: 12, color: Colors.grey),
-                            //         ),
-                            //       ],
-                            //     ),
-                            //     Spacer(),
-                            //     serviceList[index].status == 0
-                            //         ? Text(
-                            //             'Pending',
-                            //             style: TextStyle(
-                            //               color: Color.fromARGB(
-                            //                 255,
-                            //                 214,
-                            //                 108,
-                            //                 22,
-                            //               ),
-                            //             ),
-                            //           )
-                            //         : serviceList[index].status == 1
-                            //             ? Text('Approved',
-                            //                 style:
-                            //                     TextStyle(color: Colors.green))
-                            //             : Text(
-                            //                 'Declined',
-                            //                 style: TextStyle(
-                            //                   color: Colors.red,
-                            //                 ),
-                            //               ),
-                            //     SizedBox(
-                            //       width: 5,
-                            //     ),
-                            //   ],
-                            // ),
+                            Row(
+                              children: [
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      serviceList[index].name,
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.w700,
+                                        fontSize: 20,
+                                      ),
+                                    ),
+                                    Text(
+                                        'Room - ${serviceList[index].roomNo}'),
+                                    Text(
+                                      serviceList[index].time.day.toString() +
+                                          '/' +
+                                          serviceList[index]
+                                              .time
+                                              .month
+                                              .toString() +
+                                          '/' +
+                                          serviceList[index]
+                                              .time
+                                              .year
+                                              .toString(),
+                                      style: TextStyle(
+                                          fontSize: 12, color: Colors.grey),
+                                    ),
+                                  ],
+                                ),
+                                Spacer(),
+                                serviceList[index].status == 0
+                                    ? Text(
+                                        'Pending',
+                                        style: TextStyle(
+                                          color: Color.fromARGB(
+                                            255,
+                                            214,
+                                            108,
+                                            22,
+                                          ),
+                                        ),
+                                      )
+                                    : serviceList[index].status == 1
+                                        ? Text('Approved',
+                                            style:
+                                                TextStyle(color: Colors.green))
+                                        : Text(
+                                            'Declined',
+                                            style: TextStyle(
+                                              color: Colors.red,
+                                            ),
+                                          ),
+                                SizedBox(
+                                  width: 5,
+                                ),
+                              ],
+                            ),
                             SizedBox(
                               height: 10,
                             ),

@@ -194,7 +194,6 @@ class _LogInScreenState extends State<LogInScreen> {
                     context, studentDashboardScreenRoute, (route) => false);
       }
     } catch (e) {
-      print(e);
       return alertBox(context, e);
     }
   }
