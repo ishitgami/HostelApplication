@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hostelapplication/core/constant/string.dart';
 import 'package:hostelapplication/presentation/screen/student/studentDrawer.dart';
 
 class StudentServicesScreen extends StatefulWidget {
@@ -23,6 +24,14 @@ class _StudentServicesScreenState extends State<StudentServicesScreen> {
     'Electricity',
     'Other'
   ];
+
+   List navigatorRoute = [
+   studentElectricityServiceRoute,
+   studentElectricityServiceRoute,
+   studentElectricityServiceRoute,
+   studentElectricityServiceRoute,
+   studentElectricityServiceRoute,
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,33 +50,38 @@ class _StudentServicesScreenState extends State<StudentServicesScreen> {
             mainAxisSpacing: 4.0,
           ),
           itemBuilder: (BuildContext context, int index) {
-            return Card(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(15.0),
-              ),
-             
-              elevation: 1,
-              child: Column(
-                children: [
-                  Expanded(
-                    child: Image.asset(
-                      images[index],
-                      height: 100,
-                      width: 100,
+            return GestureDetector(
+              onTap: (){
+                Navigator.pushNamed(context, navigatorRoute[index]);
+              },
+              child: Card(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(15.0),
+                ),
+               
+                elevation: 1,
+                child: Column(
+                  children: [
+                    Expanded(
+                      child: Image.asset(
+                        images[index],
+                        height: 100,
+                        width: 100,
+                      ),
                     ),
-                  ),
-                  SizedBox(
-                    height: 25,
-                    child: Text(
-                      textAlign: TextAlign.center,
-                      imagesText[index].toString(),
-                      style: const TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 18,
-                          color: Colors.blueGrey),
+                    SizedBox(
+                      height: 25,
+                      child: Text(
+                        textAlign: TextAlign.center,
+                        imagesText[index].toString(),
+                        style: const TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 18,
+                            color: Colors.blueGrey),
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             );
           },

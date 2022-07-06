@@ -168,8 +168,8 @@ class StudentAddComplaintScreen extends StatelessWidget {
                               Padding(
                                 padding: const EdgeInsets.all(18.0),
                                 child: TextFormField(
-                                  onChanged: (((value) => complaintProvider
-                                      .changeComplaint(value))),
+                                  onChanged: ((value) => complaintProvider
+                                      .changeComplaint(value)),
                                   decoration: InputDecoration(
                                       focusedBorder: const OutlineInputBorder(
                                           borderSide:
