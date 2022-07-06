@@ -30,11 +30,11 @@ Future<void> main() async {
     MultiProvider(
       providers: [
         StreamProvider.value(
-          value: LeaveFirestoreService().getLeave(),
+          value: ServiceFirestoreService().getService(),
           initialData: null,
         ),
         StreamProvider.value(
-          value: ServiceFirestoreService().getService(),
+          value: LeaveFirestoreService().getLeave(),
           initialData: null,
         ),
         StreamProvider.value(

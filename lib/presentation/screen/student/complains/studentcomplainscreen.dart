@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:hostelapplication/presentation/screen/student/complains/StudentPastComplaint.dart';
 import 'package:hostelapplication/presentation/screen/student/complains/studentAddComplain.dart';
 import 'package:hostelapplication/presentation/screen/student/studentDrawer.dart';
 
@@ -33,21 +34,13 @@ class _StudentComplainScreenState extends State<StudentComplainScreen> {
       backgroundColor: Colors.grey[200],
       appBar: AppBar(
         title: const Text('Complain'),
-        //   actions: [
-        //   IconButton(
-        //     onPressed: () {
-
-        //     },
-        //     icon: const Icon(Icons.list_alt_rounded),
-        //   )
-        // ],
       ),
-      // floatingActionButton: FloatingActionButton(
-      //   onPressed: (){
-      //      Navigator.push(context,  MaterialPageRoute(builder: (context) => StudentComplaintListScreen()));
-      //   },
-      //   child: Icon(Icons.comment),
-      // ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: (){
+           Navigator.push(context,  MaterialPageRoute(builder: (context) => StudentPastComplaintScreen()));
+        },
+        child: Icon(Icons.comment),
+      ),
       drawer: const StudentDrawer(),
       body: Container(
         padding: const EdgeInsets.all(16.0),

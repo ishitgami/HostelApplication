@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hostelapplication/core/constant/string.dart';
+import 'package:hostelapplication/presentation/screen/student/services/StudentPastService.dart';
 import 'package:hostelapplication/presentation/screen/student/studentDrawer.dart';
 
 class StudentServicesScreen extends StatefulWidget {
@@ -37,6 +38,12 @@ class _StudentServicesScreenState extends State<StudentServicesScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Services'),
+      ),
+       floatingActionButton: FloatingActionButton(
+        onPressed: (){
+           Navigator.push(context,  MaterialPageRoute(builder: (context) => StudentPastServiceScreen()));
+        },
+        child: Icon(Icons.comment),
       ),
       drawer: const StudentDrawer(),
       body:Container(

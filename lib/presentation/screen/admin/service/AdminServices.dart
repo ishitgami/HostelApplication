@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hostelapplication/presentation/screen/admin/AdminDrawer.dart';
 import 'package:hostelapplication/presentation/screen/admin/service/adminPendingServiceList.dart';
-import 'package:hostelapplication/presentation/screen/admin/service/declinedApprovedService.dart';
+import 'package:hostelapplication/presentation/screen/admin/service/declinedApprovedServiceList.dart';
 
 class AdminServicesScreen extends StatefulWidget {
   const AdminServicesScreen({Key? key}) : super(key: key);
