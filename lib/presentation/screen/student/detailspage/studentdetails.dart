@@ -73,46 +73,138 @@ class _StudentDetailScreenState extends State<StudentDetailScreen> {
       ),
       body: SingleChildScrollView(
         child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.stretch,
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Column(
                 children: [
+                  const SizedBox(
+                    height: 30,
+                  ),
+                  Center(
+                    child: Stack(
+                      children: [
+                        CircleAvatar(
+                          radius: 75,
+                          backgroundColor: Colors.grey,
+                          child: CircleAvatar(
+                            backgroundImage: pickedFile != null
+                                ? FileImage((File("${pickedFile!.path}")))
+                                : NetworkImage(userDataList.first.userimage)
+                                    as ImageProvider,
+                            radius: 70,
+                          ),
+                        ),
+                        Positioned(
+                          child: buildCircle(
+                              all: 8,
+                              child: GestureDetector(
+                                onTap: () {
+                                  selectFile();
+                                },
+                                child: Icon(
+                                  Icons.edit,
+                                  color: Color.fromRGBO(64, 105, 225, 1),
+                                  size: 20,
+                                ),
+                              )),
+                          right: 3,
+                          top: 110,
+                        )
+                      ],
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
                   Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const SizedBox(
-                        height: 30,
+                      Text(
+                        userDataList.first.firstName +
+                            ' ' +
+                            userDataList.first.lastName,
+                        style: TextStyle(
+                            fontSize: 29, fontWeight: FontWeight.w600),
                       ),
-                      Center(
-                        child: Stack(
-                          children: [
-                            CircleAvatar(
-                              radius: 75,
-                              backgroundColor: Colors.grey,
-                              child: CircleAvatar(
-                                backgroundImage: pickedFile != null
-                                    ? FileImage((File("${pickedFile!.path}")))
-                                    : NetworkImage(userDataList.first.userimage)
-                                        as ImageProvider,
-                                radius: 70,
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Card(
+                      elevation: 1,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10)),
+                      child: Container(
+                        decoration: const BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(10)),
+                          color: Color.fromARGB(183, 255, 255, 255),
+                        ),
+                        child: DataTable(
+                          columns: [
+                            DataColumn(
+                              label: Text(
+                                'Room No',
+                                style: TextStyle(
+                                  fontWeight: FontWeight.w700,
+                                ),
                               ),
                             ),
-                            Positioned(
-                              child: buildCircle(
-                                  all: 8,
-                                  child: GestureDetector(
-                                    onTap: () {
-                                      selectFile();
-                                    },
-                                    child: Icon(
-                                      Icons.edit,
-                                      color: Color.fromRGBO(64, 105, 225, 1),
-                                      size: 20,
-                                    ),
-                                  )),
-                              right: 3,
-                              top: 110,
-                            )
+                            DataColumn(
+                              label: Text(
+                                userDataList.first.roomNo,
+                              ),
+                            ),
+                          ],
+                          rows: [
+                            DataRow(cells: [
+                              DataCell(
+                                Text(
+                                  'Email',
+                                  style: TextStyle(fontWeight: FontWeight.w700),
+                                ),
+                              ),
+                              DataCell(
+                                Text(userDataList.first.email),
+                              ),
+                            ]),
+                            DataRow(cells: [
+                              DataCell(
+                                Text(
+                                  'Phone No',
+                                  style: TextStyle(fontWeight: FontWeight.w700),
+                                ),
+                              ),
+                              DataCell(
+                                Text(userDataList.first.mobileNo),
+                              ),
+                            ]),
+                            DataRow(
+                              cells: [
+                                DataCell(
+                                  Text(
+                                    'Date of joining',
+                                    style:
+                                        TextStyle(fontWeight: FontWeight.w700),
+                                  ),
+                                ),
+                                DataCell(
+                                  Text(
+                                    userDataList.first.time.day.toString() +
+                                        '/' +
+                                        userDataList.first.time.month
+                                            .toString() +
+                                        '/' +
+                                        userDataList.first.time.year.toString(),
+                                  ),
+                                ),
+                              ],
+                            ),
                           ],
                         ),
                       ),

@@ -1,14 +1,14 @@
-// ignore_for_file: unused_local_variable
-
 import 'package:flutter/material.dart';
 import 'package:hostelapplication/logic/provider/complaint_provider.dart';
 import 'package:hostelapplication/logic/provider/leave_provider.dart';
 import 'package:hostelapplication/logic/provider/notice_provider.dart';
+import 'package:hostelapplication/logic/provider/service_provider.dart';
 import 'package:hostelapplication/logic/provider/userData_provider.dart';
 import 'package:hostelapplication/logic/service/auth_services/auth_service.dart';
 import 'package:hostelapplication/logic/service/fireStoreServices/complaint_firestore_service.dart';
 import 'package:hostelapplication/logic/service/fireStoreServices/leave_firestore_service.dart';
 import 'package:hostelapplication/logic/service/fireStoreServices/notice_firestore_service.dart';
+import 'package:hostelapplication/logic/service/fireStoreServices/service_firestore_service.dart';
 import 'package:hostelapplication/logic/service/fireStoreServices/user_firestore_services.dart';
 import 'package:hostelapplication/presentation/router/route.dart';
 import 'package:provider/provider.dart';
@@ -31,14 +31,9 @@ Future<void> main() async {
           value: LeaveFirestoreService().getLeave(),
           initialData: null,
         ),
-        Provider<AuthService>(
-          create: (_) => AuthService(),
-        ),
-        Provider<UserDataFirestoreService>(
-          create: (_) => UserDataFirestoreService(),
-        ),
-        ChangeNotifierProvider.value(
-          value: NoticeProvider(),
+        StreamProvider.value(
+          value: ServiceFirestoreService().getService(),
+          initialData: null,
         ),
         StreamProvider.value(
           value: NoticeFirestoreService().getNotice(),
@@ -53,6 +48,9 @@ Future<void> main() async {
           initialData: null,
         ),
         ChangeNotifierProvider.value(
+          value: NoticeProvider(),
+        ),
+        ChangeNotifierProvider.value(
           value: ComplaintProvider(),
         ),
         ChangeNotifierProvider.value(
@@ -61,7 +59,15 @@ Future<void> main() async {
         ChangeNotifierProvider.value(
           value: LeaveProvider(),
         ),
-        
+        ChangeNotifierProvider.value(
+          value: ServiceProvider(),
+        ),
+        Provider<AuthService>(
+          create: (_) => AuthService(),
+        ),
+        Provider<UserDataFirestoreService>(
+          create: (_) => UserDataFirestoreService(),
+        ),
       ],
       child: const MyApp(),
     ),
