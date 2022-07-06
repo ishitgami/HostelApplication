@@ -9,16 +9,16 @@ import 'package:hostelapplication/logic/modules/userData_model.dart';
 import 'package:hostelapplication/logic/provider/service_provider.dart';
 import 'package:hostelapplication/logic/service/auth_services/auth_service.dart';
 
-class StudentElectricityServices extends StatefulWidget {
-  const StudentElectricityServices({Key? key}) : super(key: key);
+class StudentBathroomServices extends StatefulWidget {
+  const StudentBathroomServices({Key? key}) : super(key: key);
 
   @override
-  State<StudentElectricityServices> createState() =>
-      _StudentElectricityServicesState();
+  State<StudentBathroomServices> createState() =>
+      _StudentBathroomServicesState();
 }
 
-class _StudentElectricityServicesState
-    extends State<StudentElectricityServices> {
+class _StudentBathroomServicesState
+    extends State<StudentBathroomServices> {
   Map<String, bool> values = {};
   bool isLightChecked = false;
   bool isFanChecked = false;
@@ -182,9 +182,3 @@ class _StudentElectricityServicesState
     );
   }
 }
-
-
-
-
-
-

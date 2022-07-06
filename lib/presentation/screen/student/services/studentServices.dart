@@ -26,11 +26,11 @@ class _StudentServicesScreenState extends State<StudentServicesScreen> {
   ];
 
    List navigatorRoute = [
+   studentRoomServiceRoute,
+   studentMessServiceRoute,
+   studentBathRoomServiceRoute,
    studentElectricityServiceRoute,
-   studentElectricityServiceRoute,
-   studentElectricityServiceRoute,
-   studentElectricityServiceRoute,
-   studentElectricityServiceRoute,
+   studentOtherServiceRoute,
   ];
   @override
   Widget build(BuildContext context) {

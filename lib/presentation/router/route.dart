@@ -12,6 +12,10 @@ import 'package:hostelapplication/presentation/screen/splashScreen.dart';
 import 'package:hostelapplication/presentation/screen/student/Drawer/helpscreen.dart';
 import 'package:hostelapplication/presentation/screen/student/Studentnotification/studentnotification.dart';
 import 'package:hostelapplication/presentation/screen/student/leave/studentAddLeave.dart';
+import 'package:hostelapplication/presentation/screen/student/services/bathroomService.dart';
+import 'package:hostelapplication/presentation/screen/student/services/messService.dart';
+import 'package:hostelapplication/presentation/screen/student/services/otherServices.dart';
+import 'package:hostelapplication/presentation/screen/student/services/roomService.dart';
 import 'package:hostelapplication/presentation/screen/student/services/studentElectricServices.dart';
 import 'package:hostelapplication/presentation/screen/student/detailspage/studentdetails.dart';
 import 'package:hostelapplication/presentation/screen/student/studentDashbord.dart';
@@ -52,23 +56,8 @@ class Routes {
         return MaterialPageRoute(
             builder: (context) => const StudentDetailScreen());
 
-      // case studentAddComplaintRoute:
-      //   return MaterialPageRoute(
-      //       builder: (context) =>  StudentAddComplaintScreen());
-
       case addNoticeScreenRoute:
         return MaterialPageRoute(builder: (context) => AddNoticeScreen());
-
-      // case complaintListScreenRoute:
-      //   return MaterialPageRoute(builder: (context) => ComplainListScreen());
-
-      // case approveDenyComplainListRoute:
-      //   return MaterialPageRoute(
-      //       builder: (context) => const ApproveDenyComplainList());
-
-      // case approveDennyLeaveScreenRoute:
-      //   return MaterialPageRoute(
-      //       builder: (context) => ApproveDennyLeaveScreen());
 
       case helpscreenRoute:
         return MaterialPageRoute(builder: (context) => const HelpScreen());
@@ -76,6 +65,22 @@ class Routes {
       case studentElectricityServiceRoute:
         return MaterialPageRoute(
             builder: (context) => const StudentElectricityServices());
+      
+       case studentRoomServiceRoute:
+        return MaterialPageRoute(
+            builder: (context) => const StudentRoomServices());
+      
+       case studentMessServiceRoute:
+        return MaterialPageRoute(
+            builder: (context) => const StudentMessServices());
+      
+         case studentBathRoomServiceRoute:
+        return MaterialPageRoute(
+            builder: (context) => const StudentBathroomServices());
+        
+         case studentOtherServiceRoute:
+        return MaterialPageRoute(
+            builder: (context) => const StudentOtherServices());
 
       case adminnotificationRoute:
         return MaterialPageRoute(
