@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:hostelapplication/core/constant/string.dart';
 import 'package:hostelapplication/logic/modules/notice_model.dart';
 import 'package:hostelapplication/presentation/screen/student/studentDrawer.dart';
 import 'package:image_downloader/image_downloader.dart';
@@ -22,6 +23,14 @@ class _StudentHomeState extends State<StudentHome> {
       backgroundColor: Colors.grey[200],
       appBar: AppBar(
         title: const Text('DashBoard'),
+        actions: [
+          IconButton(
+            onPressed: () {
+              Navigator.pushNamed(context, studentnotificationRoute);
+            },
+            icon: const Icon(Icons.notifications),
+          )
+        ],
       ),
       drawer: const StudentDrawer(),
       body: noticeList != null

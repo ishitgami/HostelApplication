@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:hostelapplication/core/constant/string.dart';
 import 'package:hostelapplication/logic/modules/userData_model.dart';
 import 'package:hostelapplication/logic/provider/leave_provider.dart';
-import 'package:hostelapplication/presentation/screen/student/studentDrawer.dart';
 import 'package:provider/provider.dart';
 
 class StudentAddLeave extends StatefulWidget {
@@ -97,7 +96,9 @@ class _StudentAddLeaveState extends State<StudentAddLeave> {
                                             padding: tablepadding,
                                             child: Column(children: [
                                               Text(
-                                                userData.first.firstName + ' ' + userData.first.lastName ,
+                                                userData.first.firstName +
+                                                    ' ' +
+                                                    userData.first.lastName,
                                                 style: TextStyle(
                                                     fontWeight: FontWeight.w600,
                                                     fontSize: 18),
@@ -192,7 +193,9 @@ class _StudentAddLeaveState extends State<StudentAddLeave> {
                                                           initialDate:
                                                               leavingDate,
                                                           firstDate:
-                                                              DateTime.now(),
+                                                              DateTime.now()
+                                                                  .add(Duration(
+                                                                      days: 2)),
                                                           lastDate: leavingDate
                                                               .add(Duration(
                                                                   days: 30)));

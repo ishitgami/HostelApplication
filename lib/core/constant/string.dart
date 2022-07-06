@@ -12,7 +12,8 @@ const String registrationScreenRoute = '/registrationScreenRoute';
 const String adminDashbordScreenRoute = '/adminDashbordScreenRoute';
 const String addNoticeScreenRoute = '/adminAddNoticeScreenRoute';
 const String complaintListScreenRoute = '/AdminComplainListScreen';
-const String approveDenyComplainListRoute = '/AdminApproveDenyComplainListScreen';
+const String approveDenyComplainListRoute =
+    '/AdminApproveDenyComplainListScreen';
 const String approveDennyLeaveScreenRoute = '/approveDennyLeaveScreen';
 const String adminDetailsScreenRoute = "/adminDetails";
 
@@ -30,6 +31,7 @@ const String helpscreenRoute = "/help";
 
 //notification
 const String adminnotificationRoute = "/adminnotif";
+const String studentnotificationRoute = "/studentnotif";
 
 //****************End-Routes***********************
 

@@ -3,7 +3,6 @@
 import 'dart:io';
 import 'package:file_picker/file_picker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:hostelapplication/logic/modules/userData_model.dart';
@@ -152,31 +151,33 @@ class _StudentDetailScreenState extends State<StudentDetailScreen> {
                                 DataColumn(
                                   label: Text(
                                     'Room No',
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.w700),
+                                    style:
+                                        TextStyle(fontWeight: FontWeight.w700),
                                   ),
                                 ),
                                 DataColumn(
                                     label: Text(
                                   userDataList.first.roomNo,
-                                  style:
-                                      TextStyle(fontWeight: FontWeight.w700),
+                                  style: TextStyle(fontWeight: FontWeight.w700),
                                 )),
                               ],
                               rows: [
                                 DataRow(cells: [
-                                  DataCell(Text('Email', style:
-                                      TextStyle(fontWeight: FontWeight.w700))),
+                                  DataCell(Text('Email',
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.w700))),
                                   DataCell(Text(userDataList.first.email)),
                                 ]),
                                 DataRow(cells: [
-                                  DataCell(Text('Phone No', style:
-                                      TextStyle(fontWeight: FontWeight.w700))),
+                                  DataCell(Text('Phone No',
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.w700))),
                                   DataCell(Text(userDataList.first.mobileNo)),
                                 ]),
                                 DataRow(cells: [
-                                  DataCell(Text('Date of joining', style:
-                                      TextStyle(fontWeight: FontWeight.w700))),
+                                  DataCell(Text('Date of joining',
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.w700))),
                                   DataCell(Text(userDataList.first.time.day
                                           .toString() +
                                       '/' +
