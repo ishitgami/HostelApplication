@@ -342,7 +342,6 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
       Navigator.pushReplacementNamed(context, logInScreenRoute);
       return user;
     } catch (e) {
-      print(e);
       return alertBox(context, e);
     }
   }

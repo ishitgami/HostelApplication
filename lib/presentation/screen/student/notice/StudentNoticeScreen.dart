@@ -73,7 +73,6 @@ class NoticeContainer extends StatelessWidget {
           } on PlatformException catch (error) {
             print(error);
           }
-          // print("image save");
         }
         break;
       case 'Share':

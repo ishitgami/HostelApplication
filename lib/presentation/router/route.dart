@@ -24,7 +24,6 @@ class Routes {
   Future<void> checkForOnBordScreen() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     initScreen = prefs.getInt("initScreen")!;
-    print('initScreen111111 $initScreen');
   }
 
   static Route<dynamic> generateRoute(RouteSettings settings) {

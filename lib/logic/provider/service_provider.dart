@@ -68,7 +68,7 @@ class ServiceProvider with ChangeNotifier {
     service.removeService(serviceId);
   }
 
-  void chageStatus(status, serviceId) {
+  void changeStatus(status, serviceId) {
     service.changeServiceStatus(status, serviceId);
   }
 }

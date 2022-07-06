@@ -29,6 +29,7 @@ class Service {
       'Time' :time,
       'Status' :status,
       'ServiceDes' :serviceDes,
+      'ServiceTitle' : serviceTitle,
       'RepairDeviceList' : repairDeviceList,
     };
   }
