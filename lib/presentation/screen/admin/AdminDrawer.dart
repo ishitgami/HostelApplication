@@ -12,7 +12,6 @@ class AdminDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final authService = Provider.of<AuthService>(context);
-    const adminDraweText = TextStyle(fontSize: 15);
     return Drawer(
       child: SafeArea(
         child: ListView(

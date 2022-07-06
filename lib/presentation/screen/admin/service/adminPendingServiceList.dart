@@ -1,16 +1,17 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/material.dart';
 import 'package:hostelapplication/logic/modules/service_model.dart';
 import 'package:provider/provider.dart';
 
 class AdminPendingServiceListScreen extends StatelessWidget {
-   AdminPendingServiceListScreen(this.serviceTitle);
+  AdminPendingServiceListScreen(this.serviceTitle);
 
   String serviceTitle;
 
   @override
   Widget build(BuildContext context) {
-  
-     List<Service> serviceList = [];
+    List<Service> serviceList = [];
     final serviceListRaw = Provider.of<List<Service>?>(context);
     serviceListRaw?.forEach(
       (element) {

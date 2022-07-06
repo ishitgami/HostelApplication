@@ -2,7 +2,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:hostelapplication/core/constant/string.dart';
 import 'package:hostelapplication/logic/modules/notice_model.dart';
 import 'package:hostelapplication/presentation/screen/student/studentDrawer.dart';
 import 'package:image_downloader/image_downloader.dart';
@@ -58,7 +57,6 @@ class NoticeContainer extends StatelessWidget {
 
   var myMenuItems = <String>[
     'Save Image',
-    // 'Share',
   ];
 
   void onSelect(item) async {
@@ -73,12 +71,6 @@ class NoticeContainer extends StatelessWidget {
           } on PlatformException catch (error) {
             print(error);
           }
-          // print("image save");
-        }
-        break;
-      case 'Share':
-        {
-          print("share button clicked");
         }
         break;
     }

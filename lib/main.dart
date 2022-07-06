@@ -1,3 +1,5 @@
+// ignore_for_file: unused_local_variable
+
 import 'package:flutter/material.dart';
 import 'package:hostelapplication/logic/provider/complaint_provider.dart';
 import 'package:hostelapplication/logic/provider/leave_provider.dart';
