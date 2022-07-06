@@ -13,16 +13,14 @@ class StudentOtherServices extends StatefulWidget {
   const StudentOtherServices({Key? key}) : super(key: key);
 
   @override
-  State<StudentOtherServices> createState() =>
-      _StudentOtherServicesState();
+  State<StudentOtherServices> createState() => _StudentOtherServicesState();
 }
 
-class _StudentOtherServicesState
-    extends State<StudentOtherServices> {
+class _StudentOtherServicesState extends State<StudentOtherServices> {
   Map<String, bool> values = {};
-  bool isLightChecked = false;
-  bool isFanChecked = false;
-  bool isPlugChecked = false;
+  bool isOther1Checked = false;
+  bool isOther2Checked = false;
+  bool isOther3Checked = false;
   List repairDeviceList = [];
   @override
   Widget build(BuildContext context) {
@@ -56,33 +54,36 @@ class _StudentOtherServicesState
                     const SizedBox(
                       height: 10,
                     ),
-                    UserTable(tablepadding: tablepadding, userData: userData, now: now),
+                    UserTable(
+                        tablepadding: tablepadding,
+                        userData: userData,
+                        now: now),
                     RepairDeviceWidget(
-                        isItem1Checked: isLightChecked,
-                        isItem2Checked: isPlugChecked,
-                        isItem3Checked: isFanChecked,
-                        item1Img: "assets/images/light.png",
-                        item2Img: "assets/images/plug.png",
-                        item3Img: "assets/images/fan.png",
-                        item1Name: "Light",
-                        item2Name: "Plug",
-                        item3Name: "Fan",
-                        item1Fun: (value) {
-                          setState(() {
-                             isLightChecked = value!;
-                          });
-                        },
-                        item2Fun: (value) {
-                          setState(() {
-                             isPlugChecked = value!;
-                          });
-                        },
-                        item3Fun: (value) {
-                          setState(() {
-                             isFanChecked = value!;
-                          });
-                        },
-                        ),
+                      isItem1Checked: isOther1Checked,
+                      isItem2Checked: isOther2Checked,
+                      isItem3Checked: isOther3Checked,
+                      item1Img: "assets/images/otherservice.png",
+                      item2Img: "assets/images/otherservice.png",
+                      item3Img: "assets/images/otherservice.png",
+                      item1Name: "Other1",
+                      item2Name: "Other2",
+                      item3Name: "Other3",
+                      item1Fun: (value) {
+                        setState(() {
+                          isOther1Checked = value!;
+                        });
+                      },
+                      item2Fun: (value) {
+                        setState(() {
+                          isOther2Checked = value!;
+                        });
+                      },
+                      item3Fun: (value) {
+                        setState(() {
+                          isOther3Checked = value!;
+                        });
+                      },
+                    ),
                     Stack(children: [
                       Padding(
                         padding: const EdgeInsets.only(
@@ -110,21 +111,21 @@ class _StudentOtherServicesState
                                   Row(
                                     children: [
                                       Text(
-                                        isLightChecked ? 'Light,' : '',
+                                        isOther1Checked ? 'Other 1,' : '',
                                         style: TextStyle(
                                             fontSize: 18,
                                             color: Colors.red,
                                             fontWeight: FontWeight.bold),
                                       ),
                                       Text(
-                                        isFanChecked ? 'Fan,' : '',
+                                        isOther2Checked ? 'Other 2,' : '',
                                         style: TextStyle(
                                             fontSize: 18,
                                             color: Colors.red,
                                             fontWeight: FontWeight.bold),
                                       ),
                                       Text(
-                                        isPlugChecked ? 'Plug,' : '',
+                                        isOther3Checked ? 'Other 3,' : '',
                                         style: TextStyle(
                                             fontSize: 18,
                                             color: Colors.red,
@@ -134,7 +135,9 @@ class _StudentOtherServicesState
                                   ),
                                 ],
                               ),
-                              ServiceTextField(onServiceDecChange: (value) {serviceProvider.changeServiceDes(value);}),
+                              ServiceTextField(onServiceDecChange: (value) {
+                                serviceProvider.changeServiceDes(value);
+                              }),
                               const SizedBox(
                                 height: 20,
                               )
@@ -148,12 +151,14 @@ class _StudentOtherServicesState
                         bottom: 22,
                         child: FloatingActionButton(
                             onPressed: () {
-                              isPlugChecked
-                                  ? repairDeviceList.add('Plug')
+                              isOther1Checked
+                                  ? repairDeviceList.add('Other1')
                                   : null;
-                              isFanChecked ? repairDeviceList.add('Fan') : null;
-                              isLightChecked
-                                  ? repairDeviceList.add('Light')
+                              isOther2Checked
+                                  ? repairDeviceList.add('Other2')
+                                  : null;
+                              isOther3Checked
+                                  ? repairDeviceList.add('Other3')
                                   : null;
                               serviceProvider.changeName(
                                   userData.first.firstName +

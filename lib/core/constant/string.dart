@@ -21,21 +21,18 @@ const String adminDetailsScreenRoute = "/adminDetails";
 const String studentDashboardScreenRoute = "/stuDash";
 const String studentDetailScreenRoute = "/studentDetails";
 const String electricitycomplaintscreenRoute = "/electricitycomplaint";
-const String studentElectricityServiceRoute = "/studentElectricityServiceScreen";
+const String studentElectricityServiceRoute =
+    "/studentElectricityServiceScreen";
 const String studentAddComplaintRoute = "/studentAddcomplaintscreen";
 const String studentComplaintListScreenRoute = "/studentComplaintListScreen";
 const String studentLeaveScreenRoute = "/studentLeaveScreen";
-const String studentRoomServiceRoute  = "/studentRoomServiceScreen";
+const String studentRoomServiceRoute = "/studentRoomServiceScreen";
 const String studentMessServiceRoute = "/studentMessServiceScreen";
 const String studentBathRoomServiceRoute = "/studentBathRoomServiceScreen";
 const String studentOtherServiceRoute = "/studentOtherServiceScreen";
 
 //drawer
 const String helpscreenRoute = "/help";
-
-//notification
-const String adminnotificationRoute = "/adminnotif";
-const String studentnotificationRoute = "/studentnotif";
 
 //****************End-Routes***********************
 

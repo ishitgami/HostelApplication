@@ -43,59 +43,6 @@ class AdminDrawer extends StatelessWidget {
                         ),
                       ],
                     ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    Container(
-                      width: 250,
-                      height: 120,
-                      decoration: const BoxDecoration(
-                        color: Color.fromARGB(183, 203, 208, 211),
-                        borderRadius: BorderRadius.all(Radius.circular(5)),
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(15.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: const [
-                                Text(
-                                  'Role             ',
-                                  style: adminDraweText,
-                                ),
-                                Text(':', style: adminDraweText),
-                                Text('     Rector', style: adminDraweText),
-                              ],
-                            ),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: const [
-                                Text('Hostel         ', style: adminDraweText),
-                                Text(':'),
-                                Text('     Hostel Name', style: adminDraweText),
-                              ],
-                            ),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: const [
-                                Text('Phone No   ', style: adminDraweText),
-                                Text(':', style: adminDraweText),
-                                Text('     +91 12345 56789',
-                                    style: adminDraweText),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-                    )
                   ],
                 ),
               ),

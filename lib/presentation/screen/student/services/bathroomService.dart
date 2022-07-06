@@ -17,12 +17,11 @@ class StudentBathroomServices extends StatefulWidget {
       _StudentBathroomServicesState();
 }
 
-class _StudentBathroomServicesState
-    extends State<StudentBathroomServices> {
+class _StudentBathroomServicesState extends State<StudentBathroomServices> {
   Map<String, bool> values = {};
-  bool isLightChecked = false;
-  bool isFanChecked = false;
-  bool isPlugChecked = false;
+  bool isShowerChecked = false;
+  bool isMirrorChecked = false;
+  bool isWaterleakChecked = false;
   List repairDeviceList = [];
   @override
   Widget build(BuildContext context) {
@@ -56,33 +55,36 @@ class _StudentBathroomServicesState
                     const SizedBox(
                       height: 10,
                     ),
-                    UserTable(tablepadding: tablepadding, userData: userData, now: now),
+                    UserTable(
+                        tablepadding: tablepadding,
+                        userData: userData,
+                        now: now),
                     RepairDeviceWidget(
-                        isItem1Checked: isLightChecked,
-                        isItem2Checked: isPlugChecked,
-                        isItem3Checked: isFanChecked,
-                        item1Img: "assets/images/light.png",
-                        item2Img: "assets/images/plug.png",
-                        item3Img: "assets/images/fan.png",
-                        item1Name: "Light",
-                        item2Name: "Plug",
-                        item3Name: "Fan",
-                        item1Fun: (value) {
-                          setState(() {
-                             isLightChecked = value!;
-                          });
-                        },
-                        item2Fun: (value) {
-                          setState(() {
-                             isPlugChecked = value!;
-                          });
-                        },
-                        item3Fun: (value) {
-                          setState(() {
-                             isFanChecked = value!;
-                          });
-                        },
-                        ),
+                      isItem1Checked: isShowerChecked,
+                      isItem2Checked: isMirrorChecked,
+                      isItem3Checked: isWaterleakChecked,
+                      item1Img: "assets/images/shower.png",
+                      item2Img: "assets/images/mirror.png",
+                      item3Img: "assets/images/leak.png",
+                      item1Name: "Shower      ",
+                      item2Name: "Mirror       ",
+                      item3Name: "waterleak",
+                      item1Fun: (value) {
+                        setState(() {
+                          isShowerChecked = value!;
+                        });
+                      },
+                      item2Fun: (value) {
+                        setState(() {
+                          isMirrorChecked = value!;
+                        });
+                      },
+                      item3Fun: (value) {
+                        setState(() {
+                          isWaterleakChecked = value!;
+                        });
+                      },
+                    ),
                     Stack(children: [
                       Padding(
                         padding: const EdgeInsets.only(
@@ -110,21 +112,21 @@ class _StudentBathroomServicesState
                                   Row(
                                     children: [
                                       Text(
-                                        isLightChecked ? 'Light,' : '',
+                                        isShowerChecked ? 'Shower,' : '',
                                         style: TextStyle(
                                             fontSize: 18,
                                             color: Colors.red,
                                             fontWeight: FontWeight.bold),
                                       ),
                                       Text(
-                                        isFanChecked ? 'Fan,' : '',
+                                        isMirrorChecked ? 'Mirror,' : '',
                                         style: TextStyle(
                                             fontSize: 18,
                                             color: Colors.red,
                                             fontWeight: FontWeight.bold),
                                       ),
                                       Text(
-                                        isPlugChecked ? 'Plug,' : '',
+                                        isWaterleakChecked ? 'Water leak,' : '',
                                         style: TextStyle(
                                             fontSize: 18,
                                             color: Colors.red,
@@ -134,7 +136,9 @@ class _StudentBathroomServicesState
                                   ),
                                 ],
                               ),
-                              ServiceTextField(onServiceDecChange: (value) {serviceProvider.changeServiceDes(value);}),
+                              ServiceTextField(onServiceDecChange: (value) {
+                                serviceProvider.changeServiceDes(value);
+                              }),
                               const SizedBox(
                                 height: 20,
                               )
@@ -148,12 +152,14 @@ class _StudentBathroomServicesState
                         bottom: 22,
                         child: FloatingActionButton(
                             onPressed: () {
-                              isPlugChecked
-                                  ? repairDeviceList.add('Plug')
+                              isShowerChecked
+                                  ? repairDeviceList.add('Shower')
                                   : null;
-                              isFanChecked ? repairDeviceList.add('Fan') : null;
-                              isLightChecked
-                                  ? repairDeviceList.add('Light')
+                              isMirrorChecked
+                                  ? repairDeviceList.add('Mirror')
+                                  : null;
+                              isWaterleakChecked
+                                  ? repairDeviceList.add('Waterleak')
                                   : null;
                               serviceProvider.changeName(
                                   userData.first.firstName +

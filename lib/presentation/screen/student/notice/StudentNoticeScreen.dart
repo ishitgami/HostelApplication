@@ -23,14 +23,6 @@ class _StudentHomeState extends State<StudentHome> {
       backgroundColor: Colors.grey[200],
       appBar: AppBar(
         title: const Text('DashBoard'),
-        actions: [
-          IconButton(
-            onPressed: () {
-              Navigator.pushNamed(context, studentnotificationRoute);
-            },
-            icon: const Icon(Icons.notifications),
-          )
-        ],
       ),
       drawer: const StudentDrawer(),
       body: noticeList != null

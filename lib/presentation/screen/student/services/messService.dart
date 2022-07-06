@@ -13,16 +13,14 @@ class StudentMessServices extends StatefulWidget {
   const StudentMessServices({Key? key}) : super(key: key);
 
   @override
-  State<StudentMessServices> createState() =>
-      _StudentMessServicesState();
+  State<StudentMessServices> createState() => _StudentMessServicesState();
 }
 
-class _StudentMessServicesState
-    extends State<StudentMessServices> {
+class _StudentMessServicesState extends State<StudentMessServices> {
   Map<String, bool> values = {};
-  bool isLightChecked = false;
+  bool isMesstableChecked = false;
   bool isFanChecked = false;
-  bool isPlugChecked = false;
+  bool isOtherChecked = false;
   List repairDeviceList = [];
   @override
   Widget build(BuildContext context) {
@@ -56,33 +54,36 @@ class _StudentMessServicesState
                     const SizedBox(
                       height: 10,
                     ),
-                    UserTable(tablepadding: tablepadding, userData: userData, now: now),
+                    UserTable(
+                        tablepadding: tablepadding,
+                        userData: userData,
+                        now: now),
                     RepairDeviceWidget(
-                        isItem1Checked: isLightChecked,
-                        isItem2Checked: isPlugChecked,
-                        isItem3Checked: isFanChecked,
-                        item1Img: "assets/images/light.png",
-                        item2Img: "assets/images/plug.png",
-                        item3Img: "assets/images/fan.png",
-                        item1Name: "Light",
-                        item2Name: "Plug",
-                        item3Name: "Fan",
-                        item1Fun: (value) {
-                          setState(() {
-                             isLightChecked = value!;
-                          });
-                        },
-                        item2Fun: (value) {
-                          setState(() {
-                             isPlugChecked = value!;
-                          });
-                        },
-                        item3Fun: (value) {
-                          setState(() {
-                             isFanChecked = value!;
-                          });
-                        },
-                        ),
+                      isItem1Checked: isMesstableChecked,
+                      isItem2Checked: isFanChecked,
+                      isItem3Checked: isOtherChecked,
+                      item1Img: "assets/images/messtable.png",
+                      item2Img: "assets/images/fan.png",
+                      item3Img: "assets/images/otherservice.png",
+                      item1Name: "MessTable",
+                      item2Name: "Fan          ",
+                      item3Name: "Other      ",
+                      item1Fun: (value) {
+                        setState(() {
+                          isMesstableChecked = value!;
+                        });
+                      },
+                      item2Fun: (value) {
+                        setState(() {
+                          isFanChecked = value!;
+                        });
+                      },
+                      item3Fun: (value) {
+                        setState(() {
+                          isOtherChecked = value!;
+                        });
+                      },
+                    ),
                     Stack(children: [
                       Padding(
                         padding: const EdgeInsets.only(
@@ -110,7 +111,7 @@ class _StudentMessServicesState
                                   Row(
                                     children: [
                                       Text(
-                                        isLightChecked ? 'Light,' : '',
+                                        isMesstableChecked ? 'Messtable,' : '',
                                         style: TextStyle(
                                             fontSize: 18,
                                             color: Colors.red,
@@ -124,7 +125,7 @@ class _StudentMessServicesState
                                             fontWeight: FontWeight.bold),
                                       ),
                                       Text(
-                                        isPlugChecked ? 'Plug,' : '',
+                                        isOtherChecked ? 'Other,' : '',
                                         style: TextStyle(
                                             fontSize: 18,
                                             color: Colors.red,
@@ -134,7 +135,9 @@ class _StudentMessServicesState
                                   ),
                                 ],
                               ),
-                              ServiceTextField(onServiceDecChange: (value) {serviceProvider.changeServiceDes(value);}),
+                              ServiceTextField(onServiceDecChange: (value) {
+                                serviceProvider.changeServiceDes(value);
+                              }),
                               const SizedBox(
                                 height: 20,
                               )
@@ -148,12 +151,12 @@ class _StudentMessServicesState
                         bottom: 22,
                         child: FloatingActionButton(
                             onPressed: () {
-                              isPlugChecked
-                                  ? repairDeviceList.add('Plug')
+                              isMesstableChecked
+                                  ? repairDeviceList.add('Messtable')
                                   : null;
                               isFanChecked ? repairDeviceList.add('Fan') : null;
-                              isLightChecked
-                                  ? repairDeviceList.add('Light')
+                              isOtherChecked
+                                  ? repairDeviceList.add('Other')
                                   : null;
                               serviceProvider.changeName(
                                   userData.first.firstName +
