@@ -13,16 +13,14 @@ class StudentRoomServices extends StatefulWidget {
   const StudentRoomServices({Key? key}) : super(key: key);
 
   @override
-  State<StudentRoomServices> createState() =>
-      _StudentRoomServicesState();
+  State<StudentRoomServices> createState() => _StudentRoomServicesState();
 }
 
-class _StudentRoomServicesState
-    extends State<StudentRoomServices> {
+class _StudentRoomServicesState extends State<StudentRoomServices> {
   Map<String, bool> values = {};
-  bool isLightChecked = false;
-  bool isFanChecked = false;
-  bool isPlugChecked = false;
+  bool isBedChecked = false;
+  bool isChairChecked = false;
+  bool isDoorChecked = false;
   List repairDeviceList = [];
   @override
   Widget build(BuildContext context) {
@@ -56,33 +54,36 @@ class _StudentRoomServicesState
                     const SizedBox(
                       height: 10,
                     ),
-                    UserTable(tablepadding: tablepadding, userData: userData, now: now),
+                    UserTable(
+                        tablepadding: tablepadding,
+                        userData: userData,
+                        now: now),
                     RepairDeviceWidget(
-                        isItem1Checked: isLightChecked,
-                        isItem2Checked: isPlugChecked,
-                        isItem3Checked: isFanChecked,
-                        item1Img: "assets/images/light.png",
-                        item2Img: "assets/images/plug.png",
-                        item3Img: "assets/images/fan.png",
-                        item1Name: "Light",
-                        item2Name: "Plug",
-                        item3Name: "Fan",
-                        item1Fun: (value) {
-                          setState(() {
-                             isLightChecked = value!;
-                          });
-                        },
-                        item2Fun: (value) {
-                          setState(() {
-                             isPlugChecked = value!;
-                          });
-                        },
-                        item3Fun: (value) {
-                          setState(() {
-                             isFanChecked = value!;
-                          });
-                        },
-                        ),
+                      isItem1Checked: isBedChecked,
+                      isItem2Checked: isChairChecked,
+                      isItem3Checked: isDoorChecked,
+                      item1Img: "assets/images/bed.png",
+                      item2Img: "assets/images/chair.png",
+                      item3Img: "assets/images/door.png",
+                      item1Name: "Bed  ",
+                      item2Name: "Table",
+                      item3Name: "Door ",
+                      item1Fun: (value) {
+                        setState(() {
+                          isBedChecked = value!;
+                        });
+                      },
+                      item2Fun: (value) {
+                        setState(() {
+                          isChairChecked = value!;
+                        });
+                      },
+                      item3Fun: (value) {
+                        setState(() {
+                          isDoorChecked = value!;
+                        });
+                      },
+                    ),
                     Stack(children: [
                       Padding(
                         padding: const EdgeInsets.only(
@@ -110,21 +111,21 @@ class _StudentRoomServicesState
                                   Row(
                                     children: [
                                       Text(
-                                        isLightChecked ? 'Light,' : '',
+                                        isBedChecked ? 'Bed,' : '',
                                         style: TextStyle(
                                             fontSize: 18,
                                             color: Colors.red,
                                             fontWeight: FontWeight.bold),
                                       ),
                                       Text(
-                                        isFanChecked ? 'Fan,' : '',
+                                        isChairChecked ? 'Table,' : '',
                                         style: TextStyle(
                                             fontSize: 18,
                                             color: Colors.red,
                                             fontWeight: FontWeight.bold),
                                       ),
                                       Text(
-                                        isPlugChecked ? 'Plug,' : '',
+                                        isDoorChecked ? 'Door,' : '',
                                         style: TextStyle(
                                             fontSize: 18,
                                             color: Colors.red,
@@ -134,7 +135,9 @@ class _StudentRoomServicesState
                                   ),
                                 ],
                               ),
-                              ServiceTextField(onServiceDecChange: (value) {serviceProvider.changeServiceDes(value);}),
+                              ServiceTextField(onServiceDecChange: (value) {
+                                serviceProvider.changeServiceDes(value);
+                              }),
                               const SizedBox(
                                 height: 20,
                               )
@@ -148,12 +151,12 @@ class _StudentRoomServicesState
                         bottom: 22,
                         child: FloatingActionButton(
                             onPressed: () {
-                              isPlugChecked
-                                  ? repairDeviceList.add('Plug')
+                              isBedChecked ? repairDeviceList.add('Bed') : null;
+                              isChairChecked
+                                  ? repairDeviceList.add('Table')
                                   : null;
-                              isFanChecked ? repairDeviceList.add('Fan') : null;
-                              isLightChecked
-                                  ? repairDeviceList.add('Light')
+                              isDoorChecked
+                                  ? repairDeviceList.add('Door')
                                   : null;
                               serviceProvider.changeName(
                                   userData.first.firstName +

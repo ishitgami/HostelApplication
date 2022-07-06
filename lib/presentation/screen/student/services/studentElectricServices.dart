@@ -56,33 +56,36 @@ class _StudentElectricityServicesState
                     const SizedBox(
                       height: 10,
                     ),
-                    UserTable(tablepadding: tablepadding, userData: userData, now: now),
+                    UserTable(
+                        tablepadding: tablepadding,
+                        userData: userData,
+                        now: now),
                     RepairDeviceWidget(
-                        isItem1Checked: isLightChecked,
-                        isItem2Checked: isPlugChecked,
-                        isItem3Checked: isFanChecked,
-                        item1Img: "assets/images/light.png",
-                        item2Img: "assets/images/plug.png",
-                        item3Img: "assets/images/fan.png",
-                        item1Name: "Light",
-                        item2Name: "Plug",
-                        item3Name: "Fan",
-                        item1Fun: (value) {
-                          setState(() {
-                             isLightChecked = value!;
-                          });
-                        },
-                        item2Fun: (value) {
-                          setState(() {
-                             isPlugChecked = value!;
-                          });
-                        },
-                        item3Fun: (value) {
-                          setState(() {
-                             isFanChecked = value!;
-                          });
-                        },
-                        ),
+                      isItem1Checked: isLightChecked,
+                      isItem2Checked: isPlugChecked,
+                      isItem3Checked: isFanChecked,
+                      item1Img: "assets/images/light.png",
+                      item2Img: "assets/images/plug.png",
+                      item3Img: "assets/images/fan.png",
+                      item1Name: "Light",
+                      item2Name: "Plug",
+                      item3Name: "Fan",
+                      item1Fun: (value) {
+                        setState(() {
+                          isLightChecked = value!;
+                        });
+                      },
+                      item2Fun: (value) {
+                        setState(() {
+                          isPlugChecked = value!;
+                        });
+                      },
+                      item3Fun: (value) {
+                        setState(() {
+                          isFanChecked = value!;
+                        });
+                      },
+                    ),
                     Stack(children: [
                       Padding(
                         padding: const EdgeInsets.only(
@@ -134,7 +137,9 @@ class _StudentElectricityServicesState
                                   ),
                                 ],
                               ),
-                              ServiceTextField(onServiceDecChange: (value) {serviceProvider.changeServiceDes(value);}),
+                              ServiceTextField(onServiceDecChange: (value) {
+                                serviceProvider.changeServiceDes(value);
+                              }),
                               const SizedBox(
                                 height: 20,
                               )
@@ -183,9 +188,3 @@ class _StudentElectricityServicesState
     );
   }
 }
-
-
-
-
-
-
