@@ -1,42 +1,40 @@
-// ignore_for_file: must_be_immutable
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:hostelapplication/logic/modules/complaint_model.dart';
-import 'package:hostelapplication/logic/provider/complaint_provider.dart';
+import 'package:hostelapplication/logic/modules/service_model.dart';
 import 'package:provider/provider.dart';
+import '../../../../logic/provider/service_provider.dart';
 
-class Mycomplaints extends StatelessWidget {
-  Mycomplaints({Key? key}) : super(key: key);
+class Myservicesrequest extends StatelessWidget {
+  const Myservicesrequest({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final FirebaseAuth auth = FirebaseAuth.instance;
-    List<Complaint> complaintList = [];
-    final complaintProvider = Provider.of<ComplaintProvider>(context);
-    final complaintListRaw = Provider.of<List<Complaint>?>(context);
-    complaintListRaw?.forEach((element) {
+    List<Service> servicesList = [];
+    final serviceProvider = Provider.of<ServiceProvider>(context);
+    final serviceListRaw = Provider.of<List<Service>?>(context);
+    serviceListRaw?.forEach((element) {
       if (auth.currentUser?.uid == element.studentUid && element.status == 0) {
-        complaintList.add(element);
+        print(element);
+        servicesList.add(element);
       }
       ;
     });
-
     return Scaffold(
         appBar: AppBar(
-          title: const Text("My Complaints Request"),
+          title: Text("My Service Request"),
         ),
-        body: complaintList != []
+        body: servicesList != []
             ? Padding(
                 padding: EdgeInsets.all(8),
                 child: ListView.builder(
-                  itemCount: complaintList.length,
+                  itemCount: servicesList.length,
                   itemBuilder: (context, index) {
-                    return MycomplaintsListModel(
-                      Compiantdesc: complaintList[index].complaint,
-                      Complainttype: complaintList[index].complaintTitle,
-                      Complaintdate: complaintList[index].time,
-                      deletecomplaint: () {
+                    return MyServiceListModel(
+                      servicedate: servicesList[index].time,
+                      repaireddevicelist: servicesList[index].repairDeviceList,
+                      servicedesc: servicesList[index].serviceDes,
+                      deleteservice: () {
                         showDialog(
                           context: context,
                           builder: (_) => AlertDialog(
@@ -57,8 +55,8 @@ class Mycomplaints extends StatelessWidget {
                                   style: TextStyle(color: Colors.red),
                                 ),
                                 onPressed: () {
-                                  complaintProvider
-                                      .deleteComplaint(complaintList[index].id);
+                                  serviceProvider
+                                      .deleteService(servicesList[index].id);
                                   Navigator.of(context).pop();
                                 },
                               ),
@@ -76,16 +74,16 @@ class Mycomplaints extends StatelessWidget {
   }
 }
 
-class MycomplaintsListModel extends StatelessWidget {
-  MycomplaintsListModel(
-      {required this.Complaintdate,
-      required this.Complainttype,
-      required this.Compiantdesc,
-      required this.deletecomplaint});
-  DateTime Complaintdate;
-  String Complainttype;
-  String Compiantdesc;
-  Function deletecomplaint;
+class MyServiceListModel extends StatelessWidget {
+  MyServiceListModel(
+      {required this.servicedate,
+      required this.repaireddevicelist,
+      required this.servicedesc,
+      required this.deleteservice});
+  DateTime servicedate;
+  List repaireddevicelist;
+  String servicedesc;
+  Function deleteservice;
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -124,11 +122,11 @@ class MycomplaintsListModel extends StatelessWidget {
                               ),
                               Text(":"),
                               Text(
-                                Complaintdate.day.toString() +
+                                servicedate.day.toString() +
                                     '/' +
-                                    Complaintdate.month.toString() +
+                                    servicedate.month.toString() +
                                     '/' +
-                                    Complaintdate.year.toString(),
+                                    servicedate.year.toString(),
                                 style: TextStyle(
                                     fontSize: 18, fontWeight: FontWeight.bold),
                               ),
@@ -143,13 +141,13 @@ class MycomplaintsListModel extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            "Complaint ",
+                            "Services ",
                             style: TextStyle(
                                 fontSize: 18, fontWeight: FontWeight.bold),
                           ),
                           Text(":"),
                           Text(
-                            Complainttype,
+                            servicedesc,
                             style: TextStyle(
                                 fontSize: 18,
                                 color: Colors.red,
@@ -170,7 +168,7 @@ class MycomplaintsListModel extends StatelessWidget {
                               width: 2,
                               color: Color.fromARGB(157, 158, 158, 158)),
                         ),
-                        child: Text(Compiantdesc),
+                        child: Text(servicedesc),
                       ),
                       const SizedBox(
                         height: 20,
@@ -180,7 +178,7 @@ class MycomplaintsListModel extends StatelessWidget {
                           Expanded(
                             child: GestureDetector(
                               onTap: () {
-                                deletecomplaint();
+                                deleteservice();
                               },
                               child: Container(
                                 margin: const EdgeInsets.only(
