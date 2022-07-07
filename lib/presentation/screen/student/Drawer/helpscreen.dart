@@ -59,7 +59,7 @@ class HelpScreen extends StatelessWidget {
                                 color: Colors.blue,
                               ),),
                               TextSpan(
-                                  text: '   Complaint', style: helpstyle),
+                                  text: '   Complaint Screen ', style: helpstyle),
                               
                             ],
                           ),
@@ -84,7 +84,7 @@ class HelpScreen extends StatelessWidget {
                                 color: Colors.blue,
                               ),),
                               TextSpan(
-                                  text: '   Service', style: helpstyle),
+                                  text: '   Service Screen ', style: helpstyle),
                               
                             ],
                           ),
@@ -115,7 +115,7 @@ class HelpScreen extends StatelessWidget {
                           ),
                         ),
                       ),
-                      BulletList(const ["Here You can apply for the leave"])
+                      BulletList(const ["Add text here"])
                     ],
                   ),
                 ),
