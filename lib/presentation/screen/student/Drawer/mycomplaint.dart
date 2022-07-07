@@ -23,56 +23,74 @@ class Mycomplaints extends StatelessWidget {
     });
 
     return Scaffold(
-        appBar: AppBar(
-          title: const Text("My Complaints Request"),
-        ),
-        body: complaintList != []
-            ? Padding(
-                padding: EdgeInsets.all(8),
-                child: ListView.builder(
-                  itemCount: complaintList.length,
-                  itemBuilder: (context, index) {
-                    return MycomplaintsListModel(
-                      Compiantdesc: complaintList[index].complaint,
-                      Complainttype: complaintList[index].complaintTitle,
-                      Complaintdate: complaintList[index].time,
-                      deletecomplaint: () {
-                        showDialog(
-                          context: context,
-                          builder: (_) => AlertDialog(
-                            content: Text("Are you sure you want to delete ?"),
-                            actions: [
-                              TextButton(
-                                child: Text(
-                                  "Cancel",
-                                  style: TextStyle(color: Colors.black),
-                                ),
-                                onPressed: () {
-                                  Navigator.of(context).pop();
-                                },
+      appBar: AppBar(
+        title: const Text("My Complaints Request"),
+      ),
+      body: complaintList.length != 0
+          ? Padding(
+              padding: EdgeInsets.all(8),
+              child: ListView.builder(
+                itemCount: complaintList.length,
+                itemBuilder: (context, index) {
+                  return MycomplaintsListModel(
+                    Compiantdesc: complaintList[index].complaint,
+                    Complainttype: complaintList[index].complaintTitle,
+                    Complaintdate: complaintList[index].time,
+                    deletecomplaint: () {
+                      showDialog(
+                        context: context,
+                        builder: (_) => AlertDialog(
+                          content: Text("Are you sure you want to delete ?"),
+                          actions: [
+                            TextButton(
+                              child: Text(
+                                "Cancel",
+                                style: TextStyle(color: Colors.black),
                               ),
-                              TextButton(
-                                child: Text(
-                                  "Delete",
-                                  style: TextStyle(color: Colors.red),
-                                ),
-                                onPressed: () {
-                                  complaintProvider
-                                      .deleteComplaint(complaintList[index].id);
-                                  Navigator.of(context).pop();
-                                },
+                              onPressed: () {
+                                Navigator.of(context).pop();
+                              },
+                            ),
+                            TextButton(
+                              child: Text(
+                                "Delete",
+                                style: TextStyle(color: Colors.red),
                               ),
-                            ],
-                          ),
-                        );
-                      },
-                    );
-                  },
-                ),
-              )
-            : Center(
-                child: CircularProgressIndicator(),
-              ));
+                              onPressed: () {
+                                complaintProvider
+                                    .deleteComplaint(complaintList[index].id);
+                                Navigator.of(context).pop();
+                              },
+                            ),
+                          ],
+                        ),
+                      );
+                    },
+                  );
+                },
+              ),
+            )
+          : Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Image.asset(
+                    'assets/images/nodata.jpg',
+                    height: 250,
+                    width: 250,
+                  ),
+                  Text(
+                    'No Pending Complaints :)',
+                    style: TextStyle(
+                      fontSize: 25,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.grey,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+    );
   }
 }
 
@@ -99,7 +117,11 @@ class MycomplaintsListModel extends StatelessWidget {
             children: [
               Padding(
                 padding: const EdgeInsets.only(
-                    top: 18.0, left: 18, right: 18, bottom: 5),
+                  top: 18.0,
+                  left: 18,
+                  right: 18,
+                  bottom: 5,
+                ),
                 child: Container(
                   clipBehavior: Clip.hardEdge,
                   decoration: BoxDecoration(
@@ -145,15 +167,18 @@ class MycomplaintsListModel extends StatelessWidget {
                           Text(
                             "Complaint ",
                             style: TextStyle(
-                                fontSize: 18, fontWeight: FontWeight.bold),
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                           Text(":"),
                           Text(
                             Complainttype,
                             style: TextStyle(
-                                fontSize: 18,
-                                color: Colors.red,
-                                fontWeight: FontWeight.bold),
+                              fontSize: 18,
+                              color: Colors.red,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ],
                       ),
