@@ -13,7 +13,7 @@ My Hostel is a hostel complaint, Services leaving filling application. It was de
 <img src="https://github.com/ishitgami/HostelApplication/blob/main/screenshot/a2.jpg" height="390"/> &#160;
 <img src="https://github.com/ishitgami/HostelApplication/blob/main/screenshot/a3.jpg" height="390"/> &#160;
 <img src="https://github.com/ishitgami/HostelApplication/blob/main/screenshot/a4.jpg" height="390"/> &#160;
-<img src="https://github.com/ishitgami/HostelApplication/blob/main/screenshots/a5.jpg" height="390"/> &#160;
+<img src="https://github.com/ishitgami/HostelApplication/blob/main/screenshot/a5.jpg" height="390"/> &#160;
 <img src="https://github.com/ishitgami/HostelApplication/blob/main/screenshot/a6.jpg" height="390"/> &#160;
 <img src="https://github.com/ishitgami/HostelApplication/blob/main/screenshot/a7.jpg" height="390"/> &#160;
 <img src="https://github.com/ishitgami/HostelApplication/blob/main/screenshot/a8.jpg" height="390"/> &#160;
