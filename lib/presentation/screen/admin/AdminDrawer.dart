@@ -18,9 +18,6 @@ class AdminDrawer extends StatelessWidget {
           padding: EdgeInsets.zero,
           children: <Widget>[
             ListTile(
-              onTap: () {
-                Navigator.pushNamed(context, adminDetailsScreenRoute);
-              },
               title: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Column(
@@ -35,28 +32,12 @@ class AdminDrawer extends StatelessWidget {
                           child: Icon(Icons.account_circle_rounded),
                         ),
                         const SizedBox(
-                          width: 10,
+                          width: 15,
                         ),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              "Admin",
-                              style: TextStyle(
-                                  fontSize: 18, fontWeight: FontWeight.w500),
-                            ),
-                            SizedBox(
-                              height: 5,
-                            ),
-                            Text(
-                              "View Profile",
-                              style: TextStyle(
-                                  fontSize: 13,
-                                  color: Colors.grey,
-                                  fontWeight: FontWeight.w500),
-                            ),
-                          ],
+                        Text(
+                          "Admin",
+                          style: TextStyle(
+                              fontSize: 22, fontWeight: FontWeight.w500),
                         ),
                       ],
                     ),

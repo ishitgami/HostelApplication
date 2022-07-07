@@ -125,13 +125,15 @@ class _LogInScreenState extends State<LogInScreen> {
                             setState(() {
                               showLoading = true;
                             });
-
+                            
                             progressIndicater(context, showLoading = true);
                             await loginByRole();
                             await showAlert == true
                                 ? null
                                 : progressIndicater(
                                     context, showLoading = true);
+                                     emailController.clear();
+                            passwordController.clear();
                             Navigator.pop(context);
                             //  Navigator.pushNamed(
                             //     context, adminDashbordScreenRoute);
@@ -210,25 +212,3 @@ class _LogInScreenState extends State<LogInScreen> {
     ).show();
   }
 }
-
-    // showDialog(
-    //   context: context,
-    //   builder: (ctx) =>
-    //       AlertDialog(
-    //     elevation: 5,
-    //     title: Text("Alert !!"),
-    //     content: Text(e.toString()),
-    //     actions: <Widget>[
-    //       TextButton(
-    //         onPressed: () {
-    //           Navigator.of(ctx).pop();
-    //         },
-    //         child: Text(
-    //           "Close",
-    //           style: TextStyle(
-    //               color: Colors.red, fontSize: 18, fontWeight: FontWeight.w700),
-    //         ),
-    //       ),
-    //     ],
-    //   ),
-    // );

@@ -42,18 +42,24 @@ class _SplashScreen1State extends State<SplashScreen1> {
         user = auth.currentUser;
         emailAddress = user!.email;
         if (emailAddress == 'admin@gmail.com') {
-          setState(() {
-            loginNum = 1;
-          });
+          if (this.mounted) {
+            setState(() {
+              loginNum = 1;
+            });
+          }
         } else {
-          setState(() {
-            loginNum = 2;
-          });
+          if (this.mounted) {
+            setState(() {
+              loginNum = 2;
+            });
+          }
         }
       } else {
-        setState(() {
-          loginNum = 3;
-        });
+        if (this.mounted) {
+          setState(() {
+            loginNum = 3;
+          });
+        }
       }
     });
   }
