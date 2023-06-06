@@ -27,6 +27,7 @@ dependencies:
   image_picker: ^0.8.5+3
   file_picker:
   image_downloader: ^0.31.0
+  file: ^6.1.4
 
 
 dev_dependencies:

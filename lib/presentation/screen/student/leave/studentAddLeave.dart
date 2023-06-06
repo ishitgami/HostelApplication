@@ -143,7 +143,7 @@ class _StudentAddLeaveState extends State<StudentAddLeave> {
                                             child: Column(children: [
                                               Text("${leavingDate.toLocal()}"
                                                   .split(' ')[0]),
-                                              RaisedButton(
+                                              TextButton(
                                                 onPressed: () async {
                                                   final DateTime? picked =
                                                       await showDatePicker(
@@ -185,7 +185,7 @@ class _StudentAddLeaveState extends State<StudentAddLeave> {
                                             child: Column(children: [
                                               Text("${commingDate.toLocal()}"
                                                   .split(' ')[0]),
-                                              RaisedButton(
+                                              TextButton(
                                                 onPressed: () async {
                                                   final DateTime? picked =
                                                       await showDatePicker(
