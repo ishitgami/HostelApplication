@@ -1,4 +1,4 @@
-package com.example.hostelapplication
+package com.iycreateapp.myhostel
 
 import io.flutter.embedding.android.FlutterActivity
 

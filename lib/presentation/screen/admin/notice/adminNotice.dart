@@ -44,7 +44,7 @@ class _AdminHomeState extends State<AdminHome> {
                           noticeList[index].time.month.toString() +
                           '/' +
                           noticeList[index].time.year.toString(),
-                      noticeList[index].url,
+                      noticeList[index].url!,
                       () {
                         showDialog(
                           context: context,

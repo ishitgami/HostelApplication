@@ -14,7 +14,7 @@ class AddNoticeScreen extends StatefulWidget {
 }
 
 class _AddNoticeScreenState extends State<AddNoticeScreen> {
-  late File imageFile;
+   File? imageFile;
   PlatformFile? pickedFile;
   bool showLoading = false;
 
@@ -125,10 +125,16 @@ class _AddNoticeScreenState extends State<AddNoticeScreen> {
                         final ref = FirebaseStorage.instance
                             .ref()
                             .child('noticeImg')
-                            .child(pickedFile!.name.toString());
-                        await ref.putFile(imageFile);
-                        String url = await ref.getDownloadURL();
+                            .child(pickedFile?.name.toString() ?? '');
+                            if(ref != '' && imageFile != null) {
+                              await ref.putFile(imageFile!);
+                                  String? url = await ref.getDownloadURL();
                         noticeProvider.changeUrl(url);
+                            } else {
+                              noticeProvider.changeUrl('');
+                            }
+                        
+                    
                         noticeProvider.changetime(DateTime.now());
                         noticeProvider.saveNotice();
                         noticeController.clear();

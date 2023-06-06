@@ -37,7 +37,7 @@ class _StudentHomeState extends State<StudentHome> {
                             noticeList[index].time.month.toString() +
                             '/' +
                             noticeList[index].time.year.toString(),
-                        noticeList[index].url);
+                        noticeList[index].url!);
                   }),
             )
           : Center(

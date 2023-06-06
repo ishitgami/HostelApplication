@@ -2,7 +2,7 @@ class Notice {
   String id;
   String notice;
   DateTime time;
-  late String url;
+   String? url;
   Notice(
     this.url, {
     required this.id,
