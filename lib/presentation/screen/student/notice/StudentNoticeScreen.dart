@@ -119,16 +119,18 @@ class NoticeContainer extends StatelessWidget {
                     ),
                   ],
                 ),
-                PopupMenuButton<String>(
-                    onSelected: onSelect,
-                    itemBuilder: (BuildContext context) {
-                      return myMenuItems.map((String choice) {
-                        return PopupMenuItem<String>(
-                          child: Text(choice),
-                          value: choice,
-                        );
-                      }).toList();
-                    })
+                src == ""
+                    ? SizedBox()
+                    : PopupMenuButton<String>(
+                        onSelected: onSelect,
+                        itemBuilder: (BuildContext context) {
+                          return myMenuItems.map((String choice) {
+                            return PopupMenuItem<String>(
+                              child: Text(choice),
+                              value: choice,
+                            );
+                          }).toList();
+                        })
               ],
             ),
             const SizedBox(
@@ -140,7 +142,15 @@ class NoticeContainer extends StatelessWidget {
             const SizedBox(
               height: 10,
             ),
-            Center(child: Image.network(src)),
+            src == ""
+                ? SizedBox()
+                : Center(
+                    child: Image.network(
+                    src,
+                    errorBuilder: (context, error, stackTrace) {
+                      return const SizedBox();
+                    },
+                  )),
           ],
         ),
       ),

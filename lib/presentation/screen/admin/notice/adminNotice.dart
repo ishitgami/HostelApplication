@@ -150,7 +150,15 @@ class NoticeContainer extends StatelessWidget {
             const SizedBox(
               height: 10,
             ),
-            Center(child: Image.network(src)),
+            src == ""
+                ? SizedBox()
+                : Center(
+                    child: Image.network(
+                    src,
+                    errorBuilder: (context, error, stackTrace) {
+                      return Container();
+                    },
+                  )),
           ],
         ),
       ),
