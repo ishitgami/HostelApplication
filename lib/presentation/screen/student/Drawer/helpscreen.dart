@@ -115,7 +115,8 @@ class HelpScreen extends StatelessWidget {
                           ),
                         ),
                       ),
-                      BulletList(const ["Add text here"])
+                      BulletList(const ["Here you can apply for leave",
+                       "if the leave were accepted, you'll get a notification"]),
                     ],
                   ),
                 ),
