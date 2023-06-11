@@ -7,6 +7,8 @@ import 'package:hostelapplication/presentation/screen/admin/adminDashbord.dart';
 import 'package:hostelapplication/presentation/screen/auth/logInScreen.dart';
 import 'package:hostelapplication/presentation/screen/student/studentDashbord.dart';
 
+import 'onBordingScreen.dart';
+
 FirebaseFirestore firestore = FirebaseFirestore.instance;
 
 class SplashScreen1 extends StatefulWidget {
@@ -29,7 +31,7 @@ class _SplashScreen1State extends State<SplashScreen1> {
               ? AdminDashbordScreen()
               : loginNum == 2
                   ? StudentDashboardScreen()
-                  : LogInScreen(),
+                  : OnboardingScreen()  ,
         ),
       ),
     );

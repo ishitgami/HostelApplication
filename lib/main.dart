@@ -13,6 +13,8 @@ import 'package:hostelapplication/logic/service/fireStoreServices/notice_firesto
 import 'package:hostelapplication/logic/service/fireStoreServices/service_firestore_service.dart';
 import 'package:hostelapplication/logic/service/fireStoreServices/user_firestore_services.dart';
 import 'package:hostelapplication/presentation/router/route.dart';
+import 'package:hostelapplication/presentation/screen/onBordingScreen.dart';
+import 'package:hostelapplication/presentation/screen/onboard_model.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -70,6 +72,8 @@ Future<void> main() async {
         Provider<UserDataFirestoreService>(
           create: (_) => UserDataFirestoreService(),
         ),
+        Provider(create: (_) => OnboardingScreen()),
+        Provider(create: (_) => SplashModel())
       ],
       child: const MyApp(),
     ),
@@ -82,6 +86,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
+      debugShowCheckedModeBanner: false,
       onGenerateRoute: Routes.generateRoute,
     );
   }
