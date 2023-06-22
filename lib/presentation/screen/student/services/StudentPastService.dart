@@ -7,21 +7,21 @@ import 'package:hostelapplication/logic/service/auth_services/auth_service.dart'
 import 'package:provider/provider.dart';
 
 class StudentPastServiceScreen extends StatelessWidget {
-  StudentPastServiceScreen( {Key? key}) : super(key: key);
-
+  StudentPastServiceScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-     final authService = Provider.of<AuthService>(context);
+    final authService = Provider.of<AuthService>(context);
     User user = authService.getcurrentUser();
 
     List<Service> serviceList = [];
     final serviceListRaw = Provider.of<List<Service>?>(context);
-   
+
     serviceListRaw?.forEach(
       (element) {
         print(element);
-        if (user.uid==element.studentUid&&(element.status == 1|| element.status ==2)) {
+        if (user.uid == element.studentUid &&
+            (element.status == 1 || element.status == 2)) {
           serviceList.add(element);
         }
         ;
@@ -31,6 +31,7 @@ class StudentPastServiceScreen extends StatelessWidget {
       backgroundColor:
           serviceList.length != 0 ? Colors.grey[200] : Colors.white,
       appBar: AppBar(
+        backgroundColor: Colors.blue.shade900,
         title: Text('Past Service'),
       ),
       body: serviceList.length != 0
@@ -66,10 +67,7 @@ class StudentPastServiceScreen extends StatelessWidget {
                                             .month
                                             .toString() +
                                         '/' +
-                                        serviceList[index]
-                                            .time
-                                            .year
-                                            .toString(),
+                                        serviceList[index].time.year.toString(),
                                     style: TextStyle(
                                         fontSize: 12, color: Colors.grey),
                                   ),

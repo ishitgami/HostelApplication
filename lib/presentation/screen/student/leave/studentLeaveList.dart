@@ -24,12 +24,14 @@ class StudentApproveDennyLeaveList extends StatelessWidget {
       },
     );
     return Scaffold(
-      backgroundColor:  leaveList.length != 0?Colors.grey[200] : Colors.white,
+      backgroundColor: leaveList.length != 0 ? Colors.white : Colors.white,
       appBar: AppBar(
+        backgroundColor: Colors.blue.shade900,
         title: Text('Leave'),
       ),
       drawer: const StudentDrawer(),
       floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.blue.shade900,
         onPressed: () {
           Navigator.pushNamed(context, studentLeaveScreenRoute);
         },

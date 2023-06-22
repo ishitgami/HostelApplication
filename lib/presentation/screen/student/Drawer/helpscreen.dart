@@ -6,10 +6,11 @@ class HelpScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const helpstyle = TextStyle(
-        color: Colors.blue, fontWeight: FontWeight.bold, fontSize: 20);
+    final helpstyle = TextStyle(
+        color: Colors.blue.shade900, fontWeight: FontWeight.bold, fontSize: 20);
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.blue.shade900,
         title: const Text("Help"),
       ),
       body: SingleChildScrollView(
@@ -26,17 +27,16 @@ class HelpScreen extends StatelessWidget {
                     children: [
                       GestureDetector(
                         onTap: () {},
-                        child: const Text.rich(
+                        child: Text.rich(
                           TextSpan(
                             children: [
-                               WidgetSpan(
+                              WidgetSpan(
                                 child: Icon(
                                   Icons.home_outlined,
-                                  color: Colors.blue,
+                                  color: Colors.blue.shade900,
                                 ),
                               ),
                               TextSpan(text: '   Home ', style: helpstyle),
-                             
                             ],
                           ),
                         ),
@@ -50,17 +50,18 @@ class HelpScreen extends StatelessWidget {
                       ),
                       GestureDetector(
                         onTap: () {},
-                        child: const Text.rich(
+                        child: Text.rich(
                           TextSpan(
                             children: [
                               WidgetSpan(
-                                  child: Icon(
-                                Icons.content_paste_go_sharp,
-                                color: Colors.blue,
-                              ),),
+                                child: Icon(
+                                  Icons.content_paste_go_sharp,
+                                  color: Colors.blue.shade900,
+                                ),
+                              ),
                               TextSpan(
-                                  text: '   Complaint Screen ', style: helpstyle),
-                              
+                                  text: '   Complaint Screen ',
+                                  style: helpstyle),
                             ],
                           ),
                         ),
@@ -75,17 +76,17 @@ class HelpScreen extends StatelessWidget {
                       ),
                       GestureDetector(
                         onTap: () {},
-                        child: const Text.rich(
+                        child: Text.rich(
                           TextSpan(
                             children: [
                               WidgetSpan(
-                                  child: Icon(
-                                CupertinoIcons.wrench,
-                                color: Colors.blue,
-                              ),),
+                                child: Icon(
+                                  CupertinoIcons.wrench,
+                                  color: Colors.blue.shade900,
+                                ),
+                              ),
                               TextSpan(
                                   text: '   Service Screen ', style: helpstyle),
-                              
                             ],
                           ),
                         ),
@@ -100,23 +101,24 @@ class HelpScreen extends StatelessWidget {
                       ),
                       GestureDetector(
                         onTap: () {},
-                        child: const Text.rich(
+                        child: Text.rich(
                           TextSpan(
-
                             children: [
                               WidgetSpan(
-                                  child: Icon(
-                                Icons.leave_bags_at_home,
-                                color: Colors.blue,
-                              ),),
+                                child: Icon(
+                                  Icons.leave_bags_at_home,
+                                  color: Colors.blue.shade900,
+                                ),
+                              ),
                               TextSpan(text: '   Leave ', style: helpstyle),
-                              
                             ],
                           ),
                         ),
                       ),
-                      BulletList(const ["Here you can apply for leave",
-                       "if the leave were accepted, you'll get a notification"]),
+                      BulletList(const [
+                        "Here you can apply for leave",
+                        "if the leave were accepted, you'll get a notification"
+                      ]),
                     ],
                   ),
                 ),
@@ -130,7 +132,7 @@ class HelpScreen extends StatelessWidget {
             ),
             // GestureDetector(
             //   onTap: (){
-            //     Navigator.pushNamed(context, onboardingScreen);                
+            //     Navigator.pushNamed(context, onboardingScreen);
             //   },
             //   child: Center(
             //     child: Row(
@@ -138,12 +140,12 @@ class HelpScreen extends StatelessWidget {
             //       children: const [
             //         Text("Onboarding Screens",
             //             style: TextStyle(
-            //                 color: Colors.blue,
+            //                 color: Colors.blue.shade900,
             //                 fontWeight: FontWeight.bold,
             //                 fontSize: 16)),
             //         Icon(
             //           Icons.arrow_forward,
-            //           color: Colors.blue,
+            //           color: Colors.blue.shade900,
             //           size: 20,
             //         ),
             //       ],

@@ -6,7 +6,6 @@ import 'package:hostelapplication/logic/modules/service_model.dart';
 import 'package:hostelapplication/logic/provider/service_provider.dart';
 import 'package:provider/provider.dart';
 
-
 class Myservicesrequest extends StatelessWidget {
   const Myservicesrequest({Key? key}) : super(key: key);
 
@@ -24,6 +23,7 @@ class Myservicesrequest extends StatelessWidget {
     });
     return Scaffold(
         appBar: AppBar(
+          backgroundColor: Colors.blue.shade900,
           title: Text("My Service Request"),
         ),
         body: servicesList != []
@@ -120,9 +120,9 @@ class MyServiceListModel extends StatelessWidget {
                               Text(
                                 "Date ",
                                 style: TextStyle(
-                                    fontSize: 18, fontWeight: FontWeight.bold),
+                                    fontSize: 16, fontWeight: FontWeight.bold),
                               ),
-                              Text(":"),
+                              Text(": "),
                               Text(
                                 servicedate.day.toString() +
                                     '/' +
@@ -130,7 +130,7 @@ class MyServiceListModel extends StatelessWidget {
                                     '/' +
                                     servicedate.year.toString(),
                                 style: TextStyle(
-                                    fontSize: 18, fontWeight: FontWeight.bold),
+                                    fontSize: 16, fontWeight: FontWeight.bold),
                               ),
                             ],
                           ),
@@ -145,20 +145,20 @@ class MyServiceListModel extends StatelessWidget {
                           Text(
                             "Services ",
                             style: TextStyle(
-                                fontSize: 18, fontWeight: FontWeight.bold),
+                                fontSize: 16, fontWeight: FontWeight.bold),
                           ),
-                          Text(":"),
+                          Text(": "),
                           Text(
                             servicedesc,
                             style: TextStyle(
-                                fontSize: 18,
+                                fontSize: 16,
                                 color: Colors.red,
                                 fontWeight: FontWeight.bold),
                           ),
                         ],
                       ),
                       const SizedBox(
-                        height: 20,
+                        height: 10,
                       ),
                       Container(
                         margin: const EdgeInsets.symmetric(horizontal: 20),
@@ -173,7 +173,7 @@ class MyServiceListModel extends StatelessWidget {
                         child: Text(servicedesc),
                       ),
                       const SizedBox(
-                        height: 20,
+                        height: 10,
                       ),
                       Row(
                         children: [

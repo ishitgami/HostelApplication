@@ -23,6 +23,7 @@ class MyLeave extends StatelessWidget {
     });
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.blue.shade900,
         title: const Text("My Leaves Request"),
       ),
       body: Leavelist != []
@@ -124,7 +125,7 @@ class MyLeaveListModel extends StatelessWidget {
                             Text(
                               "Leaving Date ",
                               style: TextStyle(
-                                  fontSize: 18, fontWeight: FontWeight.bold),
+                                  fontSize: 16, fontWeight: FontWeight.bold),
                             ),
                             Text(": "),
                             Text(
@@ -134,7 +135,7 @@ class MyLeaveListModel extends StatelessWidget {
                                   '/' +
                                   leavingdate.year.toString(),
                               style: TextStyle(
-                                  fontSize: 18, fontWeight: FontWeight.bold),
+                                  fontSize: 16, fontWeight: FontWeight.bold),
                             ),
                           ],
                         ),
@@ -149,7 +150,7 @@ class MyLeaveListModel extends StatelessWidget {
                         Text(
                           "Comming Date ",
                           style: TextStyle(
-                              fontSize: 18, fontWeight: FontWeight.bold),
+                              fontSize: 16, fontWeight: FontWeight.bold),
                         ),
                         Text(": "),
                         Text(
@@ -160,7 +161,7 @@ class MyLeaveListModel extends StatelessWidget {
                               commingdate.year.toString() +
                               " ",
                           style: TextStyle(
-                              fontSize: 18, fontWeight: FontWeight.bold),
+                              fontSize: 16, fontWeight: FontWeight.bold),
                         ),
                       ],
                     ),
@@ -184,7 +185,7 @@ class MyLeaveListModel extends StatelessWidget {
                       ],
                     ),
                     const SizedBox(
-                      height: 20,
+                      height: 10,
                     ),
                     Container(
                       margin: const EdgeInsets.symmetric(horizontal: 20),
@@ -199,7 +200,7 @@ class MyLeaveListModel extends StatelessWidget {
                       child: Text(leavereason),
                     ),
                     const SizedBox(
-                      height: 20,
+                      height: 10,
                     ),
                     Row(
                       children: [

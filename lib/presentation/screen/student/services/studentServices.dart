@@ -11,7 +11,7 @@ class StudentServicesScreen extends StatefulWidget {
 }
 
 class _StudentServicesScreenState extends State<StudentServicesScreen> {
-   List<String> images = [
+  List<String> images = [
     'assets/images/room.png',
     'assets/images/dinner.png',
     'assets/images/bath.png',
@@ -26,28 +26,34 @@ class _StudentServicesScreenState extends State<StudentServicesScreen> {
     'Other'
   ];
 
-   List navigatorRoute = [
-   studentRoomServiceRoute,
-   studentMessServiceRoute,
-   studentBathRoomServiceRoute,
-   studentElectricityServiceRoute,
-   studentOtherServiceRoute,
+  List navigatorRoute = [
+    studentRoomServiceRoute,
+    studentMessServiceRoute,
+    studentBathRoomServiceRoute,
+    studentElectricityServiceRoute,
+    studentOtherServiceRoute,
   ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
+        backgroundColor: Colors.blue.shade900,
         title: const Text('Services'),
       ),
-       floatingActionButton: FloatingActionButton(
-        onPressed: (){
-           Navigator.push(context,  MaterialPageRoute(builder: (context) => StudentPastServiceScreen()));
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.blue.shade900,
+        onPressed: () {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => StudentPastServiceScreen()));
         },
         child: Icon(Icons.comment),
       ),
       drawer: const StudentDrawer(),
-      body:Container(
-         color: Colors.grey[200],
+      body: Container(
+        color: Colors.white,
         padding: const EdgeInsets.all(16.0),
         child: GridView.builder(
           itemCount: images.length,
@@ -58,22 +64,21 @@ class _StudentServicesScreenState extends State<StudentServicesScreen> {
           ),
           itemBuilder: (BuildContext context, int index) {
             return GestureDetector(
-              onTap: (){
+              onTap: () {
                 Navigator.pushNamed(context, navigatorRoute[index]);
               },
               child: Card(
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(15.0),
-                ),
-               
+                    borderRadius: BorderRadius.circular(15.0),
+                    side: BorderSide(color: Colors.black, width: 0.1)),
                 elevation: 1,
                 child: Column(
                   children: [
                     Expanded(
                       child: Image.asset(
                         images[index],
-                        height: 100,
-                        width: 100,
+                        height: 70,
+                        width: 70,
                       ),
                     ),
                     SizedBox(
@@ -81,12 +86,15 @@ class _StudentServicesScreenState extends State<StudentServicesScreen> {
                       child: Text(
                         textAlign: TextAlign.center,
                         imagesText[index].toString(),
-                        style: const TextStyle(
+                        style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 18,
-                            color: Colors.blueGrey),
+                            color: Colors.blue.shade900),
                       ),
                     ),
+                    SizedBox(
+                      height: 10,
+                    )
                   ],
                 ),
               ),

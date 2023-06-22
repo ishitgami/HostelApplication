@@ -19,7 +19,9 @@ class StudentAddComplaintScreen extends StatelessWidget {
     DateTime now = DateTime.now();
     const tablepadding = EdgeInsets.all(15);
     return Scaffold(
-      appBar: AppBar(title: const Text("Add Complaint")),
+      appBar: AppBar(
+          backgroundColor: Colors.blue.shade900,
+          title: const Text("Add Complaint")),
       body: userData == null
           ? Center(
               child: CircularProgressIndicator(),
@@ -168,8 +170,8 @@ class StudentAddComplaintScreen extends StatelessWidget {
                               Padding(
                                 padding: const EdgeInsets.all(18.0),
                                 child: TextFormField(
-                                  onChanged: ((value) => complaintProvider
-                                      .changeComplaint(value)),
+                                  onChanged: ((value) =>
+                                      complaintProvider.changeComplaint(value)),
                                   decoration: InputDecoration(
                                       focusedBorder: const OutlineInputBorder(
                                           borderSide:
@@ -200,6 +202,7 @@ class StudentAddComplaintScreen extends StatelessWidget {
                         left: 0,
                         bottom: 20,
                         child: FloatingActionButton(
+                            backgroundColor: Colors.blue.shade900,
                             onPressed: () {
                               complaintProvider
                                   .changeComplaintTitle(complainTitle);

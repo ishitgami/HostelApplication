@@ -31,6 +31,7 @@ class StudentDrawer extends StatelessWidget {
     });
     const studentDrawerText = TextStyle(fontSize: 15);
     return Drawer(
+      width: MediaQuery.of(context).size.width * 0.8,
       child: SafeArea(
         child: complaintList.length == 0
             ? Container()
@@ -52,8 +53,8 @@ class StudentDrawer extends StatelessWidget {
                           Row(
                             children: [
                               Container(
-                                width: 75,
-                                height: 65,
+                                width: 60,
+                                height: 60,
                                 decoration: BoxDecoration(
                                   shape: BoxShape.circle,
                                   color: Colors.white,
@@ -94,7 +95,7 @@ class StudentDrawer extends StatelessWidget {
                             ],
                           ),
                           const SizedBox(
-                            height: 20,
+                            height: 10,
                           ),
                         ],
                       ),
@@ -104,10 +105,10 @@ class StudentDrawer extends StatelessWidget {
                   const SizedBox(width: 50, child: Divider()),
                   ListTile(
                     title: Row(
-                      children: const [
+                      children: [
                         Icon(
                           FontAwesomeIcons.book,
-                          color: Colors.blue,
+                          color: Colors.blue.shade900,
                         ),
                         SizedBox(
                           width: 30,
@@ -125,10 +126,10 @@ class StudentDrawer extends StatelessWidget {
                   const SizedBox(width: 50, child: Divider()),
                   ListTile(
                     title: Row(
-                      children: const [
+                      children: [
                         Icon(
                           CupertinoIcons.person_crop_circle_badge_minus,
-                          color: Colors.blue,
+                          color: Colors.blue.shade900,
                         ),
                         SizedBox(
                           width: 30,
@@ -144,10 +145,10 @@ class StudentDrawer extends StatelessWidget {
                   const SizedBox(width: 50, child: Divider()),
                   ListTile(
                     title: Row(
-                      children: const [
+                      children: [
                         Icon(
                           CupertinoIcons.wrench,
-                          color: Colors.blue,
+                          color: Colors.blue.shade900,
                         ),
                         SizedBox(
                           width: 30,
@@ -165,10 +166,10 @@ class StudentDrawer extends StatelessWidget {
                   const SizedBox(width: 50, child: Divider()),
                   ListTile(
                     title: Row(
-                      children: const [
+                      children: [
                         Icon(
                           FontAwesomeIcons.question,
-                          color: Colors.blue,
+                          color: Colors.blue.shade900,
                         ),
                         SizedBox(
                           width: 30,
@@ -183,10 +184,10 @@ class StudentDrawer extends StatelessWidget {
                   Divider(),
                   ListTile(
                     title: Row(
-                      children: const [
+                      children: [
                         Icon(
                           FontAwesomeIcons.signOut,
-                          color: Colors.blue,
+                          color: Colors.blue.shade900,
                         ),
                         SizedBox(
                           width: 30,

@@ -34,6 +34,9 @@ class _StudentDashboardScreenState extends State<StudentDashboardScreen> {
           backgroundColor: Colors.white,
           elevation: 10,
           currentIndex: _selectedIndex,
+          selectedIconTheme: IconThemeData(color: Colors.blue.shade900),
+          selectedLabelStyle: TextStyle(color: Colors.blue.shade900),
+          selectedItemColor: Colors.blue.shade900,
           onTap: _onItemTapped,
           items: const [
             BottomNavigationBarItem(

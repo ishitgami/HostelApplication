@@ -24,6 +24,7 @@ class Mycomplaints extends StatelessWidget {
 
     return Scaffold(
         appBar: AppBar(
+          backgroundColor: Colors.blue.shade900,
           title: const Text("My Complaints Request"),
         ),
         body: complaintList != []
@@ -120,9 +121,9 @@ class MycomplaintsListModel extends StatelessWidget {
                               Text(
                                 "Date ",
                                 style: TextStyle(
-                                    fontSize: 18, fontWeight: FontWeight.bold),
+                                    fontSize: 16, fontWeight: FontWeight.bold),
                               ),
-                              Text(":"),
+                              Text(": "),
                               Text(
                                 Complaintdate.day.toString() +
                                     '/' +
@@ -130,7 +131,7 @@ class MycomplaintsListModel extends StatelessWidget {
                                     '/' +
                                     Complaintdate.year.toString(),
                                 style: TextStyle(
-                                    fontSize: 18, fontWeight: FontWeight.bold),
+                                    fontSize: 16, fontWeight: FontWeight.bold),
                               ),
                             ],
                           ),
@@ -145,20 +146,20 @@ class MycomplaintsListModel extends StatelessWidget {
                           Text(
                             "Complaint ",
                             style: TextStyle(
-                                fontSize: 18, fontWeight: FontWeight.bold),
+                                fontSize: 16, fontWeight: FontWeight.bold),
                           ),
-                          Text(":"),
+                          Text(": "),
                           Text(
                             Complainttype,
                             style: TextStyle(
-                                fontSize: 18,
+                                fontSize: 16,
                                 color: Colors.red,
                                 fontWeight: FontWeight.bold),
                           ),
                         ],
                       ),
                       const SizedBox(
-                        height: 20,
+                        height: 10,
                       ),
                       Container(
                         margin: const EdgeInsets.symmetric(horizontal: 20),
@@ -173,7 +174,7 @@ class MycomplaintsListModel extends StatelessWidget {
                         child: Text(Compiantdesc),
                       ),
                       const SizedBox(
-                        height: 20,
+                        height: 10,
                       ),
                       Row(
                         children: [

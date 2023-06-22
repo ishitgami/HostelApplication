@@ -35,6 +35,7 @@ class _StudentRoomServicesState extends State<StudentRoomServices> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
+        backgroundColor: Colors.blue.shade900,
         title: const Text("Electricity Service"),
       ),
       body: SingleChildScrollView(
@@ -150,6 +151,7 @@ class _StudentRoomServicesState extends State<StudentRoomServices> {
                         left: 0,
                         bottom: 22,
                         child: FloatingActionButton(
+                          backgroundColor: Colors.blue.shade900,
                             onPressed: () {
                               isBedChecked ? repairDeviceList.add('Bed') : null;
                               isChairChecked

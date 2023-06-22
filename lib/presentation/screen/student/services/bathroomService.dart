@@ -36,6 +36,7 @@ class _StudentBathroomServicesState extends State<StudentBathroomServices> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
+        backgroundColor: Colors.blue.shade900,
         title: const Text("Electricity Service"),
       ),
       body: SingleChildScrollView(
@@ -151,6 +152,7 @@ class _StudentBathroomServicesState extends State<StudentBathroomServices> {
                         left: 0,
                         bottom: 22,
                         child: FloatingActionButton(
+                            backgroundColor: Colors.blue.shade900,
                             onPressed: () {
                               isShowerChecked
                                   ? repairDeviceList.add('Shower')

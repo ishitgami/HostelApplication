@@ -7,8 +7,7 @@ import 'package:hostelapplication/logic/service/auth_services/auth_service.dart'
 import 'package:provider/provider.dart';
 
 class StudentPastComplaintScreen extends StatelessWidget {
-  StudentPastComplaintScreen( {Key? key}) : super(key: key);
-
+  StudentPastComplaintScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,10 +15,11 @@ class StudentPastComplaintScreen extends StatelessWidget {
     User user = authService.getcurrentUser();
     List<Complaint> complaintList = [];
     final complaintListRaw = Provider.of<List<Complaint>?>(context);
-   
+
     complaintListRaw?.forEach(
       (element) {
-        if (user.uid==element.studentUid&&(element.status == 1|| element.status ==2)) {
+        if (user.uid == element.studentUid &&
+            (element.status == 1 || element.status == 2)) {
           complaintList.add(element);
         }
         ;
@@ -29,6 +29,7 @@ class StudentPastComplaintScreen extends StatelessWidget {
       backgroundColor:
           complaintList.length != 0 ? Colors.grey[200] : Colors.white,
       appBar: AppBar(
+        backgroundColor: Colors.blue.shade900,
         title: Text('Past complaints'),
       ),
       body: complaintList.length != 0

@@ -32,12 +32,14 @@ class _StudentAddLeaveState extends State<StudentAddLeave> {
     int totalday = commingDate.difference(leavingDate).inDays;
 
     return Scaffold(
+        backgroundColor: Colors.white,
         appBar: AppBar(
+          backgroundColor: Colors.blue.shade900,
           title: const Text('Leave'),
         ),
         body: userData != null
             ? Container(
-                color: Colors.grey[200],
+                color: Colors.white,
                 padding: const EdgeInsets.all(5.0),
                 child: SingleChildScrollView(
                   child: Form(
@@ -144,29 +146,33 @@ class _StudentAddLeaveState extends State<StudentAddLeave> {
                                               Text("${leavingDate.toLocal()}"
                                                   .split(' ')[0]),
                                               TextButton(
-                                                onPressed: () async {
-                                                  final DateTime? picked =
-                                                      await showDatePicker(
-                                                    context: context,
-                                                    initialDate: leavingDate,
-                                                    firstDate: leavingDate,
-                                                    lastDate: leavingDate.add(
-                                                        Duration(days: 30)),
-                                                  );
+                                                  onPressed: () async {
+                                                    final DateTime? picked =
+                                                        await showDatePicker(
+                                                      context: context,
+                                                      initialDate: leavingDate,
+                                                      firstDate: leavingDate,
+                                                      lastDate: leavingDate.add(
+                                                          Duration(days: 30)),
+                                                    );
 
-                                                  if (picked != null &&
-                                                      picked != leavingDate) {
-                                                    setState(() {
-                                                      leavingDate = picked;
-                                                    });
-                                                  }
+                                                    if (picked != null &&
+                                                        picked != leavingDate) {
+                                                      setState(() {
+                                                        leavingDate = picked;
+                                                      });
+                                                    }
 
-                                                  leaveProvider
-                                                      .changeLeavingDate(
-                                                          leavingDate);
-                                                },
-                                                child: Text('Select date'),
-                                              ),
+                                                    leaveProvider
+                                                        .changeLeavingDate(
+                                                            leavingDate);
+                                                  },
+                                                  child: Text(
+                                                    'Select date',
+                                                    style: TextStyle(
+                                                        color: Colors
+                                                            .blue.shade900),
+                                                  )),
                                             ]),
                                           ),
                                         ]),
@@ -210,7 +216,12 @@ class _StudentAddLeaveState extends State<StudentAddLeave> {
                                                       .changeComingDate(
                                                           commingDate);
                                                 },
-                                                child: Text('Select date'),
+                                                child: Text(
+                                                  'Select date',
+                                                  style: TextStyle(
+                                                      color:
+                                                          Colors.blue.shade900),
+                                                ),
                                               )
                                             ]),
                                           ),
@@ -297,7 +308,7 @@ class _StudentAddLeaveState extends State<StudentAddLeave> {
                                         },
                                         child: Container(
                                           decoration: BoxDecoration(
-                                              color: Colors.green[400],
+                                              color: Colors.blue.shade900,
                                               borderRadius:
                                                   const BorderRadius.only(
                                                 bottomRight:

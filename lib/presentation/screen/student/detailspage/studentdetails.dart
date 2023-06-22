@@ -40,6 +40,7 @@ class _StudentDetailScreenState extends State<StudentDetailScreen> {
     return Scaffold(
       backgroundColor: Colors.grey[200],
       appBar: AppBar(
+        backgroundColor: Colors.blue.shade900,
         title: const Text("Details"),
         actions: [
           pickedFile != null
@@ -106,7 +107,7 @@ class _StudentDetailScreenState extends State<StudentDetailScreen> {
                                     },
                                     child: Icon(
                                       Icons.edit,
-                                      color: Color.fromRGBO(64, 105, 225, 1),
+                                      color: Colors.blue.shade900,
                                       size: 20,
                                     ),
                                   )),

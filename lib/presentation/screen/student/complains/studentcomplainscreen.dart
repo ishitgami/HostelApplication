@@ -31,14 +31,19 @@ class _StudentComplainScreenState extends State<StudentComplainScreen> {
   Widget build(BuildContext context) {
     User? user = auth.currentUser;
     return Scaffold(
-      backgroundColor: Colors.grey[200],
+      backgroundColor: Colors.white,
       appBar: AppBar(
+        backgroundColor: Colors.blue.shade900,
         title: const Text('Complain'),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: (){
-           Navigator.push(context,  MaterialPageRoute(builder: (context) => StudentPastComplaintScreen()));
+        onPressed: () {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => StudentPastComplaintScreen()));
         },
+        backgroundColor: Colors.blue.shade900,
         child: Icon(Icons.comment),
       ),
       drawer: const StudentDrawer(),
@@ -48,8 +53,8 @@ class _StudentComplainScreenState extends State<StudentComplainScreen> {
           itemCount: images.length,
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
-            crossAxisSpacing: 4.0,
-            mainAxisSpacing: 4.0,
+            crossAxisSpacing: 8.0,
+            mainAxisSpacing: 8.0,
           ),
           itemBuilder: (BuildContext context, int index) {
             return GestureDetector(
@@ -62,8 +67,8 @@ class _StudentComplainScreenState extends State<StudentComplainScreen> {
               },
               child: Card(
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(15.0),
-                ),
+                    borderRadius: BorderRadius.circular(15.0),
+                    side: BorderSide(color: Colors.black, width: 0.1)),
                 color: Colors.white,
                 elevation: 1,
                 child: Column(
@@ -71,8 +76,8 @@ class _StudentComplainScreenState extends State<StudentComplainScreen> {
                     Expanded(
                       child: Image.asset(
                         images[index],
-                        height: 100,
-                        width: 100,
+                        height: 70,
+                        width: 70,
                       ),
                     ),
                     SizedBox(
@@ -80,12 +85,15 @@ class _StudentComplainScreenState extends State<StudentComplainScreen> {
                       child: Text(
                         textAlign: TextAlign.center,
                         imagesText[index].toString(),
-                        style: const TextStyle(
+                        style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 18,
-                            color: Colors.blueGrey),
+                            color: Colors.blue.shade900),
                       ),
                     ),
+                    SizedBox(
+                      height: 10,
+                    )
                   ],
                 ),
               ),

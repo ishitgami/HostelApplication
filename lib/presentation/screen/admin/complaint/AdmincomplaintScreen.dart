@@ -28,8 +28,9 @@ class _AdminComplaintScreenState extends State<AdminComplaintScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[200],
+      backgroundColor: Colors.white,
       appBar: AppBar(
+        backgroundColor: Colors.blue.shade900,
         title: const Text('complaint'),
       ),
       drawer: const AdminDrawer(),
