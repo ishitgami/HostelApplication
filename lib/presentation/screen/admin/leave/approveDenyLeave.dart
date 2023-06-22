@@ -15,10 +15,10 @@ class ApproveDennyLeaveScreen extends StatelessWidget {
     const tablepadding = EdgeInsets.all(15);
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.blueGrey[100],
+        backgroundColor: Colors.blue.shade900,
         title: const Text(
           'Approve/Denny Leave',
-          style: TextStyle(color: Colors.black),
+          style: TextStyle(color: Colors.white),
         ),
       ),
       body: SingleChildScrollView(
@@ -36,9 +36,6 @@ class ApproveDennyLeaveScreen extends StatelessWidget {
                 ),
                 child: Column(
                   children: [
-                    const SizedBox(
-                      height: 15,
-                    ),
                     Padding(
                       padding: const EdgeInsets.all(20),
                       child: Container(
@@ -189,7 +186,7 @@ class ApproveDennyLeaveScreen extends StatelessWidget {
                           fontWeight: FontWeight.bold),
                     ),
                     const SizedBox(
-                      height: 20,
+                      height: 10,
                     ),
                     Container(
                       margin: const EdgeInsets.symmetric(horizontal: 20),
@@ -204,7 +201,7 @@ class ApproveDennyLeaveScreen extends StatelessWidget {
                       child: Text(leave.leaveReason),
                     ),
                     const SizedBox(
-                      height: 20,
+                      height: 10,
                     ),
                     Row(
                       children: [

@@ -23,64 +23,64 @@ class _AdminLeaveScreenState extends State<AdminLeaveScreen> {
       (element) {
         if (element.status == 0) {
           leaveList.add(element);
-        } else null;
+        } else
+          null;
         ;
       },
     );
 
     return Scaffold(
-      backgroundColor: Colors.white,
+        backgroundColor: Colors.white,
         appBar: AppBar(
-          
+          backgroundColor: Colors.blue.shade900,
           title: const Text('Leave'),
         ),
         drawer: const AdminDrawer(),
-        body: 
-        Padding(
+        body: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Stack(
             children: [
-              leaveList.length == 0 ? 
-              Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Image.asset(
-                    'assets/images/nodata.jpg',
-                    height: 250,
-                    width: 250,
-                  ),
-                  Text(
-                    'No Leave Request :)',
-                    style: TextStyle(
-                        fontSize: 25,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.grey),
-                  ),
-                ],
-              ),
-            )
-              : 
-              Container(
-                padding: EdgeInsets.only(bottom: 120),
-                child: ListView.builder(
-                  itemCount: leaveList.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    return GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) =>
-                                    ApproveDennyLeaveScreen(leaveList[index])));
-                      },
-                      child: adminleavelistmodel(
-                          studentname: leaveList[index].name,
-                          roomno: leaveList[index].roomNo),
-                    );
-                  },
-                ),
-              ),
+              leaveList.length == 0
+                  ? Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Image.asset(
+                            'assets/images/nodata.jpg',
+                            height: 250,
+                            width: 250,
+                          ),
+                          Text(
+                            'No Leave Request :)',
+                            style: TextStyle(
+                                fontSize: 25,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.grey),
+                          ),
+                        ],
+                      ),
+                    )
+                  : Container(
+                      padding: EdgeInsets.only(bottom: 120),
+                      child: ListView.builder(
+                        itemCount: leaveList.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          return GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          ApproveDennyLeaveScreen(
+                                              leaveList[index])));
+                            },
+                            child: adminleavelistmodel(
+                                studentname: leaveList[index].name,
+                                roomno: leaveList[index].roomNo),
+                          );
+                        },
+                      ),
+                    ),
               Column(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [

@@ -51,10 +51,10 @@ class AdminDrawer extends StatelessWidget {
             const SizedBox(width: 50, child: Divider()),
             ListTile(
               title: Row(
-                children: const [
+                children:  [
                   Icon(
                     FontAwesomeIcons.question,
-                    color: Colors.blue,
+                    color: Colors.blue.shade900,
                   ),
                   SizedBox(
                     width: 30,
@@ -69,10 +69,10 @@ class AdminDrawer extends StatelessWidget {
             ),
             ListTile(
               title: Row(
-                children: const [
+                children:  [
                   Icon(
                     FontAwesomeIcons.signOut,
-                    color: Colors.blue,
+                    color: Colors.blue.shade900,
                   ),
                   SizedBox(
                     width: 30,

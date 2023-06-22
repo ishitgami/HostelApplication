@@ -85,7 +85,11 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
+      theme: ThemeData(
+        primaryColor: Colors.blue.shade900,
+        fontFamily: "Brazila",
+      ),
       debugShowCheckedModeBanner: false,
       onGenerateRoute: Routes.generateRoute,
     );

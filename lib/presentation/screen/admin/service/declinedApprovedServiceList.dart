@@ -12,7 +12,7 @@ class DeclineApproveServiceList extends StatelessWidget {
   Widget build(BuildContext context) {
     List<Service> complaintList = [];
     final complaintListRaw = Provider.of<List<Service>?>(context);
-   
+
     complaintListRaw?.forEach(
       (element) {
         if (element.status == serviceStatus) {
@@ -25,6 +25,7 @@ class DeclineApproveServiceList extends StatelessWidget {
       backgroundColor:
           complaintList.length != 0 ? Colors.grey[200] : Colors.white,
       appBar: AppBar(
+        backgroundColor: Colors.blue.shade900,
         title: serviceStatus == 1
             ? Text('Approved Service')
             : Text('Declined Service'),

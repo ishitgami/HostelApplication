@@ -14,7 +14,9 @@ class ApproveDenyComplainList extends StatelessWidget {
     final complaintProvider = Provider.of<ComplaintProvider>(context);
     const tablepadding = EdgeInsets.all(15);
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
+        backgroundColor: Colors.blue.shade900,
         title: const Text('Approve/Denny Complaint'),
       ),
       body: SingleChildScrollView(

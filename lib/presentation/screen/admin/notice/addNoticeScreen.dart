@@ -14,7 +14,7 @@ class AddNoticeScreen extends StatefulWidget {
 }
 
 class _AddNoticeScreenState extends State<AddNoticeScreen> {
-   File? imageFile;
+  File? imageFile;
   PlatformFile? pickedFile;
   bool showLoading = false;
 
@@ -24,6 +24,7 @@ class _AddNoticeScreenState extends State<AddNoticeScreen> {
 
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.blue.shade900,
         title: const Text('Add Notice'),
       ),
       body: SingleChildScrollView(
@@ -79,6 +80,12 @@ class _AddNoticeScreenState extends State<AddNoticeScreen> {
                                 const EdgeInsets.only(left: 18.0, right: 20),
                             child: Center(
                               child: ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                  primary: Colors.blue.shade900,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(5),
+                                  ),
+                                ),
                                 onPressed: () {
                                   selectFile();
                                 },
@@ -117,6 +124,7 @@ class _AddNoticeScreenState extends State<AddNoticeScreen> {
                     left: 0,
                     bottom: 20,
                     child: FloatingActionButton(
+                      backgroundColor: Colors.blue.shade900,
                       onPressed: () async {
                         setState(() {
                           showLoading = true;
@@ -126,15 +134,14 @@ class _AddNoticeScreenState extends State<AddNoticeScreen> {
                             .ref()
                             .child('noticeImg')
                             .child(pickedFile?.name.toString() ?? '');
-                            if(ref != '' && imageFile != null) {
-                              await ref.putFile(imageFile!);
-                                  String? url = await ref.getDownloadURL();
-                        noticeProvider.changeUrl(url);
-                            } else {
-                              noticeProvider.changeUrl('');
-                            }
-                        
-                    
+                        if (ref != '' && imageFile != null) {
+                          await ref.putFile(imageFile!);
+                          String? url = await ref.getDownloadURL();
+                          noticeProvider.changeUrl(url);
+                        } else {
+                          noticeProvider.changeUrl('');
+                        }
+
                         noticeProvider.changetime(DateTime.now());
                         noticeProvider.saveNotice();
                         noticeController.clear();

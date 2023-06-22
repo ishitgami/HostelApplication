@@ -21,9 +21,9 @@ class PendingComplainListScreen extends StatelessWidget {
       },
     );
     return Scaffold(
-      backgroundColor:
-          complaintList.length != 0 ? Colors.grey[200] : Colors.white,
+      backgroundColor: Colors.white,
       appBar: AppBar(
+        backgroundColor: Colors.blue.shade900,
         title: Text('$complaintTitle complaints'),
       ),
       body: complaintList.length != 0

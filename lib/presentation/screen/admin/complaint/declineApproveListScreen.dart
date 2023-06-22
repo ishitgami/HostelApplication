@@ -12,7 +12,7 @@ class DeclineApproveListScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     List<Complaint> complaintList = [];
     final complaintListRaw = Provider.of<List<Complaint>?>(context);
-   
+
     complaintListRaw?.forEach(
       (element) {
         if (element.status == complainStatus) {
@@ -22,9 +22,9 @@ class DeclineApproveListScreen extends StatelessWidget {
       },
     );
     return Scaffold(
-      backgroundColor:
-          complaintList.length != 0 ? Colors.grey[200] : Colors.white,
+      backgroundColor: Colors.white,
       appBar: AppBar(
+        backgroundColor: Colors.blue.shade900,
         title: complainStatus == 1
             ? Text('Approved complaints')
             : Text('Declined complaints'),

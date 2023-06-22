@@ -35,7 +35,7 @@ class _AdminComplaintScreenState extends State<AdminComplaintScreen> {
       ),
       drawer: const AdminDrawer(),
       body: Container(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.only(left: 16.0, right: 16.0, top: 16.0),
         child: Column(
           children: [
             Expanded(
@@ -66,8 +66,8 @@ class _AdminComplaintScreenState extends State<AdminComplaintScreen> {
                           Expanded(
                             child: Image.asset(
                               images[index],
-                              height: 100,
-                              width: 100,
+                              height: 70,
+                              width: 70,
                             ),
                           ),
                           SizedBox(
@@ -75,12 +75,15 @@ class _AdminComplaintScreenState extends State<AdminComplaintScreen> {
                             child: Text(
                               textAlign: TextAlign.center,
                               imagesText[index].toString(),
-                              style: const TextStyle(
+                              style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   fontSize: 18,
-                                  color: Colors.blueGrey),
+                                  color: Colors.blue.shade900),
                             ),
                           ),
+                          SizedBox(
+                            height: 10,
+                          )
                         ],
                       ),
                     ),

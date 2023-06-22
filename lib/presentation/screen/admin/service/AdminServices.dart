@@ -28,14 +28,14 @@ class _AdminServicesScreenState extends State<AdminServicesScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[200],
+      backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Colors.lightBlue,
+        backgroundColor: Colors.blue.shade900,
         title: const Text('Services'),
       ),
       drawer: const AdminDrawer(),
       body: Container(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.only(left: 16.0, right: 16.0, top: 16.0),
         child: Column(
           children: [
             Expanded(
@@ -48,21 +48,29 @@ class _AdminServicesScreenState extends State<AdminServicesScreen> {
                 ),
                 itemBuilder: (BuildContext context, int index) {
                   return GestureDetector(
-                    onTap: (){
-                      Navigator.push(context, MaterialPageRoute(builder: (context)=>AdminPendingServiceListScreen(imagesText[index])));
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  AdminPendingServiceListScreen(
+                                      imagesText[index])));
                     },
                     child: Card(
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(15.0),
-                      ),
+                          borderRadius: BorderRadius.circular(15.0),
+                          side: BorderSide(
+                            color: Colors.black,
+                            width: 0.1,
+                          )),
                       elevation: 1,
                       child: Column(
                         children: [
                           Expanded(
                             child: Image.asset(
                               images[index],
-                              height: 100,
-                              width: 100,
+                              height: 70,
+                              width: 70,
                             ),
                           ),
                           SizedBox(
@@ -70,12 +78,15 @@ class _AdminServicesScreenState extends State<AdminServicesScreen> {
                             child: Text(
                               textAlign: TextAlign.center,
                               imagesText[index].toString(),
-                              style: const TextStyle(
+                              style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   fontSize: 18,
-                                  color: Colors.blueGrey),
+                                  color: Colors.blue.shade900),
                             ),
                           ),
+                          SizedBox(
+                            height: 10,
+                          )
                         ],
                       ),
                     ),

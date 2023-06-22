@@ -23,9 +23,9 @@ class AdminPendingServiceListScreen extends StatelessWidget {
       },
     );
     return Scaffold(
-      backgroundColor:
-          serviceList.length != 0 ? Colors.grey[200] : Colors.white,
+      backgroundColor: Colors.white,
       appBar: AppBar(
+        backgroundColor: Colors.blue.shade900,
         title: Text('Pending Services'),
       ),
       body: serviceList.length != 0
@@ -60,8 +60,7 @@ class AdminPendingServiceListScreen extends StatelessWidget {
                                         fontSize: 20,
                                       ),
                                     ),
-                                    Text(
-                                        'Room - ${serviceList[index].roomNo}'),
+                                    Text('Room - ${serviceList[index].roomNo}'),
                                     Text(
                                       serviceList[index].time.day.toString() +
                                           '/' +

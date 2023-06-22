@@ -15,6 +15,7 @@ class ApproveDennyServiceSceen extends StatelessWidget {
     const tablepadding = EdgeInsets.all(15);
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.blue.shade900,
         title: const Text('Approve/Denny Service'),
       ),
       body: SingleChildScrollView(
@@ -179,11 +180,14 @@ class ApproveDennyServiceSceen extends StatelessWidget {
                     ),
                     Card(
                       child: Container(
-                        padding: EdgeInsets.all(10),
+                          padding: EdgeInsets.all(10),
                           child: Text(
-                        service.repairDeviceList.toString(),
-                        style: TextStyle(fontSize: 18, color: Colors.red,fontWeight: FontWeight.w700),
-                      )),
+                            service.repairDeviceList.toString(),
+                            style: TextStyle(
+                                fontSize: 18,
+                                color: Colors.red,
+                                fontWeight: FontWeight.w700),
+                          )),
                     ),
                     const SizedBox(
                       height: 20,
