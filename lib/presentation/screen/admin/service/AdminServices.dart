@@ -31,7 +31,10 @@ class _AdminServicesScreenState extends State<AdminServicesScreen> {
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.blue.shade900,
-        title: const Text('Services'),
+        title: const Text(
+          'Services',
+          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+        ),
       ),
       drawer: const AdminDrawer(),
       body: Container(

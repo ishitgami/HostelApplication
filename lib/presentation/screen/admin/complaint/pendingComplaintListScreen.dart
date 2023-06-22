@@ -24,7 +24,13 @@ class PendingComplainListScreen extends StatelessWidget {
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.blue.shade900,
-        title: Text('$complaintTitle complaints'),
+        title: Text(
+          '$complaintTitle complaints',
+          style: TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
       ),
       body: complaintList.length != 0
           ? Container(
@@ -41,12 +47,20 @@ class PendingComplainListScreen extends StatelessWidget {
                                   complaintList[index])));
                     },
                     child: Card(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(5),
+                        side: BorderSide(
+                          color: Colors.black,
+                          width: 0.1,
+                        ),
+                      ),
                       child: Container(
                         padding: EdgeInsets.all(10),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -82,6 +96,7 @@ class PendingComplainListScreen extends StatelessWidget {
                                     ? Text(
                                         'Pending',
                                         style: TextStyle(
+                                          fontWeight: FontWeight.bold,
                                           color: Color.fromARGB(
                                             255,
                                             214,
@@ -92,12 +107,15 @@ class PendingComplainListScreen extends StatelessWidget {
                                       )
                                     : complaintList[index].status == 1
                                         ? Text('Approved',
-                                            style:
-                                                TextStyle(color: Colors.green))
+                                            style: TextStyle(
+                                              color: Colors.green,
+                                              fontWeight: FontWeight.bold,
+                                            ))
                                         : Text(
                                             'Declined',
                                             style: TextStyle(
                                               color: Colors.red,
+                                              fontWeight: FontWeight.bold,
                                             ),
                                           ),
                                 SizedBox(

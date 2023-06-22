@@ -26,8 +26,16 @@ class DeclineApproveListScreen extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.blue.shade900,
         title: complainStatus == 1
-            ? Text('Approved complaints')
-            : Text('Declined complaints'),
+            ? Text('Approved complaints',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                ))
+            : Text('Declined complaints',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                )),
       ),
       body: complaintList.length != 0
           ? Container(
@@ -36,12 +44,20 @@ class DeclineApproveListScreen extends StatelessWidget {
                 itemCount: complaintList.length,
                 itemBuilder: (context, index) {
                   return Card(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(5),
+                      side: BorderSide(
+                        color: Colors.black,
+                        width: 0.1,
+                      ),
+                    ),
                     child: Container(
                       padding: EdgeInsets.all(10),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -76,6 +92,7 @@ class DeclineApproveListScreen extends StatelessWidget {
                                   ? Text(
                                       'Pending',
                                       style: TextStyle(
+                                        fontWeight: FontWeight.bold,
                                         color: Color.fromARGB(
                                           255,
                                           214,
@@ -86,11 +103,15 @@ class DeclineApproveListScreen extends StatelessWidget {
                                     )
                                   : complaintList[index].status == 1
                                       ? Text('Approved',
-                                          style: TextStyle(color: Colors.green))
+                                          style: TextStyle(
+                                            color: Colors.green,
+                                            fontWeight: FontWeight.bold,
+                                          ))
                                       : Text(
                                           'Declined',
                                           style: TextStyle(
                                             color: Colors.red,
+                                            fontWeight: FontWeight.bold,
                                           ),
                                         ),
                               SizedBox(

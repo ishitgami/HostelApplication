@@ -29,6 +29,7 @@ class AdminDrawer extends StatelessWidget {
                       children: [
                         CircleAvatar(
                           radius: 25,
+                          backgroundColor: Colors.blue.shade900,
                           child: Icon(Icons.account_circle_rounded),
                         ),
                         const SizedBox(
@@ -37,7 +38,7 @@ class AdminDrawer extends StatelessWidget {
                         Text(
                           "Admin",
                           style: TextStyle(
-                              fontSize: 22, fontWeight: FontWeight.w500),
+                              fontSize: 22, fontWeight: FontWeight.bold),
                         ),
                       ],
                     ),
@@ -51,7 +52,7 @@ class AdminDrawer extends StatelessWidget {
             const SizedBox(width: 50, child: Divider()),
             ListTile(
               title: Row(
-                children:  [
+                children: [
                   Icon(
                     FontAwesomeIcons.question,
                     color: Colors.blue.shade900,
@@ -69,7 +70,7 @@ class AdminDrawer extends StatelessWidget {
             ),
             ListTile(
               title: Row(
-                children:  [
+                children: [
                   Icon(
                     FontAwesomeIcons.signOut,
                     color: Colors.blue.shade900,

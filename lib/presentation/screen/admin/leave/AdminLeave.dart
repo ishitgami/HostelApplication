@@ -33,7 +33,10 @@ class _AdminLeaveScreenState extends State<AdminLeaveScreen> {
         backgroundColor: Colors.white,
         appBar: AppBar(
           backgroundColor: Colors.blue.shade900,
-          title: const Text('Leave'),
+          title: const Text(
+            'Leave',
+            style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+          ),
         ),
         drawer: const AdminDrawer(),
         body: Padding(
@@ -173,32 +176,29 @@ class adminleavelistmodel extends StatelessWidget {
   String roomno;
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Card(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(15.0),
-          ),
-          elevation: 1,
-          child: Container(
-            width: MediaQuery.of(context).size.width,
-            padding: const EdgeInsets.all(20),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  "$studentname",
-                  style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
-                ),
-                SizedBox(
-                  height: 2,
-                ),
-                Text('Room No. : $roomno'),
-              ],
+    return Card(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10.0),
+        side: BorderSide(width: 0.1, color: Colors.black),
+      ),
+      elevation: 1,
+      child: Container(
+        width: MediaQuery.of(context).size.width,
+        padding: const EdgeInsets.all(15),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              "$studentname",
+              style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
             ),
-          ),
+            SizedBox(
+              height: 2,
+            ),
+            Text('Room No. : $roomno'),
+          ],
         ),
-      ],
+      ),
     );
   }
 }

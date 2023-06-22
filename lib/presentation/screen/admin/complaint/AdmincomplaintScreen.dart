@@ -31,7 +31,10 @@ class _AdminComplaintScreenState extends State<AdminComplaintScreen> {
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.blue.shade900,
-        title: const Text('complaint'),
+        title: const Text(
+          'Complaint',
+          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+        ),
       ),
       drawer: const AdminDrawer(),
       body: Container(
