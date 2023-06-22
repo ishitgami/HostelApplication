@@ -30,6 +30,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
     }
   }
 
+  final colors = Color(0xff96C3E2);
   @override
   Widget build(BuildContext context) {
     authService = Provider.of<AuthService>(context);
@@ -38,282 +39,390 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
       body: SafeArea(
         child: Form(
           key: _form,
-          child: SingleChildScrollView(
-            child: Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const SizedBox(
-                    height: 80,
-                  ),
-                  Row(
-                    children: [
-                      Container(
-                        color: Colors.black,
-                        height: 100,
-                        width: 10,
-                      ),
-                      const SizedBox(
-                        width: 8,
-                      ),
-                      const Text(
-                        'My\nHostel',
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 50,
-                            fontFamily: 'Roboto'),
-                      ),
-                    ],
-                  ),
-                  const Text(
-                    'WELCOME.',
-                    style: TextStyle(
-                        fontSize: 35,
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  TextFormField(
-                    onChanged: (((value) =>
-                        userDataProvider.changeFirstName(value))),
-                    controller: firstNameController,
-                    keyboardType: TextInputType.name,
-                    textInputAction: TextInputAction.next,
-                    validator: (text) {
-                      if (text!.isEmpty) {
-                        return "Enter First Name ";
-                      }
-                      return null;
-                    },
-                    decoration: InputDecoration(
-                      prefixIcon: Icon(
-                        Icons.person_rounded,
-                        color: Color.fromARGB(255, 108, 99, 255),
-                      ),
-                      hintText: 'First Name',
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(10.0),
-                        ),
-                        borderSide: BorderSide(
-                          width: 1,
-                          style: BorderStyle.none,
-                        ),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  TextFormField(
-                    onChanged: (((value) =>
-                        userDataProvider.changeLastName(value))),
-                    keyboardType: TextInputType.name,
-                    textInputAction: TextInputAction.next,
-                    validator: (text) {
-                      if (text!.isEmpty) {
-                        return "Enter Last Name ";
-                      }
-                      return null;
-                    },
-                    controller: lastNameController,
-                    decoration: InputDecoration(
-                      prefixIcon: Icon(
-                        Icons.person_rounded,
-                        color: Color.fromARGB(255, 108, 99, 255),
-                      ),
-                      hintText: 'Last Name',
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(10.0),
-                        ),
-                        borderSide: BorderSide(
-                          width: 1,
-                          style: BorderStyle.none,
-                        ),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  TextFormField(
-                    onChanged: (((value) =>
-                        userDataProvider.changeMobileNo(value))),
-                    keyboardType: TextInputType.number,
-                    textInputAction: TextInputAction.next,
-                    validator: (text) {
-                      if (text!.isEmpty) {
-                        return "Enter Mobile number ";
-                      }
-                      return null;
-                    },
-                    controller: mobileNoController,
-                    decoration: InputDecoration(
-                      prefixIcon: Icon(
-                        Icons.phone,
-                        color: Color.fromARGB(255, 108, 99, 255),
-                      ),
-                      hintText: 'Mobile No.',
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(10.0),
-                        ),
-                        borderSide: BorderSide(
-                          width: 1,
-                          style: BorderStyle.none,
-                        ),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  TextFormField(
-                    onChanged: (((value) =>
-                        userDataProvider.changeRoomNo(value))),
-                    textInputAction: TextInputAction.next,
-                    keyboardType: TextInputType.text,
-                    validator: (text) {
-                      if (text!.isEmpty) {
-                        return "Enter Valid Room No";
-                      }
-                      return null;
-                    },
-                    controller: roomNoController,
-                    decoration: InputDecoration(
-                      prefixIcon: Icon(
-                        Icons.home_outlined,
-                        color: Color.fromARGB(255, 108, 99, 255),
-                      ),
-                      hintText: 'Room No',
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(10.0),
-                        ),
-                        borderSide: BorderSide(
-                          width: 1,
-                          style: BorderStyle.none,
-                        ),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  TextField(
-                    onChanged: (((value) =>
-                        userDataProvider.changeEmail(value))),
-                    controller: emailController,
-                    keyboardType: TextInputType.emailAddress,
-                    textInputAction: TextInputAction.next,
-                    decoration: InputDecoration(
-                      prefixIcon: Icon(
-                        Icons.email_outlined,
-                        color: Color.fromARGB(255, 108, 99, 255),
-                      ),
-                      hintText: 'Email',
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(10.0),
-                        ),
-                        borderSide: BorderSide(
-                          width: 1,
-                          style: BorderStyle.none,
-                        ),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  TextFormField(
-                    controller: passwordController,
-                    textInputAction: TextInputAction.done,
-                    keyboardType: TextInputType.visiblePassword,
-                    obscureText: true,
-                    decoration: InputDecoration(
-                      prefixIcon: Icon(
-                        Icons.remove_red_eye,
-                        color: Color.fromARGB(255, 108, 99, 255),
-                      ),
-                      hintText: 'Password',
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(10.0),
-                        ),
-                        borderSide: BorderSide(
-                          width: 1,
-                          style: BorderStyle.none,
-                        ),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 30,
-                  ),
-                  Center(
+          child: Stack(
+            children: [
+              Image.asset(
+                'assets/onboard/image_001.png',
+                width: double.infinity,
+                height: double.infinity,
+                fit: BoxFit.cover,
+              ),
+              Positioned(
+                child: SingleChildScrollView(
+                  child: Padding(
+                    padding: const EdgeInsets.all(16.0),
                     child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        GestureDetector(
-                          child: Container(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 60, vertical: 15),
-                            decoration: BoxDecoration(
-                                color: const Color.fromARGB(255, 108, 99, 255),
-                                border: Border.all(
-                                  color:
-                                      const Color.fromARGB(255, 108, 99, 255),
-                                ),
-                                borderRadius: const BorderRadius.all(
-                                    Radius.circular(20))),
-                            child: const Text(
-                              'Register',
-                              style:
-                                  TextStyle(color: Colors.white, fontSize: 20),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        Row(
+                          children: [
+                            Image.asset(
+                              'assets/images/logo.png',
+                              width: 50,
+                              height: 50,
+                              fit: BoxFit.cover,
+                            ),
+                            const SizedBox(
+                              width: 15,
+                            ),
+                            const Text(
+                              'My Hostel',
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 30,
+                                  fontFamily: 'Brazila'),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        const Text(
+                          'WELCOME',
+                          style: TextStyle(
+                              fontSize: 30,
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontFamily: 'Brazila'),
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        Container(
+                          height: 50,
+                          child: TextFormField(
+                            onChanged: (((value) =>
+                                userDataProvider.changeFirstName(value))),
+                            controller: firstNameController,
+                            keyboardType: TextInputType.name,
+                            textInputAction: TextInputAction.next,
+                            validator: (text) {
+                              if (text!.isEmpty) {
+                                return "Enter First Name ";
+                              }
+                              return null;
+                            },
+                            cursorColor: Colors.white,
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontFamily: "Brazila",
+                            ),
+                            decoration: InputDecoration(
+                              prefixIcon: Icon(
+                                Icons.person_rounded,
+                                color: Colors.white,
+                              ),
+                              hintText: "First Name",
+                              hintStyle: const TextStyle(
+                                color: Colors.white,
+                                fontFamily: "Brazila",
+                              ),
+                              isDense: true,
+                              border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.all(
+                                    Radius.circular(10.0),
+                                  ),
+                                  borderSide: BorderSide(color: colors)),
+                              focusedBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.all(
+                                    Radius.circular(10.0),
+                                  ),
+                                  borderSide: BorderSide(color: colors)),
+                              enabledBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.all(
+                                    Radius.circular(10.0),
+                                  ),
+                                  borderSide: BorderSide(color: colors)),
                             ),
                           ),
-                          onTap: () async {
-                            _saveForm();
-                            setState(() {
-                              showLoading = true;
-                            });
-                            progressIndicater(context, showLoading = true);
-                            FireBaseUser? user = await createUser();
-                            userDataProvider.changeId(user!.uid);
-                            userDataProvider.saveUserData();
-                            await showAlert == true
-                                ? null
-                                : progressIndicater(
-                                    context, showLoading = true);
-                            Navigator.pop(context);
-                          },
                         ),
                         const SizedBox(
                           height: 10,
                         ),
-                        GestureDetector(
-                          onTap: () {
-                            Navigator.pushReplacementNamed(
-                                context, logInScreenRoute);
-                          },
-                          child: const Text(
-                            'Already Registred?',
+                        Container(
+                          height: 50,
+                          child: TextFormField(
+                            onChanged: (((value) =>
+                                userDataProvider.changeLastName(value))),
+                            keyboardType: TextInputType.name,
+                            textInputAction: TextInputAction.next,
+                            validator: (text) {
+                              if (text!.isEmpty) {
+                                return "Enter Last Name ";
+                              }
+                              return null;
+                            },
+                            cursorColor: Colors.white,
                             style: TextStyle(
-                                color: Colors.blue,
-                                fontWeight: FontWeight.w400),
+                              color: Colors.white,
+                              fontFamily: "Brazila",
+                            ),
+                            controller: lastNameController,
+                            decoration: InputDecoration(
+                              prefixIcon: Icon(
+                                Icons.person_rounded,
+                                color: Colors.white,
+                              ),
+                              hintStyle: const TextStyle(color: Colors.white),
+                              isDense: true,
+                              hintText: "Last Name",
+                              border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.all(
+                                    Radius.circular(10.0),
+                                  ),
+                                  borderSide: BorderSide(color: colors)),
+                              focusedBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.all(
+                                    Radius.circular(10.0),
+                                  ),
+                                  borderSide: BorderSide(color: colors)),
+                              enabledBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.all(
+                                    Radius.circular(10.0),
+                                  ),
+                                  borderSide: BorderSide(color: colors)),
+                            ),
                           ),
                         ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        TextFormField(
+                          onChanged: (((value) =>
+                              userDataProvider.changeMobileNo(value))),
+                          keyboardType: TextInputType.number,
+                          textInputAction: TextInputAction.next,
+                          validator: (text) {
+                            if (text!.isEmpty) {
+                              return "Enter Mobile number ";
+                            }
+                            return null;
+                          },
+                          controller: mobileNoController,
+                          cursorColor: Colors.white,
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontFamily: "Brazila",
+                          ),
+                          decoration: InputDecoration(
+                            prefixIcon: Icon(
+                              Icons.phone,
+                              color: Colors.white,
+                            ),
+                            hintStyle: const TextStyle(color: Colors.white),
+                            isDense: true,
+                            hintText: 'Mobile No.',
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(10.0),
+                                ),
+                                borderSide: BorderSide(color: colors)),
+                            focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(10.0),
+                                ),
+                                borderSide: BorderSide(color: colors)),
+                            enabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(10.0),
+                                ),
+                                borderSide: BorderSide(color: colors)),
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        TextFormField(
+                          onChanged: (((value) =>
+                              userDataProvider.changeRoomNo(value))),
+                          textInputAction: TextInputAction.next,
+                          keyboardType: TextInputType.text,
+                          validator: (text) {
+                            if (text!.isEmpty) {
+                              return "Enter Valid Room No";
+                            }
+                            return null;
+                          },
+                          controller: roomNoController,
+                          cursorColor: Colors.white,
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontFamily: "Brazila",
+                          ),
+                          decoration: InputDecoration(
+                            prefixIcon: Icon(
+                              Icons.home_outlined,
+                              color: Colors.white,
+                            ),
+                            hintText: 'Room No',
+                            hintStyle: const TextStyle(color: Colors.white),
+                            isDense: true,
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(10.0),
+                                ),
+                                borderSide: BorderSide(color: colors)),
+                            focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(10.0),
+                                ),
+                                borderSide: BorderSide(color: colors)),
+                            enabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(10.0),
+                                ),
+                                borderSide: BorderSide(color: colors)),
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        TextField(
+                          onChanged: (((value) =>
+                              userDataProvider.changeEmail(value))),
+                          controller: emailController,
+                          keyboardType: TextInputType.emailAddress,
+                          textInputAction: TextInputAction.next,
+                          cursorColor: Colors.white,
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontFamily: "Brazila",
+                          ),
+                          decoration: InputDecoration(
+                            prefixIcon: Icon(
+                              Icons.email_outlined,
+                              color: Colors.white,
+                            ),
+                            hintText: 'Email',
+                            hintStyle: const TextStyle(color: Colors.white),
+                            isDense: true,
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(10.0),
+                                ),
+                                borderSide: BorderSide(color: colors)),
+                            focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(10.0),
+                                ),
+                                borderSide: BorderSide(color: colors)),
+                            enabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(10.0),
+                                ),
+                                borderSide: BorderSide(color: colors)),
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        TextFormField(
+                          controller: passwordController,
+                          textInputAction: TextInputAction.done,
+                          keyboardType: TextInputType.visiblePassword,
+                          obscureText: true,
+                          cursorColor: Colors.white,
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontFamily: "Brazila",
+                          ),
+                          decoration: InputDecoration(
+                            prefixIcon: Icon(
+                              Icons.remove_red_eye,
+                              color: Colors.white,
+                            ),
+                            hintText: 'Password',
+                            hintStyle: const TextStyle(color: Colors.white),
+                            isDense: true,
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(10.0),
+                                ),
+                                borderSide: BorderSide(color: colors)),
+                            focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(10.0),
+                                ),
+                                borderSide: BorderSide(color: colors)),
+                            enabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(10.0),
+                                ),
+                                borderSide: BorderSide(color: colors)),
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        Center(
+                          child: Column(
+                            children: [
+                              GestureDetector(
+                                child: Container(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 60, vertical: 10),
+                                  decoration: BoxDecoration(
+                                      color: colors,
+                                      border: Border.all(
+                                        color: colors,
+                                      ),
+                                      borderRadius: const BorderRadius.all(
+                                          Radius.circular(10))),
+                                  child: const Text(
+                                    'Register',
+                                    style: TextStyle(
+                                        fontFamily: "Brazila",
+                                        color: Colors.white,
+                                        fontSize: 20),
+                                  ),
+                                ),
+                                onTap: () async {
+                                  _saveForm();
+                                  setState(() {
+                                    showLoading = true;
+                                  });
+                                  progressIndicater(
+                                      context, showLoading = true);
+                                  FireBaseUser? user = await createUser();
+                                  userDataProvider.changeId(user!.uid);
+                                  userDataProvider.saveUserData();
+                                  await showAlert == true
+                                      ? null
+                                      : progressIndicater(
+                                          context, showLoading = true);
+                                  Navigator.pop(context);
+                                },
+                              ),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              GestureDetector(
+                                onTap: () {
+                                  Navigator.pushReplacementNamed(
+                                      context, logInScreenRoute);
+                                },
+                                child: const Text(
+                                  'Already Registred?',
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontFamily: "Brazila",
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              ),
+                            ],
+                          ),
+                        )
                       ],
                     ),
-                  )
-                ],
+                  ),
+                ),
               ),
-            ),
+            ],
           ),
         ),
       ),

@@ -1,15 +1,13 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:hostelapplication/core/constant/string.dart';
 import 'package:hostelapplication/presentation/screen/auth/logInScreen.dart';
 import 'package:hostelapplication/presentation/screen/auth/registrationScreen.dart';
 import 'package:provider/provider.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:page_transition/page_transition.dart';
-import 'onboard_model.dart';
-import 'package:flutter_blurhash/flutter_blurhash.dart';
 
 class AnimationInfo {
   final AnimationTrigger trigger;
@@ -704,18 +702,6 @@ class _OnboardingScreenState extends State<OnboardingScreen>
     ),
   };
 
-  Widget _indicator(bool isActive) {
-    return AnimatedContainer(
-      duration: const Duration(milliseconds: 150),
-      margin: const EdgeInsets.symmetric(horizontal: 8.0),
-      height: 8.0,
-      width: isActive ? 24.0 : 16.0,
-      decoration: BoxDecoration(
-        color: isActive ? const Color(0xFF7B51D3) : Colors.grey,
-        borderRadius: const BorderRadius.all(const Radius.circular(12)),
-      ),
-    );
-  }
 
   // late SplashModel _model;
   final scaffoldKey = GlobalKey<ScaffoldState>();

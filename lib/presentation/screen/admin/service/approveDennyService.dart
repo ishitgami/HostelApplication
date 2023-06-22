@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/material.dart';
 import 'package:hostelapplication/logic/modules/service_model.dart';
 import 'package:hostelapplication/logic/provider/service_provider.dart';

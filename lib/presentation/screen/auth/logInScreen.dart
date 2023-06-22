@@ -18,7 +18,8 @@ class _LogInScreenState extends State<LogInScreen> {
   bool showAlert = false;
 
   final _formkey = GlobalKey<FormState>();
-
+  final colors = Color(0xff96C3E2);
+  bool showPassword = true;
   @override
   Widget build(BuildContext context) {
     authService = Provider.of<AuthService>(context);
@@ -27,144 +28,226 @@ class _LogInScreenState extends State<LogInScreen> {
       body: SafeArea(
         child: Form(
           key: _formkey,
-          child: Padding(
-            padding: const EdgeInsets.only(
-              left: 16.0,
-              right: 16,
-            ),
-            child: SingleChildScrollView(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Center(
-                    child: Image.asset(
-                      'assets/images/login.png',
-                      height: 250.0,
-                      width: 250.0,
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  const Text(
-                    'My\nHostel',
-                    style: TextStyle(
-                        color: const Color.fromARGB(255, 108, 99, 255),
-                        fontWeight: FontWeight.bold,
-                        fontSize: 50,
-                        fontFamily: 'Roboto'),
-                  ),
-                  Text(
-                    'WELCOME.',
-                    style: TextStyle(
-                        fontSize: 35,
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  TextFormField(
-                    controller: emailController,
-                    keyboardType: TextInputType.emailAddress,
-                    textInputAction: TextInputAction.next,
-                    decoration: InputDecoration(
-                      hintText: 'Email',
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(10.0),
-                        ),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  TextFormField(
-                    controller: passwordController,
-                    keyboardType: TextInputType.visiblePassword,
-                    obscureText: true,
-                    textInputAction: TextInputAction.done,
-                    decoration: InputDecoration(
-                      hintText: 'Password',
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(10.0),
-                        ),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  const SizedBox(
-                    height: 30,
-                  ),
-                  Center(
+          child: Stack(
+            children: [
+              Image.asset(
+                'assets/onboard/image_001.png',
+                width: double.infinity,
+                height: double.infinity,
+                fit: BoxFit.cover,
+              ),
+              Positioned(
+                child: SingleChildScrollView(
+                  child: Padding(
+                    padding: const EdgeInsets.only(
+                        left: 20.0, right: 20.0, top: 20.0, bottom: 20.0),
                     child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        GestureDetector(
-                          child: Container(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 60, vertical: 15),
-                            decoration: BoxDecoration(
-                                color: const Color.fromARGB(255, 108, 99, 255),
-                                border: Border.all(
-                                  color:
-                                      const Color.fromARGB(255, 108, 99, 255),
-                                ),
-                                borderRadius: const BorderRadius.all(
-                                    Radius.circular(20))),
-                            child: const Text(
-                              'Login',
-                              style:
-                                  TextStyle(color: Colors.white, fontSize: 20),
-                            ),
-                          ),
-                          onTap: () async {
-                            setState(() {
-                              showLoading = true;
-                            });
-                            
-                            progressIndicater(context, showLoading = true);
-                            await loginByRole();
-                            await showAlert == true
-                                ? null
-                                : progressIndicater(
-                                    context, showLoading = true);
-                                     emailController.clear();
-                            passwordController.clear();
-                            Navigator.pop(context);
-                            //  Navigator.pushNamed(
-                            //     context, adminDashbordScreenRoute);
-                          },
+                        const SizedBox(
+                          height: 60,
+                        ),
+                        Image.asset(
+                          'assets/images/logo.png',
+                          width: 50,
+                          height: 50,
+                          fit: BoxFit.cover,
                         ),
                         const SizedBox(
-                          height: 10,
+                          height: 20,
                         ),
-                        GestureDetector(
-                          onTap: () {
-                            emailController.clear();
-                            passwordController.clear();
-                            Navigator.pushNamed(
-                                context, registrationScreenRoute);
-                          },
-                          child: const Text(
-                            'Not Registred yet?',
-                            style: TextStyle(
-                                color: Colors.blue,
-                                fontWeight: FontWeight.w400),
+                        const Text(
+                          'My\nHostel',
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 35,
+                              fontFamily: 'Brazila'),
+                        ),
+                        Text(
+                          'WELCOME.',
+                          style: TextStyle(
+                              fontSize: 30,
+                              color: colors,
+                              fontFamily: "Brazila",
+                              fontWeight: FontWeight.bold),
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        Container(
+                          height: 50,
+                          child: TextFormField(
+                            controller: emailController,
+                            keyboardType: TextInputType.emailAddress,
+                            textInputAction: TextInputAction.next,
+                            cursorColor: Colors.white,
+                            style: const TextStyle(
+                                color: Colors.white, fontFamily: 'Brazila'),
+                            decoration: InputDecoration(
+                              hintText: 'Email',
+                              hintStyle: const TextStyle(color: Colors.white),
+                              isDense: true,
+                              border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.all(
+                                    Radius.circular(10.0),
+                                  ),
+                                  borderSide: BorderSide(color: colors)),
+                              focusedBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.all(
+                                    Radius.circular(10.0),
+                                  ),
+                                  borderSide: BorderSide(color: colors)),
+                              enabledBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.all(
+                                    Radius.circular(10.0),
+                                  ),
+                                  borderSide: BorderSide(color: colors)),
+                            ),
                           ),
                         ),
-                        SizedBox(
-                          height: 10,
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        Container(
+                          height: 50,
+                          child: TextFormField(
+                            controller: passwordController,
+                            keyboardType: TextInputType.visiblePassword,
+                            obscureText: showPassword ? true : false,
+                            textInputAction: TextInputAction.done,
+                            cursorColor: Colors.white,
+                            style: const TextStyle(
+                                color: Colors.white, fontFamily: 'Brazila'),
+                            decoration: InputDecoration(
+                              isDense: true,
+                              hintStyle: const TextStyle(color: Colors.white),
+                              hintText: 'Password',
+                              suffixIcon: GestureDetector(
+                                onTap: () {
+                                  setState(() {
+                                    showPassword = !showPassword;
+                                  });
+                                },
+                                child: Icon(
+                                  showPassword
+                                      ? Icons.visibility_off
+                                      : Icons.visibility,
+                                  color: Colors.white,
+                                ),
+                              ),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(10.0),
+                                ),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.all(
+                                    Radius.circular(10.0),
+                                  ),
+                                  borderSide: BorderSide(color: colors)),
+                              enabledBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.all(
+                                    Radius.circular(10.0),
+                                  ),
+                                  borderSide: BorderSide(color: colors)),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        const SizedBox(
+                          height: 30,
+                        ),
+                        Center(
+                          child: Column(
+                            children: [
+                              GestureDetector(
+                                child: Container(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 80, vertical: 10),
+                                  decoration: BoxDecoration(
+                                      color: colors,
+                                      border: Border.all(
+                                        color: colors,
+                                      ),
+                                      borderRadius: const BorderRadius.all(
+                                          Radius.circular(10))),
+                                  child: const Text(
+                                    'Login',
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.bold,
+                                        fontFamily: "Brazila"),
+                                  ),
+                                ),
+                                onTap: () async {
+                                  setState(() {
+                                    showLoading = true;
+                                  });
+
+                                  progressIndicater(
+                                      context, showLoading = true);
+                                  await loginByRole();
+                                  await showAlert == true
+                                      ? null
+                                      : progressIndicater(
+                                          context, showLoading = true);
+                                  emailController.clear();
+                                  passwordController.clear();
+                                  Navigator.pop(context);
+                                  //  Navigator.pushNamed(
+                                  //     context, adminDashbordScreenRoute);
+                                },
+                              ),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              GestureDetector(
+                                onTap: () {
+                                  emailController.clear();
+                                  passwordController.clear();
+                                  Navigator.pushNamed(
+                                      context, registrationScreenRoute);
+                                },
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    const Text(
+                                      'Not Registred yet?',
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontFamily: 'Brazila',
+                                          fontWeight: FontWeight.w800),
+                                    ),
+                                    SizedBox(
+                                      width: 5,
+                                    ),
+                                    const Text(
+                                      'Sign Up',
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontFamily: 'Brazila',
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              SizedBox(
+                                height: 10,
+                              )
+                            ],
+                          ),
                         )
                       ],
                     ),
-                  )
-                ],
+                  ),
+                ),
               ),
-            ),
+            ],
           ),
         ),
       ),
@@ -190,10 +273,10 @@ class _LogInScreenState extends State<LogInScreen> {
           emailController.text.toString(), passwordController.text.toString());
       if (emailController.text.toString() == 'admin@gmail.com') {
         Navigator.pushNamedAndRemoveUntil(
-                    context, adminDashbordScreenRoute, (route) => false);
+            context, adminDashbordScreenRoute, (route) => false);
       } else {
-         Navigator.pushNamedAndRemoveUntil(
-                    context, studentDashboardScreenRoute, (route) => false);
+        Navigator.pushNamedAndRemoveUntil(
+            context, studentDashboardScreenRoute, (route) => false);
       }
     } catch (e) {
       return alertBox(context, e);
