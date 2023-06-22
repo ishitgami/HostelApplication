@@ -21,7 +21,10 @@ class StudentAddComplaintScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
           backgroundColor: Colors.blue.shade900,
-          title: const Text("Add Complaint")),
+          title: const Text(
+            "Add Complaint",
+            style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+          )),
       body: userData == null
           ? Center(
               child: CircularProgressIndicator(),

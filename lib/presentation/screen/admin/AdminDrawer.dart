@@ -60,7 +60,10 @@ class AdminDrawer extends StatelessWidget {
                   SizedBox(
                     width: 30,
                   ),
-                  Text('Help'),
+                  Text(
+                    'Help',
+                    style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+                  )
                 ],
               ),
               onTap: () {
@@ -78,7 +81,10 @@ class AdminDrawer extends StatelessWidget {
                   SizedBox(
                     width: 30,
                   ),
-                  Text('Log out'),
+                  Text(
+                    'Log out',
+                    style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+                  )
                 ],
               ),
               onTap: () {

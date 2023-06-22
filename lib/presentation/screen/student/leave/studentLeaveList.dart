@@ -26,9 +26,11 @@ class StudentApproveDennyLeaveList extends StatelessWidget {
     return Scaffold(
       backgroundColor: leaveList.length != 0 ? Colors.white : Colors.white,
       appBar: AppBar(
-        backgroundColor: Colors.blue.shade900,
-        title: Text('Leave'),
-      ),
+          backgroundColor: Colors.blue.shade900,
+          title: Text(
+            'Leave',
+            style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+          )),
       drawer: const StudentDrawer(),
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.blue.shade900,

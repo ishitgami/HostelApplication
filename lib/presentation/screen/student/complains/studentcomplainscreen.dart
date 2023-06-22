@@ -33,9 +33,11 @@ class _StudentComplainScreenState extends State<StudentComplainScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Colors.blue.shade900,
-        title: const Text('Complain'),
-      ),
+          backgroundColor: Colors.blue.shade900,
+          title: const Text(
+            'Complain',
+            style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+          )),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.push(

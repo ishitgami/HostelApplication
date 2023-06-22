@@ -9,9 +9,11 @@ class AdminDetailsScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.blue.shade900,
-        title: const Text("Details"),
-      ),
+          backgroundColor: Colors.blue.shade900,
+          title: const Text(
+            "Details",
+            style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+          )),
       body: SingleChildScrollView(
           child: Padding(
         padding: const EdgeInsets.all(8.0),

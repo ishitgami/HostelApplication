@@ -17,7 +17,10 @@ class ApproveDenyComplainList extends StatelessWidget {
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.blue.shade900,
-        title: const Text('Approve/Denny Complaint'),
+        title: const Text('Approve/Denny Complaint' , style: TextStyle(
+          color: Colors.white,
+          fontWeight: FontWeight.bold,
+        ),)
       ),
       body: SingleChildScrollView(
         child: Column(

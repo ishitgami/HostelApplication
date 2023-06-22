@@ -25,8 +25,21 @@ class DeclineApproveLeaveListScreen extends StatelessWidget {
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.blue.shade900,
-        title:
-            leaveStatus == 1 ? Text('Approved Leave') : Text('Declined Leave'),
+        title: leaveStatus == 1
+            ? Text(
+                'Approved Leave',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                ),
+              )
+            : Text(
+                'Declined Leave',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
       ),
       body: leaveList.length != 0
           ? Container(

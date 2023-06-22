@@ -29,9 +29,11 @@ class StudentPastComplaintScreen extends StatelessWidget {
       backgroundColor:
           complaintList.length != 0 ? Colors.grey[200] : Colors.white,
       appBar: AppBar(
-        backgroundColor: Colors.blue.shade900,
-        title: Text('Past complaints'),
-      ),
+          backgroundColor: Colors.blue.shade900,
+          title: Text(
+            'Past complaints',
+            style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+          )),
       body: complaintList.length != 0
           ? Container(
               padding: EdgeInsets.all(8),

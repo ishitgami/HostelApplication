@@ -24,11 +24,22 @@ class DeclineApproveServiceList extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Colors.blue.shade900,
-        title: serviceStatus == 1
-            ? Text('Approved Service')
-            : Text('Declined Service'),
-      ),
+          backgroundColor: Colors.blue.shade900,
+          title: serviceStatus == 1
+              ? Text(
+                  'Approved Service',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                  ),
+                )
+              : Text(
+                  'Declined Service',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                  ),
+                )),
       body: complaintList.length != 0
           ? Container(
               padding: EdgeInsets.all(8),

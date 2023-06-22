@@ -29,7 +29,8 @@ class StudentDrawer extends StatelessWidget {
         return null;
       ;
     });
-    const studentDrawerText = TextStyle(fontSize: 15);
+    const studentDrawerText =
+        TextStyle(fontSize: 14, fontWeight: FontWeight.bold);
     return Drawer(
       width: MediaQuery.of(context).size.width * 0.8,
       child: SafeArea(
@@ -78,7 +79,7 @@ class StudentDrawer extends StatelessWidget {
                                         complaintList.first.lastName,
                                     style: TextStyle(
                                         fontSize: 18,
-                                        fontWeight: FontWeight.w500),
+                                        fontWeight: FontWeight.bold),
                                   ),
                                   SizedBox(
                                     height: 5,
@@ -88,7 +89,7 @@ class StudentDrawer extends StatelessWidget {
                                     style: TextStyle(
                                         fontSize: 13,
                                         color: Colors.grey,
-                                        fontWeight: FontWeight.w500),
+                                        fontWeight: FontWeight.bold),
                                   ),
                                 ],
                               ),
@@ -113,7 +114,10 @@ class StudentDrawer extends StatelessWidget {
                         SizedBox(
                           width: 30,
                         ),
-                        Text('My Complaints'),
+                        Text(
+                          'My Complaints',
+                          style: studentDrawerText,
+                        ),
                       ],
                     ),
                     onTap: () {
@@ -134,7 +138,10 @@ class StudentDrawer extends StatelessWidget {
                         SizedBox(
                           width: 30,
                         ),
-                        Text('My Leaves'),
+                        Text(
+                          'My Leaves',
+                          style: studentDrawerText,
+                        ),
                       ],
                     ),
                     onTap: () {
@@ -153,7 +160,10 @@ class StudentDrawer extends StatelessWidget {
                         SizedBox(
                           width: 30,
                         ),
-                        Text('My Services'),
+                        Text(
+                          'My Services',
+                          style: studentDrawerText,
+                        ),
                       ],
                     ),
                     onTap: () {
@@ -174,7 +184,10 @@ class StudentDrawer extends StatelessWidget {
                         SizedBox(
                           width: 30,
                         ),
-                        Text('Help'),
+                        Text(
+                          'Help',
+                          style: studentDrawerText,
+                        ),
                       ],
                     ),
                     onTap: () {
@@ -192,7 +205,10 @@ class StudentDrawer extends StatelessWidget {
                         SizedBox(
                           width: 30,
                         ),
-                        Text('Log out'),
+                        Text(
+                          'Log out',
+                          style: studentDrawerText,
+                        ),
                       ],
                     ),
                     onTap: () {

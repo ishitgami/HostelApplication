@@ -38,9 +38,11 @@ class _StudentServicesScreenState extends State<StudentServicesScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Colors.blue.shade900,
-        title: const Text('Services'),
-      ),
+          backgroundColor: Colors.blue.shade900,
+          title: const Text(
+            'Services',
+            style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+          )),
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.blue.shade900,
         onPressed: () {

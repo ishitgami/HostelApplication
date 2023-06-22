@@ -24,9 +24,11 @@ class _AddNoticeScreenState extends State<AddNoticeScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.blue.shade900,
-        title: const Text('Add Notice'),
-      ),
+          backgroundColor: Colors.blue.shade900,
+          title: const Text(
+            'Add Notice',
+            style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+          )),
       body: SingleChildScrollView(
         child: SafeArea(
           child: Column(

@@ -41,7 +41,10 @@ class _StudentDetailScreenState extends State<StudentDetailScreen> {
       backgroundColor: Colors.grey[200],
       appBar: AppBar(
         backgroundColor: Colors.blue.shade900,
-        title: const Text("Details"),
+        title: const Text(
+          "Details",
+          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+        ),
         actions: [
           pickedFile != null
               ? GestureDetector(

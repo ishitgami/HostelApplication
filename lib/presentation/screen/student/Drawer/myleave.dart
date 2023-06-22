@@ -23,9 +23,14 @@ class MyLeave extends StatelessWidget {
     });
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.blue.shade900,
-        title: const Text("My Leaves Request"),
-      ),
+          backgroundColor: Colors.blue.shade900,
+          title: const Text(
+            "My Leaves Request",
+            style: TextStyle(
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+            ),
+          )),
       body: Leavelist != []
           ? Padding(
               padding: EdgeInsets.all(8),

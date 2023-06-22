@@ -18,7 +18,7 @@ class ApproveDennyLeaveScreen extends StatelessWidget {
         backgroundColor: Colors.blue.shade900,
         title: const Text(
           'Approve/Denny Leave',
-          style: TextStyle(color: Colors.white),
+          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
         ),
       ),
       body: SingleChildScrollView(

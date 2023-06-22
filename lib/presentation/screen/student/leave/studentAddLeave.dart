@@ -34,9 +34,12 @@ class _StudentAddLeaveState extends State<StudentAddLeave> {
     return Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
-          backgroundColor: Colors.blue.shade900,
-          title: const Text('Leave'),
-        ),
+            backgroundColor: Colors.blue.shade900,
+            title: const Text(
+              'Leave',
+              style:
+                  TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+            )),
         body: userData != null
             ? Container(
                 color: Colors.white,

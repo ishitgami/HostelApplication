@@ -10,9 +10,11 @@ class HelpScreen extends StatelessWidget {
         color: Colors.blue.shade900, fontWeight: FontWeight.bold, fontSize: 20);
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.blue.shade900,
-        title: const Text("Help"),
-      ),
+          backgroundColor: Colors.blue.shade900,
+          title: const Text(
+            "Help",
+            style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+          )),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

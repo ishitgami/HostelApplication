@@ -17,7 +17,10 @@ class ApproveDennyServiceSceen extends StatelessWidget {
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.blue.shade900,
-        title: const Text('Approve/Denny Service'),
+        title: const Text('Approve/Denny Service' , style: TextStyle(
+          color: Colors.white,
+          fontWeight: FontWeight.bold,
+        ),)
       ),
       body: SingleChildScrollView(
         child: Column(
