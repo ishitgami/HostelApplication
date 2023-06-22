@@ -35,7 +35,8 @@ class _AdminDashbordScreenState extends State<AdminDashbordScreen> {
           elevation: 10,
           currentIndex: _selectedIndex,
           selectedIconTheme: IconThemeData(color: Colors.blue.shade900),
-          selectedLabelStyle: TextStyle(color: Colors.blue.shade900),
+          selectedLabelStyle: TextStyle(
+              color: Colors.blue.shade900, fontWeight: FontWeight.bold),
           selectedItemColor: Colors.blue.shade900,
           onTap: _onItemTapped,
           items: const [

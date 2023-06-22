@@ -220,6 +220,7 @@ class NoticeContainer extends StatelessWidget {
           ),
           Text(
             notice,
+            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
           ),
           const SizedBox(
             height: 10,
