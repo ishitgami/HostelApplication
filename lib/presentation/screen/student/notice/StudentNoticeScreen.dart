@@ -5,7 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:grouped_list/grouped_list.dart';
 import 'package:hostelapplication/logic/modules/notice_model.dart';
 import 'package:hostelapplication/presentation/screen/student/studentDrawer.dart';
-import 'package:image_downloader/image_downloader.dart';
+// import 'package:image_downloader/image_downloader.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
@@ -113,10 +113,10 @@ class NoticeContainer extends StatelessWidget {
       case 'Save Image':
         {
           try {
-            var imageId = await ImageDownloader.downloadImage(src);
-            if (imageId == null) {
-              return print("Image download faild");
-            }
+            // var imageId = await ImageDownloader.downloadImage(src);
+            // if (imageId == null) {
+            //   return print("Image download faild");
+            // }
           } on PlatformException catch (error) {
             print(error);
           }
