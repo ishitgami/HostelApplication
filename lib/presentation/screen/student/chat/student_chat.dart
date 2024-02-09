@@ -7,7 +7,6 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:hostelapplication/logic/modules/chat_model.dart';
 import 'package:hostelapplication/logic/modules/userData_model.dart';
-import 'package:hostelapplication/logic/provider/userData_provider.dart';
 import 'package:hostelapplication/logic/service/auth_services/auth_service.dart';
 import 'package:hostelapplication/logic/service/fireStoreServices/chat_firestore_service.dart';
 import 'package:hostelapplication/presentation/screen/Widgets/full_screen_view.dart';
