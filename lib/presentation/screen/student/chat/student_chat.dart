@@ -25,17 +25,26 @@ class StudentChatScreen extends StatefulWidget {
 class _StudentChatScreenState extends State<StudentChatScreen>
     with WidgetsBindingObserver {
   TextEditingController _messageController = TextEditingController();
-  ScrollController _scrollController = ScrollController();
+  ScrollController? _scrollController;
 
   bool showLoading = true;
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     WidgetsBinding.instance.addObserver(this);
 
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      setState(() {
+        showLoading = false;
+      });
+    });
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    setState(() {
       showLoading = false;
     });
   }
@@ -136,8 +145,8 @@ class _StudentChatScreenState extends State<StudentChatScreen>
                           ));
 
                           _messageController.clear();
-                          _scrollController.animateTo(
-                            _scrollController.position.maxScrollExtent + 100,
+                          _scrollController?.animateTo(
+                            _scrollController!.position.maxScrollExtent + 100,
                             duration: const Duration(milliseconds: 300),
                             curve: Curves.easeOut,
                           );
@@ -160,8 +169,8 @@ class _StudentChatScreenState extends State<StudentChatScreen>
                           attachment: "",
                         ));
                         _messageController.clear();
-                        _scrollController.animateTo(
-                          _scrollController.position.maxScrollExtent + 100,
+                        _scrollController?.animateTo(
+                          _scrollController!.position.maxScrollExtent + 100,
                           duration: const Duration(milliseconds: 300),
                           curve: Curves.easeOut,
                         );
@@ -217,22 +226,26 @@ class _StudentChatScreenState extends State<StudentChatScreen>
                   .reversed
                   .toList();
 
-              return ListView.builder(
-                controller: _scrollController,
-                physics: const BouncingScrollPhysics(),
-                itemCount: chat?.length ?? 0,
-                itemBuilder: (BuildContext context, int index) {
-                  return chat![index].name ==
-                          userDataList.first.firstName +
-                              " " +
-                              userDataList.first.lastName
-                      ? chat[index].attachment.isNotEmpty
-                          ? SenderAttachment(chat[index])
-                          : SenderChatBubble(chat[index])
-                      : chat[index].attachment.isNotEmpty
-                          ? ReceiverAttachment(chat[index])
-                          : ReceiverChatBubble(chat[index]);
-                },
+              return Stack(
+                children: [
+                  ListView.builder(
+                    controller: _scrollController,
+                    physics: BouncingScrollPhysics(),
+                    itemCount: chat?.length ?? 0,
+                    itemBuilder: (BuildContext context, int index) {
+                      return chat![index].name ==
+                              userDataList.first.firstName +
+                                  " " +
+                                  userDataList.first.lastName
+                          ? chat[index].attachment.isNotEmpty
+                              ? SenderAttachment(chat[index])
+                              : SenderChatBubble(chat[index])
+                          : chat[index].attachment.isNotEmpty
+                              ? ReceiverAttachment(chat[index])
+                              : ReceiverChatBubble(chat[index]);
+                    },
+                  ),
+                ],
               );
             }
           },
