@@ -22,9 +22,23 @@ class StudentChatScreen extends StatefulWidget {
   State<StudentChatScreen> createState() => _StudentChatScreenState();
 }
 
-class _StudentChatScreenState extends State<StudentChatScreen> {
+class _StudentChatScreenState extends State<StudentChatScreen>
+    with WidgetsBindingObserver {
   TextEditingController _messageController = TextEditingController();
   ScrollController _scrollController = ScrollController();
+
+  bool showLoading = true;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    WidgetsBinding.instance.addObserver(this);
+
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      showLoading = false;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -38,6 +52,7 @@ class _StudentChatScreenState extends State<StudentChatScreen> {
       }
       ;
     });
+
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -52,110 +67,113 @@ class _StudentChatScreenState extends State<StudentChatScreen> {
         ),
       ),
       drawer: const StudentDrawer(),
-      bottomSheet: Form(
-        child: Container(
-          decoration: const BoxDecoration(
-            color: Colors.white,
-            border: Border(
-              top: BorderSide(
-                color: Colors.grey,
-                width: 0.5,
-              ),
-              bottom: BorderSide(
-                color: Colors.grey,
-                width: 0.5,
-              ),
-            ),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.grey,
-                blurRadius: 10,
-              ),
-            ],
-          ),
-          child: Row(
-            children: [
-              // user image here
-              SizedBox(
-                width: 10,
-              ),
-              CircleAvatar(
-                backgroundImage: NetworkImage(userDataList.first.userimage),
-              ),
-
-              Expanded(
-                child: TextFormField(
-                  controller: _messageController,
-                  decoration: InputDecoration(
-                    hintText: 'Type a message',
-                    border: const OutlineInputBorder(
-                      borderSide: BorderSide.none,
+      bottomSheet: showLoading
+          ? CircularProgressIndicator()
+          : Form(
+              child: Container(
+                decoration: const BoxDecoration(
+                  color: Colors.white,
+                  border: Border(
+                    top: BorderSide(
+                      color: Colors.grey,
+                      width: 0.5,
+                    ),
+                    bottom: BorderSide(
+                      color: Colors.grey,
+                      width: 0.5,
                     ),
                   ),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey,
+                      blurRadius: 10,
+                    ),
+                  ],
+                ),
+                child: Row(
+                  children: [
+                    // user image here
+                    SizedBox(
+                      width: 10,
+                    ),
+                    CircleAvatar(
+                      backgroundImage:
+                          NetworkImage(userDataList.first.userimage),
+                    ),
+
+                    Expanded(
+                      child: TextFormField(
+                        controller: _messageController,
+                        decoration: InputDecoration(
+                          hintText: 'Type a message',
+                          border: const OutlineInputBorder(
+                            borderSide: BorderSide.none,
+                          ),
+                        ),
+                      ),
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        // add attachment
+
+                        selectFile().then((value) async {
+                          final ref = FirebaseStorage.instance
+                              .ref()
+                              .child('chat_attachment')
+                              .child(value.path!);
+                          await ref.putFile(File(value.path!));
+                          String url = await ref.getDownloadURL();
+                          ChatFirestoreService().saveChat(ChatModel(
+                            id: Uuid().v4(),
+                            name: userDataList.first.firstName +
+                                " " +
+                                userDataList.first.lastName,
+                            message: "",
+                            time: DateTime.now().toString(),
+                            avatarUrl: userDataList.first.userimage,
+                            date: DateTime.now(),
+                            attachment: url,
+                          ));
+
+                          _messageController.clear();
+                          _scrollController.animateTo(
+                            _scrollController.position.maxScrollExtent + 100,
+                            duration: const Duration(milliseconds: 300),
+                            curve: Curves.easeOut,
+                          );
+                        });
+                      },
+                      child: Icon(Icons.attach_file),
+                    ),
+
+                    IconButton(
+                      onPressed: () {
+                        ChatFirestoreService().saveChat(ChatModel(
+                          id: Uuid().v4(),
+                          name: userDataList.first.firstName +
+                              " " +
+                              userDataList.first.lastName,
+                          message: _messageController.text,
+                          time: DateTime.now().toString(),
+                          avatarUrl: userDataList.first.userimage,
+                          date: DateTime.now(),
+                          attachment: "",
+                        ));
+                        _messageController.clear();
+                        _scrollController.animateTo(
+                          _scrollController.position.maxScrollExtent + 100,
+                          duration: const Duration(milliseconds: 300),
+                          curve: Curves.easeOut,
+                        );
+                      },
+                      icon: const Icon(
+                        Icons.send,
+                      ),
+                    ),
+                  ],
                 ),
               ),
-              GestureDetector(
-                onTap: () {
-                  // add attachment
-
-                  selectFile().then((value) async {
-                    final ref = FirebaseStorage.instance
-                        .ref()
-                        .child('chat_attachment')
-                        .child(value.path!);
-                    await ref.putFile(File(value.path!));
-                    String url = await ref.getDownloadURL();
-                    ChatFirestoreService().saveChat(ChatModel(
-                      id: Uuid().v4(),
-                      name: userDataList.first.firstName +
-                          " " +
-                          userDataList.first.lastName,
-                      message: "",
-                      time: DateTime.now().toString(),
-                      avatarUrl: userDataList.first.userimage,
-                      date: DateTime.now(),
-                      attachment: url,
-                    ));
-
-                    _messageController.clear();
-                    _scrollController.animateTo(
-                      _scrollController.position.maxScrollExtent + 100,
-                      duration: const Duration(milliseconds: 300),
-                      curve: Curves.easeOut,
-                    );
-                  });
-                },
-                child: Icon(Icons.attach_file),
-              ),
-
-              IconButton(
-                onPressed: () {
-                  ChatFirestoreService().saveChat(ChatModel(
-                    id: Uuid().v4(),
-                    name: userDataList.first.firstName +
-                        " " +
-                        userDataList.first.lastName,
-                    message: _messageController.text,
-                    time: DateTime.now().toString(),
-                    avatarUrl: userDataList.first.userimage,
-                    date: DateTime.now(),
-                    attachment: "",
-                  ));
-                  _messageController.clear();
-                  _scrollController.animateTo(
-                    _scrollController.position.maxScrollExtent + 100,
-                    duration: const Duration(milliseconds: 300),
-                    curve: Curves.easeOut,
-                  );
-                },
-                icon: const Icon(
-                  Icons.send,
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
+            ),
       body: Padding(
         padding: const EdgeInsets.only(bottom: 70),
         child: StreamBuilder(
@@ -169,6 +187,10 @@ class _StudentChatScreenState extends State<StudentChatScreen> {
             } else if (snapshot.hasError) {
               return const Center(
                 child: Text('An error occured'),
+              );
+            } else if (!snapshot.hasData) {
+              return const Center(
+                child: Text('No chat available'),
               );
             } else {
               final chatData = snapshot.data;
@@ -289,8 +311,6 @@ class _StudentChatScreenState extends State<StudentChatScreen> {
     );
   }
 
-  bool showLoading = false;
-
   Future<PlatformFile> selectFile() async {
     final result = await FilePicker.platform.pickFiles(
       allowedExtensions: [
@@ -331,28 +351,42 @@ class _StudentChatScreenState extends State<StudentChatScreen> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
-          GestureDetector(
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => FullImageView(
-                    imageurl: chat.attachment,
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => FullImageView(
+                        imageurl: chat.attachment,
+                      ),
+                    ),
+                  );
+                },
+                child: Container(
+                  width: 200,
+                  height: 200,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    image: DecorationImage(
+                      image: CachedNetworkImageProvider(chat.attachment),
+                      fit: BoxFit.cover,
+                    ),
                   ),
                 ),
-              );
-            },
-            child: Container(
-              width: 200,
-              height: 200,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                image: DecorationImage(
-                  image: CachedNetworkImageProvider(chat.attachment),
-                  fit: BoxFit.cover,
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 5),
+                child: Text(
+                  DateFormat('hh:mm a').format(chat.date),
+                  style: const TextStyle(
+                    color: Colors.black54,
+                  ),
                 ),
               ),
-            ),
+            ],
           ),
           SizedBox(width: 10),
         ],
@@ -367,28 +401,42 @@ class _StudentChatScreenState extends State<StudentChatScreen> {
       child: Row(
         children: [
           SizedBox(width: 10),
-          GestureDetector(
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => FullImageView(
-                    imageurl: chat.attachment,
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => FullImageView(
+                        imageurl: chat.attachment,
+                      ),
+                    ),
+                  );
+                },
+                child: Container(
+                  width: 200,
+                  height: 200,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    image: DecorationImage(
+                      image: CachedNetworkImageProvider(chat.attachment),
+                      fit: BoxFit.cover,
+                    ),
                   ),
                 ),
-              );
-            },
-            child: Container(
-              width: 200,
-              height: 200,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                image: DecorationImage(
-                  image: CachedNetworkImageProvider(chat.attachment),
-                  fit: BoxFit.cover,
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 5),
+                child: Text(
+                  DateFormat('hh:mm a').format(chat.date),
+                  style: const TextStyle(
+                    color: Colors.black54,
+                  ),
                 ),
               ),
-            ),
+            ],
           ),
         ],
       ),
