@@ -5,6 +5,7 @@ class ChatModel {
   String time;
   String avatarUrl;
   DateTime date;
+  String attachment;
 
   ChatModel({
     required this.id,
@@ -13,6 +14,7 @@ class ChatModel {
     required this.time,
     required this.avatarUrl,
     required this.date,
+    required this.attachment,
   });
 
   Map<String, dynamic> createMap() {
@@ -22,7 +24,8 @@ class ChatModel {
       'Message': message,
       'Time': time,
       'AvatarUrl': avatarUrl,
-      'Date': date,
+      'Date': date, 
+      "attachment": attachment
     };
   }
 
@@ -32,7 +35,8 @@ class ChatModel {
         message = firestoreMap['Message'],
         time = firestoreMap['Time'],
         avatarUrl = firestoreMap['AvatarUrl'],
-        date = firestoreMap['Date'].toDate();
+        date = firestoreMap['Date'].toDate() , 
+        attachment = firestoreMap['attachment'];
 
   ChatModel.fromMap(Map<String, dynamic> map)
       : id = map['Id'],
@@ -40,5 +44,6 @@ class ChatModel {
         message = map['Message'],
         time = map['Time'],
         avatarUrl = map['AvatarUrl'],
-        date = map['Date'];
+        date = map['Date'] , 
+        attachment = map['attachment'];
 }

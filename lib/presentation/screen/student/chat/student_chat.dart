@@ -1,10 +1,16 @@
+import 'dart:io';
+
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:hostelapplication/logic/modules/chat_model.dart';
 import 'package:hostelapplication/logic/modules/userData_model.dart';
 import 'package:hostelapplication/logic/provider/userData_provider.dart';
 import 'package:hostelapplication/logic/service/auth_services/auth_service.dart';
 import 'package:hostelapplication/logic/service/fireStoreServices/chat_firestore_service.dart';
+import 'package:hostelapplication/presentation/screen/Widgets/full_screen_view.dart';
 import 'package:hostelapplication/presentation/screen/student/studentDrawer.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
@@ -19,14 +25,13 @@ class StudentChatScreen extends StatefulWidget {
 
 class _StudentChatScreenState extends State<StudentChatScreen> {
   TextEditingController _messageController = TextEditingController();
+  ScrollController _scrollController = ScrollController();
 
   @override
   Widget build(BuildContext context) {
-    UserData? userData;
     final authService = Provider.of<AuthService>(context);
     User user = authService.getcurrentUser();
     List<UserData> userDataList = [];
-    final userprovider = Provider.of<UsereDataProvider>(context);
     final userDataListRaw = Provider.of<List<UserData>?>(context);
     userDataListRaw?.forEach((element) {
       if (user.uid == element.id) {
@@ -90,6 +95,40 @@ class _StudentChatScreenState extends State<StudentChatScreen> {
                   ),
                 ),
               ),
+              GestureDetector(
+                onTap: () {
+                  // add attachment
+
+                  selectFile().then((value) async {
+                    final ref = FirebaseStorage.instance
+                        .ref()
+                        .child('chat_attachment')
+                        .child(value.path!);
+                    await ref.putFile(File(value.path!));
+                    String url = await ref.getDownloadURL();
+                    ChatFirestoreService().saveChat(ChatModel(
+                      id: Uuid().v4(),
+                      name: userDataList.first.firstName +
+                          " " +
+                          userDataList.first.lastName,
+                      message: "",
+                      time: DateTime.now().toString(),
+                      avatarUrl: userDataList.first.userimage,
+                      date: DateTime.now(),
+                      attachment: url,
+                    ));
+
+                    _messageController.clear();
+                    _scrollController.animateTo(
+                      _scrollController.position.maxScrollExtent + 100,
+                      duration: const Duration(milliseconds: 300),
+                      curve: Curves.easeOut,
+                    );
+                  });
+                },
+                child: Icon(Icons.attach_file),
+              ),
+
               IconButton(
                 onPressed: () {
                   ChatFirestoreService().saveChat(ChatModel(
@@ -101,55 +140,82 @@ class _StudentChatScreenState extends State<StudentChatScreen> {
                     time: DateTime.now().toString(),
                     avatarUrl: userDataList.first.userimage,
                     date: DateTime.now(),
+                    attachment: "",
                   ));
+                  _messageController.clear();
+                  _scrollController.animateTo(
+                    _scrollController.position.maxScrollExtent + 100,
+                    duration: const Duration(milliseconds: 300),
+                    curve: Curves.easeOut,
+                  );
                 },
-                icon: const Icon(Icons.send),
+                icon: const Icon(
+                  Icons.send,
+                ),
               ),
             ],
           ),
         ),
       ),
-      body: StreamBuilder(
-        stream: ChatFirestoreService().getChat(),
-        builder: (BuildContext context,
-            AsyncSnapshot<List<Map<String, dynamic>>> snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
-          } else if (snapshot.hasError) {
-            return const Center(
-              child: Text('An error occured'),
-            );
-          } else {
-            final chatData = snapshot.data;
-
-            final chat = chatData?.map((e) {
-              return ChatModel(
-                id: e['Id'],
-                name: e['Name'],
-                message: e['Message'],
-                time: e['Time'],
-                avatarUrl: e['AvatarUrl'],
-                date:
-                    // timerstamp to date
-                    DateTime.fromMillisecondsSinceEpoch(
-                        e['Date'].seconds * 1000),
+      body: Padding(
+        padding: const EdgeInsets.only(bottom: 70),
+        child: StreamBuilder(
+          stream: ChatFirestoreService().getChat(),
+          builder: (BuildContext context,
+              AsyncSnapshot<List<Map<String, dynamic>>> snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const Center(
+                child: CircularProgressIndicator(),
               );
-            }).toList();
-            return ListView.builder(
-              itemCount: chat?.length ?? 0,
-              itemBuilder: (BuildContext context, int index) {
-                return chat![index].name ==
-                        userDataList.first.firstName +
-                            " " +
-                            userDataList.first.lastName
-                    ? SenderChatBubble(chat[index])
-                    : ReceiverChatBubble(chat[index]);
-              },
-            );
-          }
-        },
+            } else if (snapshot.hasError) {
+              return const Center(
+                child: Text('An error occured'),
+              );
+            } else {
+              final chatData = snapshot.data;
+
+              final chat = chatData
+                  ?.map((e) {
+                    return ChatModel(
+                      id: e['Id'] ?? "",
+                      name: e['Name'] ?? "",
+                      message: e['Message'] ?? "",
+                      time: e['Time'] ?? "",
+                      avatarUrl: e['AvatarUrl'] ?? "",
+                      attachment: e['attachment'] ?? "",
+                      date: e['Date'] == null
+                          ? DateTime.now()
+                          :
+                          // timerstamp to date
+                          DateTime.fromMillisecondsSinceEpoch(
+                              (e['Date']).seconds * 1000,
+                            ),
+                    );
+                  })
+                  .toList()
+                  .reversed
+                  .toList();
+
+              return ListView.builder(
+                controller: _scrollController,
+                physics: const BouncingScrollPhysics(),
+                itemCount: chat?.length ?? 0,
+                itemBuilder: (BuildContext context, int index) {
+                  return chat![index].name ==
+                          userDataList.first.firstName +
+                              " " +
+                              userDataList.first.lastName
+                      ? chat[index].attachment.isNotEmpty
+                          ? SenderAttachment(chat[index])
+                          : SenderChatBubble(chat[index])
+                      : chat[index].attachment.isNotEmpty
+                          ? ReceiverAttachment(chat[index])
+                          : ReceiverChatBubble(chat[index]);
+                },
+              );
+            }
+          },
+        ),
       ),
     );
   }
@@ -167,6 +233,7 @@ class _StudentChatScreenState extends State<StudentChatScreen> {
                 chat.message,
                 style: const TextStyle(
                   color: Colors.black,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
               Text(
@@ -194,6 +261,7 @@ class _StudentChatScreenState extends State<StudentChatScreen> {
       margin: const EdgeInsets.only(top: 10),
       child: Row(
         children: [
+          SizedBox(width: 10),
           // image
           CircleAvatar(
             backgroundImage: NetworkImage(chat.avatarUrl),
@@ -206,6 +274,7 @@ class _StudentChatScreenState extends State<StudentChatScreen> {
                 chat.message,
                 style: const TextStyle(
                   color: Colors.black,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
               Text(
@@ -215,6 +284,112 @@ class _StudentChatScreenState extends State<StudentChatScreen> {
                 ),
               ),
             ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  bool showLoading = false;
+
+  Future<PlatformFile> selectFile() async {
+    final result = await FilePicker.platform.pickFiles(
+      allowedExtensions: [
+        // only image
+        'jpg', 'jpeg', 'png', 'gif', 'bmp', 'webp'
+      ],
+      type: FileType.custom,
+    );
+    if (result != null) {
+      return result.files.first;
+    } else {
+      return PlatformFile(
+        name: "",
+        size: 0,
+        path: "",
+      );
+    }
+  }
+
+  Future<dynamic>? progressIndicater(BuildContext context, showLoading) {
+    if (showLoading == true) {
+      return showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          });
+    } else
+      return null;
+  }
+
+  // sender attachment
+
+  Widget SenderAttachment(ChatModel chat) {
+    return Container(
+      margin: const EdgeInsets.only(top: 10),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => FullImageView(
+                    imageurl: chat.attachment,
+                  ),
+                ),
+              );
+            },
+            child: Container(
+              width: 200,
+              height: 200,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                image: DecorationImage(
+                  image: CachedNetworkImageProvider(chat.attachment),
+                  fit: BoxFit.cover,
+                ),
+              ),
+            ),
+          ),
+          SizedBox(width: 10),
+        ],
+      ),
+    );
+  }
+
+  // receiver attachment
+  Widget ReceiverAttachment(ChatModel chat) {
+    return Container(
+      margin: const EdgeInsets.only(top: 10),
+      child: Row(
+        children: [
+          SizedBox(width: 10),
+          GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => FullImageView(
+                    imageurl: chat.attachment,
+                  ),
+                ),
+              );
+            },
+            child: Container(
+              width: 200,
+              height: 200,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                image: DecorationImage(
+                  image: CachedNetworkImageProvider(chat.attachment),
+                  fit: BoxFit.cover,
+                ),
+              ),
+            ),
           ),
         ],
       ),
