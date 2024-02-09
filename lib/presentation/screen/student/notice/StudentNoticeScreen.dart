@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:grouped_list/grouped_list.dart';
 import 'package:hostelapplication/logic/modules/notice_model.dart';
+import 'package:hostelapplication/presentation/screen/Widgets/full_screen_view.dart';
 import 'package:hostelapplication/presentation/screen/student/studentDrawer.dart';
 // import 'package:image_downloader/image_downloader.dart';
 import 'package:intl/intl.dart';
@@ -75,20 +76,6 @@ class _StudentHomeState extends State<StudentHome> {
                       element.url!),
                 );
               })
-
-          // ListView.builder(
-          //     itemCount: noticeList.length,
-          //     itemBuilder: (context, index) {
-          //       return NoticeContainer(
-          //           noticeList[index].notice,
-          //           noticeList[index].time.day.toString() +
-          //               '/' +
-          //               noticeList[index].time.month.toString() +
-          //               '/' +
-          //               noticeList[index].time.year.toString(),
-          //           noticeList[index].url!);
-          //     })
-
           : Center(
               child: CircularProgressIndicator(),
             ),
@@ -190,13 +177,25 @@ class NoticeContainer extends StatelessWidget {
           ),
           src == ""
               ? SizedBox()
-              : Center(
-                  child: Image.network(
-                  src,
-                  errorBuilder: (context, error, stackTrace) {
-                    return const SizedBox();
+              : GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => FullImageView(
+                          imageurl: src,
+                        ),
+                      ),
+                    );
                   },
-                )),
+                  child: Center(
+                      child: Image.network(
+                    src,
+                    errorBuilder: (context, error, stackTrace) {
+                      return const SizedBox();
+                    },
+                  )),
+                ),
         ],
       ),
     );
@@ -218,7 +217,7 @@ class BulletLists extends StatelessWidget {
               '\u2022',
               style: TextStyle(
                 fontSize: 20,
-                height: 1.55,
+                // height: 1.55,
               ),
             ),
             const SizedBox(

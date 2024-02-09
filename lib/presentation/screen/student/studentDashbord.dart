@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hostelapplication/presentation/screen/student/chat/student_chat.dart';
 import 'package:hostelapplication/presentation/screen/student/leave/studentLeaveList.dart';
 import 'package:hostelapplication/presentation/screen/student/notice/StudentNoticeScreen.dart';
 import 'package:hostelapplication/presentation/screen/student/services/studentServices.dart';
@@ -16,6 +17,7 @@ class _StudentDashboardScreenState extends State<StudentDashboardScreen> {
   int _selectedIndex = 0;
   static const List<Widget> _widgetOptions = <Widget>[
     StudentHome(),
+    StudentChatScreen(),
     StudentComplainScreen(),
     StudentServicesScreen(),
     StudentApproveDennyLeaveList()
@@ -43,6 +45,11 @@ class _StudentDashboardScreenState extends State<StudentDashboardScreen> {
             BottomNavigationBarItem(
               icon: Icon(Icons.home_outlined),
               label: 'Home',
+              backgroundColor: Colors.red,
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.chat_outlined),
+              label: 'Chat',
               backgroundColor: Colors.red,
             ),
             BottomNavigationBarItem(
